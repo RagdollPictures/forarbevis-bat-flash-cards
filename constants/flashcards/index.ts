@@ -1,8 +1,13 @@
 import type { Chapter, FlashCard, Source } from "./types";
 
+import { elektroniskaSjokort } from "./forarintyg_se/elektroniska_sjokort";
+import { fastaSjomarken } from "./forarintyg_se/fasta_sjomarken";
+import { flytandeSjomarken } from "./forarintyg_se/flytande_sjomarken";
 import { longitudLatitud } from "./forarintyg_se/longitud_latitud";
 import { papperssjokort } from "./forarintyg_se/papperssjokort";
 import { sjokortstyper } from "./forarintyg_se/sjokortstyper";
+import { symboler } from "./forarintyg_se/symboler";
+import { tillforlitlighet } from "./forarintyg_se/tillforlitlighet";
 
 import { batlivet } from "./fritidsskepparen/batlivet";
 import { kompassen } from "./fritidsskepparen/kompassen";
@@ -75,15 +80,37 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       title: "Papperssjökort",
       deckId: "papperssjokort",
     },
+    {
+      id: "elektroniska_sjokort",
+      title: "Elektroniska sjökort",
+      deckId: "elektroniska_sjokort",
+    },
+    {
+      id: "symboler",
+      title: "Symboler",
+      deckId: "symboler",
+    },
+    {
+      id: "flytande_sjomarken",
+      title: "Flytande sjömärken",
+      deckId: "flytande_sjomarken",
+    },
+    {
+      id: "fasta_sjomarken",
+      title: "Fasta sjömärken",
+      deckId: "fasta_sjomarken",
+    },
+    {
+  id: "tillforlitlighet",
+  title: "Tillförlitlighet",
+  deckId: "tillforlitlighet",
+},
   ],
 };
 
 export const decksById: Record<string, FlashCard[]> = {
   sjokortet,
   position_fart_tid_distans: positionFartTidDistans,
-  longitud_latitud: longitudLatitud,
-  sjokortstyper,
-  papperssjokort,
   kompassen,
   utmarkning_av_grund_prickar_och_bojar: utmarkningAvGrundPrickarOchBojar,
   praktisk_skargardsnavigering: praktiskSkargardsnavigering,
@@ -91,6 +118,15 @@ export const decksById: Record<string, FlashCard[]> = {
   saker_bat_i_skargard_och_till_havs: sakerBatISkargardOchTillHavs,
   batlivet,
   sjomanskap,
+
+  longitud_latitud: longitudLatitud,
+  sjokortstyper,
+  papperssjokort,
+  elektroniska_sjokort: elektroniskaSjokort,
+  symboler,
+  flytande_sjomarken: flytandeSjomarken,
+  fasta_sjomarken: fastaSjomarken,
+  tillforlitlighet,
 };
 
 export function getChapters(sourceId: string): Chapter[] {
