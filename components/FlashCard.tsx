@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import type { FlashCard as FlashCardType } from "../constants/flashcards/sjokortet";
+import type { FlashCard as FlashCardType } from "../constants/flashcards/types";
+
 
 type Props = {
   card: FlashCardType;

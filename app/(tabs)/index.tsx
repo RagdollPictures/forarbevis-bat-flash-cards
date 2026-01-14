@@ -1,2 +1,1 @@
-import Chapter from "../chapter";
-export default Chapter;
+export { default } from "../library";

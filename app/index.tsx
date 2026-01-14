@@ -1,2 +1,2 @@
-export { default } from "./chapter";
+export { default } from "./library";
 

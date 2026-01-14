@@ -1,8 +1,4 @@
-export type FlashCard = {
-  id: string;
-  question: string;
-  answer: string;
-};
+import type { FlashCard } from "./types";
 
 export const sjokortet: FlashCard[] = [
   {
