@@ -1,4 +1,4 @@
-import type { FlashCard } from "./types";
+import type { FlashCard } from "../types";
 
 export const sjokortet: FlashCard[] = [
   {
@@ -108,4 +108,13 @@ export const sjokortet: FlashCard[] = [
     answer:
       "Gauss projektion har konstant latitudskala och ökande longitudskala från en medelmeridian. I Mercators projektion växer latitudskalan.",
   },
+
+   {
+    id: "sjokortet-13",
+    question:
+      "Vad betyder symbolerna",
+    answer:
+      "a) Bränning b) Väderkvarn c) Gästhamn d) Fast sjömärke. Kan vara båk, kummel, stång och tavla. e) Kraftkabel f) Bottenaktiviteter förbjudet g) Vindkraftverk h) Förbudsområde med tillträdesförbud i) Oren botten på område som inte är sjömätt. Undvik ankring",
+  imageKey: "sjokortet_1_13"
+    },
 ];

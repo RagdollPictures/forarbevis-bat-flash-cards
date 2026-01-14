@@ -1,6 +1,6 @@
 import { useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import FlashCard from "../components/FlashCard";
 import { getDeck } from "../constants/flashcards";
 
@@ -36,7 +36,10 @@ export default function Deck() {
   const canNext = index < deck.length - 1;
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={true}
+    >
       <Text style={styles.subtitle}>{decodedTitle}</Text>
       <Text style={styles.counter}>
         {index + 1} / {deck.length}
@@ -59,12 +62,12 @@ export default function Deck() {
           <Text style={styles.navButtonText}>Nästa</Text>
         </Pressable>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, padding: 24, justifyContent: "center", gap: 10 },
+  container: { flexGrow: 1, padding: 24, justifyContent: "flex-start", gap: 10 },
   subtitle: { fontSize: 16, opacity: 0.7, textAlign: "center" },
   counter: { fontSize: 14, opacity: 0.6, textAlign: "center" },
   navRow: { flexDirection: "row", gap: 12, justifyContent: "center", marginTop: 8 },

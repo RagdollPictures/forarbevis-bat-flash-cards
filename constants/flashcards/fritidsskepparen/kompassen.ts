@@ -1,4 +1,4 @@
-import type { FlashCard } from "./types";
+import type { FlashCard } from "../types";
 
 export const kompassen: FlashCard[] = [
   {
@@ -39,6 +39,24 @@ export const kompassen: FlashCard[] = [
     answer:
       "När ett fartyg girar i jordens magnetfält påverkas kompassen olika på olika kurser. Man kan också säga att kompassnålens vinkel till magnetiska föremål i båten förändras på olika kurser.",
   },
+
+{
+    id: "kompassen-3-7",
+    question: " a) Ligger du enligt skissen styrbord eller babord om enslinjen? b) Ska du gira styrbord eller babord för att komma in i enslinjen igen?",
+    answer:
+      "a) Styrbord om enslinjen. b) Babord",
+    imageKey: "kompassen_3_7"
+    },
+    
+    {
+    id: "kompassen-3-8",
+    question: " Ta med ögonmått ut pilarnas kurser",
+    answer:
+      "A=150º, B=235º, C=180º, D=45º, E=90º, F=0º/360º, G=285º",
+    imageKey: "kompassen_3_8"
+    },
+
+ 
   {
     id: "kompassen-3-13",
     question: "Övningssjökort 9313: Ta ut kurser och distanser från Gäveskär till: a) Fyren Dynan b) Fasta sjömärket NO Brännö.",
