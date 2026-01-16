@@ -1,4 +1,4 @@
-import { useLocalSearchParams } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import FlashCard from "../components/FlashCard";
@@ -26,6 +26,7 @@ export default function Deck() {
   if (!card) {
     return (
       <View style={styles.container}>
+        <Stack.Screen options={{ title: decodedTitle || "Kortlek" }} />
         <Text style={styles.subtitle}>{decodedTitle || decodedDeckId}</Text>
         <Text>Inga kort ännu i den här kortleken.</Text>
       </View>
@@ -36,11 +37,9 @@ export default function Deck() {
   const canNext = index < deck.length - 1;
 
   return (
-    <ScrollView
-      contentContainerStyle={styles.container}
-      showsVerticalScrollIndicator={true}
-    >
-      <Text style={styles.subtitle}>{decodedTitle}</Text>
+    <ScrollView contentContainerStyle={styles.container} showsVerticalScrollIndicator={true}>
+      <Stack.Screen options={{ title: decodedTitle || "Kortlek" }} />
+
       <Text style={styles.counter}>
         {index + 1} / {deck.length}
       </Text>

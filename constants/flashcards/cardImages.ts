@@ -33,5 +33,7 @@ export const cardImages: Record<string, any> = {
 "flytande_sjomarken_08": require("../../assets/cards/flytande_sjomarken_08.jpg"),
 "flytande_sjomarken_09": require("../../assets/cards/flytande_sjomarken_09.jpg"),
 "fasta_sjomarken_05_facit": require("../../assets/cards/fasta_sjomarken_05_facit.jpg"),
-
+"mata_kort_distans_01": require("../../assets/cards/mata_kort_distans_01.jpg"),
+"farledsnavigation_02": require("../../assets/cards/farledsnavigation_02.jpg"),
+"segelbatar_09": require("../../assets/cards/segelbatar_09.jpg"),
 };

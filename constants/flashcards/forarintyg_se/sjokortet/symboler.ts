@@ -1,4 +1,4 @@
-import type { FlashCard } from "../types";
+import type { FlashCard } from "../../types";
 
 export const symboler: FlashCard[] = [
   {

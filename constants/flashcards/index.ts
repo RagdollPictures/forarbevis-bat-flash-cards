@@ -1,14 +1,39 @@
 import type { Chapter, FlashCard, Source } from "./types";
 
-import { elektroniskaSjokort } from "./forarintyg_se/elektroniska_sjokort";
-import { fastaSjomarken } from "./forarintyg_se/fasta_sjomarken";
-import { flytandeSjomarken } from "./forarintyg_se/flytande_sjomarken";
-import { longitudLatitud } from "./forarintyg_se/longitud_latitud";
-import { papperssjokort } from "./forarintyg_se/papperssjokort";
-import { sjokortstyper } from "./forarintyg_se/sjokortstyper";
-import { symboler } from "./forarintyg_se/symboler";
-import { tillforlitlighet } from "./forarintyg_se/tillforlitlighet";
+import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
 
+import { avdriftStrom } from "./forarintyg_se/navigationsteori/avdrift_strom";
+import { berakningar } from "./forarintyg_se/navigationsteori/berakningar";
+import { deviationMissvisning } from "./forarintyg_se/navigationsteori/deviation_missvisning";
+import { distans } from "./forarintyg_se/navigationsteori/distans";
+import { kursBaringRiktning } from "./forarintyg_se/navigationsteori/kurs_baring_riktning";
+import { navigationsbestick } from "./forarintyg_se/navigationsteori/navigationsbestick";
+import { position } from "./forarintyg_se/navigationsteori/position";
+import { rattaSattaKurs } from "./forarintyg_se/navigationsteori/ratta_satta_kurs";
+import { vaderstreck } from "./forarintyg_se/navigationsteori/vaderstreck";
+import { farledsnavigation } from "./forarintyg_se/praktisk_navigation/farledsnavigation";
+import { instrumentnavigation } from "./forarintyg_se/praktisk_navigation/instrumentnavigation";
+import { navigatornavigation } from "./forarintyg_se/praktisk_navigation/navigatornavigation";
+import { optiskNavigation } from "./forarintyg_se/praktisk_navigation/optisk_navigation";
+import { planering } from "./forarintyg_se/praktisk_navigation/planering";
+import { elektroniskaSjokort } from "./forarintyg_se/sjokortet/elektroniska_sjokort";
+import { fastaSjomarken } from "./forarintyg_se/sjokortet/fasta_sjomarken";
+import { flytandeSjomarken } from "./forarintyg_se/sjokortet/flytande_sjomarken";
+import { longitudLatitud } from "./forarintyg_se/sjokortet/longitud_latitud";
+import { papperssjokort } from "./forarintyg_se/sjokortet/papperssjokort";
+import { sjokortstyper } from "./forarintyg_se/sjokortet/sjokortstyper";
+import { symboler } from "./forarintyg_se/sjokortet/symboler";
+import { tillforlitlighet } from "./forarintyg_se/sjokortet/tillforlitlighet";
+import { krysspejling } from "./forarintyg_se/sjokortsarbete/krysspejling";
+import { laggaUtKurs } from "./forarintyg_se/sjokortsarbete/lagga_ut_kurs";
+import { markeraPosition } from "./forarintyg_se/sjokortsarbete/markera_position";
+import { mataKortDistans } from "./forarintyg_se/sjokortsarbete/mata_kort_distans";
+import { mataLangreDistans } from "./forarintyg_se/sjokortsarbete/mata_langre_distans";
+import { mataUppKurs } from "./forarintyg_se/sjokortsarbete/mata_upp_kurs";
+import { taFramPosition } from "./forarintyg_se/sjokortsarbete/ta_fram_position";
+import { vajningsreglerInledning } from "./forarintyg_se/vajningsregler/inledning";
+import { vajningsreglerSegelbatar } from "./forarintyg_se/vajningsregler/segelbatar";
+import { vajningsreglerSmabatar } from "./forarintyg_se/vajningsregler/smabatar";
 import { batlivet } from "./fritidsskepparen/batlivet";
 import { kompassen } from "./fritidsskepparen/kompassen";
 import { positionFartTidDistans } from "./fritidsskepparen/position_fart_tid_distans";
@@ -105,6 +130,132 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
   title: "Tillförlitlighet",
   deckId: "tillforlitlighet",
 },
+{
+  id: "vaderstreck",
+  title: "Väderstreck",
+  deckId: "vaderstreck",
+},
+{
+  id: "navigationsbestick",
+  title: "Navigationsbestick",
+  deckId: "navigationsbestick",
+},
+{
+  id: "kurs_baring_riktning",
+  title: "Kurs, bäring och riktning",
+  deckId: "kurs_baring_riktning",
+},
+{
+  id: "position",
+  title: "Position",
+  deckId: "position",
+},
+{
+  id: "distans",
+  title: "Distans",
+  deckId: "distans",
+},
+{
+  id: "berakningar",
+  title: "Beräkningar",
+  deckId: "berakningar",
+},
+{
+  id: "deviation_missvisning",
+  title: "Deviation & missvisning",
+  deckId: "deviation_missvisning",
+},
+{
+  id: "avdrift_strom",
+  title: "Avdrift & ström",
+  deckId: "avdrift_strom",
+},{
+  id: "ratta_satta_kurs",
+  title: "Rätta & sätta kurs",
+  deckId: "ratta_satta_kurs",
+},
+{
+  id: "mata_kort_distans",
+  title: "Mäta kort distans",
+  deckId: "mata_kort_distans",
+},
+{
+  id: "mata_langre_distans",
+  title: "Mäta längre distans",
+  deckId: "mata_langre_distans",
+},
+{
+  id: "ta_fram_position",
+  title: "Ta fram position",
+  deckId: "ta_fram_position",
+},
+{
+  id: "markera_position",
+  title: "Markera position",
+  deckId: "markera_position",
+},
+{
+  id: "lagga_ut_kurs",
+  title: "Lägga ut kurs",
+  deckId: "lagga_ut_kurs",
+},
+{
+  id: "mata_upp_kurs",
+  title: "Mäta upp kurs",
+  deckId: "mata_upp_kurs",
+},
+{
+  id: "krysspejling",
+  title: "Krysspejling",
+  deckId: "krysspejling",
+},
+{
+  id: "planering",
+  title: "Planering",
+  deckId: "planering",
+},
+{
+  id: "farledsnavigation",
+  title: "Farledsnavigation",
+  deckId: "farledsnavigation",
+},
+{
+  id: "optisk_navigation",
+  title: "Optisk navigation",
+  deckId: "optisk_navigation",
+},
+{
+  id: "instrumentnavigation",
+  title: "Instrumentnavigation",
+  deckId: "instrumentnavigation",
+},
+{
+  id: "navigatornavigation",
+  title: "Navigatornavigation",
+  deckId: "navigatornavigation",
+},
+{
+  id: "vajningsregler_inledning",
+  title: "Väjningsregler – Inledning",
+  deckId: "vajningsregler_inledning",
+},
+{
+  id: "vajningsregler_smabatar",
+  title: "Väjningsregler – Småbåtar",
+  deckId: "vajningsregler_smabatar",
+},
+{
+  id: "vajningsregler_segelbatar",
+  title: "Väjningsregler – Segelbåtar",
+  deckId: "vajningsregler_segelbatar",
+},
+{
+  id: "vajningsregler_motorbatar",
+  title: "Väjningsregler – Motorbåtar",
+  deckId: "vajningsregler_motorbatar",
+},
+
+
   ],
 };
 
@@ -127,6 +278,32 @@ export const decksById: Record<string, FlashCard[]> = {
   flytande_sjomarken: flytandeSjomarken,
   fasta_sjomarken: fastaSjomarken,
   tillforlitlighet,
+  vaderstreck,
+  navigationsbestick,
+  kurs_baring_riktning: kursBaringRiktning,
+  position,
+  distans,
+  berakningar,
+  deviation_missvisning: deviationMissvisning,
+  avdrift_strom: avdriftStrom,
+ratta_satta_kurs: rattaSattaKurs,
+mata_kort_distans: mataKortDistans,
+mata_langre_distans: mataLangreDistans,
+ta_fram_position: taFramPosition,
+markera_position: markeraPosition,
+lagga_ut_kurs: laggaUtKurs,
+mata_upp_kurs: mataUppKurs,
+krysspejling: krysspejling,
+planering,
+farledsnavigation,
+optisk_navigation: optiskNavigation,
+instrumentnavigation,
+navigatornavigation,
+vajningsregler_inledning: vajningsreglerInledning,
+vajningsregler_smabatar: vajningsreglerSmabatar,
+vajningsregler_segelbatar: vajningsreglerSegelbatar,
+vajningsregler_motorbatar: vajningsreglerMotorbatar,
+
 };
 
 export function getChapters(sourceId: string): Chapter[] {
