@@ -1,7 +1,8 @@
 import type { Chapter, FlashCard, Source } from "./types";
 
-import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
-
+import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
+import { lanternorSegelbatar } from "./forarintyg_se/lanternor/segelbatar";
+import { lanternorSmabatar } from "./forarintyg_se/lanternor/smabatar";
 import { avdriftStrom } from "./forarintyg_se/navigationsteori/avdrift_strom";
 import { berakningar } from "./forarintyg_se/navigationsteori/berakningar";
 import { deviationMissvisning } from "./forarintyg_se/navigationsteori/deviation_missvisning";
@@ -31,7 +32,9 @@ import { mataKortDistans } from "./forarintyg_se/sjokortsarbete/mata_kort_distan
 import { mataLangreDistans } from "./forarintyg_se/sjokortsarbete/mata_langre_distans";
 import { mataUppKurs } from "./forarintyg_se/sjokortsarbete/mata_upp_kurs";
 import { taFramPosition } from "./forarintyg_se/sjokortsarbete/ta_fram_position";
+import { vajningsreglerFartyg } from "./forarintyg_se/vajningsregler/fartyg";
 import { vajningsreglerInledning } from "./forarintyg_se/vajningsregler/inledning";
+import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
 import { vajningsreglerSegelbatar } from "./forarintyg_se/vajningsregler/segelbatar";
 import { vajningsreglerSmabatar } from "./forarintyg_se/vajningsregler/smabatar";
 import { batlivet } from "./fritidsskepparen/batlivet";
@@ -90,173 +93,91 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
   ],
   forarintyg: [
+  {
+    id: "sjokortet",
+    title: "Sjökortet",
+    children: [
+      { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
+      { id: "papperssjokort", title: "Papperssjökort", deckId: "papperssjokort" },
+      { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
+      { id: "symboler", title: "Symboler", deckId: "symboler" },
+      { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
+      { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
+      { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
+      { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
+    ],
+  },
+
+  {
+    id: "navigationsteori",
+    title: "Navigationsteori",
+    children: [
+      { id: "vaderstreck", title: "Väderstreck", deckId: "vaderstreck" },
+      { id: "navigationsbestick", title: "Navigationsbestick", deckId: "navigationsbestick" },
+      { id: "kurs_baring_riktning", title: "Kurs, bäring och riktning", deckId: "kurs_baring_riktning" },
+      { id: "position", title: "Position", deckId: "position" },
+      { id: "distans", title: "Distans", deckId: "distans" },
+      { id: "berakningar", title: "Beräkningar", deckId: "berakningar" },
+      { id: "deviation_missvisning", title: "Deviation & missvisning", deckId: "deviation_missvisning" },
+      { id: "avdrift_strom", title: "Avdrift & ström", deckId: "avdrift_strom" },
+      { id: "ratta_satta_kurs", title: "Rätta & sätta kurs", deckId: "ratta_satta_kurs" },
+    ],
+  },
+
+  {
+    id: "praktisk_navigation",
+    title: "Praktisk navigation",
+    children: [
+      { id: "planering", title: "Planering", deckId: "planering" },
+      { id: "farledsnavigation", title: "Farledsnavigation", deckId: "farledsnavigation" },
+      { id: "optisk_navigation", title: "Optisk navigation", deckId: "optisk_navigation" },
+      { id: "instrumentnavigation", title: "Instrumentnavigation", deckId: "instrumentnavigation" },
+      { id: "navigatornavigation", title: "Navigatornavigation", deckId: "navigatornavigation" },
+    ],
+  },
+
+  {
+    id: "sjokortsarbete",
+    title: "Sjökortsarbete",
+    children: [
+      { id: "mata_kort_distans", title: "Mäta kort distans", deckId: "mata_kort_distans" },
+      { id: "mata_langre_distans", title: "Mäta längre distans", deckId: "mata_langre_distans" },
+      { id: "ta_fram_position", title: "Ta fram position", deckId: "ta_fram_position" },
+      { id: "markera_position", title: "Markera position", deckId: "markera_position" },
+      { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
+      { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
+      { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
+    ],
+  },
+
+  {
+    id: "vajningsregler",
+    title: "Väjningsregler",
+    children: [
+      { id: "vajningsregler_inledning", title: "Inledning", deckId: "vajningsregler_inledning" },
+      { id: "vajningsregler_smabatar", title: "Småbåtar", deckId: "vajningsregler_smabatar" },
+      { id: "vajningsregler_segelbatar", title: "Segelbåtar", deckId: "vajningsregler_segelbatar" },
+      { id: "vajningsregler_motorbatar", title: "Motorbåtar", deckId: "vajningsregler_motorbatar" },
+      { id: "vajningsregler_fartyg", title: "Fartyg", deckId: "vajningsregler_fartyg" },
+    ],
+  },
+
+  {
+    id: "lanternor",
+    title: "Lanternor",
+    children: [
+      { id: "lanternor_inledning", title: "Inledning", deckId: "lanternor_inledning" },
+      { id: "lanternor_smabatar", title: "Småbåtar", deckId: "lanternor_smabatar" },
     {
-      id: "longitud_latitud",
-      title: "Longitud och latitud",
-      deckId: "longitud_latitud",
+      id: "lanternor_segelbatar",
+      title: "Segelbåtar",
+      deckId: "lanternor_segelbatar",
     },
-    {
-      id: "sjokortstyper",
-      title: "Sjökortstyper",
-      deckId: "sjokortstyper",
-    },
-    {
-      id: "papperssjokort",
-      title: "Papperssjökort",
-      deckId: "papperssjokort",
-    },
-    {
-      id: "elektroniska_sjokort",
-      title: "Elektroniska sjökort",
-      deckId: "elektroniska_sjokort",
-    },
-    {
-      id: "symboler",
-      title: "Symboler",
-      deckId: "symboler",
-    },
-    {
-      id: "flytande_sjomarken",
-      title: "Flytande sjömärken",
-      deckId: "flytande_sjomarken",
-    },
-    {
-      id: "fasta_sjomarken",
-      title: "Fasta sjömärken",
-      deckId: "fasta_sjomarken",
-    },
-    {
-  id: "tillforlitlighet",
-  title: "Tillförlitlighet",
-  deckId: "tillforlitlighet",
-},
-{
-  id: "vaderstreck",
-  title: "Väderstreck",
-  deckId: "vaderstreck",
-},
-{
-  id: "navigationsbestick",
-  title: "Navigationsbestick",
-  deckId: "navigationsbestick",
-},
-{
-  id: "kurs_baring_riktning",
-  title: "Kurs, bäring och riktning",
-  deckId: "kurs_baring_riktning",
-},
-{
-  id: "position",
-  title: "Position",
-  deckId: "position",
-},
-{
-  id: "distans",
-  title: "Distans",
-  deckId: "distans",
-},
-{
-  id: "berakningar",
-  title: "Beräkningar",
-  deckId: "berakningar",
-},
-{
-  id: "deviation_missvisning",
-  title: "Deviation & missvisning",
-  deckId: "deviation_missvisning",
-},
-{
-  id: "avdrift_strom",
-  title: "Avdrift & ström",
-  deckId: "avdrift_strom",
-},{
-  id: "ratta_satta_kurs",
-  title: "Rätta & sätta kurs",
-  deckId: "ratta_satta_kurs",
-},
-{
-  id: "mata_kort_distans",
-  title: "Mäta kort distans",
-  deckId: "mata_kort_distans",
-},
-{
-  id: "mata_langre_distans",
-  title: "Mäta längre distans",
-  deckId: "mata_langre_distans",
-},
-{
-  id: "ta_fram_position",
-  title: "Ta fram position",
-  deckId: "ta_fram_position",
-},
-{
-  id: "markera_position",
-  title: "Markera position",
-  deckId: "markera_position",
-},
-{
-  id: "lagga_ut_kurs",
-  title: "Lägga ut kurs",
-  deckId: "lagga_ut_kurs",
-},
-{
-  id: "mata_upp_kurs",
-  title: "Mäta upp kurs",
-  deckId: "mata_upp_kurs",
-},
-{
-  id: "krysspejling",
-  title: "Krysspejling",
-  deckId: "krysspejling",
-},
-{
-  id: "planering",
-  title: "Planering",
-  deckId: "planering",
-},
-{
-  id: "farledsnavigation",
-  title: "Farledsnavigation",
-  deckId: "farledsnavigation",
-},
-{
-  id: "optisk_navigation",
-  title: "Optisk navigation",
-  deckId: "optisk_navigation",
-},
-{
-  id: "instrumentnavigation",
-  title: "Instrumentnavigation",
-  deckId: "instrumentnavigation",
-},
-{
-  id: "navigatornavigation",
-  title: "Navigatornavigation",
-  deckId: "navigatornavigation",
-},
-{
-  id: "vajningsregler_inledning",
-  title: "Väjningsregler – Inledning",
-  deckId: "vajningsregler_inledning",
-},
-{
-  id: "vajningsregler_smabatar",
-  title: "Väjningsregler – Småbåtar",
-  deckId: "vajningsregler_smabatar",
-},
-{
-  id: "vajningsregler_segelbatar",
-  title: "Väjningsregler – Segelbåtar",
-  deckId: "vajningsregler_segelbatar",
-},
-{
-  id: "vajningsregler_motorbatar",
-  title: "Väjningsregler – Motorbåtar",
-  deckId: "vajningsregler_motorbatar",
-},
+    ],
+  },
+],
 
 
-  ],
 };
 
 export const decksById: Record<string, FlashCard[]> = {
@@ -303,6 +224,10 @@ vajningsregler_inledning: vajningsreglerInledning,
 vajningsregler_smabatar: vajningsreglerSmabatar,
 vajningsregler_segelbatar: vajningsreglerSegelbatar,
 vajningsregler_motorbatar: vajningsreglerMotorbatar,
+vajningsregler_fartyg: vajningsreglerFartyg,
+lanternor_inledning: lanternorInledning,
+lanternor_smabatar: lanternorSmabatar,
+lanternor_segelbatar: lanternorSegelbatar,
 
 };
 

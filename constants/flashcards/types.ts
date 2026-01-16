@@ -14,5 +14,6 @@ export type Source = {
 export type Chapter = {
   id: string;
   title: string;
-  deckId: string;
+  deckId?: string;
+  children?: Chapter[];
 };
