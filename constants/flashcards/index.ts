@@ -1,8 +1,17 @@
 import type { Chapter, FlashCard, Source } from "./types";
 
+import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
+import { lanternorMotorbatar } from "./forarintyg_se/lanternor/motorbatar";
+import { lanternorSarskildaFartyg } from "./forarintyg_se/lanternor/sarskilda_fartyg";
 import { lanternorSegelbatar } from "./forarintyg_se/lanternor/segelbatar";
 import { lanternorSmabatar } from "./forarintyg_se/lanternor/smabatar";
+import { manovreringBatMedRoder } from "./forarintyg_se/manovrering/bat_med_roder";
+import { manovreringBatUtanRoder } from "./forarintyg_se/manovrering/bat_utan_roder";
+import { manovreringFortoja } from "./forarintyg_se/manovrering/fortoja";
+import { manovreringHogFart } from "./forarintyg_se/manovrering/hog_fart";
+import { manovreringInledning } from "./forarintyg_se/manovrering/inledning";
+import { manovreringKastaLoss } from "./forarintyg_se/manovrering/kasta_loss";
 import { avdriftStrom } from "./forarintyg_se/navigationsteori/avdrift_strom";
 import { berakningar } from "./forarintyg_se/navigationsteori/berakningar";
 import { deviationMissvisning } from "./forarintyg_se/navigationsteori/deviation_missvisning";
@@ -173,8 +182,61 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       title: "Segelbåtar",
       deckId: "lanternor_segelbatar",
     },
+    {
+  id: "lanternor_motorbatar",
+  title: "Motorbåtar",
+  deckId: "lanternor_motorbatar",
+},
+{
+  id: "lanternor_fartyg",
+  title: "Fartyg",
+  deckId: "lanternor_fartyg",
+},
+{
+  id: "lanternor_sarskilda_fartyg",
+  title: "Särskilda fartyg",
+  deckId: "lanternor_sarskilda_fartyg",
+},
     ],
   },
+
+  {
+  id: "manovrering",
+  title: "Manövrering",
+  children: [
+    {
+      id: "manovrering_inledning",
+      title: "Inledning",
+      deckId: "manovrering_inledning",
+    },
+    {
+  id: "manovrering_bat_med_roder",
+  title: "Båt med roder",
+  deckId: "manovrering_bat_med_roder",
+},
+{
+  id: "manovrering_bat_utan_roder",
+  title: "Båt utan roder",
+  deckId: "manovrering_bat_utan_roder",
+},
+{
+  id: "manovrering_hog_fart",
+  title: "Hög fart",
+  deckId: "manovrering_hog_fart",
+},
+{
+  id: "manovrering_fortoja",
+  title: "Förtöja",
+  deckId: "manovrering_fortoja",
+},{
+  id: "manovrering_kasta_loss",
+  title: "Kasta loss",
+  deckId: "manovrering_kasta_loss",
+},
+
+  ],
+},
+
 ],
 
 
@@ -228,7 +290,15 @@ vajningsregler_fartyg: vajningsreglerFartyg,
 lanternor_inledning: lanternorInledning,
 lanternor_smabatar: lanternorSmabatar,
 lanternor_segelbatar: lanternorSegelbatar,
-
+lanternor_motorbatar: lanternorMotorbatar,
+lanternor_fartyg: lanternorFartyg,
+lanternor_sarskilda_fartyg: lanternorSarskildaFartyg,
+manovrering_inledning: manovreringInledning,
+manovrering_bat_med_roder: manovreringBatMedRoder,
+manovrering_bat_utan_roder: manovreringBatUtanRoder,
+manovrering_hog_fart: manovreringHogFart,
+manovrering_fortoja: manovreringFortoja,
+manovrering_kasta_loss: manovreringKastaLoss,
 };
 
 export function getChapters(sourceId: string): Chapter[] {
