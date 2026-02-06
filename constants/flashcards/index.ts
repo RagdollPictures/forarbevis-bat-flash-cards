@@ -31,6 +31,18 @@ import { instrumentnavigation } from "./forarintyg_se/praktisk_navigation/instru
 import { navigatornavigation } from "./forarintyg_se/praktisk_navigation/navigatornavigation";
 import { optiskNavigation } from "./forarintyg_se/praktisk_navigation/optisk_navigation";
 import { planering } from "./forarintyg_se/praktisk_navigation/planering";
+import { sakerhetAnsvarSkyldigheter } from "./forarintyg_se/sakerhet/ansvar_skyldigheter";
+import { sakerhetBransle } from "./forarintyg_se/sakerhet/bransle";
+import { sakerhetElsakerhet } from "./forarintyg_se/sakerhet/elsakerhet";
+import { sakerhetFlytvast } from "./forarintyg_se/sakerhet/flytvast";
+import { sakerhetNodsituationer } from "./forarintyg_se/sakerhet/nodsituationer";
+import { sakerhetNodutrustning } from "./forarintyg_se/sakerhet/nodutrustning";
+import { sakerhetSakerhetsutrustning } from "./forarintyg_se/sakerhet/sakerhetsutrustning";
+import { sakerhetSjoraddning } from "./forarintyg_se/sakerhet/sjoraddning";
+import { signaleringDagersignaler } from "./forarintyg_se/signalering/dagersignaler";
+import { signaleringLjudsignaler } from "./forarintyg_se/signalering/ljudsignaler";
+import { signaleringNodsignaler } from "./forarintyg_se/signalering/nodsignaler";
+import { signaleringSignalflaggor } from "./forarintyg_se/signalering/signalflaggor";
 import { elektroniskaSjokort } from "./forarintyg_se/sjokortet/elektroniska_sjokort";
 import { fastaSjomarken } from "./forarintyg_se/sjokortet/fasta_sjomarken";
 import { flytandeSjomarken } from "./forarintyg_se/sjokortet/flytande_sjomarken";
@@ -54,6 +66,11 @@ import { knoparOchLinor } from "./forarintyg_se/sjomanskap/knopar_och_linor";
 import { sjomanskapKontrollerUnderhall } from "./forarintyg_se/sjomanskap/kontroller_undehall";
 import { sjomanskapSjofylleri } from "./forarintyg_se/sjomanskap/sjofylleri";
 import { sjomanskapSjovardighet } from "./forarintyg_se/sjomanskap/sjovardighet";
+import { sjomanskapStabilitet } from "./forarintyg_se/sjomanskap/stabilitet";
+import { sjukvardBrannskador } from "./forarintyg_se/sjukvard/brannskador";
+import { sjukvardGrundlaggande } from "./forarintyg_se/sjukvard/grundlaggande";
+import { sjukvardNedkylning } from "./forarintyg_se/sjukvard/nedkylning";
+import { sjukvardSjosjuka } from "./forarintyg_se/sjukvard/sjosjuka";
 import { vajningsreglerFartyg } from "./forarintyg_se/vajningsregler/fartyg";
 import { vajningsreglerInledning } from "./forarintyg_se/vajningsregler/inledning";
 import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
@@ -338,9 +355,120 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
   title: "Flaggor",
   deckId: "sjomanskap_flaggor",
 },
+{
+  id: "sjomanskap_stabilitet",
+  title: "Stabilitet",
+  deckId: "sjomanskap_stabilitet",
+},
+{
+  id: "sjukvard_nedkylning",
+  title: "Nedkylning",
+  deckId: "sjukvard_nedkylning",
+},
+  ],
+  
+},
+
+{
+  id: "signalering",
+  title: "Signalering",
+  children: [
+    {
+      id: "signalering_nodsignaler",
+      title: "Nödsignaler",
+      deckId: "signalering_nodsignaler",
+    },
+    {
+  id: "signalering_dagersignaler",
+  title: "Dagersignaler",
+  deckId: "signalering_dagersignaler",
+},
+{
+  id: "signalering_ljudsignaler",
+  title: "Ljudsignaler",
+  deckId: "signalering_ljudsignaler",
+},
+{
+  id: "signalering_signalflaggor",
+  title: "Signalflaggor",
+  deckId: "signalering_signalflaggor",
+},
+  ],
+},
+{
+  id: "sakerhet",
+  title: "Säkerhet",
+  children: [
+    {
+      id: "sakerhet_flytvast",
+      title: "Flytväst",
+      deckId: "sakerhet_flytvast",
+    },
+    {
+  id: "sakerhet_nodsituationer",
+  title: "Nödsituationer",
+  deckId: "sakerhet_nodsituationer",
+},
+{
+  id: "sakerhet_sakerhetsutrustning",
+  title: "Säkerhetsutrustning",
+  deckId: "sakerhet_sakerhetsutrustning",
+},
+{
+  id: "sakerhet_nodutrustning",
+  title: "Nödutrustning",
+  deckId: "sakerhet_nodutrustning",
+},
+{
+  id: "sakerhet_elsakerhet",
+  title: "Elsäkerhet",
+  deckId: "sakerhet_elsakerhet",
+},
+{
+  id: "sakerhet_bransle",
+  title: "Bränsle",
+  deckId: "sakerhet_bransle",
+},
+{
+  id: "sakerhet_sjoraddning",
+  title: "Sjöräddning",
+  deckId: "sakerhet_sjoraddning",
+},
+{
+  id: "sakerhet_ansvar_skyldigheter",
+  title: "Ansvar & skyldigheter",
+  deckId: "sakerhet_ansvar_skyldigheter",
+},
   ],
 },
 
+
+{
+  id: "sjukvard",
+  title: "Sjukvård",
+  children: [
+    {
+      id: "sjukvard_grundlaggande",
+      title: "Grundläggande",
+      deckId: "sjukvard_grundlaggande",
+    },
+    {
+  id: "sjukvard_sjosjuka",
+  title: "Sjösjuka",
+  deckId: "sjukvard_sjosjuka",
+},
+{
+  id: "sjukvard_nedkylning",
+  title: "Nedkylning",
+  deckId: "sjukvard_nedkylning",
+},
+{
+  id: "sjukvard_brannskador",
+  title: "Brännskador",
+  deckId: "sjukvard_brannskador",
+},
+  ],
+},
 ],
 
 
@@ -418,6 +546,23 @@ sjomanskap_kontroller_underhall: sjomanskapKontrollerUnderhall,
 sjomanskap_kladsel: sjomanskapKladsel,
 sjomanskap_sjofylleri: sjomanskapSjofylleri,
 sjomanskap_flaggor: sjomanskapFlaggor,
+sjomanskap_stabilitet: sjomanskapStabilitet,
+signalering_nodsignaler: signaleringNodsignaler,
+signalering_dagersignaler: signaleringDagersignaler,
+signalering_ljudsignaler: signaleringLjudsignaler,
+signalering_signalflaggor: signaleringSignalflaggor,
+sakerhet_flytvast: sakerhetFlytvast,
+sakerhet_nodsituationer: sakerhetNodsituationer,
+sakerhet_sakerhetsutrustning: sakerhetSakerhetsutrustning,
+sakerhet_nodutrustning: sakerhetNodutrustning,
+sakerhet_elsakerhet: sakerhetElsakerhet,
+sakerhet_bransle: sakerhetBransle,
+sakerhet_sjoraddning: sakerhetSjoraddning,
+sakerhet_ansvar_skyldigheter: sakerhetAnsvarSkyldigheter,
+sjukvard_grundlaggande: sjukvardGrundlaggande,
+sjukvard_sjosjuka: sjukvardSjosjuka,
+sjukvard_nedkylning: sjukvardNedkylning,
+sjukvard_brannskador: sjukvardBrannskador
 };
 
 export function getChapters(sourceId: string): Chapter[] {
