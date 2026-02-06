@@ -1,5 +1,3 @@
-import type { Chapter, FlashCard, Source } from "./types";
-
 import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
 import { lanternorMotorbatar } from "./forarintyg_se/lanternor/motorbatar";
@@ -12,6 +10,13 @@ import { manovreringFortoja } from "./forarintyg_se/manovrering/fortoja";
 import { manovreringHogFart } from "./forarintyg_se/manovrering/hog_fart";
 import { manovreringInledning } from "./forarintyg_se/manovrering/inledning";
 import { manovreringKastaLoss } from "./forarintyg_se/manovrering/kasta_loss";
+import { manovreringSegelbat } from "./forarintyg_se/manovrering/segelbat";
+import { navigationsinstrumentEkolod } from "./forarintyg_se/navigationsinstrument/ekolod";
+import { navigationsinstrumentInstrumentkontroll } from "./forarintyg_se/navigationsinstrument/instrumentkontroll";
+import { navigationsinstrumentKompass } from "./forarintyg_se/navigationsinstrument/kompass";
+import { navigationsinstrumentLogg } from "./forarintyg_se/navigationsinstrument/logg";
+import { navigationsinstrumentNavigator } from "./forarintyg_se/navigationsinstrument/navigator";
+import { navigationsinstrumentSatellit } from "./forarintyg_se/navigationsinstrument/satellit";
 import { avdriftStrom } from "./forarintyg_se/navigationsteori/avdrift_strom";
 import { berakningar } from "./forarintyg_se/navigationsteori/berakningar";
 import { deviationMissvisning } from "./forarintyg_se/navigationsteori/deviation_missvisning";
@@ -41,6 +46,14 @@ import { mataKortDistans } from "./forarintyg_se/sjokortsarbete/mata_kort_distan
 import { mataLangreDistans } from "./forarintyg_se/sjokortsarbete/mata_langre_distans";
 import { mataUppKurs } from "./forarintyg_se/sjokortsarbete/mata_upp_kurs";
 import { taFramPosition } from "./forarintyg_se/sjokortsarbete/ta_fram_position";
+import { sjomanskapAnkring } from "./forarintyg_se/sjomanskap/ankring";
+import { sjomanskapFlaggor } from "./forarintyg_se/sjomanskap/flaggor";
+import { sjomanskapHansynHjalpsamhet } from "./forarintyg_se/sjomanskap/hansyn_hjalpsamhet";
+import { sjomanskapKladsel } from "./forarintyg_se/sjomanskap/kladsel";
+import { knoparOchLinor } from "./forarintyg_se/sjomanskap/knopar_och_linor";
+import { sjomanskapKontrollerUnderhall } from "./forarintyg_se/sjomanskap/kontroller_undehall";
+import { sjomanskapSjofylleri } from "./forarintyg_se/sjomanskap/sjofylleri";
+import { sjomanskapSjovardighet } from "./forarintyg_se/sjomanskap/sjovardighet";
 import { vajningsreglerFartyg } from "./forarintyg_se/vajningsregler/fartyg";
 import { vajningsreglerInledning } from "./forarintyg_se/vajningsregler/inledning";
 import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
@@ -55,6 +68,7 @@ import { sjokortet } from "./fritidsskepparen/sjokortet";
 import { sjomanskap } from "./fritidsskepparen/sjomanskap";
 import { utmarkningAvGrundPrickarOchBojar } from "./fritidsskepparen/utmarkning_av_grund_prickar_och_bojar";
 import { vader } from "./fritidsskepparen/vader";
+import type { Chapter, FlashCard, Source } from "./types";
 
 export const sources: Source[] = [
   { id: "fritidsskepparen", title: "Fritidsskepparen" },
@@ -232,8 +246,98 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
   id: "manovrering_kasta_loss",
   title: "Kasta loss",
   deckId: "manovrering_kasta_loss",
+}, {
+  id: "manovrering_segelbat",
+  title: "Segelbåt",
+  deckId: "manovrering_segelbat",
 },
 
+  ],
+},
+{
+  id: "navigationsinstrument",
+  title: "Navigationsinstrument",
+  children: [
+    {
+      id: "navigationsinstrument_kompass",
+      title: "Kompass",
+      deckId: "navigationsinstrument_kompass",
+    },
+    {
+  id: "navigationsinstrument_logg",
+  title: "Logg",
+  deckId: "navigationsinstrument_logg",
+},{
+  id: "navigationsinstrument_ekolod",
+  title: "Ekolod",
+  deckId: "navigationsinstrument_ekolod",
+},
+
+{
+  id: "navigationsinstrument_satellit",
+  title: "Satellit",
+  deckId: "navigationsinstrument_satellit",
+},
+{
+  id: "navigationsinstrument_navigator",
+  title: "Navigator",
+  deckId: "navigationsinstrument_navigator",
+},
+{
+  id: "navigationsinstrument_instrumentkontroll",
+  title: "Instrumentkontroll",
+  deckId: "navigationsinstrument_instrumentkontroll",
+},
+
+
+  ],
+},
+
+{
+  id: "sjomanskap",
+  title: "Sjömanskap",
+  children: [
+    {
+      id: "sjomanskap_hansyn_hjalpsamhet",
+      title: "Hänsyn & hjälpsamhet",
+      deckId: "sjomanskap_hansyn_hjalpsamhet",
+    },
+    {
+      id: "knopar_och_linor",
+      title: "Knopar och linor",
+      deckId: "knopar_och_linor",
+    },
+    {
+      id: "sjomanskap_sjovardighet",
+      title: "Sjövärdighet",
+      deckId: "sjomanskap_sjovardighet",
+    },
+    {
+  id: "sjomanskap_ankring",
+  title: "Ankring",
+  deckId: "sjomanskap_ankring",
+},
+
+{
+  id: "sjomanskap_kontroller_underhall",
+  title: "Kontroller & underhåll",
+  deckId: "sjomanskap_kontroller_underhall",
+},
+{
+  id: "sjomanskap_kladsel",
+  title: "Klädsel",
+  deckId: "sjomanskap_kladsel",
+},
+{
+  id: "sjomanskap_sjofylleri",
+  title: "Sjöfylleri",
+  deckId: "sjomanskap_sjofylleri",
+},
+{
+  id: "sjomanskap_flaggor",
+  title: "Flaggor",
+  deckId: "sjomanskap_flaggor",
+},
   ],
 },
 
@@ -299,6 +403,21 @@ manovrering_bat_utan_roder: manovreringBatUtanRoder,
 manovrering_hog_fart: manovreringHogFart,
 manovrering_fortoja: manovreringFortoja,
 manovrering_kasta_loss: manovreringKastaLoss,
+manovrering_segelbat: manovreringSegelbat,
+navigationsinstrument_kompass: navigationsinstrumentKompass,
+navigationsinstrument_logg: navigationsinstrumentLogg,
+navigationsinstrument_navigator: navigationsinstrumentNavigator,
+navigationsinstrument_satellit: navigationsinstrumentSatellit,
+navigationsinstrument_ekolod: navigationsinstrumentEkolod,
+navigationsinstrument_instrumentkontroll: navigationsinstrumentInstrumentkontroll,
+sjomanskap_hansyn_hjalpsamhet: sjomanskapHansynHjalpsamhet,
+knopar_och_linor: knoparOchLinor,
+sjomanskap_sjovardighet: sjomanskapSjovardighet,
+sjomanskap_ankring: sjomanskapAnkring,
+sjomanskap_kontroller_underhall: sjomanskapKontrollerUnderhall,
+sjomanskap_kladsel: sjomanskapKladsel,
+sjomanskap_sjofylleri: sjomanskapSjofylleri,
+sjomanskap_flaggor: sjomanskapFlaggor,
 };
 
 export function getChapters(sourceId: string): Chapter[] {

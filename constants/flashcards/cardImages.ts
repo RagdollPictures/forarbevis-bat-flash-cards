@@ -36,4 +36,9 @@ export const cardImages: Record<string, any> = {
 "mata_kort_distans_01": require("../../assets/cards/mata_kort_distans_01.jpg"),
 "farledsnavigation_02": require("../../assets/cards/farledsnavigation_02.jpg"),
 "segelbatar_09": require("../../assets/cards/segelbatar_09.jpg"),
+"knopar_och_linor_06": require("../../assets/cards/knopar_och_linor_06.jpg"),
+"knopar_och_linor_07": require("../../assets/cards/knopar_och_linor_07.jpg"),
+"knopar_och_linor_08": require("../../assets/cards/knopar_och_linor_08.jpg"),
+"knopar_och_linor_09": require("../../assets/cards/knopar_och_linor_09.jpg"),
+"knopar_och_linor_10": require("../../assets/cards/knopar_och_linor_10.jpg"),
 };
