@@ -1,3 +1,5 @@
+import { miljoEcoDriving } from "./forarintyg_se/miljo/eco_driving";
+
 import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
 import { lanternorMotorbatar } from "./forarintyg_se/lanternor/motorbatar";
@@ -11,6 +13,11 @@ import { manovreringHogFart } from "./forarintyg_se/manovrering/hog_fart";
 import { manovreringInledning } from "./forarintyg_se/manovrering/inledning";
 import { manovreringKastaLoss } from "./forarintyg_se/manovrering/kasta_loss";
 import { manovreringSegelbat } from "./forarintyg_se/manovrering/segelbat";
+import { miljoAllemansratten } from "./forarintyg_se/miljo/allemansratten";
+import { miljoBottenfarg } from "./forarintyg_se/miljo/bottenfarg";
+import { miljoMiljovett } from "./forarintyg_se/miljo/miljovett";
+import { miljoSkyddsomraden } from "./forarintyg_se/miljo/skyddsomraden";
+import { miljoToaletter } from "./forarintyg_se/miljo/toaletter";
 import { navigationsinstrumentEkolod } from "./forarintyg_se/navigationsinstrument/ekolod";
 import { navigationsinstrumentInstrumentkontroll } from "./forarintyg_se/navigationsinstrument/instrumentkontroll";
 import { navigationsinstrumentKompass } from "./forarintyg_se/navigationsinstrument/kompass";
@@ -71,6 +78,10 @@ import { sjukvardBrannskador } from "./forarintyg_se/sjukvard/brannskador";
 import { sjukvardGrundlaggande } from "./forarintyg_se/sjukvard/grundlaggande";
 import { sjukvardNedkylning } from "./forarintyg_se/sjukvard/nedkylning";
 import { sjukvardSjosjuka } from "./forarintyg_se/sjukvard/sjosjuka";
+import { vaderMeteorologi } from "./forarintyg_se/vader/meteorologi";
+import { vaderRisker } from "./forarintyg_se/vader/risker";
+import { vaderVaderprognoser } from "./forarintyg_se/vader/vaderprognoser";
+import { vaderVindOchVagor } from "./forarintyg_se/vader/vind_och_vagor";
 import { vajningsreglerFartyg } from "./forarintyg_se/vajningsregler/fartyg";
 import { vajningsreglerInledning } from "./forarintyg_se/vajningsregler/inledning";
 import { vajningsreglerMotorbatar } from "./forarintyg_se/vajningsregler/motorbatar";
@@ -469,6 +480,69 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
 },
   ],
 },
+{
+  id: "vader",
+  title: "Väder",
+  children: [
+    {
+      id: "vader_meteorologi",
+      title: "Meteorologi",
+      deckId: "vader_meteorologi",
+    },
+    {
+  id: "vader_vaderprognoser",
+  title: "Väderprognoser",
+  deckId: "vader_vaderprognoser",
+},
+{
+  id: "vader_vind_och_vagor",
+  title: "Vind och vågor",
+  deckId: "vader_vind_och_vagor",
+},
+{
+  id: "vader_risker",
+  title: "Risker",
+  deckId: "vader_risker",
+},
+  ],
+},
+{
+  id: "miljo",
+  title: "Miljö",
+  children: [
+    {
+      id: "miljo_miljovett",
+      title: "Miljövett",
+      deckId: "miljo_miljovett",
+    },
+    {
+  id: "miljo_bottenfarg",
+  title: "Bottenfärg",
+  deckId: "miljo_bottenfarg",
+},
+{
+  id: "miljo_toaletter",
+  title: "Toaletter",
+  deckId: "miljo_toaletter",
+},
+{
+  id: "miljo_eco_driving",
+  title: "Eco-driving",
+  deckId: "miljo_eco_driving",
+},
+{
+  id: "miljo_allemansratten",
+  title: "Allemansrätten",
+  deckId: "miljo_allemansratten",
+},
+{
+  id: "miljo_skyddsomraden",
+  title: "Skyddsområden",
+  deckId: "miljo_skyddsomraden",
+},
+
+  ],
+},
 ],
 
 
@@ -562,7 +636,17 @@ sakerhet_ansvar_skyldigheter: sakerhetAnsvarSkyldigheter,
 sjukvard_grundlaggande: sjukvardGrundlaggande,
 sjukvard_sjosjuka: sjukvardSjosjuka,
 sjukvard_nedkylning: sjukvardNedkylning,
-sjukvard_brannskador: sjukvardBrannskador
+sjukvard_brannskador: sjukvardBrannskador,
+vader_meteorologi: vaderMeteorologi,
+vader_vaderprognoser: vaderVaderprognoser,
+vader_vind_och_vagor: vaderVindOchVagor,
+vader_risker: vaderRisker,
+miljo_miljovett: miljoMiljovett,
+miljo_bottenfarg: miljoBottenfarg,
+miljo_toaletter: miljoToaletter,
+miljo_eco_driving: miljoEcoDriving,
+miljo_allemansratten: miljoAllemansratten,
+miljo_skyddsomraden: miljoSkyddsomraden
 };
 
 export function getChapters(sourceId: string): Chapter[] {
