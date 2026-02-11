@@ -1,6 +1,7 @@
 import { router, Stack, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import { getChapters, sources } from "../constants/flashcards";
 import type { Chapter } from "../constants/flashcards/types";
 
@@ -17,15 +18,6 @@ export default function ChapterPage() {
 
   const chapters = getChapters(decodedSourceId);
   const [open, setOpen] = useState<Record<string, boolean>>({});
-
-  if (!decodedSourceId) {
-    return (
-      <View style={styles.container}>
-        <Stack.Screen options={{ title: "Kapitel" }} />
-        <Text style={styles.title}>Inget läromedel valt</Text>
-      </View>
-    );
-  }
 
   function toggle(id: string) {
     setOpen((prev) => ({ ...prev, [id]: !prev[id] }));
@@ -61,9 +53,7 @@ export default function ChapterPage() {
         style={pressableStyle}
         onPress={() =>
           router.push(
-            `/deck?deckId=${encodeURIComponent(
-              c.deckId ?? ""
-            )}&title=${encodeURIComponent(c.title)}`
+            `/deck?deckId=${encodeURIComponent(c.deckId ?? "")}&title=${encodeURIComponent(c.title)}`
           )
         }
       >
@@ -72,22 +62,55 @@ export default function ChapterPage() {
     );
   }
 
-  return (
-    <ScrollView style={styles.screen} contentContainerStyle={styles.container}>
-      <Stack.Screen options={{ title: "Kapitel" }} />
-      <Text style={styles.title}>{sourceTitle}</Text>
-      <Text style={styles.subtitle}>Välj kapitel</Text>
+  if (!decodedSourceId) {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <View style={styles.container}>
+          <Stack.Screen options={{ title: "Kapitel" }} />
+          <Text style={styles.title}>Inget läromedel valt</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
 
-      {chapters.map((c) => renderChapter(c, 0))}
-    </ScrollView>
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScrollView style={styles.screen} contentContainerStyle={styles.container}>
+        <Stack.Screen options={{ title: "Kapitel" }} />
+        <Text style={styles.title}>{sourceTitle}</Text>
+        <Text style={styles.subtitle}>Välj kapitel</Text>
+
+        {chapters.map((c) => renderChapter(c, 0))}
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-  screen: { backgroundColor: '#1e2939' ,flex: 1 },
-  container: { padding: 24, gap: 12, paddingBottom: 40 },
-  title: { fontSize: 22, fontWeight: "700" , color: '#ffffff' },
-  subtitle: { fontSize: 16, opacity: 0.7 , color: '#ffffff' },
+  safe: {
+    flex: 1,
+    backgroundColor: "#1e2939",
+  },
+  screen: {
+    backgroundColor: "#1e2939",
+    flex: 1,
+  },
+  container: {
+    padding: 24,
+    gap: 12,
+    paddingTop: 8,
+    paddingBottom: 120,
+  },
+  title: {
+    fontSize: 22,
+    fontWeight: "700",
+    color: "#ffffff",
+  },
+  subtitle: {
+    fontSize: 16,
+    opacity: 0.7,
+    color: "#ffffff",
+  },
 
   card: {
     paddingHorizontal: 16,

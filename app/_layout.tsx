@@ -1,9 +1,14 @@
-import { Stack } from "expo-router";
+import { Stack } from 'expo-router';
+import React from 'react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
-export default function Layout() {
+export default function RootLayout() {
   return (
-    <Stack screenOptions={{ headerTitleAlign: "center" }}>
-      <Stack.Screen name="index" options={{ title: "Förarbevis Båt" }} />
-    </Stack>
+    <SafeAreaProvider>
+      <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)">
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+      </Stack>
+    </SafeAreaProvider>
   );
 }
