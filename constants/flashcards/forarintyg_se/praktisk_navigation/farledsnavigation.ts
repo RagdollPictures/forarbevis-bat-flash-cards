@@ -21,7 +21,7 @@ export const farledsnavigation: FlashCard[] = [
     question:
       "Du kör mot denna enslinje. Vilket håll ska du gira (svänga) för att komma rakt på enslinjen?",
     questionQuiz:
-      "Om du ligger fel i förhållande till en enslinje – åt vilket håll ska du styra för att hamna rätt?",
+      "Om du ligger fel i förhållande till denna enslinje – åt vilket håll ska du styra för att hamna rätt?",
     answer: "Vänster/babord.",
     options: [
       "Höger/styrbord.",

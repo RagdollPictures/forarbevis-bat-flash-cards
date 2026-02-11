@@ -127,7 +127,7 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
     question:
       "Du möter en buss i vattnet när du är ute och seglar. Vem väjer?",
     questionQuiz:
-      "Du seglar och möter en passagerarbåt (\"buss i vattnet\"). Vem ska väja?",
+      "Du seglar och möter en passagerarbåt. Vem ska väja?",
     answer: "Bussen (som så klart är ett motorfartyg).",
     imageKey: "segelbatar_09",
     options: [
