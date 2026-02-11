@@ -1,10 +1,14 @@
 export type FlashCard = {
   id: string;
-  question: string;
-  answer: string;
+  question?: string;
+  questionQuiz?: string;
+  answer?: string;
+  options?: string[];
+  correctOptionIndex?: number;
   imageKey?: string;
-   answerImageKey?: string; 
+  answerImageKey?: string;
 };
+
 
 export type Source = {
   id: string;

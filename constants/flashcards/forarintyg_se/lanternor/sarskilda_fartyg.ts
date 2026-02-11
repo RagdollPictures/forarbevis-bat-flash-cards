@@ -5,19 +5,41 @@ export const lanternorSarskildaFartyg: FlashCard[] = [
     id: "lanternor_sarskilda_fartyg-1",
     question:
       "Vilken färg har de tre toppljusen på en linfärja?",
+    questionQuiz:
+      "Vilken färg visar de tre topplanternorna på en linfärja?",
     answer: "Röda.",
+    options: ["Vita.", "Gröna.", "Röda.", "Gula."],
+    correctOptionIndex: 2,
   },
   {
     id: "lanternor_sarskilda_fartyg-2",
     question:
       "Hur ser den belysta signalflaggan ut som visar att en båt har dykare nere då det är mörkt?",
+    questionQuiz:
+      "Vilka färger har den upplysta signalflaggan som visar att dykare finns i vattnet under mörker?",
     answer: "Vit och blå.",
+    options: [
+      "Röd och vit.",
+      "Gul och svart.",
+      "Vit och blå.",
+      "Grön och vit.",
+    ],
+    correctOptionIndex: 2,
   },
   {
     id: "lanternor_sarskilda_fartyg-3",
     question:
       "Vilken extralanterna får ett utryckningsfartyg använda vid brådskande tjänsteutövning?",
+    questionQuiz:
+      "Vilket extra ljus får ett utryckningsfartyg använda vid akut insats?",
     answer:
       "Blått blixtljus (lika en polisbil eller ambulans).",
+    options: [
+      "Rött fast sken.",
+      "Blått blixtljus (lika en polisbil eller ambulans).",
+      "Gult roterande ljus.",
+      "Vitt blinkande ljus.",
+    ],
+    correctOptionIndex: 1,
   },
 ];

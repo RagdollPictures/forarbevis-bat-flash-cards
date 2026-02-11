@@ -122,430 +122,190 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       title: "Praktisk skärgårdsnavigering",
       deckId: "praktisk_skargardsnavigering",
     },
-    {
-      id: "vader",
-      title: "Väder",
-      deckId: "vader",
-    },
+    { id: "vader", title: "Väder", deckId: "vader" },
     {
       id: "saker_bat_i_skargard_och_till_havs",
       title: "Säker båt i skärgård och till havs",
       deckId: "saker_bat_i_skargard_och_till_havs",
     },
+    { id: "batlivet", title: "Båtlivet", deckId: "batlivet" },
+    { id: "sjomanskap", title: "Sjömanskap", deckId: "sjomanskap" },
+  ],
+  forarintyg: [
     {
-      id: "batlivet",
-      title: "Båtlivet",
-      deckId: "batlivet",
+      id: "sjokortet",
+      title: "Sjökortet",
+      deckId: "sjokortet",
+      children: [
+        { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
+        { id: "papperssjokort", title: "Papperssjökort", deckId: "papperssjokort" },
+        { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
+        { id: "symboler", title: "Symboler", deckId: "symboler" },
+        { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
+        { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
+        { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
+        { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
+      ],
+    },
+    {
+      id: "navigationsteori",
+      title: "Navigationsteori",
+      children: [
+        { id: "vaderstreck", title: "Väderstreck", deckId: "vaderstreck" },
+        { id: "navigationsbestick", title: "Navigationsbestick", deckId: "navigationsbestick" },
+        { id: "kurs_baring_riktning", title: "Kurs, bäring och riktning", deckId: "kurs_baring_riktning" },
+        { id: "position", title: "Position", deckId: "position" },
+        { id: "distans", title: "Distans", deckId: "distans" },
+        { id: "berakningar", title: "Beräkningar", deckId: "berakningar" },
+        { id: "deviation_missvisning", title: "Deviation & missvisning", deckId: "deviation_missvisning" },
+        { id: "avdrift_strom", title: "Avdrift & ström", deckId: "avdrift_strom" },
+        { id: "ratta_satta_kurs", title: "Rätta & sätta kurs", deckId: "ratta_satta_kurs" },
+      ],
+    },
+    {
+      id: "praktisk_navigation",
+      title: "Praktisk navigation",
+      children: [
+        { id: "planering", title: "Planering", deckId: "planering" },
+        { id: "farledsnavigation", title: "Farledsnavigation", deckId: "farledsnavigation" },
+        { id: "optisk_navigation", title: "Optisk navigation", deckId: "optisk_navigation" },
+        { id: "instrumentnavigation", title: "Instrumentnavigation", deckId: "instrumentnavigation" },
+        { id: "navigatornavigation", title: "Navigatornavigation", deckId: "navigatornavigation" },
+      ],
+    },
+    {
+      id: "sjokortsarbete",
+      title: "Sjökortsarbete",
+      children: [
+        { id: "mata_kort_distans", title: "Mäta kort distans", deckId: "mata_kort_distans" },
+        { id: "mata_langre_distans", title: "Mäta längre distans", deckId: "mata_langre_distans" },
+        { id: "ta_fram_position", title: "Ta fram position", deckId: "ta_fram_position" },
+        { id: "markera_position", title: "Markera position", deckId: "markera_position" },
+        { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
+        { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
+        { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
+      ],
+    },
+    {
+      id: "vajningsregler",
+      title: "Väjningsregler",
+      children: [
+        { id: "vajningsregler_inledning", title: "Inledning", deckId: "vajningsregler_inledning" },
+        { id: "vajningsregler_smabatar", title: "Småbåtar", deckId: "vajningsregler_smabatar" },
+        { id: "vajningsregler_segelbatar", title: "Segelbåtar", deckId: "vajningsregler_segelbatar" },
+        { id: "vajningsregler_motorbatar", title: "Motorbåtar", deckId: "vajningsregler_motorbatar" },
+        { id: "vajningsregler_fartyg", title: "Fartyg", deckId: "vajningsregler_fartyg" },
+      ],
+    },
+    {
+      id: "lanternor",
+      title: "Lanternor",
+      children: [
+        { id: "lanternor_inledning", title: "Inledning", deckId: "lanternor_inledning" },
+        { id: "lanternor_smabatar", title: "Småbåtar", deckId: "lanternor_smabatar" },
+        { id: "lanternor_segelbatar", title: "Segelbåtar", deckId: "lanternor_segelbatar" },
+        { id: "lanternor_motorbatar", title: "Motorbåtar", deckId: "lanternor_motorbatar" },
+        { id: "lanternor_fartyg", title: "Fartyg", deckId: "lanternor_fartyg" },
+        { id: "lanternor_sarskilda_fartyg", title: "Särskilda fartyg", deckId: "lanternor_sarskilda_fartyg" },
+      ],
+    },
+    {
+      id: "manovrering",
+      title: "Manövrering",
+      children: [
+        { id: "manovrering_inledning", title: "Inledning", deckId: "manovrering_inledning" },
+        { id: "manovrering_bat_med_roder", title: "Båt med roder", deckId: "manovrering_bat_med_roder" },
+        { id: "manovrering_bat_utan_roder", title: "Båt utan roder", deckId: "manovrering_bat_utan_roder" },
+        { id: "manovrering_hog_fart", title: "Hög fart", deckId: "manovrering_hog_fart" },
+        { id: "manovrering_fortoja", title: "Förtöja", deckId: "manovrering_fortoja" },
+        { id: "manovrering_kasta_loss", title: "Kasta loss", deckId: "manovrering_kasta_loss" },
+        { id: "manovrering_segelbat", title: "Segelbåt", deckId: "manovrering_segelbat" },
+      ],
+    },
+    {
+      id: "navigationsinstrument",
+      title: "Navigationsinstrument",
+      children: [
+        { id: "navigationsinstrument_kompass", title: "Kompass", deckId: "navigationsinstrument_kompass" },
+        { id: "navigationsinstrument_logg", title: "Logg", deckId: "navigationsinstrument_logg" },
+        { id: "navigationsinstrument_ekolod", title: "Ekolod", deckId: "navigationsinstrument_ekolod" },
+        { id: "navigationsinstrument_satellit", title: "Satellit", deckId: "navigationsinstrument_satellit" },
+        { id: "navigationsinstrument_navigator", title: "Navigator", deckId: "navigationsinstrument_navigator" },
+        { id: "navigationsinstrument_instrumentkontroll", title: "Instrumentkontroll", deckId: "navigationsinstrument_instrumentkontroll" },
+      ],
     },
     {
       id: "sjomanskap",
       title: "Sjömanskap",
-      deckId: "sjomanskap",
+      children: [
+        { id: "sjomanskap_hansyn_hjalpsamhet", title: "Hänsyn & hjälpsamhet", deckId: "sjomanskap_hansyn_hjalpsamhet" },
+        { id: "knopar_och_linor", title: "Knopar och linor", deckId: "knopar_och_linor" },
+        { id: "sjomanskap_sjovardighet", title: "Sjövärdighet", deckId: "sjomanskap_sjovardighet" },
+        { id: "sjomanskap_ankring", title: "Ankring", deckId: "sjomanskap_ankring" },
+        { id: "sjomanskap_kontroller_underhall", title: "Kontroller & underhåll", deckId: "sjomanskap_kontroller_underhall" },
+        { id: "sjomanskap_kladsel", title: "Klädsel", deckId: "sjomanskap_kladsel" },
+        { id: "sjomanskap_sjofylleri", title: "Sjöfylleri", deckId: "sjomanskap_sjofylleri" },
+        { id: "sjomanskap_flaggor", title: "Flaggor", deckId: "sjomanskap_flaggor" },
+        { id: "sjomanskap_stabilitet", title: "Stabilitet", deckId: "sjomanskap_stabilitet" },
+      ],
+    },
+    {
+      id: "signalering",
+      title: "Signalering",
+      children: [
+        { id: "signalering_nodsignaler", title: "Nödsignaler", deckId: "signalering_nodsignaler" },
+        { id: "signalering_dagersignaler", title: "Dagersignaler", deckId: "signalering_dagersignaler" },
+        { id: "signalering_ljudsignaler", title: "Ljudsignaler", deckId: "signalering_ljudsignaler" },
+        { id: "signalering_signalflaggor", title: "Signalflaggor", deckId: "signalering_signalflaggor" },
+      ],
+    },
+    {
+      id: "sakerhet",
+      title: "Säkerhet",
+      children: [
+        { id: "sakerhet_flytvast", title: "Flytväst", deckId: "sakerhet_flytvast" },
+        { id: "sakerhet_nodsituationer", title: "Nödsituationer", deckId: "sakerhet_nodsituationer" },
+        { id: "sakerhet_sakerhetsutrustning", title: "Säkerhetsutrustning", deckId: "sakerhet_sakerhetsutrustning" },
+        { id: "sakerhet_nodutrustning", title: "Nödutrustning", deckId: "sakerhet_nodutrustning" },
+        { id: "sakerhet_elsakerhet", title: "Elsäkerhet", deckId: "sakerhet_elsakerhet" },
+        { id: "sakerhet_bransle", title: "Bränsle", deckId: "sakerhet_bransle" },
+        { id: "sakerhet_sjoraddning", title: "Sjöräddning", deckId: "sakerhet_sjoraddning" },
+        { id: "sakerhet_ansvar_skyldigheter", title: "Ansvar & skyldigheter", deckId: "sakerhet_ansvar_skyldigheter" },
+      ],
+    },
+    {
+      id: "sjukvard",
+      title: "Sjukvård",
+      children: [
+        { id: "sjukvard_grundlaggande", title: "Grundläggande", deckId: "sjukvard_grundlaggande" },
+        { id: "sjukvard_sjosjuka", title: "Sjösjuka", deckId: "sjukvard_sjosjuka" },
+        { id: "sjukvard_nedkylning", title: "Nedkylning", deckId: "sjukvard_nedkylning" },
+        { id: "sjukvard_brannskador", title: "Brännskador", deckId: "sjukvard_brannskador" },
+      ],
+    },
+    {
+      id: "vader",
+      title: "Väder",
+      children: [
+        { id: "vader_meteorologi", title: "Meteorologi", deckId: "vader_meteorologi" },
+        { id: "vader_vaderprognoser", title: "Väderprognoser", deckId: "vader_vaderprognoser" },
+        { id: "vader_vind_och_vagor", title: "Vind och vågor", deckId: "vader_vind_och_vagor" },
+        { id: "vader_risker", title: "Risker", deckId: "vader_risker" },
+      ],
+    },
+    {
+      id: "miljo",
+      title: "Miljö",
+      children: [
+        { id: "miljo_miljovett", title: "Miljövett", deckId: "miljo_miljovett" },
+        { id: "miljo_bottenfarg", title: "Bottenfärg", deckId: "miljo_bottenfarg" },
+        { id: "miljo_toaletter", title: "Toaletter", deckId: "miljo_toaletter" },
+        { id: "miljo_eco_driving", title: "Eco-driving", deckId: "miljo_eco_driving" },
+        { id: "miljo_allemansratten", title: "Allemansrätten", deckId: "miljo_allemansratten" },
+        { id: "miljo_skyddsomraden", title: "Skyddsområden", deckId: "miljo_skyddsomraden" },
+      ],
     },
   ],
-  forarintyg: [
-  {
-    id: "sjokortet",
-    title: "Sjökortet",
-    children: [
-      { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
-      { id: "papperssjokort", title: "Papperssjökort", deckId: "papperssjokort" },
-      { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
-      { id: "symboler", title: "Symboler", deckId: "symboler" },
-      { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
-      { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
-      { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
-      { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
-    ],
-  },
-
-  {
-    id: "navigationsteori",
-    title: "Navigationsteori",
-    children: [
-      { id: "vaderstreck", title: "Väderstreck", deckId: "vaderstreck" },
-      { id: "navigationsbestick", title: "Navigationsbestick", deckId: "navigationsbestick" },
-      { id: "kurs_baring_riktning", title: "Kurs, bäring och riktning", deckId: "kurs_baring_riktning" },
-      { id: "position", title: "Position", deckId: "position" },
-      { id: "distans", title: "Distans", deckId: "distans" },
-      { id: "berakningar", title: "Beräkningar", deckId: "berakningar" },
-      { id: "deviation_missvisning", title: "Deviation & missvisning", deckId: "deviation_missvisning" },
-      { id: "avdrift_strom", title: "Avdrift & ström", deckId: "avdrift_strom" },
-      { id: "ratta_satta_kurs", title: "Rätta & sätta kurs", deckId: "ratta_satta_kurs" },
-    ],
-  },
-
-  {
-    id: "praktisk_navigation",
-    title: "Praktisk navigation",
-    children: [
-      { id: "planering", title: "Planering", deckId: "planering" },
-      { id: "farledsnavigation", title: "Farledsnavigation", deckId: "farledsnavigation" },
-      { id: "optisk_navigation", title: "Optisk navigation", deckId: "optisk_navigation" },
-      { id: "instrumentnavigation", title: "Instrumentnavigation", deckId: "instrumentnavigation" },
-      { id: "navigatornavigation", title: "Navigatornavigation", deckId: "navigatornavigation" },
-    ],
-  },
-
-  {
-    id: "sjokortsarbete",
-    title: "Sjökortsarbete",
-    children: [
-      { id: "mata_kort_distans", title: "Mäta kort distans", deckId: "mata_kort_distans" },
-      { id: "mata_langre_distans", title: "Mäta längre distans", deckId: "mata_langre_distans" },
-      { id: "ta_fram_position", title: "Ta fram position", deckId: "ta_fram_position" },
-      { id: "markera_position", title: "Markera position", deckId: "markera_position" },
-      { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
-      { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
-      { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
-    ],
-  },
-
-  {
-    id: "vajningsregler",
-    title: "Väjningsregler",
-    children: [
-      { id: "vajningsregler_inledning", title: "Inledning", deckId: "vajningsregler_inledning" },
-      { id: "vajningsregler_smabatar", title: "Småbåtar", deckId: "vajningsregler_smabatar" },
-      { id: "vajningsregler_segelbatar", title: "Segelbåtar", deckId: "vajningsregler_segelbatar" },
-      { id: "vajningsregler_motorbatar", title: "Motorbåtar", deckId: "vajningsregler_motorbatar" },
-      { id: "vajningsregler_fartyg", title: "Fartyg", deckId: "vajningsregler_fartyg" },
-    ],
-  },
-
-  {
-    id: "lanternor",
-    title: "Lanternor",
-    children: [
-      { id: "lanternor_inledning", title: "Inledning", deckId: "lanternor_inledning" },
-      { id: "lanternor_smabatar", title: "Småbåtar", deckId: "lanternor_smabatar" },
-    {
-      id: "lanternor_segelbatar",
-      title: "Segelbåtar",
-      deckId: "lanternor_segelbatar",
-    },
-    {
-  id: "lanternor_motorbatar",
-  title: "Motorbåtar",
-  deckId: "lanternor_motorbatar",
-},
-{
-  id: "lanternor_fartyg",
-  title: "Fartyg",
-  deckId: "lanternor_fartyg",
-},
-{
-  id: "lanternor_sarskilda_fartyg",
-  title: "Särskilda fartyg",
-  deckId: "lanternor_sarskilda_fartyg",
-},
-    ],
-  },
-
-  {
-  id: "manovrering",
-  title: "Manövrering",
-  children: [
-    {
-      id: "manovrering_inledning",
-      title: "Inledning",
-      deckId: "manovrering_inledning",
-    },
-    {
-  id: "manovrering_bat_med_roder",
-  title: "Båt med roder",
-  deckId: "manovrering_bat_med_roder",
-},
-{
-  id: "manovrering_bat_utan_roder",
-  title: "Båt utan roder",
-  deckId: "manovrering_bat_utan_roder",
-},
-{
-  id: "manovrering_hog_fart",
-  title: "Hög fart",
-  deckId: "manovrering_hog_fart",
-},
-{
-  id: "manovrering_fortoja",
-  title: "Förtöja",
-  deckId: "manovrering_fortoja",
-},{
-  id: "manovrering_kasta_loss",
-  title: "Kasta loss",
-  deckId: "manovrering_kasta_loss",
-}, {
-  id: "manovrering_segelbat",
-  title: "Segelbåt",
-  deckId: "manovrering_segelbat",
-},
-
-  ],
-},
-{
-  id: "navigationsinstrument",
-  title: "Navigationsinstrument",
-  children: [
-    {
-      id: "navigationsinstrument_kompass",
-      title: "Kompass",
-      deckId: "navigationsinstrument_kompass",
-    },
-    {
-  id: "navigationsinstrument_logg",
-  title: "Logg",
-  deckId: "navigationsinstrument_logg",
-},{
-  id: "navigationsinstrument_ekolod",
-  title: "Ekolod",
-  deckId: "navigationsinstrument_ekolod",
-},
-
-{
-  id: "navigationsinstrument_satellit",
-  title: "Satellit",
-  deckId: "navigationsinstrument_satellit",
-},
-{
-  id: "navigationsinstrument_navigator",
-  title: "Navigator",
-  deckId: "navigationsinstrument_navigator",
-},
-{
-  id: "navigationsinstrument_instrumentkontroll",
-  title: "Instrumentkontroll",
-  deckId: "navigationsinstrument_instrumentkontroll",
-},
-
-
-  ],
-},
-
-{
-  id: "sjomanskap",
-  title: "Sjömanskap",
-  children: [
-    {
-      id: "sjomanskap_hansyn_hjalpsamhet",
-      title: "Hänsyn & hjälpsamhet",
-      deckId: "sjomanskap_hansyn_hjalpsamhet",
-    },
-    {
-      id: "knopar_och_linor",
-      title: "Knopar och linor",
-      deckId: "knopar_och_linor",
-    },
-    {
-      id: "sjomanskap_sjovardighet",
-      title: "Sjövärdighet",
-      deckId: "sjomanskap_sjovardighet",
-    },
-    {
-  id: "sjomanskap_ankring",
-  title: "Ankring",
-  deckId: "sjomanskap_ankring",
-},
-
-{
-  id: "sjomanskap_kontroller_underhall",
-  title: "Kontroller & underhåll",
-  deckId: "sjomanskap_kontroller_underhall",
-},
-{
-  id: "sjomanskap_kladsel",
-  title: "Klädsel",
-  deckId: "sjomanskap_kladsel",
-},
-{
-  id: "sjomanskap_sjofylleri",
-  title: "Sjöfylleri",
-  deckId: "sjomanskap_sjofylleri",
-},
-{
-  id: "sjomanskap_flaggor",
-  title: "Flaggor",
-  deckId: "sjomanskap_flaggor",
-},
-{
-  id: "sjomanskap_stabilitet",
-  title: "Stabilitet",
-  deckId: "sjomanskap_stabilitet",
-},
-{
-  id: "sjukvard_nedkylning",
-  title: "Nedkylning",
-  deckId: "sjukvard_nedkylning",
-},
-  ],
-  
-},
-
-{
-  id: "signalering",
-  title: "Signalering",
-  children: [
-    {
-      id: "signalering_nodsignaler",
-      title: "Nödsignaler",
-      deckId: "signalering_nodsignaler",
-    },
-    {
-  id: "signalering_dagersignaler",
-  title: "Dagersignaler",
-  deckId: "signalering_dagersignaler",
-},
-{
-  id: "signalering_ljudsignaler",
-  title: "Ljudsignaler",
-  deckId: "signalering_ljudsignaler",
-},
-{
-  id: "signalering_signalflaggor",
-  title: "Signalflaggor",
-  deckId: "signalering_signalflaggor",
-},
-  ],
-},
-{
-  id: "sakerhet",
-  title: "Säkerhet",
-  children: [
-    {
-      id: "sakerhet_flytvast",
-      title: "Flytväst",
-      deckId: "sakerhet_flytvast",
-    },
-    {
-  id: "sakerhet_nodsituationer",
-  title: "Nödsituationer",
-  deckId: "sakerhet_nodsituationer",
-},
-{
-  id: "sakerhet_sakerhetsutrustning",
-  title: "Säkerhetsutrustning",
-  deckId: "sakerhet_sakerhetsutrustning",
-},
-{
-  id: "sakerhet_nodutrustning",
-  title: "Nödutrustning",
-  deckId: "sakerhet_nodutrustning",
-},
-{
-  id: "sakerhet_elsakerhet",
-  title: "Elsäkerhet",
-  deckId: "sakerhet_elsakerhet",
-},
-{
-  id: "sakerhet_bransle",
-  title: "Bränsle",
-  deckId: "sakerhet_bransle",
-},
-{
-  id: "sakerhet_sjoraddning",
-  title: "Sjöräddning",
-  deckId: "sakerhet_sjoraddning",
-},
-{
-  id: "sakerhet_ansvar_skyldigheter",
-  title: "Ansvar & skyldigheter",
-  deckId: "sakerhet_ansvar_skyldigheter",
-},
-  ],
-},
-
-
-{
-  id: "sjukvard",
-  title: "Sjukvård",
-  children: [
-    {
-      id: "sjukvard_grundlaggande",
-      title: "Grundläggande",
-      deckId: "sjukvard_grundlaggande",
-    },
-    {
-  id: "sjukvard_sjosjuka",
-  title: "Sjösjuka",
-  deckId: "sjukvard_sjosjuka",
-},
-{
-  id: "sjukvard_nedkylning",
-  title: "Nedkylning",
-  deckId: "sjukvard_nedkylning",
-},
-{
-  id: "sjukvard_brannskador",
-  title: "Brännskador",
-  deckId: "sjukvard_brannskador",
-},
-  ],
-},
-{
-  id: "vader",
-  title: "Väder",
-  children: [
-    {
-      id: "vader_meteorologi",
-      title: "Meteorologi",
-      deckId: "vader_meteorologi",
-    },
-    {
-  id: "vader_vaderprognoser",
-  title: "Väderprognoser",
-  deckId: "vader_vaderprognoser",
-},
-{
-  id: "vader_vind_och_vagor",
-  title: "Vind och vågor",
-  deckId: "vader_vind_och_vagor",
-},
-{
-  id: "vader_risker",
-  title: "Risker",
-  deckId: "vader_risker",
-},
-  ],
-},
-{
-  id: "miljo",
-  title: "Miljö",
-  children: [
-    {
-      id: "miljo_miljovett",
-      title: "Miljövett",
-      deckId: "miljo_miljovett",
-    },
-    {
-  id: "miljo_bottenfarg",
-  title: "Bottenfärg",
-  deckId: "miljo_bottenfarg",
-},
-{
-  id: "miljo_toaletter",
-  title: "Toaletter",
-  deckId: "miljo_toaletter",
-},
-{
-  id: "miljo_eco_driving",
-  title: "Eco-driving",
-  deckId: "miljo_eco_driving",
-},
-{
-  id: "miljo_allemansratten",
-  title: "Allemansrätten",
-  deckId: "miljo_allemansratten",
-},
-{
-  id: "miljo_skyddsomraden",
-  title: "Skyddsområden",
-  deckId: "miljo_skyddsomraden",
-},
-
-  ],
-},
-],
-
-
 };
 
 export const decksById: Record<string, FlashCard[]> = {
@@ -567,6 +327,7 @@ export const decksById: Record<string, FlashCard[]> = {
   flytande_sjomarken: flytandeSjomarken,
   fasta_sjomarken: fastaSjomarken,
   tillforlitlighet,
+
   vaderstreck,
   navigationsbestick,
   kurs_baring_riktning: kursBaringRiktning,
@@ -575,78 +336,90 @@ export const decksById: Record<string, FlashCard[]> = {
   berakningar,
   deviation_missvisning: deviationMissvisning,
   avdrift_strom: avdriftStrom,
-ratta_satta_kurs: rattaSattaKurs,
-mata_kort_distans: mataKortDistans,
-mata_langre_distans: mataLangreDistans,
-ta_fram_position: taFramPosition,
-markera_position: markeraPosition,
-lagga_ut_kurs: laggaUtKurs,
-mata_upp_kurs: mataUppKurs,
-krysspejling: krysspejling,
-planering,
-farledsnavigation,
-optisk_navigation: optiskNavigation,
-instrumentnavigation,
-navigatornavigation,
-vajningsregler_inledning: vajningsreglerInledning,
-vajningsregler_smabatar: vajningsreglerSmabatar,
-vajningsregler_segelbatar: vajningsreglerSegelbatar,
-vajningsregler_motorbatar: vajningsreglerMotorbatar,
-vajningsregler_fartyg: vajningsreglerFartyg,
-lanternor_inledning: lanternorInledning,
-lanternor_smabatar: lanternorSmabatar,
-lanternor_segelbatar: lanternorSegelbatar,
-lanternor_motorbatar: lanternorMotorbatar,
-lanternor_fartyg: lanternorFartyg,
-lanternor_sarskilda_fartyg: lanternorSarskildaFartyg,
-manovrering_inledning: manovreringInledning,
-manovrering_bat_med_roder: manovreringBatMedRoder,
-manovrering_bat_utan_roder: manovreringBatUtanRoder,
-manovrering_hog_fart: manovreringHogFart,
-manovrering_fortoja: manovreringFortoja,
-manovrering_kasta_loss: manovreringKastaLoss,
-manovrering_segelbat: manovreringSegelbat,
-navigationsinstrument_kompass: navigationsinstrumentKompass,
-navigationsinstrument_logg: navigationsinstrumentLogg,
-navigationsinstrument_navigator: navigationsinstrumentNavigator,
-navigationsinstrument_satellit: navigationsinstrumentSatellit,
-navigationsinstrument_ekolod: navigationsinstrumentEkolod,
-navigationsinstrument_instrumentkontroll: navigationsinstrumentInstrumentkontroll,
-sjomanskap_hansyn_hjalpsamhet: sjomanskapHansynHjalpsamhet,
-knopar_och_linor: knoparOchLinor,
-sjomanskap_sjovardighet: sjomanskapSjovardighet,
-sjomanskap_ankring: sjomanskapAnkring,
-sjomanskap_kontroller_underhall: sjomanskapKontrollerUnderhall,
-sjomanskap_kladsel: sjomanskapKladsel,
-sjomanskap_sjofylleri: sjomanskapSjofylleri,
-sjomanskap_flaggor: sjomanskapFlaggor,
-sjomanskap_stabilitet: sjomanskapStabilitet,
-signalering_nodsignaler: signaleringNodsignaler,
-signalering_dagersignaler: signaleringDagersignaler,
-signalering_ljudsignaler: signaleringLjudsignaler,
-signalering_signalflaggor: signaleringSignalflaggor,
-sakerhet_flytvast: sakerhetFlytvast,
-sakerhet_nodsituationer: sakerhetNodsituationer,
-sakerhet_sakerhetsutrustning: sakerhetSakerhetsutrustning,
-sakerhet_nodutrustning: sakerhetNodutrustning,
-sakerhet_elsakerhet: sakerhetElsakerhet,
-sakerhet_bransle: sakerhetBransle,
-sakerhet_sjoraddning: sakerhetSjoraddning,
-sakerhet_ansvar_skyldigheter: sakerhetAnsvarSkyldigheter,
-sjukvard_grundlaggande: sjukvardGrundlaggande,
-sjukvard_sjosjuka: sjukvardSjosjuka,
-sjukvard_nedkylning: sjukvardNedkylning,
-sjukvard_brannskador: sjukvardBrannskador,
-vader_meteorologi: vaderMeteorologi,
-vader_vaderprognoser: vaderVaderprognoser,
-vader_vind_och_vagor: vaderVindOchVagor,
-vader_risker: vaderRisker,
-miljo_miljovett: miljoMiljovett,
-miljo_bottenfarg: miljoBottenfarg,
-miljo_toaletter: miljoToaletter,
-miljo_eco_driving: miljoEcoDriving,
-miljo_allemansratten: miljoAllemansratten,
-miljo_skyddsomraden: miljoSkyddsomraden
+  ratta_satta_kurs: rattaSattaKurs,
+
+  mata_kort_distans: mataKortDistans,
+  mata_langre_distans: mataLangreDistans,
+  ta_fram_position: taFramPosition,
+  markera_position: markeraPosition,
+  lagga_ut_kurs: laggaUtKurs,
+  mata_upp_kurs: mataUppKurs,
+  krysspejling,
+
+  planering,
+  farledsnavigation,
+  optisk_navigation: optiskNavigation,
+  instrumentnavigation,
+  navigatornavigation,
+
+  vajningsregler_inledning: vajningsreglerInledning,
+  vajningsregler_smabatar: vajningsreglerSmabatar,
+  vajningsregler_segelbatar: vajningsreglerSegelbatar,
+  vajningsregler_motorbatar: vajningsreglerMotorbatar,
+  vajningsregler_fartyg: vajningsreglerFartyg,
+
+  lanternor_inledning: lanternorInledning,
+  lanternor_smabatar: lanternorSmabatar,
+  lanternor_segelbatar: lanternorSegelbatar,
+  lanternor_motorbatar: lanternorMotorbatar,
+  lanternor_fartyg: lanternorFartyg,
+  lanternor_sarskilda_fartyg: lanternorSarskildaFartyg,
+
+  manovrering_inledning: manovreringInledning,
+  manovrering_bat_med_roder: manovreringBatMedRoder,
+  manovrering_bat_utan_roder: manovreringBatUtanRoder,
+  manovrering_hog_fart: manovreringHogFart,
+  manovrering_fortoja: manovreringFortoja,
+  manovrering_kasta_loss: manovreringKastaLoss,
+  manovrering_segelbat: manovreringSegelbat,
+
+  navigationsinstrument_kompass: navigationsinstrumentKompass,
+  navigationsinstrument_logg: navigationsinstrumentLogg,
+  navigationsinstrument_navigator: navigationsinstrumentNavigator,
+  navigationsinstrument_satellit: navigationsinstrumentSatellit,
+  navigationsinstrument_ekolod: navigationsinstrumentEkolod,
+  navigationsinstrument_instrumentkontroll: navigationsinstrumentInstrumentkontroll,
+
+  sjomanskap_hansyn_hjalpsamhet: sjomanskapHansynHjalpsamhet,
+  knopar_och_linor: knoparOchLinor,
+  sjomanskap_sjovardighet: sjomanskapSjovardighet,
+  sjomanskap_ankring: sjomanskapAnkring,
+  sjomanskap_kontroller_underhall: sjomanskapKontrollerUnderhall,
+  sjomanskap_kladsel: sjomanskapKladsel,
+  sjomanskap_sjofylleri: sjomanskapSjofylleri,
+  sjomanskap_flaggor: sjomanskapFlaggor,
+  sjomanskap_stabilitet: sjomanskapStabilitet,
+
+  signalering_nodsignaler: signaleringNodsignaler,
+  signalering_dagersignaler: signaleringDagersignaler,
+  signalering_ljudsignaler: signaleringLjudsignaler,
+  signalering_signalflaggor: signaleringSignalflaggor,
+
+  sakerhet_flytvast: sakerhetFlytvast,
+  sakerhet_nodsituationer: sakerhetNodsituationer,
+  sakerhet_sakerhetsutrustning: sakerhetSakerhetsutrustning,
+  sakerhet_nodutrustning: sakerhetNodutrustning,
+  sakerhet_elsakerhet: sakerhetElsakerhet,
+  sakerhet_bransle: sakerhetBransle,
+  sakerhet_sjoraddning: sakerhetSjoraddning,
+  sakerhet_ansvar_skyldigheter: sakerhetAnsvarSkyldigheter,
+
+  sjukvard_grundlaggande: sjukvardGrundlaggande,
+  sjukvard_sjosjuka: sjukvardSjosjuka,
+  sjukvard_nedkylning: sjukvardNedkylning,
+  sjukvard_brannskador: sjukvardBrannskador,
+
+  vader_meteorologi: vaderMeteorologi,
+  vader_vaderprognoser: vaderVaderprognoser,
+  vader_vind_och_vagor: vaderVindOchVagor,
+  vader_risker: vaderRisker,
+
+  miljo_miljovett: miljoMiljovett,
+  miljo_bottenfarg: miljoBottenfarg,
+  miljo_toaletter: miljoToaletter,
+  miljo_eco_driving: miljoEcoDriving,
+  miljo_allemansratten: miljoAllemansratten,
+  miljo_skyddsomraden: miljoSkyddsomraden,
 };
 
 export function getChapters(sourceId: string): Chapter[] {
@@ -655,6 +428,63 @@ export function getChapters(sourceId: string): Chapter[] {
 
 export function getDeck(deckId: string): FlashCard[] {
   return decksById[deckId] ?? [];
+}
+
+export type MultipleChoiceCard = FlashCard & {
+  options: string[];
+  correctOptionIndex: number;
+  questionQuiz?: string;
+};
+
+export type Quiz = {
+  id: string;
+  title: string;
+  sourceId: string;
+  deck: MultipleChoiceCard[];
+};
+
+function isMultipleChoiceCard(c: FlashCard): c is MultipleChoiceCard {
+  const anyC: any = c;
+  return (
+    Array.isArray(anyC.options) &&
+    anyC.options.length >= 2 &&
+    typeof anyC.correctOptionIndex === "number" &&
+    anyC.correctOptionIndex >= 0 &&
+    anyC.correctOptionIndex < anyC.options.length
+  );
+}
+
+function flattenDeckIds(ch: Chapter): string[] {
+  const own = ch.deckId ? [ch.deckId] : [];
+  const kids = ch.children?.flatMap(flattenDeckIds) ?? [];
+  return [...own, ...kids];
+}
+
+function buildQuizDeckFromChapter(ch: Chapter): MultipleChoiceCard[] {
+  const deckIds = flattenDeckIds(ch);
+  const cards = deckIds.flatMap((id) => getDeck(id));
+  return cards.filter(isMultipleChoiceCard);
+}
+
+export function getQuizzes(sourceId: string): Quiz[] {
+  const chapters = getChapters(sourceId);
+
+  return chapters
+    .map((ch) => ({
+      id: ch.id,
+      title: ch.title,
+      sourceId,
+      deck: buildQuizDeckFromChapter(ch),
+    }))
+    .filter((q) => q.deck.length > 0);
+}
+
+export function getQuizById(quizId: string): Quiz | null {
+  for (const source of sources) {
+    const quiz = getQuizzes(source.id).find((q) => q.id === quizId);
+    if (quiz) return quiz;
+  }
+  return null;
 }
 
 export type { Chapter, FlashCard, Source };
