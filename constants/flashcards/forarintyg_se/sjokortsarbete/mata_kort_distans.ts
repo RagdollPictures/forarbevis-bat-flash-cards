@@ -11,7 +11,7 @@ export const mataKortDistans: FlashCard[] = [
     options: [
       "1,2 M.",
       "1,6 M.",
-      "2,0 M.",
+      "2,0 M.", 
       "2,4 M.",
     ],
     correctOptionIndex: 1,

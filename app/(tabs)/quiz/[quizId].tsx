@@ -1,9 +1,11 @@
 import { router, useLocalSearchParams } from "expo-router";
 import React, { useMemo, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { getQuizById } from "../../../constants/flashcards";
+import { cardImages } from "../../../constants/flashcards/cardImages";
+import type { FlashCard } from "../../../constants/flashcards/types";
 
 function shuffle<T>(arr: T[]) {
   const a = [...arr];
@@ -13,14 +15,6 @@ function shuffle<T>(arr: T[]) {
   }
   return a;
 }
-
-type QuizCard = {
-  id: string;
-  questionQuiz?: string;
-  question?: string;
-  options: string[];
-  correctOptionIndex: number;
-};
 
 export default function QuizScreen() {
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
@@ -58,7 +52,7 @@ export default function QuizScreen() {
     ? `${resolved.title} – ${resolved.subtitle}`
     : resolved.title;
 
-  const rawDeck = (resolved.deck ?? []) as unknown as QuizCard[];
+  const rawDeck = (resolved.deck ?? []) as FlashCard[];
 
   const deck = useMemo(() => {
     return rawDeck.filter((c) => {
@@ -66,8 +60,8 @@ export default function QuizScreen() {
       if (!Array.isArray(c.options)) return false;
       if (c.options.length < 2) return false;
       if (!Number.isInteger(c.correctOptionIndex)) return false;
-      if (c.correctOptionIndex < 0) return false;
-      if (c.correctOptionIndex >= c.options.length) return false;
+      if ((c.correctOptionIndex ?? -1) < 0) return false;
+      if ((c.correctOptionIndex ?? 999) >= c.options.length) return false;
       return true;
     });
   }, [rawDeck]);
@@ -106,7 +100,7 @@ export default function QuizScreen() {
   const card = shuffledDeck[safeIndex];
 
   const quiz = useMemo(() => {
-    const zipped = card.options.map((text, originalIndex) => ({
+    const zipped = card.options!.map((text, originalIndex) => ({
       text,
       originalIndex,
     }));
@@ -137,9 +131,7 @@ export default function QuizScreen() {
       return next;
     });
 
-    if (wasCorrect) {
-      setScore((s) => s + 1);
-    }
+    if (wasCorrect) setScore((s) => s + 1);
   };
 
   const onNext = () => {
@@ -207,6 +199,9 @@ export default function QuizScreen() {
 
   const questionText = card.questionQuiz ?? card.question ?? "";
 
+  const hasQuestionImage =
+    !!card.imageKey && Object.prototype.hasOwnProperty.call(cardImages, card.imageKey);
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -230,6 +225,14 @@ export default function QuizScreen() {
 
         <View style={styles.card}>
           <Text style={styles.question}>{questionText}</Text>
+
+          {hasQuestionImage && (
+            <Image
+              source={cardImages[card.imageKey!]}
+              style={styles.questionImage}
+              resizeMode="contain"
+            />
+          )}
 
           <View style={styles.options}>
             {quiz.options.map((opt, i) => {
@@ -332,6 +335,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "700",
     lineHeight: 24,
+  },
+  questionImage: {
+    width: "100%",
+    height: 220,
+    marginTop: 12,
+    borderRadius: 12,
   },
   options: {
     marginTop: 14,
