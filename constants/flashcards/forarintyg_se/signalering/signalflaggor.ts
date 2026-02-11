@@ -5,14 +5,16 @@ export const signaleringSignalflaggor: FlashCard[] = [
     id: "signalering_signalflaggor-1",
     question:
       "Vilken signalflagga, och hur ser den ut, är hissad på en båt som har dykare i vattnet?",
+    questionQuiz:
+      "Vilken flagga visar att dykare finns i vattnet?",
     answer:
-      "Signalflagga A (Alfa). Den är vit och blå.",
-  },
-  {
-    id: "signalering_signalflaggor-2",
-    question:
-      "Vad heter havsguden man gärna vill vara god vän med?",
-    answer:
-      "Neptunus. Poseidon är också en havsgud.",
-  },
+      "Signalflagga A (Alfa), vit och blå.",
+    options: [
+      "Signalflagga B, röd.",
+      "Signalflagga A (Alfa), vit och blå.",
+      "Signalflagga C, blå och vit randig.",
+      "Signalflagga D, gul och röd.",
+    ],
+    correctOptionIndex: 1,
+  }
 ];
