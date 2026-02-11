@@ -6,6 +6,7 @@ import type { Chapter } from "../constants/flashcards/types";
 
 export default function ChapterPage() {
   const { sourceId } = useLocalSearchParams<{ sourceId?: string }>();
+
   const decodedSourceId = useMemo(
     () => (sourceId ? decodeURIComponent(sourceId) : ""),
     [sourceId]
@@ -33,18 +34,20 @@ export default function ChapterPage() {
   function renderChapter(c: Chapter, level: number) {
     const isGroup = !!c.children?.length;
     const isOpen = !!open[c.id];
+    const isChild = level > 0;
+
+    const pressableStyle = [
+      styles.card,
+      { paddingLeft: 16 + level * 12 },
+      isChild ? styles.childCard : null,
+    ];
 
     if (isGroup) {
       return (
         <View key={c.id}>
-          <Pressable
-            style={[styles.card, { marginLeft: level * 12 }]}
-            onPress={() => toggle(c.id)}
-          >
-            <Text style={styles.cardText}>
-              {isOpen ? "▾ " : "▸ "}
-              {c.title}
-            </Text>
+          <Pressable style={pressableStyle} onPress={() => toggle(c.id)}>
+            <Text style={styles.arrow}>{isOpen ? "▾" : "▸"}</Text>
+            <Text style={styles.cardText}>{c.title}</Text>
           </Pressable>
 
           {isOpen && c.children!.map((child) => renderChapter(child, level + 1))}
@@ -55,10 +58,12 @@ export default function ChapterPage() {
     return (
       <Pressable
         key={c.id}
-        style={[styles.card, { marginLeft: level * 12 }]}
+        style={pressableStyle}
         onPress={() =>
           router.push(
-            `/deck?deckId=${encodeURIComponent(c.deckId ?? "")}&title=${encodeURIComponent(c.title)}`
+            `/deck?deckId=${encodeURIComponent(
+              c.deckId ?? ""
+            )}&title=${encodeURIComponent(c.title)}`
           )
         }
       >
@@ -79,10 +84,36 @@ export default function ChapterPage() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1 },
+  screen: { backgroundColor: '#1e2939' ,flex: 1 },
   container: { padding: 24, gap: 12, paddingBottom: 40 },
-  title: { fontSize: 22, fontWeight: "700" },
-  subtitle: { fontSize: 16, opacity: 0.7 },
-  card: { padding: 16, borderRadius: 14, borderWidth: 1 },
-  cardText: { fontSize: 18 },
+  title: { fontSize: 22, fontWeight: "700" , color: '#ffffff' },
+  subtitle: { fontSize: 16, opacity: 0.7 , color: '#ffffff' },
+
+  card: {
+    paddingHorizontal: 16,
+    paddingVertical: 18,
+    borderRadius: 14,
+    borderWidth: 1,
+    borderColor: "#ffffff",
+    backgroundColor: "#ffffff",
+    elevation: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 10,
+  },
+
+  childCard: {
+    marginTop: 8,
+    marginLeft: 10,
+  },
+
+  arrow: {
+    fontSize: 18,
+    width: 20,
+  },
+
+  cardText: {
+    fontSize: 18,
+    flex: 1,
+  },
 });

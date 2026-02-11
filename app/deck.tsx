@@ -66,11 +66,11 @@ export default function Deck() {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 24, justifyContent: "flex-start", gap: 10 },
+  container: {  backgroundColor: '#1e2939',flexGrow: 1, padding: 24, justifyContent: "flex-start", gap: 10 },
   subtitle: { fontSize: 16, opacity: 0.7, textAlign: "center" },
-  counter: { fontSize: 14, opacity: 0.6, textAlign: "center" },
+  counter: { fontWeight: 'bold',fontSize: 16, opacity: 0.6, textAlign: "center", color:'#ffffff'  },
   navRow: { flexDirection: "row", gap: 12, justifyContent: "center", marginTop: 8 },
-  navButton: { paddingVertical: 12, paddingHorizontal: 16, borderRadius: 12, borderWidth: 1 },
+  navButton: {backgroundColor: '#155dfc', paddingVertical: 12, paddingHorizontal: 16, borderRadius: 12, borderWidth: 1 },
   navButtonDisabled: { opacity: 0.4 },
-  navButtonText: { fontSize: 16 },
+  navButtonText: { fontSize: 16 , color:'#ffffff'  },
 });

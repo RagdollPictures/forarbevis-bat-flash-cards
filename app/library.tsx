@@ -23,9 +23,9 @@ export default function Library() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1 },
+  screen: { backgroundColor: '#1e2939', flex: 1 },
   container: { padding: 24, gap: 12, paddingBottom: 40 },
-  title: { fontSize: 24, fontWeight: "700" },
-  card: { padding: 16, borderRadius: 14, borderWidth: 1 },
-  cardText: { fontSize: 18 },
+  title: { fontSize: 24, fontWeight: "700" , color: '#ffffff' },
+  card: { padding: 16, borderRadius: 14, elevation: 3, backgroundColor: '#ffffff', borderColor: '#ffffff', borderWidth: 1 },
+  cardText: { fontSize: 18},
 });

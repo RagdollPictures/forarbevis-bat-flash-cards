@@ -49,7 +49,7 @@ export default function FlashCard({ card, resetKey }: Props) {
 }
 
 const styles = StyleSheet.create({
-  card: { padding: 24, borderRadius: 16, borderWidth: 1, gap: 16 },
+  card: { backgroundColor: '#ffffff',padding: 24, borderRadius: 16, borderWidth: 1, borderColor: '#ffffff', elevation: 3, gap: 16 },
   question: { fontSize: 20, fontWeight: "600" },
   answer: { fontSize: 18, opacity: 0.8 },
   image: {
@@ -61,7 +61,14 @@ const styles = StyleSheet.create({
     padding: 12,
     borderRadius: 12,
     borderWidth: 1,
+    backgroundColor: '#009966',
     alignSelf: "flex-start",
+    elevation: 3,
+    borderColor: '#009966',
   },
-  buttonText: { fontSize: 16 },
+  buttonText: { 
+    fontSize: 16, 
+    color: '#ffffff',
+    fontWeight: 'bold'
+  },
 });
