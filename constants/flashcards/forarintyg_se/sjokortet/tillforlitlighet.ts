@@ -31,21 +31,6 @@ export const tillforlitlighet: FlashCard[] = [
     correctOptionIndex: 1,
   },
   {
-    id: "tillforlitlighet-3",
-    question:
-      "Till vem anmäler man fel på ett sjömärke? (Exempelvis ett sjömärke som slitit sig och ligger på fel plats.)",
-    questionQuiz:
-      "Vart rapporterar man ett felplacerat eller skadat sjömärke?",
-    answer: "Sweden Traffic.",
-    options: [
-      "Sjöfartsverket.",
-      "Kustbevakningen.",
-      "Sweden Traffic.",
-      "SMHI.",
-    ],
-    correctOptionIndex: 2,
-  },
-  {
     id: "tillforlitlighet-4",
     question:
       "Till vem anmäler man fel på ett sjökort? (Exempelvis ett grund som inte finns med.)",

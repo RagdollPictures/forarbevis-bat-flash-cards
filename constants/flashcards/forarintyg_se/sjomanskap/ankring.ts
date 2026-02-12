@@ -41,7 +41,7 @@ export const sjomanskapAnkring: FlashCard[] = [
     options: [
       "5 meter.",
       "10 meter.",
-      "15 meter (minst tre gånger djupet).",
+      "15 meter.",
       "25 meter.",
     ],
     correctOptionIndex: 2,

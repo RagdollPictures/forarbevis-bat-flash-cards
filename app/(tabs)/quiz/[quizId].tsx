@@ -307,7 +307,7 @@ const styles = StyleSheet.create({
   progressRow: {
     flexDirection: "row",
     width: "100%",
-    gap: 6,
+    gap: 2,
   },
   progressSeg: {
     flex: 1,

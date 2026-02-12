@@ -51,7 +51,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "I vilket väderstreck från hindret är detta kardinalmärke placerat?",
     answer: "Öst om hindret.",
-    imageKey: "flytande_sjomarken_04",
+    imageKey: "flytande_sjomarken_04_ver02",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -67,7 +67,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken riktning från hindret visar detta märke?",
     answer: "Norr om hindret.",
-    imageKey: "flytande_sjomarken_05",
+    imageKey: "flytande_sjomarken_05_ver02",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -83,7 +83,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilket väderstreck från hindret markerar detta sjömärke?",
     answer: "Väster om hindret.",
-    imageKey: "flytande_sjomarken_06",
+    imageKey: "flytande_sjomarken_06_ver02",
     options: [
       "Norr om hindret.",
       "Väster om hindret.",
@@ -97,9 +97,9 @@ export const flytandeSjomarken: FlashCard[] = [
     question:
       "Räknat från hindret: Vilket väderstreck finns dessa sjömärken i?",
     questionQuiz:
-      "Vilket kardinalstreck motsvarar detta märke?",
+      "Vilket väderstreck från hindret står dessa märken?",
     answer: "Söder om hindret.",
-    imageKey: "flytande_sjomarken_07",
+    imageKey: "flytande_sjomarken_07_ver02",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -115,7 +115,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken sida av farleden markerar dessa lateralmärken?",
     answer: "Babord.",
-    imageKey: "flytande_sjomarken_08",
+    imageKey: "flytande_sjomarken_08_ver02",
     options: [
       "Styrbord.",
       "Babord.",
@@ -130,7 +130,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken farledssida representeras av dessa märken?",
     answer: "Styrbord.",
-    imageKey: "flytande_sjomarken_09",
+    imageKey: "flytande_sjomarken_09_ver02",
     options: [
       "Babord.",
       "Mitt i farleden.",

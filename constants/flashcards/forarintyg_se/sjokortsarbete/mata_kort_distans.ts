@@ -7,7 +7,7 @@ export const mataKortDistans: FlashCard[] = [
     questionQuiz:
       "Vilken distans mäter du mellan Hätteberget och Markering B i sjökortet?",
     answer: "1,6 M.",
-    imageKey: "mata_kort_distans_01",
+    imageKey: "mata_kort_distans_01_ver02",
     options: [
       "1,2 M.",
       "1,6 M.",

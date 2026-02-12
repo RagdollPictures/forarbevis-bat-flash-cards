@@ -30,7 +30,7 @@ export const farledsnavigation: FlashCard[] = [
       "Backa.",
     ],
     correctOptionIndex: 1,
-    imageKey: "farledsnavigation_02",
+    imageKey: "farledsnavigation_02_ver02",
   },
   {
     id: "farledsnavigation-3",

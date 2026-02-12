@@ -12,7 +12,7 @@ export const sjomanskapHansynHjalpsamhet: FlashCard[] = [
     options: [
       "Över sittbrunnen.",
       "För om masten eller styrhytten.",
-      "Rakt över däcket var som helst.",
+      "över däcket akter om masten.",
       "Över aktern.",
     ],
     correctOptionIndex: 1,

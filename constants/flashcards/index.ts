@@ -51,13 +51,12 @@ import { signaleringLjudsignaler } from "./forarintyg_se/signalering/ljudsignale
 import { signaleringNodsignaler } from "./forarintyg_se/signalering/nodsignaler";
 import { signaleringSignalflaggor } from "./forarintyg_se/signalering/signalflaggor";
 import { elektroniskaSjokort } from "./forarintyg_se/sjokortet/elektroniska_sjokort";
-import { fastaSjomarken } from "./forarintyg_se/sjokortet/fasta_sjomarken";
-import { flytandeSjomarken } from "./forarintyg_se/sjokortet/flytande_sjomarken";
 import { longitudLatitud } from "./forarintyg_se/sjokortet/longitud_latitud";
 import { papperssjokort } from "./forarintyg_se/sjokortet/papperssjokort";
 import { sjokortstyper } from "./forarintyg_se/sjokortet/sjokortstyper";
-import { symboler } from "./forarintyg_se/sjokortet/symboler";
 import { tillforlitlighet } from "./forarintyg_se/sjokortet/tillforlitlighet";
+import { fastaSjomarken } from "./forarintyg_se/sjokortet_sjomarken/fasta_sjomarken";
+import { flytandeSjomarken } from "./forarintyg_se/sjokortet_sjomarken/flytande_sjomarken";
 import { krysspejling } from "./forarintyg_se/sjokortsarbete/krysspejling";
 import { laggaUtKurs } from "./forarintyg_se/sjokortsarbete/lagga_ut_kurs";
 import { markeraPosition } from "./forarintyg_se/sjokortsarbete/markera_position";
@@ -65,6 +64,7 @@ import { mataKortDistans } from "./forarintyg_se/sjokortsarbete/mata_kort_distan
 import { mataLangreDistans } from "./forarintyg_se/sjokortsarbete/mata_langre_distans";
 import { mataUppKurs } from "./forarintyg_se/sjokortsarbete/mata_upp_kurs";
 import { taFramPosition } from "./forarintyg_se/sjokortsarbete/ta_fram_position";
+import { symboler } from "./forarintyg_se/sjokortssymboler/symboler";
 import { sjomanskapAnkring } from "./forarintyg_se/sjomanskap/ankring";
 import { sjomanskapFlaggor } from "./forarintyg_se/sjomanskap/flaggor";
 import { sjomanskapHansynHjalpsamhet } from "./forarintyg_se/sjomanskap/hansyn_hjalpsamhet";
@@ -105,6 +105,7 @@ export const sources: Source[] = [
 
 export const chaptersBySourceId: Record<string, Chapter[]> = {
   fritidsskepparen: [
+    
     { id: "sjokortet", title: "Sjökortet", deckId: "sjokortet" },
     {
       id: "position_fart_tid_distans",
@@ -132,6 +133,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     { id: "sjomanskap", title: "Sjömanskap", deckId: "sjomanskap" },
   ],
   forarintyg: [
+    
     {
       id: "sjokortet",
       title: "Sjökortet",
@@ -140,11 +142,26 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
         { id: "papperssjokort", title: "Papperssjökort", deckId: "papperssjokort" },
         { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
-        { id: "symboler", title: "Symboler", deckId: "symboler" },
-        { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
-        { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
+       
+      
         { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
         { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
+      ],
+    },
+    
+ {
+      id: "sjokortSymboler",
+      title: "Sjökort - Symboler",
+      children: [
+        { id: "symboler", title: "Symboler", deckId: "symboler" },
+      ],
+    },
+     {
+      id: "sjokortet_sjomarken",
+      title: "Sjökortet - Sjömärken",
+      children: [
+         { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
+        { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
       ],
     },
     {
@@ -304,7 +321,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "miljo_allemansratten", title: "Allemansrätten", deckId: "miljo_allemansratten" },
         { id: "miljo_skyddsomraden", title: "Skyddsområden", deckId: "miljo_skyddsomraden" },
       ],
-    },
+    }
   ],
 };
 
