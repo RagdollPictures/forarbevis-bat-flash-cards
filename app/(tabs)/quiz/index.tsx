@@ -1,29 +1,95 @@
+import { colorScheme } from "@/constants/colors";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import Svg, { Circle } from "react-native-svg";
 
 import { getQuizzes } from "../../../constants/flashcards";
 import {
   getAllQuizProgress,
-  type QuizProgressState,
   type SavedQuizProgress,
 } from "../../../constants/flashcards/quizProgress";
 
-function MiniProgressRow({ progress }: { progress: QuizProgressState[] }) {
+function getProgressColor(percent: number) {
+  if (percent <= 30) return colorScheme.orange;
+  if (percent >= 100) return colorScheme.green;
+  return colorScheme.blue;
+}
+
+function ProgressRing({
+  percent,
+  size,
+  strokeWidth,
+  children,
+}: {
+  percent: number;
+  size: number;
+  strokeWidth: number;
+  children: React.ReactNode;
+}) {
+  const clamped = Math.max(0, Math.min(100, percent));
+  const radius = (size - strokeWidth) / 2;
+  const circumference = 2 * Math.PI * radius;
+
+  const dashArray = `${circumference} ${circumference}`;
+  const dashOffset = circumference - (clamped / 100) * circumference;
+
+  const ringColor = getProgressColor(clamped);
+
   return (
-    <View style={styles.miniRow}>
-      {progress.map((p, i) => (
+    <View style={{ width: size, height: size }}>
+      <Svg width={size} height={size}>
+        <Circle
+          stroke="rgba(17,17,17,0.18)"
+          fill="none"
+          cx={size / 2}
+          cy={size / 2}
+          r={radius}
+          strokeWidth={strokeWidth}
+        />
+
+        {clamped > 0 ? (
+          <Circle
+            stroke={ringColor}
+            fill="none"
+            cx={size / 2}
+            cy={size / 2}
+            r={radius}
+            strokeWidth={strokeWidth}
+            strokeDasharray={dashArray}
+            strokeDashoffset={dashOffset}
+            strokeLinecap="round"
+            rotation="-90"
+            origin={`${size / 2}, ${size / 2}`}
+          />
+        ) : null}
+      </Svg>
+
+      <View style={[StyleSheet.absoluteFillObject, styles.ringCenter]}>
+        {children}
+      </View>
+    </View>
+  );
+}
+
+function ProgressBar({ percent }: { percent: number }) {
+  const clamped = Math.max(0, Math.min(100, percent));
+  const barColor = getProgressColor(clamped);
+
+  return (
+    <View style={styles.progressBarWrap}>
+      <View style={styles.progressBarBg}>
         <View
-          key={`m-${i}`}
           style={[
-            styles.miniSeg,
-            p === "correct" && styles.miniCorrect,
-            p === "wrong" && styles.miniWrong,
+            styles.progressBarFill,
+            { width: `${clamped}%`, backgroundColor: barColor },
           ]}
         />
-      ))}
+      </View>
+
+      <Text style={styles.progressLabel}>{clamped}%</Text>
     </View>
   );
 }
@@ -94,14 +160,20 @@ export default function QuizMenuScreen() {
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
         <View style={styles.list}>
-          {quizzes.map((q) => {
+          {quizzes.map((q, index) => {
             const saved = progressByQuizId[q.id] ?? null;
 
-            const progressArray = saved
-              ? saved.progress
-              : Array(q.deck.length).fill(null);
+            const percent = saved
+              ? Math.round(
+                  (saved.progress.filter((p) => p === "correct").length /
+                    Math.max(1, saved.progress.length)) *
+                    100
+                )
+              : 0;
 
             const iconName = getIconNameByQuizId(q.id);
+
+            const bgY = -100 - (index % 6) * 35;
 
             return (
               <Pressable
@@ -109,14 +181,22 @@ export default function QuizMenuScreen() {
                 onPress={() => router.push(`/quiz/${q.id}`)}
                 style={styles.item}
               >
-                <View style={styles.row}>
-                  <View style={styles.iconCircle}>
-                    <FontAwesome6 name={iconName} size={26} color="#111" />
-                  </View>
+                <View style={styles.overlay}>
+                  <View style={styles.row}>
+                    <ProgressRing percent={percent} size={60} strokeWidth={6}>
+                      <View style={styles.iconInner}>
+                        <FontAwesome6
+                          name={iconName}
+                          size={28}
+                          color={colorScheme.blue}
+                        />
+                      </View>
+                    </ProgressRing>
 
-                  <View style={styles.content}>
-                    <Text style={styles.itemTitle}>{q.title}</Text>
-                    <MiniProgressRow progress={progressArray} />
+                    <View style={styles.content}>
+                      <Text style={styles.itemTitle}>{q.title}</Text>
+                      <ProgressBar percent={percent} />
+                    </View>
                   </View>
                 </View>
               </Pressable>
@@ -131,38 +211,40 @@ export default function QuizMenuScreen() {
 const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: "#1e2939",
+    backgroundColor: colorScheme.darkBlue,
   },
   container: {
     padding: 24,
     paddingBottom: 120,
   },
-
   list: {
     marginTop: 16,
     gap: 12,
   },
+
   item: {
-    borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
     borderRadius: 18,
+    overflow: "hidden",
+    position: "relative",
+  },
+
+  bgWrap: {
+    ...StyleSheet.absoluteFillObject,
+  },
+  bgImage: {
+    width: "150%",
+    height: 320,
+  },
+
+  overlay: {
     padding: 16,
-    backgroundColor: "#fff",
+    backgroundColor: "#ffffff",
   },
 
   row: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
-  },
-
-  iconCircle: {
-    width: 52,
-    height: 52,
-    borderRadius: 999,
-    backgroundColor: "#f2f2f2",
-    alignItems: "center",
-    justifyContent: "center",
   },
 
   content: {
@@ -175,21 +257,36 @@ const styles = StyleSheet.create({
     color: "#111",
   },
 
-  miniRow: {
-    flexDirection: "row",
-    gap: 3,
+  progressBarWrap: {
     marginTop: 10,
   },
-  miniSeg: {
-    flex: 1,
-    height: 8,
+  progressBarBg: {
+    height: 10,
     borderRadius: 999,
-    backgroundColor: "rgba(17,17,17,0.10)",
+    backgroundColor: "rgba(17,17,17,0.12)",
+    overflow: "hidden",
   },
-  miniCorrect: {
-    backgroundColor: "#16a34a",
+  progressBarFill: {
+    height: "100%",
+    borderRadius: 999,
   },
-  miniWrong: {
-    backgroundColor: "#dc2626",
+  progressLabel: {
+    marginTop: 6,
+    fontSize: 12,
+    fontWeight: "800",
+    color: "rgba(17,17,17,0.55)",
+  },
+
+  ringCenter: {
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  iconInner: {
+    width: 44,
+    height: 44,
+    borderRadius: 999,
+    backgroundColor: "#ffffff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

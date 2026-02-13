@@ -1,0 +1,7 @@
+export const colorScheme = {
+  darkBlue: "#0183e1",
+  green: "#b0d339",
+  blue: "#01c0d2",
+  brightBlue: "#8ae7d4",
+  orange: "#fc5508"
+};
