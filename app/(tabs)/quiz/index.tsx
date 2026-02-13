@@ -1,5 +1,6 @@
 import { colorScheme } from "@/constants/colors";
 import { FontAwesome6 } from "@expo/vector-icons";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
@@ -12,10 +13,38 @@ import {
   type SavedQuizProgress,
 } from "../../../constants/flashcards/quizProgress";
 
+const UNLOCK_PERCENT = 75;
+
+// Detta är “klarad någon gång” (mastery), inte “unlocked”.
+const CLEARED_KEY = "forarintyg_cleared_quiz_ids_v1";
+
 function getProgressColor(percent: number) {
   if (percent <= 30) return colorScheme.orange;
   if (percent >= 100) return colorScheme.green;
   return colorScheme.blue;
+}
+
+function calcPercent(saved: SavedQuizProgress | null) {
+  if (!saved) return 0;
+  const total = Math.max(1, saved.progress.length);
+  const correct = saved.progress.filter((p) => p === "correct").length;
+  return Math.round((correct / total) * 100);
+}
+
+async function loadClearedSet(): Promise<Set<string>> {
+  const raw = await AsyncStorage.getItem(CLEARED_KEY);
+  if (!raw) return new Set();
+  try {
+    const arr = JSON.parse(raw);
+    if (!Array.isArray(arr)) return new Set();
+    return new Set(arr.filter((x) => typeof x === "string"));
+  } catch {
+    return new Set();
+  }
+}
+
+async function saveClearedSet(set: Set<string>) {
+  await AsyncStorage.setItem(CLEARED_KEY, JSON.stringify(Array.from(set)));
 }
 
 function ProgressRing({
@@ -140,14 +169,22 @@ export default function QuizMenuScreen() {
   const [progressByQuizId, setProgressByQuizId] = useState<
     Record<string, SavedQuizProgress>
   >({});
+  const [clearedIds, setClearedIds] = useState<Set<string>>(new Set());
 
   useFocusEffect(
     useCallback(() => {
       let alive = true;
 
       (async () => {
-        const map = await getAllQuizProgress();
-        if (alive) setProgressByQuizId(map);
+        const [map, cleared] = await Promise.all([
+          getAllQuizProgress(),
+          loadClearedSet(),
+        ]);
+
+        if (!alive) return;
+
+        setProgressByQuizId(map);
+        setClearedIds(cleared);
       })();
 
       return () => {
@@ -156,32 +193,110 @@ export default function QuizMenuScreen() {
     }, [])
   );
 
+  // 1) Uppdatera CLEARED (mastery) när något når >= 75% (permanent)
+  useFocusEffect(
+    useCallback(() => {
+      let alive = true;
+
+      (async () => {
+        const currentCleared = await loadClearedSet();
+        let changed = false;
+
+        for (const q of quizzes) {
+          const saved = progressByQuizId[q.id] ?? null;
+          const percent = calcPercent(saved);
+
+          if (percent >= UNLOCK_PERCENT && !currentCleared.has(q.id)) {
+            currentCleared.add(q.id);
+            changed = true;
+          }
+        }
+
+        if (!alive) return;
+
+        if (changed) await saveClearedSet(currentCleared);
+        setClearedIds(currentCleared);
+      })();
+
+      return () => {
+        alive = false;
+      };
+    }, [progressByQuizId, quizzes])
+  );
+
+  // 2) Räkna ut vilka som är UNLOCKED sekventiellt från clearedIds (ingen “unlock” sparas)
+  const unlockedIds = useMemo(() => {
+    const s = new Set<string>();
+    if (quizzes.length === 0) return s;
+
+    // Första alltid spelbart
+    s.add(quizzes[0].id);
+
+    // Lås upp nästa bara om föregående är CLEARED
+    for (let i = 0; i < quizzes.length - 1; i++) {
+      const currentId = quizzes[i].id;
+      const nextId = quizzes[i + 1].id;
+
+      if (!clearedIds.has(currentId)) break;
+      s.add(nextId);
+    }
+
+    return s;
+  }, [quizzes, clearedIds]);
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
+        {__DEV__ ? (
+          <View style={styles.devPanel}>
+            <Pressable
+              onPress={async () => {
+                await AsyncStorage.clear();
+                setClearedIds(new Set());
+                setProgressByQuizId({});
+                console.log("RESET ALL ASYNCSTORAGE");
+              }}
+              style={styles.devResetBtn}
+            >
+              <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
+            </Pressable>
+
+            <View style={styles.devDebug}>
+              <Text style={styles.devDebugTitle}>DEBUG</Text>
+              <Text style={styles.devDebugText}>
+                Cleared: {Array.from(clearedIds).join(", ") || "-"}
+              </Text>
+              <Text style={styles.devDebugText}>
+                Unlocked: {Array.from(unlockedIds).join(", ") || "-"}
+              </Text>
+            </View>
+          </View>
+        ) : null}
+
         <View style={styles.list}>
           {quizzes.map((q, index) => {
             const saved = progressByQuizId[q.id] ?? null;
+            const percent = calcPercent(saved);
 
-            const percent = saved
-              ? Math.round(
-                  (saved.progress.filter((p) => p === "correct").length /
-                    Math.max(1, saved.progress.length)) *
-                    100
-                )
-              : 0;
-
+            const isUnlocked = unlockedIds.has(q.id);
             const iconName = getIconNameByQuizId(q.id);
-
-            const bgY = -100 - (index % 6) * 35;
 
             return (
               <Pressable
                 key={q.id}
-                onPress={() => router.push(`/quiz/${q.id}`)}
+                onPress={() => {
+                  if (!isUnlocked) return;
+                  router.push(`/quiz/${q.id}`);
+                }}
                 style={styles.item}
+                disabled={!isUnlocked}
               >
-                <View style={styles.overlay}>
+                <View
+                  style={[
+                    styles.overlay,
+                    isUnlocked ? styles.overlayUnlocked : styles.overlayLocked,
+                  ]}
+                >
                   <View style={styles.row}>
                     <ProgressRing percent={percent} size={60} strokeWidth={6}>
                       <View style={styles.iconInner}>
@@ -194,7 +309,21 @@ export default function QuizMenuScreen() {
                     </ProgressRing>
 
                     <View style={styles.content}>
-                      <Text style={styles.itemTitle}>{q.title}</Text>
+                      <View style={styles.titleRow}>
+                        <Text style={styles.itemTitle}>{q.title}</Text>
+
+                        {!isUnlocked ? (
+                          <View style={styles.lockWrap}>
+                            <FontAwesome6
+                              name="lock"
+                              size={14}
+                              color="rgba(17,17,17,0.55)"
+                            />
+                          
+                          </View>
+                        ) : null}
+                      </View>
+
                       <ProgressBar percent={percent} />
                     </View>
                   </View>
@@ -217,6 +346,41 @@ const styles = StyleSheet.create({
     padding: 24,
     paddingBottom: 120,
   },
+
+  devPanel: {
+    gap: 10,
+    marginTop: 8,
+    marginBottom: 12,
+  },
+  devResetBtn: {
+    backgroundColor: "#ffffff",
+    paddingVertical: 12,
+    paddingHorizontal: 14,
+    borderRadius: 12,
+  },
+  devResetText: {
+    fontSize: 13,
+    fontWeight: "900",
+    color: "#111",
+    textAlign: "center",
+  },
+  devDebug: {
+    backgroundColor: "#ffffff",
+    padding: 12,
+    borderRadius: 12,
+  },
+  devDebugTitle: {
+    fontSize: 13,
+    fontWeight: "900",
+    color: "#111",
+    marginBottom: 6,
+  },
+  devDebugText: {
+    fontSize: 12,
+    fontWeight: "700",
+    color: "rgba(17,17,17,0.7)",
+  },
+
   list: {
     marginTop: 16,
     gap: 12,
@@ -228,17 +392,14 @@ const styles = StyleSheet.create({
     position: "relative",
   },
 
-  bgWrap: {
-    ...StyleSheet.absoluteFillObject,
-  },
-  bgImage: {
-    width: "150%",
-    height: 320,
-  },
-
   overlay: {
     padding: 16,
+  },
+  overlayUnlocked: {
     backgroundColor: "#ffffff",
+  },
+  overlayLocked: {
+    backgroundColor: "#cccccc",
   },
 
   row: {
@@ -251,10 +412,29 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
+  titleRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    gap: 10,
+  },
+
   itemTitle: {
     fontSize: 18,
     fontWeight: "800",
     color: "#111",
+    flex: 1,
+  },
+
+  lockWrap: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 6,
+  },
+  lockText: {
+    fontSize: 12,
+    fontWeight: "800",
+    color: "rgba(17,17,17,0.55)",
   },
 
   progressBarWrap: {
