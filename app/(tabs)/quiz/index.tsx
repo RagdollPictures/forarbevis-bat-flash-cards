@@ -1,9 +1,8 @@
+import { FontAwesome6 } from "@expo/vector-icons";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-import { FontAwesome6 } from "@expo/vector-icons";
 
 import { getQuizzes } from "../../../constants/flashcards";
 import {
@@ -29,18 +28,18 @@ function MiniProgressRow({ progress }: { progress: QuizProgressState[] }) {
   );
 }
 
-function getIconNameByQuizId(quizId: string): React.ComponentProps<
-  typeof FontAwesome6
->["name"] {
+function getIconNameByQuizId(
+  quizId: string
+): React.ComponentProps<typeof FontAwesome6>["name"] {
   switch (quizId) {
     case "sjokortet":
       return "map-location-dot";
     case "sjokortSymboler":
       return "shapes";
     case "sjokortet_sjomarken":
-      return "tower-broadcast";
-   case "sjokortsarbete":
-  return "ruler-combined";
+      return "compass-drafting";
+    case "sjokortsarbete":
+      return "ruler-combined";
     case "navigationsteori":
       return "compass";
     case "praktisk_navigation":
@@ -110,15 +109,16 @@ export default function QuizMenuScreen() {
                 onPress={() => router.push(`/quiz/${q.id}`)}
                 style={styles.item}
               >
-                <View style={styles.itemHeader}>
+                <View style={styles.row}>
                   <View style={styles.iconCircle}>
-                    <FontAwesome6 name={iconName} size={18} color="#111" />
+                    <FontAwesome6 name={iconName} size={26} color="#111" />
                   </View>
 
-                  <Text style={styles.itemTitle}>{q.title}</Text>
+                  <View style={styles.content}>
+                    <Text style={styles.itemTitle}>{q.title}</Text>
+                    <MiniProgressRow progress={progressArray} />
+                  </View>
                 </View>
-
-                <MiniProgressRow progress={progressArray} />
               </Pressable>
             );
           })}
@@ -144,47 +144,52 @@ const styles = StyleSheet.create({
   },
   item: {
     borderWidth: 1,
-    borderColor: "#e6e6e6",
-    borderRadius: 14,
+    borderColor: "rgba(255,255,255,0.10)",
+    borderRadius: 18,
     padding: 16,
     backgroundColor: "#fff",
   },
 
-  itemHeader: {
+  row: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 10,
+    gap: 12,
   },
+
   iconCircle: {
-    width: 34,
-    height: 34,
+    width: 52,
+    height: 52,
     borderRadius: 999,
     backgroundColor: "#f2f2f2",
     alignItems: "center",
     justifyContent: "center",
   },
 
+  content: {
+    flex: 1,
+  },
+
   itemTitle: {
     fontSize: 18,
-    fontWeight: "700",
-    flex: 1,
+    fontWeight: "800",
+    color: "#111",
   },
 
   miniRow: {
     flexDirection: "row",
-    gap: 2,
+    gap: 3,
     marginTop: 10,
   },
   miniSeg: {
     flex: 1,
-    height: 6,
-    borderRadius: 6,
+    height: 8,
+    borderRadius: 999,
     backgroundColor: "rgba(17,17,17,0.10)",
   },
   miniCorrect: {
-    backgroundColor: "#1e8e3e",
+    backgroundColor: "#16a34a",
   },
   miniWrong: {
-    backgroundColor: "#c62828",
+    backgroundColor: "#dc2626",
   },
 });
