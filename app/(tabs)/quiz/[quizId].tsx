@@ -1,10 +1,11 @@
 import { router, useLocalSearchParams } from "expo-router";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Image, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { getQuizById } from "../../../constants/flashcards";
 import { cardImages } from "../../../constants/flashcards/cardImages";
+import { saveQuizProgress } from "../../../constants/flashcards/quizProgress";
 import type { FlashCard } from "../../../constants/flashcards/types";
 
 function shuffle<T>(arr: T[]) {
@@ -20,39 +21,13 @@ export default function QuizScreen() {
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const resolved = getQuizById(typeof quizId === "string" ? quizId : "");
 
-  const [index, setIndex] = useState(0);
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [isChecked, setIsChecked] = useState(false);
-  const [score, setScore] = useState(0);
-  const [isFinished, setIsFinished] = useState(false);
+  const screenTitle = resolved
+    ? resolved.subtitle
+      ? `${resolved.title} – ${resolved.subtitle}`
+      : resolved.title
+    : "Quiz";
 
-  if (!resolved) {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}>Quiz</Text>
-          <Text style={styles.text}>Det här quizet finns inte.</Text>
-
-          <View style={styles.actions}>
-            <Pressable
-              onPress={() => router.back()}
-              style={[styles.button, styles.buttonSecondary]}
-            >
-              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
-                Tillbaka
-              </Text>
-            </Pressable>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
-
-  const screenTitle = resolved.subtitle
-    ? `${resolved.title} – ${resolved.subtitle}`
-    : resolved.title;
-
-  const rawDeck = (resolved.deck ?? []) as FlashCard[];
+  const rawDeck = (resolved?.deck ?? []) as FlashCard[];
 
   const deck = useMemo(() => {
     return rawDeck.filter((c) => {
@@ -66,41 +41,35 @@ export default function QuizScreen() {
     });
   }, [rawDeck]);
 
-  if (deck.length === 0) {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}>{screenTitle}</Text>
-          <Text style={styles.text}>
-            Det här quizet är inte klart än (inga frågor med options +
-            correctOptionIndex).
-          </Text>
+  const [shuffledDeck, setShuffledDeck] = useState<FlashCard[]>([]);
+  const [index, setIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const [score, setScore] = useState(0);
+  const [isFinished, setIsFinished] = useState(false);
+  const [progress, setProgress] = useState<("correct" | "wrong" | null)[]>([]);
 
-          <View style={styles.actions}>
-            <Pressable
-              onPress={() => router.back()}
-              style={[styles.button, styles.buttonSecondary]}
-            >
-              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
-                Tillbaka
-              </Text>
-            </Pressable>
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    );
-  }
+  useEffect(() => {
+    if (deck.length === 0) return;
+    const nextDeck = shuffle(deck);
+    setShuffledDeck(nextDeck);
+    setProgress(Array(nextDeck.length).fill(null));
+    setIndex(0);
+    setSelectedIndex(null);
+    setIsChecked(false);
+    setScore(0);
+    setIsFinished(false);
+  }, [deck.length]);
 
-  const [shuffledDeck, setShuffledDeck] = useState(() => shuffle(deck));
-  const [progress, setProgress] = useState<("correct" | "wrong" | null)[]>(
-    () => Array(shuffledDeck.length).fill(null)
-  );
-
-  const safeIndex = Math.min(index, shuffledDeck.length - 1);
+  const safeIndex = Math.min(index, Math.max(0, shuffledDeck.length - 1));
   const card = shuffledDeck[safeIndex];
 
   const quiz = useMemo(() => {
-    const zipped = card.options!.map((text, originalIndex) => ({
+    if (!card?.options || !Number.isInteger(card.correctOptionIndex)) {
+      return { options: [], correctOptionIndex: -1 };
+    }
+
+    const zipped = card.options.map((text, originalIndex) => ({
       text,
       originalIndex,
     }));
@@ -115,10 +84,25 @@ export default function QuizScreen() {
       options: shuffled.map((o) => o.text),
       correctOptionIndex,
     };
-  }, [card.id, card.correctOptionIndex]);
+  }, [card?.id, card?.correctOptionIndex]);
+
+  useEffect(() => {
+    if (!quizId) return;
+    if (!isFinished) return;
+    if (shuffledDeck.length === 0) return;
+
+    saveQuizProgress({
+      quizId: String(quizId),
+      progress,
+      score,
+      total: shuffledDeck.length,
+      updatedAt: Date.now(),
+    });
+  }, [quizId, isFinished, progress, score, shuffledDeck.length]);
 
   const onSelect = (i: number) => {
     if (isChecked || isFinished) return;
+    if (quiz.correctOptionIndex < 0) return;
 
     const wasCorrect = i === quiz.correctOptionIndex;
 
@@ -148,16 +132,85 @@ export default function QuizScreen() {
   };
 
   const restart = () => {
+    if (deck.length === 0) return;
+
     const nextDeck = shuffle(deck);
     setShuffledDeck(nextDeck);
     setProgress(Array(nextDeck.length).fill(null));
-
     setIndex(0);
     setSelectedIndex(null);
     setIsChecked(false);
     setScore(0);
     setIsFinished(false);
   };
+
+  if (!resolved) {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.title}>Quiz</Text>
+          <Text style={styles.text}>Det här quizet finns inte.</Text>
+
+          <View style={styles.actions}>
+            <Pressable
+              onPress={() => router.back()}
+              style={[styles.button, styles.buttonSecondary]}
+            >
+              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
+                Tillbaka
+              </Text>
+            </Pressable>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  if (deck.length === 0) {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.title}>{screenTitle}</Text>
+          <Text style={styles.text}>
+            Det här quizet är inte klart än (inga frågor med options + correctOptionIndex).
+          </Text>
+
+          <View style={styles.actions}>
+            <Pressable
+              onPress={() => router.back()}
+              style={[styles.button, styles.buttonSecondary]}
+            >
+              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
+                Tillbaka
+              </Text>
+            </Pressable>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
+
+  if (shuffledDeck.length === 0 || !card) {
+    return (
+      <SafeAreaView style={styles.safe}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.title}>{screenTitle}</Text>
+          <Text style={styles.text}>Laddar quiz...</Text>
+
+          <View style={styles.actions}>
+            <Pressable
+              onPress={() => router.back()}
+              style={[styles.button, styles.buttonSecondary]}
+            >
+              <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
+                Tillbaka
+              </Text>
+            </Pressable>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 
   if (isFinished) {
     return (

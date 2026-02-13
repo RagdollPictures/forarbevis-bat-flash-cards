@@ -11,7 +11,7 @@ export const vajningsreglerFartyg: FlashCard[] = [
       "Supertankern. Ett maskindrivet fartyg ska väja för ett segelfartyg när inga specialregler gäller.",
     options: [
       "Segelbåten.",
-      "Supertankern.",
+      "Handelsfartyget.",
       "Båda samtidigt.",
       "Den som är minst.",
     ],

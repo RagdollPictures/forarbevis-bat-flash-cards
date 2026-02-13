@@ -136,7 +136,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     
     {
       id: "sjokortet",
-      title: "Sjökortet",
+      title: "Kartunderlag & Koordinater",
       deckId: "sjokortet",
       children: [
         { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
@@ -151,22 +151,36 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     
  {
       id: "sjokortSymboler",
-      title: "Sjökort - Symboler",
+      title: "Karttecken & Beteckningar",
       children: [
         { id: "symboler", title: "Symboler", deckId: "symboler" },
       ],
     },
      {
       id: "sjokortet_sjomarken",
-      title: "Sjökortet - Sjömärken",
+      title: "Sjövägsmärken & Markeringar",
       children: [
          { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
         { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
       ],
     },
+    
+    {
+      id: "sjokortsarbete",
+      title: "Praktiskt Arbete i Sjökort",
+      children: [
+        { id: "mata_kort_distans", title: "Mäta kort distans", deckId: "mata_kort_distans" },
+        { id: "mata_langre_distans", title: "Mäta längre distans", deckId: "mata_langre_distans" },
+        { id: "ta_fram_position", title: "Ta fram position", deckId: "ta_fram_position" },
+        { id: "markera_position", title: "Markera position", deckId: "markera_position" },
+        { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
+        { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
+        { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
+      ],
+    },
     {
       id: "navigationsteori",
-      title: "Navigationsteori",
+      title: "Navigationsprinciper",
       children: [
         { id: "vaderstreck", title: "Väderstreck", deckId: "vaderstreck" },
         { id: "navigationsbestick", title: "Navigationsbestick", deckId: "navigationsbestick" },
@@ -181,7 +195,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "praktisk_navigation",
-      title: "Praktisk navigation",
+      title: "Navigering i Praktiken",
       children: [
         { id: "planering", title: "Planering", deckId: "planering" },
         { id: "farledsnavigation", title: "Farledsnavigation", deckId: "farledsnavigation" },
@@ -191,21 +205,8 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       ],
     },
     {
-      id: "sjokortsarbete",
-      title: "Sjökortsarbete",
-      children: [
-        { id: "mata_kort_distans", title: "Mäta kort distans", deckId: "mata_kort_distans" },
-        { id: "mata_langre_distans", title: "Mäta längre distans", deckId: "mata_langre_distans" },
-        { id: "ta_fram_position", title: "Ta fram position", deckId: "ta_fram_position" },
-        { id: "markera_position", title: "Markera position", deckId: "markera_position" },
-        { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
-        { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
-        { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
-      ],
-    },
-    {
       id: "vajningsregler",
-      title: "Väjningsregler",
+      title: "Trafikregler till Sjöss",
       children: [
         { id: "vajningsregler_inledning", title: "Inledning", deckId: "vajningsregler_inledning" },
         { id: "vajningsregler_smabatar", title: "Småbåtar", deckId: "vajningsregler_smabatar" },
@@ -216,7 +217,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "lanternor",
-      title: "Lanternor",
+      title: "Navigationsljus",
       children: [
         { id: "lanternor_inledning", title: "Inledning", deckId: "lanternor_inledning" },
         { id: "lanternor_smabatar", title: "Småbåtar", deckId: "lanternor_smabatar" },
@@ -228,7 +229,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "manovrering",
-      title: "Manövrering",
+      title: "Båtens Rörelser & Kontroll",
       children: [
         { id: "manovrering_inledning", title: "Inledning", deckId: "manovrering_inledning" },
         { id: "manovrering_bat_med_roder", title: "Båt med roder", deckId: "manovrering_bat_med_roder" },
@@ -241,7 +242,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "navigationsinstrument",
-      title: "Navigationsinstrument",
+      title: "Instrument & Utrustning",
       children: [
         { id: "navigationsinstrument_kompass", title: "Kompass", deckId: "navigationsinstrument_kompass" },
         { id: "navigationsinstrument_logg", title: "Logg", deckId: "navigationsinstrument_logg" },
@@ -253,7 +254,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "sjomanskap",
-      title: "Sjömanskap",
+      title: "Båtvett & Ombordkunskap",
       children: [
         { id: "sjomanskap_hansyn_hjalpsamhet", title: "Hänsyn & hjälpsamhet", deckId: "sjomanskap_hansyn_hjalpsamhet" },
         { id: "knopar_och_linor", title: "Knopar och linor", deckId: "knopar_och_linor" },
@@ -268,7 +269,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "signalering",
-      title: "Signalering",
+      title: "Kommunikation till Sjöss",
       children: [
         { id: "signalering_nodsignaler", title: "Nödsignaler", deckId: "signalering_nodsignaler" },
         { id: "signalering_dagersignaler", title: "Dagersignaler", deckId: "signalering_dagersignaler" },
@@ -278,7 +279,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "sakerhet",
-      title: "Säkerhet",
+      title: "Säkerhet & Beredskap",
       children: [
         { id: "sakerhet_flytvast", title: "Flytväst", deckId: "sakerhet_flytvast" },
         { id: "sakerhet_nodsituationer", title: "Nödsituationer", deckId: "sakerhet_nodsituationer" },
@@ -292,7 +293,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "sjukvard",
-      title: "Sjukvård",
+      title: "Första Hjälpen Ombord",
       children: [
         { id: "sjukvard_grundlaggande", title: "Grundläggande", deckId: "sjukvard_grundlaggande" },
         { id: "sjukvard_sjosjuka", title: "Sjösjuka", deckId: "sjukvard_sjosjuka" },
@@ -302,7 +303,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "vader",
-      title: "Väder",
+      title: "Meteorologi för båtfolk",
       children: [
         { id: "vader_meteorologi", title: "Meteorologi", deckId: "vader_meteorologi" },
         { id: "vader_vaderprognoser", title: "Väderprognoser", deckId: "vader_vaderprognoser" },
@@ -312,7 +313,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     },
     {
       id: "miljo",
-      title: "Miljö",
+      title: "Natur och ansvar",
       children: [
         { id: "miljo_miljovett", title: "Miljövett", deckId: "miljo_miljovett" },
         { id: "miljo_bottenfarg", title: "Bottenfärg", deckId: "miljo_bottenfarg" },
