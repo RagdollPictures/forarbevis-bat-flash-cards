@@ -234,10 +234,10 @@ export default function QuizMenuScreen() {
                       <ProgressRing percent={percent} size={76} strokeWidth={7}>
                         <View style={styles.iconInner}>
                           <SvgIcon
-  name={iconName}
-  size={30}
-  color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-/>
+                            name={iconName}
+                            size={30}
+                            color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                          />
 
                         </View>
                       </ProgressRing>
