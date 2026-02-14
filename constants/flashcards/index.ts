@@ -105,7 +105,6 @@ export const sources: Source[] = [
 
 export const chaptersBySourceId: Record<string, Chapter[]> = {
   fritidsskepparen: [
-    
     { id: "sjokortet", title: "Sjökortet", deckId: "sjokortet" },
     {
       id: "position_fart_tid_distans",
@@ -133,7 +132,6 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
     { id: "sjomanskap", title: "Sjömanskap", deckId: "sjomanskap" },
   ],
   forarintyg: [
-    
     {
       id: "sjokortet",
       title: "Kartunderlag & Koordinater",
@@ -142,29 +140,25 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "sjokortstyper", title: "Sjökortstyper", deckId: "sjokortstyper" },
         { id: "papperssjokort", title: "Papperssjökort", deckId: "papperssjokort" },
         { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
-       
-      
         { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
         { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
       ],
     },
-    
- {
+
+    {
       id: "sjokortSymboler",
       title: "Karttecken & Beteckningar",
-      children: [
-        { id: "symboler", title: "Symboler", deckId: "symboler" },
-      ],
+      children: [{ id: "symboler", title: "Symboler", deckId: "symboler" }],
     },
-     {
+    {
       id: "sjokortet_sjomarken",
       title: "Sjövägsmärken & Markeringar",
       children: [
-         { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
+        { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
         { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
       ],
     },
-    
+
     {
       id: "sjokortsarbete",
       title: "Praktiskt Arbete i Sjökort",
@@ -322,7 +316,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "miljo_allemansratten", title: "Allemansrätten", deckId: "miljo_allemansratten" },
         { id: "miljo_skyddsomraden", title: "Skyddsområden", deckId: "miljo_skyddsomraden" },
       ],
-    }
+    },
   ],
 };
 
@@ -457,6 +451,7 @@ export type MultipleChoiceCard = FlashCard & {
 export type Quiz = {
   id: string;
   title: string;
+  subtitle?: string;
   sourceId: string;
   deck: MultipleChoiceCard[];
 };
@@ -472,28 +467,46 @@ function isMultipleChoiceCard(c: FlashCard): c is MultipleChoiceCard {
   );
 }
 
-function flattenDeckIds(ch: Chapter): string[] {
-  const own = ch.deckId ? [ch.deckId] : [];
-  const kids = ch.children?.flatMap(flattenDeckIds) ?? [];
-  return [...own, ...kids];
+function collectQuizChapters(
+  chapters: Chapter[],
+  parents: Chapter[] = []
+): Array<{ ch: Chapter; parents: Chapter[] }> {
+  const out: Array<{ ch: Chapter; parents: Chapter[] }> = [];
+
+  for (const ch of chapters) {
+    const nextParents = [...parents, ch];
+
+    if (ch.deckId) {
+      out.push({ ch, parents });
+    }
+
+    if (ch.children?.length) {
+      out.push(...collectQuizChapters(ch.children, nextParents));
+    }
+  }
+
+  return out;
 }
 
-function buildQuizDeckFromChapter(ch: Chapter): MultipleChoiceCard[] {
-  const deckIds = flattenDeckIds(ch);
-  const cards = deckIds.flatMap((id) => getDeck(id));
-  return cards.filter(isMultipleChoiceCard);
+function buildQuizDeckFromDeckId(deckId: string): MultipleChoiceCard[] {
+  return getDeck(deckId).filter(isMultipleChoiceCard);
 }
 
 export function getQuizzes(sourceId: string): Quiz[] {
   const chapters = getChapters(sourceId);
+  const quizChapters = collectQuizChapters(chapters);
 
-  return chapters
-    .map((ch) => ({
-      id: ch.id,
-      title: ch.title,
-      sourceId,
-      deck: buildQuizDeckFromChapter(ch),
-    }))
+  return quizChapters
+    .map(({ ch, parents }) => {
+      const subtitle = parents.map((p) => p.title).join(" • ");
+      return {
+        id: ch.id,
+        title: ch.title,
+        subtitle: subtitle.length > 0 ? subtitle : undefined,
+        sourceId,
+        deck: buildQuizDeckFromDeckId(ch.deckId!),
+      };
+    })
     .filter((q) => q.deck.length > 0);
 }
 

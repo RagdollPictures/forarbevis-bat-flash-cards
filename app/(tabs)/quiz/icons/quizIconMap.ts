@@ -1,0 +1,128 @@
+// app/(tabs)/quiz-menu/icons/quizIconMap.ts
+import type { SvgName } from "./svgRegistry";
+
+const quizIconNameById: Record<string, SvgName> = {
+  sjokortet: "map",
+  sjokortstyper: "map",
+  papperssjokort: "map",
+  elektroniska_sjokort: "map",
+  tillforlitlighet: "circle-check",
+  longitud_latitud: "location-dot",
+
+  sjokortSymboler: "shapes",
+  symboler: "shapes",
+
+  sjokortet_sjomarken: "anchor",
+  flytande_sjomarken: "anchor",
+  fasta_sjomarken: "anchor",
+
+  sjokortsarbete: "ruler-combined",
+  mata_kort_distans: "ruler",
+  mata_langre_distans: "ruler",
+  ta_fram_position: "location-crosshairs",
+  markera_position: "pen-ruler",
+  lagga_ut_kurs: "route",
+  mata_upp_kurs: "compass",
+  krysspejling: "crosshairs",
+
+  navigationsteori: "compass",
+  vaderstreck: "compass",
+  navigationsbestick: "ruler-combined",
+  kurs_baring_riktning: "location-arrow",
+  position: "location-dot",
+  distans: "ruler",
+  berakningar: "calculator",
+  deviation_missvisning: "compass-drafting",
+  avdrift_strom: "water",
+  ratta_satta_kurs: "route",
+
+  praktisk_navigation: "route",
+  planering: "clipboard-list",
+  farledsnavigation: "route",
+  optisk_navigation: "binoculars",
+  instrumentnavigation: "satellite-dish",
+  navigatornavigation: "map-location-dot",
+
+  vajningsregler: "scale-balanced",
+  vajningsregler_inledning: "scale-balanced",
+  vajningsregler_smabatar: "ship",
+  vajningsregler_segelbatar: "sailboat",
+  vajningsregler_motorbatar: "ship",
+  vajningsregler_fartyg: "ship",
+
+  lanternor: "lightbulb",
+  lanternor_inledning: "lightbulb",
+  lanternor_smabatar: "lightbulb",
+  lanternor_segelbatar: "lightbulb",
+  lanternor_motorbatar: "lightbulb",
+  lanternor_fartyg: "lightbulb",
+  lanternor_sarskilda_fartyg: "lightbulb",
+
+  manovrering: "sailboat",
+  manovrering_inledning: "sailboat",
+  manovrering_bat_med_roder: "sailboat",
+  manovrering_bat_utan_roder: "sailboat",
+  manovrering_hog_fart: "gauge-high",
+  manovrering_fortoja: "anchor",
+  manovrering_kasta_loss: "anchor-circle-xmark",
+  manovrering_segelbat: "sailboat",
+
+  navigationsinstrument: "gauge",
+  navigationsinstrument_kompass: "compass",
+  navigationsinstrument_logg: "gauge",
+  navigationsinstrument_ekolod: "water",
+  navigationsinstrument_satellit: "satellite-dish",
+  navigationsinstrument_navigator: "map-location-dot",
+  navigationsinstrument_instrumentkontroll: "screwdriver-wrench",
+
+  sjomanskap: "anchor",
+  sjomanskap_hansyn_hjalpsamhet: "handshake",
+  knopar_och_linor: "link",
+  sjomanskap_sjovardighet: "ship",
+  sjomanskap_ankring: "anchor",
+  sjomanskap_kontroller_underhall: "screwdriver-wrench",
+  sjomanskap_kladsel: "shirt",
+  sjomanskap_sjofylleri: "ban",
+  sjomanskap_flaggor: "flag",
+  sjomanskap_stabilitet: "scale-balanced",
+
+  signalering: "bullhorn",
+  signalering_nodsignaler: "triangle-exclamation",
+  signalering_dagersignaler: "flag",
+  signalering_ljudsignaler: "volume-high",
+  signalering_signalflaggor: "flag",
+
+  sakerhet: "life-ring",
+  sakerhet_flytvast: "life-ring",
+  sakerhet_nodsituationer: "triangle-exclamation",
+  sakerhet_sakerhetsutrustning: "helmet-safety",
+  sakerhet_nodutrustning: "kit-medical",
+  sakerhet_elsakerhet: "bolt",
+  sakerhet_bransle: "gas-pump",
+  sakerhet_sjoraddning: "life-ring",
+  sakerhet_ansvar_skyldigheter: "scale-balanced",
+
+  sjukvard: "kit-medical",
+  sjukvard_grundlaggande: "kit-medical",
+  sjukvard_sjosjuka: "face-dizzy",
+  sjukvard_nedkylning: "snowflake",
+  sjukvard_brannskador: "fire",
+
+  vader: "cloud-sun",
+  vader_meteorologi: "cloud-sun",
+  vader_vaderprognoser: "cloud",
+  vader_vind_och_vagor: "wind",
+  vader_risker: "triangle-exclamation",
+
+  miljo: "leaf",
+  miljo_miljovett: "leaf",
+  miljo_bottenfarg: "spray-can-sparkles",
+  miljo_toaletter: "toilet",
+  miljo_eco_driving: "gauge",
+  miljo_allemansratten: "tree",
+  miljo_skyddsomraden: "shield-halved",
+};
+
+export function getIconNameByQuizId(quizId: string): SvgName {
+  return quizIconNameById[quizId] ?? "circle-question";
+}
