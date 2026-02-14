@@ -1,4 +1,4 @@
-import { colorScheme } from "@/constants/colors";
+// app/(tabs)/quiz-menu/index.tsx
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
@@ -12,16 +12,19 @@ import {
   saveQuizProgress,
 } from "../../../constants/flashcards/quizProgress";
 
+import { colorScheme } from "@/constants/colors";
 import ProgressRing from "./components/ProgressRing";
 import { getIconNameByQuizId } from "./icons/quizIconMap";
 import SvgIcon from "./icons/svgIcon";
-import {
-  loadClearedSet,
-  saveClearedSet,
-  UNLOCK_PERCENT,
-} from "./storage/cleared";
+import { loadClearedSet, saveClearedSet, UNLOCK_PERCENT } from "./storage/cleared";
 import { styles } from "./styles";
 import { calcPercent } from "./utils/progress";
+
+type QuizItem = {
+  id: string;
+  title: string;
+  subtitle?: string;
+};
 
 function getNextLockedQuizId(quizzes: { id: string }[], unlockedIds: Set<string>) {
   for (const q of quizzes) {
@@ -30,9 +33,16 @@ function getNextLockedQuizId(quizzes: { id: string }[], unlockedIds: Set<string>
   return null;
 }
 
+function getParentTitleFromSubtitle(subtitle?: string) {
+  if (!subtitle) return "Övrigt";
+  const parts = subtitle.split("•").map((s) => s.trim()).filter(Boolean);
+  if (parts.length === 0) return "Övrigt";
+  return parts[parts.length - 1];
+}
+
 export default function QuizMenuScreen() {
-  const quizzes = useMemo(() => getQuizzes("forarintyg"), []);
-  
+  const quizzes = useMemo(() => getQuizzes("forarintyg") as QuizItem[], []);
+
   const [progressByQuizId, setProgressByQuizId] = useState<
     Record<string, SavedQuizProgress>
   >({});
@@ -108,30 +118,65 @@ export default function QuizMenuScreen() {
   }, [quizzes, clearedIds]);
 
   const devCheatNextLockedTo100 = useCallback(async () => {
-    const targetId = getNextLockedQuizId(quizzes, unlockedIds);
-    if (!targetId) return;
+  if (quizzes.length === 0) return;
 
-    const fake: SavedQuizProgress = {
-      quizId: targetId,
-      progress: ["correct"],
-      score: 1,
-      total: 1,
-      updatedAt: Date.now(),
-    };
+  // hitta "current" = sista quizet som är upplåst just nu
+  // (det är det quizet man måste cleara för att låsa upp nästa)
+  let currentId = quizzes[0].id;
 
-    await saveQuizProgress(fake);
-    setProgressByQuizId((prev) => ({ ...prev, [targetId]: fake }));
+  for (let i = 0; i < quizzes.length - 1; i++) {
+    const id = quizzes[i].id;
 
-    const nextCleared = new Set(clearedIds);
-    nextCleared.add(targetId);
+    if (!unlockedIds.has(id)) break;
 
-    await saveClearedSet(nextCleared);
-    setClearedIds(nextCleared);
-  }, [quizzes, unlockedIds, clearedIds]);
+    currentId = id;
+
+    // om denna redan är cleared, fortsätt till nästa i kedjan
+    if (!clearedIds.has(id)) break;
+  }
+
+  const fake: SavedQuizProgress = {
+    quizId: currentId,
+    progress: ["correct"],
+    score: 1,
+    total: 1,
+    updatedAt: Date.now(),
+  };
+
+  await saveQuizProgress(fake);
+  setProgressByQuizId((prev) => ({ ...prev, [currentId]: fake }));
+
+  const nextCleared = new Set(clearedIds);
+  nextCleared.add(currentId);
+
+  await saveClearedSet(nextCleared);
+  setClearedIds(nextCleared);
+}, [quizzes, unlockedIds, clearedIds]);
+
+
+  const grouped = useMemo(() => {
+    const order: string[] = [];
+    const buckets: Record<string, QuizItem[]> = {};
+
+    for (const q of quizzes) {
+      const parentTitle = getParentTitleFromSubtitle(q.subtitle);
+
+      if (!buckets[parentTitle]) {
+        buckets[parentTitle] = [];
+        order.push(parentTitle);
+      }
+      buckets[parentTitle].push(q);
+    }
+
+    return order.map((title) => ({
+      title,
+      items: buckets[title],
+    }));
+  }, [quizzes]);
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container}>
+     <ScrollView contentContainerStyle={styles.container}>
         {__DEV__ ? (
           <View style={styles.devPanel}>
             <Pressable
@@ -148,59 +193,71 @@ export default function QuizMenuScreen() {
             <Pressable onPress={devCheatNextLockedTo100} style={styles.devResetBtn}>
               <Text style={styles.devResetText}>DEV: SET NEXT LOCKED TO 100%</Text>
             </Pressable>
-
           </View>
         ) : null}
 
-        <View style={styles.grid}>
-          {quizzes.map((q) => {
-            const saved = progressByQuizId[q.id] ?? null;
-            const percent = calcPercent(saved);
+        {grouped.map((section) => (
+          <View key={`chapter-${section.title}`}>
+            <Text
+              style={{
+                marginTop: 18,
+                marginBottom: 10,
+              
+                fontSize: 14,
+                fontWeight: "900",
+                textTransform: "uppercase",
+                letterSpacing: 0.6,
+              }}
+            >
+              {section.title}
+            </Text>
 
-            const isUnlocked = unlockedIds.has(q.id);
-            const iconName = getIconNameByQuizId(q.id);
+            <View style={styles.grid}>
+              {section.items.map((q) => {
+                const saved = progressByQuizId[q.id] ?? null;
+                const percent = calcPercent(saved);
 
-            return (
-              <Pressable
-                key={q.id}
-                onPress={() => {
-                  if (!isUnlocked) return;
-                  router.push(`/quiz/${q.id}`);
-                }}
-                disabled={!isUnlocked}
-                style={[styles.tile, !isUnlocked && styles.tileLocked]}
-              >
-                <View style={styles.ringWrap}>
-                  <View style={styles.ringWrap}>
-  <ProgressRing percent={percent} size={76} strokeWidth={7}>
-    <View style={styles.iconInner}>
-      <SvgIcon
-        name={iconName}
-        size={30}
-        color={isUnlocked ? colorScheme.blue : "rgba(255,255,255,0.55)"}
-      />
-    </View>
-  </ProgressRing>
+                const isUnlocked = unlockedIds.has(q.id);
+                const iconName = getIconNameByQuizId(q.id);
 
-  {!isUnlocked ? (
-    <View style={styles.lockBadge}>
-      <SvgIcon name="lock" size={14} color="#ffffff" />
-    </View>
-  ) : null}
-</View>
+                return (
+                  <Pressable
+                    key={q.id}
+                    onPress={() => {
+                      if (!isUnlocked) return;
+                      router.push(`/quiz/${q.id}`);
+                    }}
+                    disabled={!isUnlocked}
+                    style={[styles.tile, !isUnlocked && styles.tileLocked]}
+                  >
+                    <View style={styles.ringWrap}>
+                      <ProgressRing percent={percent} size={76} strokeWidth={7}>
+                        <View style={styles.iconInner}>
+                          <SvgIcon
+  name={iconName}
+  size={30}
+  color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+/>
 
-                </View>
+                        </View>
+                      </ProgressRing>
 
-                <Text
-                  numberOfLines={2}
-                  style={[styles.title, !isUnlocked && styles.titleLocked]}
-                >
-                  {q.title}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </View>
+                      {!isUnlocked ? (
+                        <View style={styles.lockBadge}>
+                          <SvgIcon name="lock" size={14} color="#ffffff" />
+                        </View>
+                      ) : null}
+                    </View>
+
+                    <Text numberOfLines={2} style={[styles.title, !isUnlocked && styles.titleLocked]}>
+                      {q.title}
+                    </Text>
+                  </Pressable>
+                );
+              })}
+            </View>
+          </View>
+        ))}
       </ScrollView>
     </SafeAreaView>
   );

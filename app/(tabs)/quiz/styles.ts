@@ -1,4 +1,4 @@
-// app/(tabs)/quiz-menu/styles.ts
+import { colorScheme } from "@/constants/colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
@@ -6,9 +6,11 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#ffffff",
   },
+
   container: {
     padding: 24,
     paddingBottom: 120,
+    alignItems: "stretch",
   },
 
   devPanel: {
@@ -28,92 +30,38 @@ export const styles = StyleSheet.create({
     color: "#111",
     textAlign: "center",
   },
-  devDebug: {
-    backgroundColor: "#ffffff",
-    padding: 12,
-    borderRadius: 12,
-  },
-  devDebugTitle: {
-    fontSize: 13,
-    fontWeight: "900",
-    color: "#111",
-    marginBottom: 6,
-  },
-  devDebugText: {
-    fontSize: 12,
-    fontWeight: "700",
-    color: "rgba(17,17,17,0.7)",
-  },
 
-  list: {
-    marginTop: 16,
-    gap: 12,
-  },
-
-  item: {
-    borderRadius: 18,
-    overflow: "hidden",
-    position: "relative",
-  },
-
-  overlay: {
-    padding: 16,
-  },
-  overlayUnlocked: {
-    backgroundColor: "#ffffff",
-  },
-  overlayLocked: {
-    backgroundColor: "#cccccc",
-  },
-
-  row: {
+  grid: {
+    width: "100%",
     flexDirection: "row",
-    alignItems: "center",
-    gap: 12,
-  },
-
-  content: {
-    flex: 1,
-  },
-
-  titleRow: {
-    flexDirection: "row",
-    alignItems: "center",
+    flexWrap: "wrap",
     justifyContent: "space-between",
-    gap: 10,
+    rowGap: 18,
   },
 
-  itemTitle: {
-    fontSize: 18,
-    fontWeight: "800",
-    color: "#111",
-    flex: 1,
-  },
-
-  lockWrap: {
-    flexDirection: "row",
+  tile: {
+    width: "48%",
     alignItems: "center",
-    gap: 6,
   },
 
-  progressBarWrap: {
-    marginTop: 10,
+ 
+  ringWrap: {
+    position: "relative",
+    alignItems: "center",
+    justifyContent: "center",
+    marginBottom: 8,
   },
-  progressBarBg: {
-    height: 10,
+
+  lockBadge: {
+    position: "absolute",
+    right: -2,
+    bottom: -2,
+    width: 22,
+    height: 22,
     borderRadius: 999,
-    backgroundColor: "rgba(17,17,17,0.12)",
-    overflow: "hidden",
-  },
-  progressBarFill: {
-    height: "100%",
-    borderRadius: 999,
-  },
-  progressLabel: {
-    marginTop: 6,
-    fontSize: 12,
-    fontWeight: "800",
-    color: "rgba(17,17,17,0.55)",
+    backgroundColor: colorScheme.darkBlue,
+    alignItems: "center",
+    justifyContent: "center",
   },
 
   iconInner: {
@@ -123,5 +71,17 @@ export const styles = StyleSheet.create({
     backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
+  },
+
+  title: {
+    width: "100%",
+    textAlign: "center",
+    fontSize: 13,
+    fontWeight: "900",
+    color: "#111",
+  },
+
+  titleLocked: {
+    color: "rgba(17,17,17,0.55)",
   },
 });

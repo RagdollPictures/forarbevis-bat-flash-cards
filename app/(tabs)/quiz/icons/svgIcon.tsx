@@ -13,8 +13,18 @@ export default function SvgIcon({
   size: number;
   color: string;
 }) {
-  const Comp = (svgByName as Record<string, React.ComponentType<SvgProps>>)[name] ?? CircleQuestionIcon;
-  return <Comp width={size} height={size} color={color} />;
+  const Comp =
+    (svgByName as Record<string, React.ComponentType<SvgProps>>)[name] ??
+    CircleQuestionIcon;
+
+  return (
+    <Comp
+      width={size}
+      height={size}
+      fill={color}
+      stroke={color}
+    />
+  );
 }
 
 export type { SvgName };

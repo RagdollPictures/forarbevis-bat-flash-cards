@@ -57,6 +57,7 @@ import { sjokortstyper } from "./forarintyg_se/sjokortet/sjokortstyper";
 import { tillforlitlighet } from "./forarintyg_se/sjokortet/tillforlitlighet";
 import { fastaSjomarken } from "./forarintyg_se/sjokortet_sjomarken/fasta_sjomarken";
 import { flytandeSjomarken } from "./forarintyg_se/sjokortet_sjomarken/flytande_sjomarken";
+import { symboler } from "./forarintyg_se/sjokortet_sjomarken/symboler";
 import { krysspejling } from "./forarintyg_se/sjokortsarbete/krysspejling";
 import { laggaUtKurs } from "./forarintyg_se/sjokortsarbete/lagga_ut_kurs";
 import { markeraPosition } from "./forarintyg_se/sjokortsarbete/markera_position";
@@ -64,7 +65,6 @@ import { mataKortDistans } from "./forarintyg_se/sjokortsarbete/mata_kort_distan
 import { mataLangreDistans } from "./forarintyg_se/sjokortsarbete/mata_langre_distans";
 import { mataUppKurs } from "./forarintyg_se/sjokortsarbete/mata_upp_kurs";
 import { taFramPosition } from "./forarintyg_se/sjokortsarbete/ta_fram_position";
-import { symboler } from "./forarintyg_se/sjokortssymboler/symboler";
 import { sjomanskapAnkring } from "./forarintyg_se/sjomanskap/ankring";
 import { sjomanskapFlaggor } from "./forarintyg_se/sjomanskap/flaggor";
 import { sjomanskapHansynHjalpsamhet } from "./forarintyg_se/sjomanskap/hansyn_hjalpsamhet";
@@ -142,14 +142,11 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
         { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
         { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
+         { id: "symboler", title: "Symboler", deckId: "symboler" }
       ],
     },
 
-    {
-      id: "sjokortSymboler",
-      title: "Karttecken & Beteckningar",
-      children: [{ id: "symboler", title: "Symboler", deckId: "symboler" }],
-    },
+   
     {
       id: "sjokortet_sjomarken",
       title: "Sjövägsmärken & Markeringar",
