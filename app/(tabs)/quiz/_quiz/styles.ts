@@ -1,18 +1,22 @@
+import { colorScheme } from "@/constants/colors";
 import { StyleSheet } from "react-native";
 
 export const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: "#1e2939",
+    backgroundColor: "#ffffff",
   },
   container: {
     padding: 24,
     paddingBottom: 120,
   },
   title: {
-    fontSize: 22,
+    fontSize: 16,
     fontWeight: "700",
-    color: "#ffffff",
+    color: "#111",
+    padding: 10,
+    borderBottomWidth: 1,
+    borderBottomColor: "#111",
   },
   text: {
     marginTop: 8,
@@ -32,21 +36,23 @@ export const styles = StyleSheet.create({
     flex: 1,
     height: 10,
     borderRadius: 10,
-    backgroundColor: "rgba(255,255,255,0.22)",
+    backgroundColor: colorScheme.gray,
   },
   progressActive: {
-    backgroundColor: "rgba(255,255,255,0.38)",
+    backgroundColor: colorScheme.gray,
   },
   progressCorrect: {
-    backgroundColor: "#1e8e3e",
+    backgroundColor: colorScheme.blue,
+   
+  
   },
   progressWrong: {
-    backgroundColor: "#c62828",
+    backgroundColor: colorScheme.orange,
   },
 
   card: {
     marginTop: 16,
-    borderWidth: 1,
+    elevation: 10,
     backgroundColor: "#ffffff",
     borderRadius: 14,
     padding: 16,
@@ -74,17 +80,19 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
   },
   optionCorrect: {
-    backgroundColor: "#1e8e3e",
+    backgroundColor: colorScheme.blue,
+    
   },
   optionWrong: {
-    backgroundColor: "#c62828",
+    backgroundColor: colorScheme.orange,
+   
   },
   optionText: {
     fontSize: 16,
     color: "#111",
   },
   optionTextChecked: {
-    color: "#ffffff",
+    color: "#111",
     fontWeight: "700",
   },
 

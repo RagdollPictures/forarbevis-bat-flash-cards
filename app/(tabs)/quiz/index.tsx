@@ -231,7 +231,7 @@ export default function QuizMenuScreen() {
                     style={[styles.tile, !isUnlocked && styles.tileLocked]}
                   >
                     <View style={styles.ringWrap}>
-                      <ProgressRing percent={percent} size={76} strokeWidth={7}>
+                      <ProgressRing percent={percent} size={90} strokeWidth={7}>
                         <View style={styles.iconInner}>
                           <SvgIcon
                             name={iconName}

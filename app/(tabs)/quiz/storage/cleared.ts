@@ -1,7 +1,7 @@
 // app/(tabs)/quiz-menu/storage/cleared.ts
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-export const UNLOCK_PERCENT = 75;
+export const UNLOCK_PERCENT = 100;
 export const CLEARED_KEY = "forarintyg_cleared_quiz_ids_v1";
 
 export async function loadClearedSet(): Promise<Set<string>> {

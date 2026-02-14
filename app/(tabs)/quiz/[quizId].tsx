@@ -2,13 +2,12 @@ import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
 import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { getQuizById } from "../../../constants/flashcards";
 import { cardImages } from "../../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../../constants/flashcards/types";
+import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 
 import { styles } from "./_quiz/styles";
-import ProgressRow from "./_quiz/ui/ProgressRow";
 import QuizCard from "./_quiz/ui/QuizCard";
 import QuizFinished from "./_quiz/ui/QuizFinished";
 import QuizMissing from "./_quiz/ui/QuizMissing";
@@ -81,7 +80,8 @@ export default function QuizScreen() {
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>{screenTitle}</Text>
 
-        <ProgressRow progress={s.progress} activeIndex={s.safeIndex} />
+<BoatProgressBar value={s.visualProgress} />
+
 
         <QuizCard
           questionText={questionText}
