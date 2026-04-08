@@ -16,6 +16,8 @@ export const lanternorSegelbatar: FlashCard[] = [
       "Två toppljus och ett akterljus.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Lanternor vid segling i mörker",
+  textInfo: "En segelbåt som seglar enbart för segel ska ha tre lanternor tända: styrbord sidoljus, babord sidoljus och akterljus. Sidoljusen visar båtens sidor framåt och akterljuset visar båten bakifrån."
   },
   {
     id: "lanternor_segelbatar-2",
@@ -32,6 +34,8 @@ export const lanternorSegelbatar: FlashCard[] = [
       "Alltid efter solnedgång.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Toppljus på segelbåt",
+  textInfo: "En segelbåt ska tända toppljuset när motorn används för framdrift. Då räknas båten som en motorbåt i lanternsammanhang och ska därför visa samma lanternor som en motorbåt."
   },
   {
     id: "lanternor_segelbatar-3",
@@ -47,6 +51,8 @@ export const lanternorSegelbatar: FlashCard[] = [
       "Endast vid motorsegling.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kombilanterna i fören",
+    textInfo: "En segelbåt får ha en kombilanterna i fören som lyser grönt åt styrbord och rött åt babord. Det är en godkänd lösning för sidoljusen så länge lanternan visar rätt ljus i rätt riktning."
   },
   {
     id: "lanternor_segelbatar-4",
@@ -62,5 +68,7 @@ export const lanternorSegelbatar: FlashCard[] = [
       "Nej.",
     ],
     correctOptionIndex: 3,
+     textTitle: "Kombilanterna i masttoppen",
+     textInfo: "En kombilanterna i masttoppen är bara tillåten på segelbåtar kortare än 20 meter. En segelbåt som är 21 meter lång får därför inte använda en sådan lösning."
   },
 ];

@@ -15,6 +15,8 @@ export const optiskNavigation: FlashCard[] = [
       "Pejllinje.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Frimärke i navigation",
+  textInfo: "Ett frimärke är en enslinje som används för att undvika ett riskområde. Man använder bara ena sidan av linjen och håller sig på den säkra sidan, bort från farligheten."
   },
   {
     id: "optisk_navigation-2",
@@ -30,6 +32,8 @@ export const optiskNavigation: FlashCard[] = [
       "Kardinalpunkt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Enslinje",
+  textInfo: "En enslinje uppstår när två objekt, till exempel fyrar eller öar, ligger rakt bakom varandra. Genom att sikta så att de ligger i linje kan man hålla en exakt kurs och färdas säkert mellan hinder."
   },
   {
     id: "optisk_navigation-3",
@@ -46,5 +50,7 @@ export const optiskNavigation: FlashCard[] = [
       "Navigatorn visar fel position.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Förbindelselinje",
+  textInfo: "En förbindelselinje innebär att man färdas rakt mellan två kända positioner. Det är dock svårt att hålla exakt linje, vilket gör att man lätt driver åt sidan och riskerar att komma för nära faror."
   },
 ];

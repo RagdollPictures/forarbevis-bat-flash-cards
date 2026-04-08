@@ -15,6 +15,8 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den långsammaste båten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Segelbåt möter motorbåt",
+  textInfo: "Segelbåtar har normalt rätt till väg gentemot motorbåtar. Det innebär att en motorbåt ska väja för en segelbåt vid möte eller korsande kurs, så länge segelbåten inte använder motorn."
   },
   {
     id: "vajningsregler_segelbatar-2",
@@ -30,6 +32,9 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den som ligger till vänster.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Upphinnande segelbåt",
+  textInfo: "Den som seglar ikapp ett annat fartyg är alltid väjningsskyldig. Detta gäller oavsett om det är en motorbåt eller en segelbåt som seglas ikapp."
+    
   },
   {
     id: "vajningsregler_segelbatar-3",
@@ -46,6 +51,9 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den som är längst.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Olika halsar",
+  textInfo: "När två segelbåtar möts på olika halsar ska den båt som har vinden in från babord sida väja. Det innebär att segelbåten med vinden från vänster är väjningsskyldig."
+ 
   },
   {
     id: "vajningsregler_segelbatar-4",
@@ -61,7 +69,9 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Ingen – båda fortsätter.",
     ],
     correctOptionIndex: 1,
-  },
+     textTitle: "Samma halsar",
+  textInfo: "När två segelbåtar seglar på samma halsar ska den båt som är i lovart väja. Lovart är den sida som är närmast vinden, alltså motsatt sida från där storseglet sitter."
+   },
   {
     id: "vajningsregler_segelbatar-5",
     question:
@@ -76,6 +86,8 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den med minst segelyta.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Upphinnande segelbåt väjer",
+  textInfo: "En segelbåt som seglar ikapp en annan segelbåt är alltid väjningsskyldig. Den ska hålla undan tills den har passerat på ett säkert avstånd."
   },
   {
     id: "vajningsregler_segelbatar-6",
@@ -91,6 +103,8 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den som ligger närmast land.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Trång farled",
+  textInfo: "I en trång farled ska segelbåtar väja för större fartyg. Mindre båtar får inte hindra fartyg som är beroende av farleden för att kunna navigera säkert."
   },
   {
     id: "vajningsregler_segelbatar-7",
@@ -106,6 +120,8 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den största båten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Ankarliggare",
+  textInfo: "Ett fartyg eller en båt som ligger för ankare ska alltid lämnas fri. Alla andra fartyg, inklusive segelbåtar, måste väja för en ankarliggare."
   },
   {
     id: "vajningsregler_segelbatar-8",
@@ -121,21 +137,8 @@ export const vajningsreglerSegelbatar: FlashCard[] = [
       "Den som håller högst fart.",
     ],
     correctOptionIndex: 1,
-  },
-  {
-    id: "vajningsregler_segelbatar-9",
-    question:
-      "Du möter en buss i vattnet när du är ute och seglar. Vem väjer?",
-    questionQuiz:
-      "Du seglar och möter en passagerarbåt som går för motor. Vem ska väja?",
-    answer: "Bussen (som så klart är ett motorfartyg).",
-    
-    options: [
-      "Segelbåten.",
-      "Passagerarbåten.",
-      "Båda.",
-      "Den som ligger längst till höger.",
-    ],
-    correctOptionIndex: 1,
+    textTitle: "Begränsad manöverförmåga",
+  textInfo: "Fartyg med begränsad manöverförmåga har företräde. Segelbåtar ska väja för sådana fartyg eftersom de inte själva kan manövrera fritt."
+
   },
 ];

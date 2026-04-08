@@ -15,6 +15,8 @@ export const navigatornavigation: FlashCard[] = [
       "En automatisk kurs utan girpunkter.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Rutt i navigatornavigation",
+  textInfo: "En rutt är en planerad färdväg som består av flera sammanlänkade girpunkter (waypoints). Rutten visar vägen från start till mål och delas upp i ben mellan varje punkt. Genom att följa rutten på navigatorn blir navigationen enklare och mer strukturerad."
   },
   {
     id: "navigatornavigation-2",
@@ -31,6 +33,8 @@ export const navigatornavigation: FlashCard[] = [
       "Batteriet är svagt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Varför kurs skiljer sig mellan instrument",
+  textInfo: "Skillnaden mellan kurs över grund (KÖG) och kompassens kurs beror på flera felkällor. Deviation och missvisning påverkar kompassen, medan avdrift och ström påverkar båtens rörelse i vattnet. Tillsammans gör dessa att den faktiska kursen över grund ofta skiljer sig från den kurs man styr efter."
   },
   {
     id: "navigatornavigation-3",
@@ -46,5 +50,8 @@ export const navigatornavigation: FlashCard[] = [
       "Vända 180°.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Att styra mot en girpunkt",
+  textInfo: "När man navigerar mot en girpunkt visar navigatorn bäringen dit och den aktuella kursen över grund. För att komma rätt måste man anpassa sin kurs så att den stämmer med bäringen. Om bäringen ligger åt höger om aktuell kurs behöver man gira åt styrbord för att nå målet."
+
   },
 ];

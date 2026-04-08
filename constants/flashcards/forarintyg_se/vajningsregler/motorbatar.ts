@@ -15,6 +15,8 @@ export const vajningsreglerMotorbatar: FlashCard[] = [
       "Ingen – den med mest kraft fortsätter.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Motorbåtar möts",
+  textInfo: "När två motorbåtar möts stäv mot stäv ska båda väja. Detta görs normalt genom att båda girar åt styrbord (höger) så att de passerar varandra säkert enligt högertrafikprincipen."
   },
   {
     id: "vajningsregler_motorbatar-2",
@@ -29,6 +31,8 @@ export const vajningsreglerMotorbatar: FlashCard[] = [
       "Den med lägst fart.",
     ],
     correctOptionIndex: 0,
+     textTitle: "Skärande kurs mellan motorbåtar",
+  textInfo: "Vid skärande kurs gäller högerregeln. Den båt som har den andra på sin styrbordssida ska väja. Detta liknar reglerna i vägtrafik där man lämnar företräde åt trafik från höger."
   },
   {
     id: "vajningsregler_motorbatar-3",
@@ -44,6 +48,8 @@ export const vajningsreglerMotorbatar: FlashCard[] = [
       "Den som ligger längst till höger.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Upphinnande fartyg",
+  textInfo: "Den som kör ikapp ett annat fartyg är alltid väjningsskyldig, oavsett typ av fartyg. Ett snabbare fartyg måste därför hålla undan tills det har passerat säkert."
   },
   {
     id: "vajningsregler_motorbatar-4",
@@ -58,5 +64,7 @@ export const vajningsreglerMotorbatar: FlashCard[] = [
       "Den långsammaste båten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Motorbåt möter segelbåt",
+  textInfo: "En motorbåt ska alltid väja för en segelbåt. Segelbåtar har begränsad manöverförmåga eftersom de drivs av vinden, vilket gör att motorbåtar ska ge dem företräde och passera med god marginal."
   },
 ];

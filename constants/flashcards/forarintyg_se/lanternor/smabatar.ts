@@ -16,6 +16,8 @@ export const lanternorSmabatar: FlashCard[] = [
       "Endast en röd blinkande lampa.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Lanternor för småbåtar",
+  textInfo: "Småbåtar som kajaker och roddbåtar behöver inte ha fullständiga lanternor. Istället ska de visa ett vitt ljus, till exempel en runtomlysande lanterna eller en ficklampa som tänds när andra båtar närmar sig. Syftet är att synas i mörker även om riktningen inte alltid framgår tydligt."
   },
   {
     id: "lanternor_smabatar-2",
@@ -30,6 +32,7 @@ export const lanternorSmabatar: FlashCard[] = [
       "Ja.",
       "Endast om den är röd.",
     ],
-    correctOptionIndex: 2,
+    correctOptionIndex: 2,textTitle: "Pannlampa som lanterna",
+  textInfo: "En pannlampa räknas som en godkänd lösning för småbåtar. Den fungerar som ett vitt ljus och kan enkelt riktas mot andra båtar för att göra sig synlig."
   },
 ];

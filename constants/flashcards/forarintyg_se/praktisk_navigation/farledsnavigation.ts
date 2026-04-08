@@ -15,6 +15,9 @@ export const farledsnavigation: FlashCard[] = [
       "Mittledsmärken.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Lateralmärken",
+  textInfo: "De röda och gröna sjömärken som markerar sidorna på en farled kallas lateralmärken. De visar var det är säkert att färdas i förhållande till farledens riktning."
+
   },
   {
     id: "farledsnavigation-2",
@@ -31,6 +34,8 @@ export const farledsnavigation: FlashCard[] = [
     ],
     correctOptionIndex: 1,
     imageKey: "farledsnavigation_02_ver02",
+       textTitle: "Enslinje och kurskorrigering",
+  textInfo: "Om man ligger fel i sidled mot en enslinje måste man styra mot linjen för att komma rätt. Genom att justera kursen tills objekten ligger i linje hamnar man på rätt färdväg."
   },
   {
     id: "farledsnavigation-3",
@@ -47,6 +52,8 @@ export const farledsnavigation: FlashCard[] = [
       "Ett ankarsymbol.",
     ],
     correctOptionIndex: 0,
+      textTitle: "Farledens riktning i sjökort",
+  textInfo: "Farledens riktning visas med en pil i sjökortet. Pilen har en grön prick på styrbord sida och en röd prick på babord sida och pekar i färdriktningen."
   },
   {
     id: "farledsnavigation-4",
@@ -62,6 +69,8 @@ export const farledsnavigation: FlashCard[] = [
       "Det spelar ingen roll.",
     ],
     correctOptionIndex: 1,
+         textTitle: "Lateralmärken i farledens riktning",
+  textInfo: "När man färdas i farledens riktning ska de röda lateralmärkena vara på babord sida och de gröna på styrbord sida."
   },
   {
     id: "farledsnavigation-5",
@@ -78,6 +87,9 @@ export const farledsnavigation: FlashCard[] = [
       "Norrut.",
     ],
     correctOptionIndex: 3,
+      textTitle: "Farledens huvudriktning i Sverige",
+  textInfo: "Huvudregeln i Sverige är att farleder går från Strömstad till Haparanda, vilket innebär att de i regel går i nordlig riktning."
+    
   },
   {
     id: "farledsnavigation-6",
@@ -94,5 +106,7 @@ export const farledsnavigation: FlashCard[] = [
       "Vända om.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Passage mot farledens riktning",
+  textInfo: "När man färdas mot farledens riktning passerar man fortfarande mellan märkena. Färgerna blir då omvända, men de markerar fortfarande farledens gränser."
   },
 ];

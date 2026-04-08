@@ -16,6 +16,8 @@ export const vajningsreglerFartyg: FlashCard[] = [
       "Den som är minst.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Motorfartyg möter segelbåt",
+  textInfo: "Ett motorfartyg ska normalt väja för en segelbåt, precis som en motorbåt ska göra. Detta gäller dock bara om det finns utrymme att väja. I praktiken kan stora fartyg ha svårt att ändra kurs eller fart, särskilt i trånga farleder."
   },
   {
     id: "vajningsregler_fartyg-2",
@@ -32,5 +34,7 @@ export const vajningsreglerFartyg: FlashCard[] = [
       "Regler gäller inte fritidsbåtar.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Trång farled och stora fartyg",
+  textInfo: "I en trång farled får fritidsbåtar (kortare än 20 meter) inte hindra större fartyg. Stora fartyg kan vara begränsade av sitt djupgående eller sin storlek och har därför svårt att väja. Därför måste mindre båtar anpassa sig och lämna fri passage."
   },
 ];

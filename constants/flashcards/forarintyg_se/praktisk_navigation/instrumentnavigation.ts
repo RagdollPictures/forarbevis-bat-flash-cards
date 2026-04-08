@@ -15,6 +15,8 @@ export const instrumentnavigation: FlashCard[] = [
       "Endast med GPS.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Position med krysspejling",
+  textInfo: "Genom att pejla två olika objekt får du två bäringar (ortlinjer). När dessa ritas in på sjökortet korsar de varandra och skärningspunkten visar din position."
   },
   {
     id: "instrumentnavigation-2",
@@ -31,5 +33,7 @@ export const instrumentnavigation: FlashCard[] = [
       "Magnetkompassen slutar fungera.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Avdriftens påverkan på kurs",
+  textInfo: "Även om du styr exakt rätt kompasskurs kan vinden trycka båten i sidled. Det gör att färdvägen förskjuts och du hamnar vid sidan av den planerade rutten."
   },
 ];

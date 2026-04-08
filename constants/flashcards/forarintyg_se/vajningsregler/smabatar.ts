@@ -15,6 +15,8 @@ export const vajningsreglerSmabatar: FlashCard[] = [
       "De har alltid företräde.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Segeljollar och väjningsregler",
+  textInfo: "Segeljollar följer samma väjningsregler som vanliga segelbåtar. De räknas som segelbåtar så länge de drivs av segel, även om de ofta rör sig mer oregelbundet och i lägre fart."
   },
   {
     id: "vajningsregler_smabatar-2",
@@ -31,6 +33,8 @@ export const vajningsreglerSmabatar: FlashCard[] = [
       "Ja, om man är större båt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hänsyn till småbåtar",
+  textInfo: "Småbåtar som kajaker och roddbåtar är långsamma och oskyddade. Därför ska andra båtar visa hänsyn, hålla avstånd och undvika att skapa farliga situationer med hög fart eller svall."
   },
   {
     id: "vajningsregler_smabatar-3",
@@ -47,5 +51,7 @@ export const vajningsreglerSmabatar: FlashCard[] = [
       "Endast i hamnområde.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ansvar mellan småbåtar och större båtar",
+  textInfo: "Det finns ingen generell väjningsplikt där större båtar alltid måste väja för småbåtar. I praktiken ska småbåtar hålla undan och helst färdas utanför farleder, samtidigt som större båtar ska visa hänsyn och inte utsätta dem för fara."
   },
 ];

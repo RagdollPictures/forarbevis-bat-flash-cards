@@ -16,6 +16,8 @@ export const planering: FlashCard[] = [
       "Bara hamninformation.",
     ],
     correctOptionIndex: 1,
+   textTitle: "Vad ingår i färdplaneringen?",
+  textInfo: "I färdplaneringen ingår att kontrollera bränsle, reservhamnar, hamninformation, väderprognos, utrustning, navigationshjälpmedel och att man har rätt kunskap för färden."
   },
   {
     id: "planering-2",
@@ -32,5 +34,7 @@ export const planering: FlashCard[] = [
       "Låta besättningen komma ihåg den.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hur dokumenterar man sin rutt?",
+  textInfo: "Man dokumenterar rutten genom att rita in den på sitt papperssjökort eller lägga in den i en navigator."
   },
 ];

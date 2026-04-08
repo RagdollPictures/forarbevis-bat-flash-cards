@@ -10,6 +10,8 @@ export const lanternorSarskildaFartyg: FlashCard[] = [
     answer: "Röda.",
     options: ["Vita.", "Gröna.", "Röda.", "Gula."],
     correctOptionIndex: 2,
+     textTitle: "Linfärjans lanternor",
+  textInfo: "En linfärja ska ha tre röda toppljus. Dessa ljus är placerade så att de bildar en lodrät triangel med spetsen uppåt, vilket gör att fartyget lätt kan identifieras."
   },
   {
     id: "lanternor_sarskilda_fartyg-2",
@@ -25,6 +27,8 @@ export const lanternorSarskildaFartyg: FlashCard[] = [
       "Grön och vit.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Dykflagga i mörker",
+  textInfo: "När dykning pågår ska en särskild signal visas som är vit innerst och blå ytterst. Under mörker ska denna flagga vara belyst så att den syns tydligt från alla håll."
   },
   {
     id: "lanternor_sarskilda_fartyg-3",
@@ -41,5 +45,7 @@ export const lanternorSarskildaFartyg: FlashCard[] = [
       "Vitt blinkande ljus.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Utryckningsfartyg",
+  textInfo: "Utryckningsfartyg får vid brådskande tjänsteutövning använda ett runtomlysande blått blixtljus. Det signalerar att de är i tjänst, men ger inte automatiskt rätt till fri väg."
   },
 ];

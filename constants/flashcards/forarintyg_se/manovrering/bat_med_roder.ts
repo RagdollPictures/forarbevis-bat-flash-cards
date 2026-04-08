@@ -16,6 +16,8 @@ export const manovreringBatMedRoder: FlashCard[] = [
       "Rakt fram – den vill inte rotera.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Vända med högergängad propeller",
+  textInfo: "En båt med högergängad propeller vrider aktern åt babord när man backar. Genom att kombinera back och framåtväxel med rodret lagt åt styrbord kan man effektivt rotera båten medurs (åt höger), vilket gör det lättast att vända i trånga utrymmen."
   },
   {
     id: "manovrering_bat_med_roder-2",
@@ -32,5 +34,7 @@ export const manovreringBatMedRoder: FlashCard[] = [
       "Strömmen är alltid orsaken; lösningen är att backa enbart i medström.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Backa och propellerverkan",
+     textInfo: "När man backar är propellerverkan mycket stark och gör att båten gärna svänger åt ett håll. För att kunna styra åt båda håll behöver man först få upp lite fart bakåt och sedan lägga i friläge. Då försvinner propellerverkan och rodret kan användas för att styra båten."
   },
 ];

@@ -8,6 +8,8 @@ export const lanternorFartyg: FlashCard[] = [
     answer: "Två.",
     options: ["Ett", "Tre", "Två", "Fyra"],
     correctOptionIndex: 2,
+    textTitle: "Toppljus på större fartyg",
+  textInfo: "Ett fartyg som är längre än 50 meter ska ha två toppljus. Det ena sitter längre fram och lägre, och det andra längre akterut och högre. Detta gör att andra fartyg lättare kan bedöma storlek och riktning."
   },
   {
     id: "lanternor_fartyg-2",
@@ -18,6 +20,8 @@ export const lanternorFartyg: FlashCard[] = [
     answer: "Nej.",
     options: ["Nej", "Ja", "Endast i dålig sikt", "Endast nattetid"],
     correctOptionIndex: 0,
+     textTitle: "Lanternor på mindre fartyg",
+  textInfo: "Ett fartyg som är kortare än 50 meter har samma lanternor som en motorbåt. Det innebär sidoljus, akterljus och ett toppljus. Det finns alltså ingen skillnad mellan ett mindre fartyg och en vanlig motorbåt när det gäller lanternor."
   },
   {
     id: "lanternor_fartyg-3",
@@ -28,5 +32,7 @@ export const lanternorFartyg: FlashCard[] = [
     answer: "Två.",
     options: ["Fyra", "Två", "En", "Tre"],
     correctOptionIndex: 1,
+     textTitle: "Ankarljus på stora fartyg",
+  textInfo: "Ett fartyg som är längre än 50 meter ska ha två runtomlysande vita ankarljus när det ligger för ankare – ett i fören och ett i aktern. Detta gör att fartyget syns tydligt från alla håll."
   },
 ];

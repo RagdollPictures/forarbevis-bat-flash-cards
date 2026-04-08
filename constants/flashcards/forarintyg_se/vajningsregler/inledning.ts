@@ -16,6 +16,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Att det saknar motor.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Fartyg hämmat av sitt djupgående",
+  textInfo: "Ett fartyg hämmat av sitt djupgående är ett fartyg som på grund av sitt djup inte kan manövrera fritt i det vatten det befinner sig i. Djupet och bredden i farvattnet begränsar dess möjlighet att väja."
   },
   {
     id: "vajningsregler_inledning-2",
@@ -31,6 +33,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Specialfartyg.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Segelbåt med motor igång",
+  textInfo: "En segelbåt räknas som motorbåt så fort motorn används för framdrift, även om seglen fortfarande är hissade. Det är alltså framdrivningen som avgör fartygstypen."
   },
   {
     id: "vajningsregler_inledning-3",
@@ -46,6 +50,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Reglerna gäller inte dem.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Regler i trång farled",
+  textInfo: "I en trång farled gäller särskilda regler. Fartyg kortare än 20 meter får inte hindra större fartyg, eftersom större fartyg ofta har begränsad manöverförmåga i trånga passager."
   },
   {
     id: "vajningsregler_inledning-4",
@@ -61,6 +67,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Endast akterut.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Utkik i alla riktningar",
+  textInfo: "När en båt är på väg ska man hålla noggrann utkik åt alla håll. Det innebär att använda syn, hörsel och andra hjälpmedel för att upptäcka risker runt hela båten, inte bara framåt."
   },
   {
     id: "vajningsregler_inledning-5",
@@ -77,6 +85,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Endast dagsljus.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Vad påverkar säker fart",
+  textInfo: "Säker fart påverkas av flera faktorer som sikt, trafiktäthet, båtens manöverförmåga, vind, vågor, ström och närhet till faror. Farten ska alltid anpassas så att man hinner stoppa eller väja i tid."
   },
   {
     id: "vajningsregler_inledning-6",
@@ -92,6 +102,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Den andra båten stannar.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Oförändrad bäring betyder fara",
+  textInfo: "Om bäringen till ett annat fartyg inte förändras när avståndet minskar innebär det att man är på kollisionskurs. Utan åtgärd kommer fartygen att kollidera."
   },
   {
     id: "vajningsregler_inledning-7",
@@ -108,6 +120,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Tuta fem korta signaler.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Fartyg med rätt till väg",
+  textInfo: "Det fartyg som har rätt till väg ska hålla sin kurs och fart. Detta gör det möjligt för det väjningsskyldiga fartyget att planera sin manöver och undvika kollision."
   },
   {
     id: "vajningsregler_inledning-8",
@@ -124,6 +138,8 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Öka farten.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Att väja på rätt sätt",
+  textInfo: "Den som ska väja ska göra det i god tid och tydligt. Små osäkra ändringar ska undvikas – istället ska kurs eller fart ändras så att det tydligt syns för andra fartyg."
   },
   {
     id: "vajningsregler_inledning-9",
@@ -138,5 +154,7 @@ export const vajningsreglerInledning: FlashCard[] = [
       "Den som är minst.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Linfärja kan inte väja",
+  textInfo: "En linfärja är bunden till en vajer och kan inte manövrera fritt. Därför är det alltid andra båtar som måste väja för linfärjan."
   },
 ];

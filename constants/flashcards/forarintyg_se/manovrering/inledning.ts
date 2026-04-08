@@ -15,6 +15,8 @@ export const manovreringInledning: FlashCard[] = [
       "Aktern svänger men fören ligger kvar.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Rorkult och styrning",
+  textInfo: "När du styr med rorkult sker styrningen tvärtom mot hur båten svänger. För du rorkulten åt styrbord kommer båten att gira åt babord."
   },
   {
     id: "manovrering_inledning-2",
@@ -30,6 +32,8 @@ export const manovreringInledning: FlashCard[] = [
       "Båten svänger inte.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Ratt och styrning",
+  textInfo: "När du styr med ratt fungerar det som i en bil. Vrider du ratten åt styrbord så girar båten åt styrbord."
   },
   {
     id: "manovrering_inledning-3",
@@ -46,6 +50,8 @@ export const manovreringInledning: FlashCard[] = [
       "Den påverkar bara farten, inte riktningen.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Propellerverkan",
+  textInfo: "Propellerverkan är en sidokraft som uppstår när propellern roterar. Den gör att aktern trycks åt ena sidan, vilket påverkar båtens riktning – särskilt vid låg fart och vid back."
   },
   {
     id: "manovrering_inledning-4",
@@ -61,6 +67,9 @@ export const manovreringInledning: FlashCard[] = [
       "Dubbelgängad.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Högergängad propeller",
+  textInfo: "En propeller som roterar åt höger (sett akterifrån) när båten kör framåt kallas högergängad propeller."
+
   },
   {
     id: "manovrering_inledning-5",
@@ -76,6 +85,8 @@ export const manovreringInledning: FlashCard[] = [
       "Åt fören.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Propellerverkan vid back",
+  textInfo: "Med en högergängad propeller kommer aktern att tryckas åt vänster (babord) när man backar. Detta är tydligast när båten rör sig långsamt."
   },
   {
     id: "manovrering_inledning-6",
@@ -91,5 +102,7 @@ export const manovreringInledning: FlashCard[] = [
       "Den rör sig inte i sidled.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Aktern vid gir",
+     textInfo: "När båten svänger åt styrbord är det egentligen aktern som trycks åt babord. Det är denna rörelse som gör att fören pekar åt höger."
   },
 ];

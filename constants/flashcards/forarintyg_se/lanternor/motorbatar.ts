@@ -9,6 +9,8 @@ export const lanternorMotorbatar: FlashCard[] = [
     answer: "Vitt.",
     options: ["Grönt.", "Rött.", "Vitt.", "Gult."],
     correctOptionIndex: 2,
+     textTitle: "Toppljus på motorbåt",
+  textInfo: "Toppljuset på en motorbåt ska vara vitt. Det är placerat högt på båten och visar att det är ett motorfartyg som är i rörelse."
   },
   {
     id: "lanternor_motorbatar-2",
@@ -19,6 +21,8 @@ export const lanternorMotorbatar: FlashCard[] = [
     answer: "Ja.",
     options: ["Nej.", "Ja.", "Endast i dagsljus.", "Endast över 12 meter."],
     correctOptionIndex: 1,
+     textTitle: "Kombilanterna i fören",
+  textInfo: "En motorbåt får ha en kombilanterna i fören som visar grönt ljus åt styrbord och rött ljus åt babord. Detta är en vanlig och godkänd lösning för sidoljusen."
   },
   {
     id: "lanternor_motorbatar-3",
@@ -34,5 +38,7 @@ export const lanternorMotorbatar: FlashCard[] = [
       "Endast vid ankring.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Runtomlysande lanterna",
+  textInfo: "En motorbåt som är kortare än 12 meter får använda en runtomlysande vit lanterna istället för separat toppljus och akterljus. Denna lanterna måste vara placerad så att den syns i alla riktningar."
   },
 ];
