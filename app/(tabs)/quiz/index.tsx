@@ -26,18 +26,18 @@ type QuizItem = {
   subtitle?: string;
 };
 
-function getNextLockedQuizId(quizzes: { id: string }[], unlockedIds: Set<string>) {
-  for (const q of quizzes) {
-    if (!unlockedIds.has(q.id)) return q.id;
-  }
-  return null;
-}
-
 function getParentTitleFromSubtitle(subtitle?: string) {
   if (!subtitle) return "Övrigt";
   const parts = subtitle.split("•").map((s) => s.trim()).filter(Boolean);
   if (parts.length === 0) return "Övrigt";
   return parts[parts.length - 1];
+}
+
+function getFirstTryPercent(saved: SavedQuizProgress | null) {
+  const total = saved?.firstTryTotal ?? 0;
+  if (total <= 0) return 0;
+  const correct = saved?.firstTryCorrect ?? 0;
+  return Math.max(0, Math.min(100, Math.round((correct / total) * 100)));
 }
 
 export default function QuizMenuScreen() {
@@ -70,6 +70,8 @@ export default function QuizMenuScreen() {
     }, [])
   );
 
+  // Unlock should keep using the ORIGINAL logic (calcPercent / mastery),
+  // NOT first-try percent.
   useFocusEffect(
     useCallback(() => {
       let alive = true;
@@ -80,9 +82,10 @@ export default function QuizMenuScreen() {
 
         for (const q of quizzes) {
           const saved = progressByQuizId[q.id] ?? null;
-          const percent = calcPercent(saved);
 
-          if (percent >= UNLOCK_PERCENT && !currentCleared.has(q.id)) {
+          const unlockPercent = calcPercent(saved);
+
+          if (unlockPercent >= UNLOCK_PERCENT && !currentCleared.has(q.id)) {
             currentCleared.add(q.id);
             changed = true;
           }
@@ -118,41 +121,41 @@ export default function QuizMenuScreen() {
   }, [quizzes, clearedIds]);
 
   const devCheatNextLockedTo100 = useCallback(async () => {
-  if (quizzes.length === 0) return;
+    if (quizzes.length === 0) return;
 
-  // hitta "current" = sista quizet som är upplåst just nu
-  // (det är det quizet man måste cleara för att låsa upp nästa)
-  let currentId = quizzes[0].id;
+    let currentId = quizzes[0].id;
 
-  for (let i = 0; i < quizzes.length - 1; i++) {
-    const id = quizzes[i].id;
+    for (let i = 0; i < quizzes.length - 1; i++) {
+      const id = quizzes[i].id;
 
-    if (!unlockedIds.has(id)) break;
+      if (!unlockedIds.has(id)) break;
 
-    currentId = id;
+      currentId = id;
 
-    // om denna redan är cleared, fortsätt till nästa i kedjan
-    if (!clearedIds.has(id)) break;
-  }
+      if (!clearedIds.has(id)) break;
+    }
 
-  const fake: SavedQuizProgress = {
-    quizId: currentId,
-    progress: ["correct"],
-    score: 1,
-    total: 1,
-    updatedAt: Date.now(),
-  };
+    const fake: SavedQuizProgress = {
+      quizId: currentId,
+      progress: ["correct"],
+      score: 1,
+      total: 1,
+      updatedAt: Date.now(),
 
-  await saveQuizProgress(fake);
-  setProgressByQuizId((prev) => ({ ...prev, [currentId]: fake }));
+      // Also set first-try to 100% so ring matches the cheat
+      firstTryCorrect: 1,
+      firstTryTotal: 1,
+    };
 
-  const nextCleared = new Set(clearedIds);
-  nextCleared.add(currentId);
+    await saveQuizProgress(fake);
+    setProgressByQuizId((prev) => ({ ...prev, [currentId]: fake }));
 
-  await saveClearedSet(nextCleared);
-  setClearedIds(nextCleared);
-}, [quizzes, unlockedIds, clearedIds]);
+    const nextCleared = new Set(clearedIds);
+    nextCleared.add(currentId);
 
+    await saveClearedSet(nextCleared);
+    setClearedIds(nextCleared);
+  }, [quizzes, unlockedIds, clearedIds]);
 
   const grouped = useMemo(() => {
     const order: string[] = [];
@@ -176,7 +179,7 @@ export default function QuizMenuScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-     <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container}>
         {__DEV__ ? (
           <View style={styles.devPanel}>
             <Pressable
@@ -202,7 +205,6 @@ export default function QuizMenuScreen() {
               style={{
                 marginTop: 18,
                 marginBottom: 10,
-              
                 fontSize: 14,
                 fontWeight: "900",
                 textTransform: "uppercase",
@@ -215,7 +217,9 @@ export default function QuizMenuScreen() {
             <View style={styles.grid}>
               {section.items.map((q) => {
                 const saved = progressByQuizId[q.id] ?? null;
-                const percent = calcPercent(saved);
+
+                // Ring should show first-try percent
+                const ringPercent = getFirstTryPercent(saved);
 
                 const isUnlocked = unlockedIds.has(q.id);
                 const iconName = getIconNameByQuizId(q.id);
@@ -231,14 +235,13 @@ export default function QuizMenuScreen() {
                     style={[styles.tile, !isUnlocked && styles.tileLocked]}
                   >
                     <View style={styles.ringWrap}>
-                      <ProgressRing percent={percent} size={90} strokeWidth={7}>
+                      <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                         <View style={styles.iconInner}>
                           <SvgIcon
                             name={iconName}
                             size={30}
                             color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
                           />
-
                         </View>
                       </ProgressRing>
 
@@ -249,7 +252,10 @@ export default function QuizMenuScreen() {
                       ) : null}
                     </View>
 
-                    <Text numberOfLines={2} style={[styles.title, !isUnlocked && styles.titleLocked]}>
+                    <Text
+                      numberOfLines={2}
+                      style={[styles.title, !isUnlocked && styles.titleLocked]}
+                    >
                       {q.title}
                     </Text>
                   </Pressable>

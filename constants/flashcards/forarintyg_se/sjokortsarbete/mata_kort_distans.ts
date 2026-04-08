@@ -19,9 +19,8 @@ export const mataKortDistans: FlashCard[] = [
   {
     id: "mata_kort_distans-2",
     question: "Hur långt är det mellan Markering A och Markering B?",
-    questionQuiz:
-      "Hur lång är distansen mellan Markering A och Markering B?",
     answer: "2,4 M.",
+     imageKey: "mata_kort_distans_01_ver02",
     options: [
       "1,6 M.",
       "2,4 M.",

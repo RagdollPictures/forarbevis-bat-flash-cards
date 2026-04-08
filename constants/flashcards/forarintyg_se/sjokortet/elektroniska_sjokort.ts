@@ -14,6 +14,8 @@ export const elektroniskaSjokort: FlashCard[] = [
       "Radar- och plotterkort.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Typer av elektroniska sjökort",
+    textInfo: "Det finns två typer av elektroniska sjökort: vektorsjökort och rastersjökort. Vektorsjökort består av information i olika lager som kan anpassas, till exempel vilka detaljer som visas. Rastersjökort är istället som en bild av ett papperssjökort där all information ligger i ett lager och inte kan ändras."
   },
   {
     id: "elektroniska_sjokort-2",
@@ -30,6 +32,8 @@ export const elektroniskaSjokort: FlashCard[] = [
       "Kompasskursen påverkas.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Zoom – risker",
+    textInfo: "Det är viktigt att ha rätt zoomnivå på navigatorn. Om man zoomar in för mycket kan man tappa överblicken, vilket gör det svårt att planera sin färd. Om man zoomar ut för mycket kan viktiga detaljer, som grund och sjömärken, försvinna eller inte synas. Båda situationerna kan vara farliga."
   },
   {
     id: "elektroniska_sjokort-3",
@@ -45,5 +49,7 @@ export const elektroniskaSjokort: FlashCard[] = [
       "Den behöver inte uppdateras.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Nackdelar med navigator (elektroniska sjökort)",
+    textInfo: "Elektroniska sjökort och navigatorer har flera nackdelar. De kräver el och fungerande utrustning, annars fungerar de inte alls. Sjökortet kan också bli svårläst, eftersom information ibland ligger ovanpå annan information eller för att det visas mycket data samtidigt. Dessutom kan sjökorten inte rättas manuellt, utan måste bytas ut eller uppdateras. Navigatorer kan också ha många funktioner, vilket gör dem svåra att lära sig använda fullt ut. Slutligen kan viktig information ibland vara svår att se eller till och med bortvald, särskilt i vektorsjökort där man kan styra vad som visas."
   },
 ];

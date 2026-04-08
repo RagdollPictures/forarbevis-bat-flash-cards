@@ -16,6 +16,8 @@ export const papperssjokort: FlashCard[] = [
       "De visar alltid realtidsposition.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Fördelar med papperssjökort",
+    textInfo: "Papperssjökort har flera fördelar jämfört med elektroniska sjökort. De är designade för att vara lättlästa, ger en bra överblick över ett stort område och innehåller viktig information som utgivningsdatum, rättningar, missvisning och illustrationer. De fungerar också helt utan elektronik eller batteri."
   },
   {
     id: "papperssjokort-2",
@@ -32,6 +34,8 @@ export const papperssjokort: FlashCard[] = [
       "Avdriften i området.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kompassros – vad visar den?",
+    textInfo: "En tryckt kompassros på sjökortet visar missvisningen för platsen. Missvisning är skillnaden mellan geografisk nord och magnetisk nord, vilket gör att en kompass inte pekar exakt rätt."
   },
   {
     id: "papperssjokort-3",
@@ -48,6 +52,8 @@ export const papperssjokort: FlashCard[] = [
       "Vid latitudskalan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hur sjömärken visas",
+    textInfo: "På sjökort finns ofta så kallade skisser. Där kan man se hur fyrar, båkar, byggnader eller öar ser ut när man närmar sig dem."
   },
   {
     id: "papperssjokort-4",
@@ -64,6 +70,8 @@ export const papperssjokort: FlashCard[] = [
       "Skalrutan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Korthuvudet – vad är det?",
+    textInfo: "Korthuvudet är den del av sjökortet där man ser vilket område sjökortet omfattar. Det fungerar som sjökortets “namn”."
   },
   {
     id: "papperssjokort-5",
@@ -80,22 +88,26 @@ export const papperssjokort: FlashCard[] = [
       "I djupangivelserna.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Hur man ser om ett sjökort är uppdaterat",
+    textInfo: "För att kontrollera hur gammalt och uppdaterat ett sjökort är tittar man i kanten av sjökortet, där det står när det senast blev rättat (uppdaterat).",
   },
   {
     id: "papperssjokort-6",
     question:
-      "Öst: När gav Sjöfartsverket ut första utgåvan av sjökortet 616?",
+      "Öst: När gav Sjöfartsverket ut första utgåvan av sjökortet 616? ",
     questionQuiz:
-      "När gavs den första utgåvan av sjökort 616 ut enligt övningssjökortet?",
+      "När gavs den första utgåvan av sjökort 616 ut enligt övningssjökortet? (beroende på vilken version av sjökortet som används.)",
     answer:
       "1984 eller 1980 beroende på vilken utgåva som används.",
     options: [
-      "1956.",
-      "1972.",
-      "1984 eller 1980 beroende på utgåva.",
-      "1995.",
+      "1956 eller 1960.",
+      "1972 eller 1976.",
+      "1984 eller 1980.",
+      "1995 eller 1997.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Sjökort 616 – första utgåva",
+    textInfo: "För sjökort 616 gavs första utgåvan ut 1984 eller 1980, beroende på vilken version av övningssjökortet som används.Detta sjökort är ett skärgårdskort, vilket innebär att det innehåller mycket detaljer för navigation nära land. Det täcker området Nynäshamn – Dalarö, alltså en del av Stockholms skärgård där noggrann navigation är viktig."
   },
   {
     id: "papperssjokort-7",
@@ -112,5 +124,7 @@ export const papperssjokort: FlashCard[] = [
       "1992.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Sjökort 931 – första utgåva",
+    textInfo: "För sjökort 931 gavs första utgåvan ut 1956. Även detta är ett skärgårdskort, och det täcker området Marstrand – Göteborg – Tistlarna på västkusten. Området innehåller mycket öar och trafik, vilket kräver ett detaljerat sjökort."
   },
 ];

@@ -8,6 +8,8 @@ export type SavedQuizProgress = {
   score: number;
   total: number;
   updatedAt: number;
+  firstTryCorrect?: number;
+firstTryTotal?: number;
 };
 
 const KEY = "quiz_progress_v1";

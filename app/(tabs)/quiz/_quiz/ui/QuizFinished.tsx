@@ -18,24 +18,19 @@ export default function QuizFinished({
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>{title}</Text>
-        <Text style={styles.text}>Quiz klart.</Text>
+       
 
         <View style={styles.resultCard}>
-          <Text style={styles.resultScore}>
-            {score} / {total}
-          </Text>
-          <Text style={styles.resultText}>Rätt svar</Text>
+         
+          <Text style={styles.resultText}>Grattis!</Text>
         </View>
 
         <View style={styles.actions}>
-          <Pressable onPress={onRestart} style={[styles.button, styles.buttonSecondary]}>
-            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Prova igen!</Text>
+          
+          <Pressable onPress={() => router.back()} style={[styles.button, styles.buttonSecondary]}>
+            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Redo för nästa nivå!</Text>
           </Pressable>
 
-          <Pressable onPress={() => router.back()} style={[styles.button, styles.buttonSecondary]}>
-            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Tillbaka</Text>
-          </Pressable>
         </View>
       </ScrollView>
     </SafeAreaView>

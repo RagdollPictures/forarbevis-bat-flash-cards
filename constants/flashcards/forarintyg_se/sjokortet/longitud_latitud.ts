@@ -9,6 +9,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "360°.",
     options: ["180°.", "360°.", "90°.", "270°."],
     correctOptionIndex: 1,
+    textTitle: "Grader – hur många på ett varv?",
+    textInfo: "Ett helt varv runt en cirkel är 360°. Man kan tänka sig att cirkeln delas upp i 360 lika stora delar, där varje del är en grad."
   },
   {
     id: "longlat-002",
@@ -18,6 +20,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "60.",
     options: ["100.", "10.", "60.", "360."],
     correctOptionIndex: 2,
+    textTitle: "Minuter – hur delas en grad?",
+    textInfo:"En grad delas in i 60 minuter. Minuter används för att ange en mer exakt position än bara hela grader."
   },
   {
     id: "longlat-003",
@@ -26,12 +30,14 @@ export const longitudLatitud: FlashCard[] = [
       "Genom vilken stad går nollmeridianen?",
     answer: "Greenwich/London.",
     options: [
-      "Stockholm.",
-      "Paris.",
-      "Greenwich/London.",
-      "New York.",
+      "Stockholm/Solna.",
+      "Paris/Beauvais.",
+      "London/Greenwich.",
+      "New York/Brooklyn.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Nollmeridianen – var går den?",
+    textInfo: "Nollmeridianen går från Nordpolen till Sydpolen och passerar genom Greenwich i London. Den används som utgångspunkt för att mäta longitud."
   },
   {
     id: "longlat-004",
@@ -41,6 +47,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "Longitud.",
     options: ["Latitud.", "Longitud.", "Breddgrad.", "Ekvator."],
     correctOptionIndex: 1,
+    textTitle: "Meridian – vad är det?",
+    textInfo: "En meridian är en linje som går från nordpol till sydpol. Meridianer används för att ange longitud, alltså hur långt öster eller väster man befinner sig."
   },
   {
     id: "longlat-005",
@@ -55,6 +63,8 @@ export const longitudLatitud: FlashCard[] = [
       "Nollgrad.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Latitud – vad kallas det på svenska?",
+    textInfo: "Latitud kallas på svenska för breddgrad. Den visar hur långt norr eller söder om ekvatorn man är."
   },
   {
     id: "longlat-006",
@@ -64,6 +74,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "Longitud.",
     options: ["Latitud.", "Longitud.", "Ekvator.", "Breddgrad."],
     correctOptionIndex: 1,
+    textTitle: "Koordinater – vad är E018°10,9'?",
+    textInfo: "Koordinaten E018°10,9' är en longitud, eftersom den börjar med E (öst). Longituder visar position öster eller väster om nollmeridianen."
   },
   {
     id: "longlat-007",
@@ -78,6 +90,8 @@ export const longitudLatitud: FlashCard[] = [
       "Ja, upp till 120°.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Latitud – finns det en gräns?",
+    textInfo: "En latitud kan aldrig vara större än 90°. N90° är Nordpolen, S90° är Sydpolen, Vid 0° befinner man sig på ekvatorn."
   },
   {
     id: "longlat-008",
@@ -87,6 +101,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "Västlig.",
     options: ["Nordlig.", "Sydlig.", "Västlig.", "Ingen riktning."],
     correctOptionIndex: 2,
+    textTitle: "Longitud – vilka riktningar finns?",
+    textInfo: "Longituder kan vara östliga (E) eller västliga (W). De kan alltså vara västliga, men aldrig nordliga eller sydliga."
   },
   {
     id: "longlat-009",
@@ -101,6 +117,8 @@ export const longitudLatitud: FlashCard[] = [
       "720 totalt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Longituder – hur många finns?",
+    textInfo: "Det finns totalt 360 longitudgrader runt jorden. Hälften ligger öster om nollmeridianen och hälften väster om den." 
   },
   {
     id: "longlat-010",
@@ -110,6 +128,8 @@ export const longitudLatitud: FlashCard[] = [
     answer: "Två.",
     options: ["En.", "Två.", "Tre.", "Fyra."],
     correctOptionIndex: 1,
+    textTitle: "Skrivsätt – latitud",
+    textInfo: "Latitudens gradtal skrivs alltid med två siffror, även om en nolla måste sättas framför (t.ex. 05°)."
   },
   {
     id: "longlat-011",
@@ -119,5 +139,7 @@ export const longitudLatitud: FlashCard[] = [
     answer: "Tre.",
     options: ["En.", "Två.", "Tre.", "Fyra."],
     correctOptionIndex: 2,
+    textTitle: "Skrivsätt – longitud",
+    textInfo: "Longitudens gradtal skrivs alltid med tre siffror, vilket kan innebära en eller två nollor i början (t.ex. 008°)."
   },
 ];

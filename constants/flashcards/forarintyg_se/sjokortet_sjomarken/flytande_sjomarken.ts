@@ -14,6 +14,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Blått och vitt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kardinalmärken – färger",
+    textInfo: "Kardinalmärken är alltid målade i gult och svart. Färgkombinationen används för att visa vilket väderstreck märket representerar och hjälper navigatören att veta på vilken sida ett grund ska passeras."
   },
   {
     id: "flytande_sjomarken-2",
@@ -28,6 +30,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Rött och vitt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Lateralmärken – färger",
+    textInfo: "Lateralmärken visar sidorna i en farled. Gröna märken står på styrbordssidan och Röda märken står på babordssidan. Detta gäller när man färdas i farledens riktning."
   },
   {
     id: "flytande_sjomarken-3",
@@ -42,6 +46,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Norr om.",
     ],
     correctOptionIndex: 3,
+    textTitle: "Nordmärke – hur passera",
+    textInfo: "Ett nordmärke visar att det är säkert vatten norr om märket. Man ska alltså passera norr om märket för att undvika grundet."
   },
 
   {
@@ -59,6 +65,9 @@ export const flytandeSjomarken: FlashCard[] = [
       "Väster om hindret.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kardinalmärken – ost",
+    textInfo: "Ett ostmärke visar att det är säkert vatten öster om hindret. Man ska alltså passera öst om märket."
+
   },
   {
     id: "flytande_sjomarken-5",
@@ -75,6 +84,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Väster om hindret.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Kardinalmärken – nord",
+    textInfo: "Ett nordmärke står norr om hindret. Det betyder att man ska hålla sig norr om märket för att vara säker."
   },
   {
     id: "flytande_sjomarken-6",
@@ -91,6 +102,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Söder om hindret.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kardinalmärken – väst",
+    textInfo: "Ett västmärke står väster om hindret. Man ska alltså passera väster om märket."
   },
   {
     id: "flytande_sjomarken-7",
@@ -107,6 +120,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Väster om hindret.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kardinalmärken – syd",
+    textInfo: "Ett sydmärke står söder om hindret. Man ska därför passera söder om märket."
   },
 
   {
@@ -123,6 +138,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Utanför farleden.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Lateralmärken – babordssida",
+    textInfo: "Ett sjömärke som står på babordssidan i farleden är rött. Det betyder att det markerar vänster sida när man färdas i farledens riktning."
   },
   {
     id: "flytande_sjomarken-9",
@@ -138,6 +155,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Utanför farleden.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Lateralmärken – styrbordssida",
+    textInfo: "Ett sjömärke som står på styrbordssidan i farleden är grönt. Det markerar höger sida när man färdas i farledens riktning."
   },
 
   {
@@ -153,6 +172,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Mittledsmärke.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Gul boj – typ av märke",
+    textInfo: "En helt gul boj är ett specialmärke. Den används inte för navigation utan för att markera något som behöver uppmärksammas eller skyddas."
   },
   {
     id: "flytande_sjomarken-11",
@@ -167,6 +188,8 @@ export const flytandeSjomarken: FlashCard[] = [
       "Punktmärke.",
     ],
     correctOptionIndex: 3,
+    textTitle: "Röd-svart boj – typ av märke",
+    textInfo: "En boj med röda och svarta band är ett punktmärke. Den markerar ett enskilt hinder av begränsad storlek.",
   },
   {
     id: "flytande_sjomarken-12",
@@ -181,5 +204,7 @@ export const flytandeSjomarken: FlashCard[] = [
       "Kardinalmärke.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vit-rosa (röd) boj – typ av märke",
+    textInfo: "En boj med vita och röda (rosa) band är ett mittledsmärke. Den används ofta för att markera mitten av en farled eller början av en farled ute till havs."
   },
 ];

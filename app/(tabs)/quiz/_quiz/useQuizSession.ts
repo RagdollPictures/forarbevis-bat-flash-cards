@@ -3,8 +3,8 @@ import { saveQuizProgress } from "../../../../constants/flashcards/quizProgress"
 import type { FlashCard } from "../../../../constants/flashcards/types";
 import { shuffle } from "./shuffle";
 
-function clamp01(n: number) {
-  return Math.max(0, Math.min(1, n));
+function clampInt(n: number, min: number, max: number) {
+  return Math.max(min, Math.min(max, n));
 }
 
 type FrozenQuiz = {
@@ -26,7 +26,6 @@ export function useQuizSession({
   const [isChecked, setIsChecked] = useState(false);
 
   const [masteredIds, setMasteredIds] = useState<Set<string>>(new Set());
-
   const [isFinished, setIsFinished] = useState(false);
 
   const [progress, setProgress] = useState<("correct" | "wrong" | null)[]>([]);
@@ -34,8 +33,14 @@ export function useQuizSession({
 
   const [pendingMoveToEnd, setPendingMoveToEnd] = useState(false);
 
-  const [penalty, setPenalty] = useState(0);
+  // Boat meter (visual only)
+  const [meterPoints, setMeterPoints] = useState(0);
 
+  // ✅ NEW: first-try tracking (per question id)
+  const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
+  const [firstTryCorrectCount, setFirstTryCorrectCount] = useState(0);
+
+  // Freeze options per question so correct answer highlight never reshuffles
   const [quiz, setQuiz] = useState<FrozenQuiz>({
     options: [],
     correctOptionIndex: -1,
@@ -54,19 +59,20 @@ export function useQuizSession({
     setIsChecked(false);
 
     setMasteredIds(new Set());
-
     setIsFinished(false);
-    setScore(0);
 
+    setScore(0);
     setPendingMoveToEnd(false);
-    setPenalty(0);
+    setMeterPoints(0);
+
+    setSeenIds(new Set());
+    setFirstTryCorrectCount(0);
 
     setQuiz({ options: [], correctOptionIndex: -1 });
   }, [deck.length]);
 
   const safeIndex = Math.min(index, Math.max(0, queue.length - 1));
   const card = queue[safeIndex];
-
   const total = queue.length;
 
   useEffect(() => {
@@ -103,15 +109,12 @@ export function useQuizSession({
     return Math.round((masteredCount / total) * 100);
   }, [masteredCount, total]);
 
-  const masteryProgress = useMemo(() => {
-    if (total <= 0) return 0;
-    return clamp01(masteredCount / total);
-  }, [masteredCount, total]);
-
   const visualProgress = useMemo(() => {
-    return clamp01(masteryProgress - penalty);
-  }, [masteryProgress, penalty]);
+    if (total <= 0) return 0;
+    return clampInt(meterPoints, 0, total) / total;
+  }, [meterPoints, total]);
 
+  // ✅ Save only when finished (same as before for unlock)
   useEffect(() => {
     if (!quizId) return;
     if (!isFinished) return;
@@ -125,23 +128,43 @@ export function useQuizSession({
 
     saveQuizProgress({
       quizId: String(quizId),
-      progress: allCorrect,
+      progress: allCorrect,       // mastery (for unlock) stays 100% on finish
       score: total,
       total,
       updatedAt: Date.now(),
+
+      // ✅ NEW fields (for menu ring)
+      firstTryCorrect: firstTryCorrectCount,
+      firstTryTotal: total,
     });
-  }, [quizId, isFinished, total]);
+  }, [quizId, isFinished, total, firstTryCorrectCount]);
 
   const finishIfComplete = (nextMasteredSize: number) => {
     if (total === 0) return;
-    if (nextMasteredSize >= total) setIsFinished(true);
+    if (nextMasteredSize >= total) {
+      setIsFinished(true);
+      setMeterPoints(total);
+    }
   };
 
   const onSelect = (i: number) => {
     if (isChecked || isFinished) return;
     if (quiz.correctOptionIndex < 0) return;
+    if (!card?.id) return;
 
     const wasCorrect = i === quiz.correctOptionIndex;
+
+    // ✅ NEW: record first try only the first time we ever answer this card id
+   if (!seenIds.has(card.id)) {
+  const nextSeen = new Set(seenIds);
+  nextSeen.add(card.id);
+  setSeenIds(nextSeen);
+
+  if (wasCorrect) {
+    setFirstTryCorrectCount((c) => c + 1);
+  }
+}
+
 
     setSelectedIndex(i);
     setIsChecked(true);
@@ -155,10 +178,9 @@ export function useQuizSession({
         return next;
       });
 
-      setPenalty((p) => clamp01(p - (total > 0 ? 1 / total : 0)));
+      setMeterPoints((p) => clampInt(p + 1, 0, total));
 
       setMasteredIds((prev) => {
-        if (!card?.id) return prev;
         if (prev.has(card.id)) return prev;
 
         const next = new Set(prev);
@@ -181,7 +203,7 @@ export function useQuizSession({
       return next;
     });
 
-    setPenalty((p) => clamp01(p + (total > 0 ? 1 / total : 0)));
+    setMeterPoints((p) => clampInt(p - 1, 0, total));
   };
 
   const onNext = () => {
@@ -230,12 +252,14 @@ export function useQuizSession({
     setIsChecked(false);
 
     setMasteredIds(new Set());
-
     setIsFinished(false);
-    setScore(0);
 
+    setScore(0);
     setPendingMoveToEnd(false);
-    setPenalty(0);
+    setMeterPoints(0);
+
+    setSeenIds(new Set());
+    setFirstTryCorrectCount(0);
 
     setQuiz({ options: [], correctOptionIndex: -1 });
   };
@@ -256,6 +280,8 @@ export function useQuizSession({
     masteredPercent,
     masteredCount,
     total,
+
+    firstTryCorrectCount,
 
     onSelect,
     onNext,

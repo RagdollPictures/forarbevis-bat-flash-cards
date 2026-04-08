@@ -57,15 +57,24 @@ export default function QuizScreen() {
   }
 
   if (s.isFinished) {
-    return (
-      <QuizFinished
-        title={screenTitle}
-        score={s.score}
-        total={s.shuffledDeck.length}
-        onRestart={s.restart}
-      />
-    );
-  }
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>{screenTitle}</Text>
+
+        <BoatProgressBar value={1} />
+
+        <QuizFinished
+          title={screenTitle}
+          score={s.score}
+          total={s.shuffledDeck.length}
+          onRestart={s.restart}
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+
 
   const questionText = s.card.questionQuiz ?? s.card.question ?? "";
 
@@ -93,7 +102,7 @@ export default function QuizScreen() {
           onSelect={s.onSelect}
           onNext={s.onNext}
           showNextButton={s.isChecked}
-          isLast={s.safeIndex + 1 >= s.shuffledDeck.length}
+         isLast={s.isFinished}
         />
       </ScrollView>
     </SafeAreaView>
