@@ -16,6 +16,8 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "Mot närmaste land.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Kompassens riktning",
+  textInfo: "En kompass fungerar genom att använda jordens magnetfält. Kompassnålen pekar alltid mot den magnetiska nordpolen, vilket gör att man kan avgöra riktningen norr och därmed navigera."
   },
   {
     id: "navigationsinstrument_kompass-2",
@@ -32,6 +34,8 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "DOP.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Deviation",
+  textInfo: "Deviation är det fel som uppstår i kompassen på grund av magnetiska störningar ombord, till exempel från metallföremål, motorer eller kablar. Felet varierar beroende på båtens kurs men är oberoende av var på jorden man befinner sig."
   },
   {
     id: "navigationsinstrument_kompass-3",
@@ -48,6 +52,8 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "Avdrift.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Missvisning",
+  textInfo: "Missvisning är skillnaden mellan geografisk nordpol och magnetisk nordpol. Eftersom kompassen pekar mot den magnetiska nordpolen uppstår ett fel i förhållande till den geografiska nordpolen. Missvisningen varierar beroende på var på jorden man är."
   },
   {
     id: "navigationsinstrument_kompass-4",
@@ -64,6 +70,8 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "Placeras så nära motorn som möjligt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Placering av kompass",
+  textInfo: "En kompass ska placeras långt ifrån magnetiska störningar, vara lätt att läsa från styrplatsen och monteras parallellt med båtens långskeppslinje. Den bör också skyddas från stötar och gärna ha belysning för användning i mörker."
   },
   {
     id: "navigationsinstrument_kompass-5",
@@ -80,6 +88,8 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "Laserkompass och djupkompass.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Olika typer av kompasser",
+  textInfo: "Det finns flera typer av kompasser, bland annat magnetkompass, pejlkompass, elektronisk kompass, gyrokompass och satellitkompass. De används i olika sammanhang beroende på krav på precision och utrustning."
   },
   {
     id: "navigationsinstrument_kompass-6",
@@ -96,5 +106,7 @@ export const navigationsinstrumentKompass: FlashCard[] = [
       "Endast vid låg fart.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Navigator och kurs",
+     textInfo: "En navigator visar kurs över grund (KÖG), vilket är den riktning båten faktiskt rör sig över jordytan. Detta är inte samma sak som kompasskurs, eftersom påverkan från vind och ström kan göra att båten rör sig i en annan riktning än den pekar."
   },
 ];

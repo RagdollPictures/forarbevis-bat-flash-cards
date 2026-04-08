@@ -16,6 +16,8 @@ export const sjomanskapStabilitet: FlashCard[] = [
       "Växlande tyngdpunkt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Tyngdpunkt och stabilitet",
+textInfo: "En båt får bättre stabilitet med låg tyngdpunkt. Ju lägre tyngdpunkten är, desto svårare är det för båten att välta."
   },
   {
     id: "sjomanskap_stabilitet-2",
@@ -32,6 +34,8 @@ export const sjomanskapStabilitet: FlashCard[] = [
       "Lasta allt i fören.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hur du påverkar stabiliteten",
+textInfo: "Man kan förbättra båtens stabilitet genom att placera tung last så lågt och centralt som möjligt. Att sitta ner istället för att stå upp bidrar också till bättre stabilitet."
   },
   {
     id: "sjomanskap_stabilitet-3",
@@ -48,5 +52,7 @@ export const sjomanskapStabilitet: FlashCard[] = [
       "Den blir mer lättmanövrerad.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vatten i båten",
+    textInfo: "Vatten som rör sig fritt i båten försämrar stabiliteten kraftigt eftersom tyngdpunkten blir instabil och förskjuts. Därför är det viktigt att hålla båten torr och länsa ut vatten."
   },
 ];

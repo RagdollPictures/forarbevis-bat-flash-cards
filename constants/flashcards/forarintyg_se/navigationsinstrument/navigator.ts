@@ -16,6 +16,8 @@ export const navigationsinstrumentNavigator: FlashCard[] = [
       "Den kräver inga uppdateringar.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Risker med navigator",
+textInfo: "Navigation med navigator innebär vissa risker. Eftersläpning kan göra att positionen som visas inte är helt aktuell, särskilt vid hög fart. Många funktioner kan också göra att man tappar fokus, och navigatorn kan sluta fungera om den går sönder eller får slut på batteri."
   },
   {
     id: "navigationsinstrument_navigator-2",
@@ -32,6 +34,8 @@ export const navigationsinstrumentNavigator: FlashCard[] = [
       "Planingsfart och girvinkel.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fart och kurs över grund",
+textInfo: "En navigator visar fart över grund (FÖG) och kurs över grund (KÖG). Dessa värden visar hur båten faktiskt rör sig över jordens yta och påverkas av både egen fart och ström."
   },
   {
     id: "navigationsinstrument_navigator-3",
@@ -48,6 +52,8 @@ export const navigationsinstrumentNavigator: FlashCard[] = [
       "Bara om man saknar kompass.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Backup till navigator",
+textInfo: "Det är viktigt att ha en backup till sin navigator eftersom den kan sluta fungera. En vanlig reservlösning är en mobiltelefon med navigationsapp som förvaras i ett vattentätt fodral."
   },
   {
     id: "navigationsinstrument_navigator-4",
@@ -64,6 +70,8 @@ export const navigationsinstrumentNavigator: FlashCard[] = [
       "Stänga av den när det regnar.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Skydd av mobiltelefon",
+textInfo: "Om en mobiltelefon används som navigator bör den skyddas mot vatten. Det görs bäst genom att förvara den i ett vattentätt fodral som också skyddar mot stänk och regn."
   },
   {
     id: "navigationsinstrument_navigator-5",
@@ -80,5 +88,7 @@ export const navigationsinstrumentNavigator: FlashCard[] = [
       "Vindmätare, barometer, termometer och logg.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Olika typer av navigatorer",
+textInfo: "Det finns flera typer av navigatorer, till exempel plotter, mobiltelefon, surfplatta och dator. De fungerar på liknande sätt men skiljer sig i funktion, robusthet och användningsområde."
   },
 ];

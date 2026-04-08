@@ -16,5 +16,7 @@ export const manovreringSegelbat: FlashCard[] = [
       "För att rodret annars tappar effekt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Segelbåt i motvind",
+  textInfo: "En segelbåt kan inte segla rakt mot vinden eftersom seglen då inte får något driv utan bara fladdrar. För att ändå ta sig fram i motvind måste båten istället kryssa, vilket innebär att den seglar snett mot vinden i zick-zack-mönster och byter riktning med jämna mellanrum."
   },
 ];

@@ -16,6 +16,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "1177.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kontakta Sjöräddningen",
+textInfo: "Vid nödsituation och mobiltäckning ringer man 112 och ber att bli kopplad till Sjöräddningen. Då når man sjöräddningscentralen direkt."
   },
   {
     id: "signalering_nodsignaler-2",
@@ -31,7 +33,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Växla kanal först.",
       "Slå av och på radion.",
     ],
-    correctOptionIndex: 1,
+    correctOptionIndex: 1,textTitle: "Distress-knappen",
+textInfo: "Distress-knappen på VHF-radion hålls in i cirka 5 sekunder. Då skickas automatiskt ett nödanrop med båtens position till sjöräddningen och närliggande fartyg."
   },
   {
     id: "signalering_nodsignaler-3",
@@ -48,6 +51,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Kanal 72.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Nödanrop på VHF",
+textInfo: "Nödanrop via VHF-radio görs på kanal 16. Det är den internationella anrops- och nödkanalen som alltid ska övervakas."
   },
   {
     id: "signalering_nodsignaler-4",
@@ -64,6 +69,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Radar och sonar.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Nödradiosändare",
+textInfo: "Två vanliga typer av nödradiosändare är EPIRB och PLB. De skickar nödsignal och position via satellit till sjöräddningen."
   },
   {
     id: "signalering_nodsignaler-5",
@@ -80,6 +87,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Förvara den löst på däck.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Användning av nödraket",
+textInfo: "När man köper en ny nödraket ska man läsa instruktionerna i förväg. I en nödsituation finns ofta inte tid att lära sig hur den fungerar."
   },
   {
     id: "signalering_nodsignaler-6",
@@ -96,6 +105,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Obegränsad tid.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Hållbarhet på nödsignaler",
+textInfo: "Nödbloss och nödraketer har vanligtvis en hållbarhet på cirka 3 år. Därefter ska de bytas ut och lämnas in för destruktion."
   },
   {
     id: "signalering_nodsignaler-7",
@@ -112,6 +123,8 @@ export const signaleringNodsignaler: FlashCard[] = [
       "De vill bli fotograferade.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Visuell nödsignal",
+textInfo: "En person som står med armarna utsträckta och långsamt höjer och sänker dem signalerar nöd. Det innebär att de behöver hjälp."
   },
   {
     id: "signalering_nodsignaler-8",
@@ -128,5 +141,7 @@ export const signaleringNodsignaler: FlashCard[] = [
       "Fem korta signaler.",
     ],
     correctOptionIndex: 2,
+    textTitle: "SOS-signalen",
+textInfo: "SOS signaleras med tre korta, tre långa och tre korta signaler. Detta kan göras med både ljud och ljus."
   },
 ];

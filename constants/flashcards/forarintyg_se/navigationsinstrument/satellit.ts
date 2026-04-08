@@ -16,6 +16,8 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Global Nautical Safety System.",
     ],
     correctOptionIndex: 0,
+     textTitle: "GNSS och positionering",
+  textInfo: "GNSS står för Global Navigation Satellite System och är ett system som använder satelliter för att bestämma position. För att kunna räkna ut en position måste mottagaren ta emot signaler från minst fyra satelliter."
   },
   {
     id: "navigationsinstrument_satellit-2",
@@ -32,6 +34,8 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Två.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Minst fyra satelliter",
+textInfo: "För att en GNSS-mottagare ska kunna beräkna en position krävs signaler från minst fyra satelliter. Fler satelliter ger oftast bättre noggrannhet och stabilare position."
   },
   {
     id: "navigationsinstrument_satellit-3",
@@ -48,8 +52,9 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Radar.",
     ],
     correctOptionIndex: 1,
-  },
-  {
+    textTitle: "Förbättrad noggrannhet",
+textInfo: "Noggrannheten i en GNSS-mottagare kan förbättras med hjälp av landbaserade system som EGNOS i Europa eller WAAS i USA. Dessa skickar korrigeringsdata som gör positionen mer exakt."
+  },{
     id: "navigationsinstrument_satellit-4",
     question:
       "Vilken precision på positionen kan man normalt räkna med på en väl fungerande GNSS-mottagare?",
@@ -64,8 +69,9 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Exakt på centimetern.",
     ],
     correctOptionIndex: 2,
-  },
-  {
+    textTitle: "Positionens noggrannhet",
+textInfo: "En modern GNSS-mottagare ger normalt en position med en noggrannhet inom cirka 10 meter eller bättre, vilket är tillräckligt för praktisk navigation."
+  },{
     id: "navigationsinstrument_satellit-5",
     question:
       "Vad är fördröjningen i positionen relativt farten ungefär på en GNSS-mottagare?",
@@ -80,6 +86,8 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Cirka 5 meter per knop.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fördröjning i position",
+textInfo: "Positionen som visas är alltid något fördröjd eftersom den beräknas utifrån tidigare signaler. Felet är ungefär 1 meter per knop, vilket innebär att högre fart ger större positionsförskjutning."
   },
   {
     id: "navigationsinstrument_satellit-6",
@@ -96,5 +104,7 @@ export const navigationsinstrumentSatellit: FlashCard[] = [
       "Ekolod.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Flera GNSS-system",
+textInfo: "Förutom GPS finns flera andra GNSS-system som Glonass, BeiDou och Galileo. Moderna mottagare använder ofta flera system samtidigt för bättre noggrannhet och tillförlitlighet."
   },
 ];

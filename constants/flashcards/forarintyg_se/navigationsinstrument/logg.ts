@@ -16,6 +16,8 @@ export const navigationsinstrumentLogg: FlashCard[] = [
       "Vindstyrka och riktning.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Loggens värden",
+  textInfo: "En logg är ett navigationsinstrument som mäter hur långt en båt har färdats genom vattnet. Genom att kombinera distans med tid kan den även visa båtens fart. Därför visar en logg normalt både fart och distans."
   },
   {
     id: "navigationsinstrument_logg-2",
@@ -32,6 +34,9 @@ export const navigationsinstrumentLogg: FlashCard[] = [
       "Om sjökortet är uppdaterat.",
     ],
     correctOptionIndex: 1,
+     textTitle: "När loggen visar fel",
+  textInfo: "Om loggen slutar fungera beror det ofta på att skovelhjulet i givaren har fastnat. Detta kan orsakas av skräp, tång eller havstulpaner som hindrar hjulet från att snurra. Då visas ofta farten som 0 knop trots att båten rör sig."
+
   },
   {
     id: "navigationsinstrument_logg-3",
@@ -48,5 +53,7 @@ export const navigationsinstrumentLogg: FlashCard[] = [
       "Maxfart sedan start.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fart genom vattnet",
+  textInfo: "Loggen visar båtens fart genom vattnet, inte fart över grund. Det innebär att den inte tar hänsyn till ström eller avdrift, vilket kan göra att den faktiska hastigheten över botten är högre eller lägre än vad loggen visar."
   },
 ];

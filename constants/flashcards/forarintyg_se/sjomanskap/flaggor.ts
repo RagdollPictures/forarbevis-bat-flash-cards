@@ -16,6 +16,8 @@ export const sjomanskapFlaggor: FlashCard[] = [
       "Både svensk och dansk flagga samtidigt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Rätt nationsflagga",
+textInfo: "Vilken nationsflagga en båt ska föra avgörs av ägarens nationalitet. Om båten ägs av en dansk person ska den föra dansk flagg, även om besättningen är från ett annat land."
   },
   {
     id: "sjomanskap_flaggor-2",
@@ -32,5 +34,7 @@ export const sjomanskapFlaggor: FlashCard[] = [
       "I fören.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Placering av gästflagga",
+textInfo: "Gästflaggan hissas på styrbordssidan som en artighetsgest när man besöker ett annat land. Den placeras oftast under styrbords vantspridare eller motsvarande plats."
   },
 ];

@@ -16,6 +16,8 @@ export const sjomanskapSjofylleri: FlashCard[] = [
       "1,0 promille.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Gräns för sjöfylleri",
+textInfo: "Gränsen för sjöfylleri är cirka 0,2 promille alkohol i blodet. Den gäller för större eller snabbare båtar, men även vid lägre påverkan kan man dömas om man inte kan framföra båten säkert."
   },
   {
     id: "sjomanskap_sjofylleri-2",
@@ -32,6 +34,8 @@ export const sjomanskapSjofylleri: FlashCard[] = [
       "1,5 promille.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Grovt sjöfylleri",
+textInfo: "Gränsen för grovt sjöfylleri är cirka 1,0 promille. Även utan att nå denna nivå kan brottet räknas som grovt om framförandet innebär en allvarlig fara för sjösäkerheten."
   },
   {
     id: "sjomanskap_sjofylleri-3",
@@ -48,5 +52,7 @@ export const sjomanskapSjofylleri: FlashCard[] = [
       "Alla ombord har lika ansvar.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ansvar ombord",
+textInfo: "Den som ansvarar för att framföra båten är den som ska vara nykter. Det är alltså den som har kompetensen och leder navigationen som bär ansvaret, oavsett vem som håller i ratten."
   },
 ];

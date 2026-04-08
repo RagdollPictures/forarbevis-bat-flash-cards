@@ -16,6 +16,8 @@ export const sjomanskapKontrollerUnderhall: FlashCard[] = [
       "Fylla på färskvatten i diskhon.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Kontroller före avgång",
+textInfo: "Innan varje tur bör man kontrollera viktiga saker som bränslenivå, oljenivå, kylvatten och batterispänning. På segelbåtar bör även riggen kontrolleras så att inget är löst eller skadat."
   },
   {
     id: "sjomanskap_kontroller_underhall-2",
@@ -32,5 +34,7 @@ export const sjomanskapKontrollerUnderhall: FlashCard[] = [
       "Byta flagga och köpa nya rep.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Underhåll inför säsong",
+textInfo: "Inför säsongen bör man göra underhåll som att kontrollera elsystemet, byta olja och filter, samt se över bränslesystem och rigg. Regelbundet underhåll minskar risken för driftstörningar och förlänger båtens livslängd."
   },
 ];

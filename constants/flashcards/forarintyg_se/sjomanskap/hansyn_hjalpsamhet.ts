@@ -16,6 +16,8 @@ export const sjomanskapHansynHjalpsamhet: FlashCard[] = [
       "Över aktern.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Passera över annan båt",
+textInfo: "När man behöver passera över en annan båt ska man alltid gå för om masten eller för om styrhytten. Man går aldrig genom sittbrunnen eftersom det räknas som en privat del av båten."
   },
   {
     id: "sjomanskap_hansyn_hjalpsamhet-2",
@@ -32,5 +34,7 @@ export const sjomanskapHansynHjalpsamhet: FlashCard[] = [
       "Genom att ta ner nationsflaggan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Visa att andra får lägga till",
+textInfo: "Om man vill visa att andra båtar gärna får lägga sig utanpå eller bredvid kan man hänga ut fendrar på den lediga sidan. Det signalerar att platsen är tillgänglig och att man är välkomnande."
   },
 ];

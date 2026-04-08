@@ -10,6 +10,8 @@ export const knoparOchLinor: FlashCard[] = [
     answer: "Pålstek.",
     options: ["Skotstek.", "Dubbelt halvslag.", "Pålstek.", "Åttaknop."],
     correctOptionIndex: 2,
+    textTitle: "Pålstek – fast ögla",
+textInfo: "Pålstek används när man vill göra en fast ögla på en tamp, till exempel för att lägga runt en pollare vid förtöjning. Knopen är mycket pålitlig och lätt att lösa upp även efter hård belastning."
   },
   {
     id: "knopar_och_linor-2",
@@ -20,6 +22,8 @@ export const knoparOchLinor: FlashCard[] = [
     answer: "Skotstek.",
     options: ["Pålstek.", "Skotstek.", "Dubbelt halvslag.", "Råbandsknop."],
     correctOptionIndex: 1,
+    textTitle: "Skotstek – skarva tampar",
+textInfo: "Skotstek används för att skarva två tampar, särskilt om de har olika tjocklek eller material. Den grövre tampen bildar en bukt och den tunnare används för att knyta själva knopen."
   },
   {
     id: "knopar_och_linor-3",
@@ -30,6 +34,8 @@ export const knoparOchLinor: FlashCard[] = [
     answer: "Dubbelt halvslag.",
     options: ["Pålstek.", "Dubbelt halvslag.", "Skotstek.", "Åttaknop."],
     correctOptionIndex: 1,
+    textTitle: "Dubbelt halvslag – runt stolpe",
+textInfo: "Dubbelt halvslag används för att fästa en tamp runt något större, som en stolpe eller pollare. Knopen är enkel att göra men kan bli svår att lösa upp efter hård belastning."
   },
   {
     id: "knopar_och_linor-4",
@@ -45,6 +51,8 @@ export const knoparOchLinor: FlashCard[] = [
       "Råbandsknop.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Dubbelt halvslag om egen part",
+textInfo: "Dubbelt halvslag om egen part används när man vill fästa en tamp i en ögla eller runt ett smalare föremål, som ett räcke eller en förtöjningsögla. Knopen är säker men kan vara svår att lossa efter belastning."
   },
   {
     id: "knopar_och_linor-5",
@@ -55,6 +63,8 @@ export const knoparOchLinor: FlashCard[] = [
     answer: "Tre.",
     options: ["En gång.", "Två gånger.", "Tre gånger.", "Fyra gånger."],
     correctOptionIndex: 2,
+    textTitle: "Beläggning på knap",
+textInfo: "När man lägger fast en tamp på en knap bör linan gå minst tre varv över mitten. Det gör att tampen ligger säkert och ändå kan lossas även om den varit belastad."
   },
 
   {
@@ -66,6 +76,8 @@ export const knoparOchLinor: FlashCard[] = [
     options: ["Dubbelt halvslag om egen part", "Skotstek", "Pålstek", "Råbandsktop"],
     correctOptionIndex: 0,
     imageKey: "knopar_och_linor_06_ver02",
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "knopar_och_linor-7",
@@ -76,6 +88,9 @@ export const knoparOchLinor: FlashCard[] = [
     options: ["Dubbelthalvslag", "Skotstek", "Pålstek", "Råbandsknop"],
     correctOptionIndex: 1,
     imageKey: "knopar_och_linor_07_ver02",
+     textTitle: "",
+    textInfo: "",
+  
   },
   {
     id: "knopar_och_linor-8",
@@ -86,6 +101,8 @@ export const knoparOchLinor: FlashCard[] = [
     options: ["Råbandsktop", "Skotstek", "Pålstek", "Dubbelthalvslag om egen part"],
     correctOptionIndex: 2,
     imageKey: "knopar_och_linor_08_ver02",
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "knopar_och_linor-9",
@@ -96,6 +113,8 @@ export const knoparOchLinor: FlashCard[] = [
     options: ["Dubbelt halvslag", "Pålstek", "Skotstek", "Råbandsktop"],
     correctOptionIndex: 0,
     imageKey: "knopar_och_linor_09_ver02",
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "knopar_och_linor-10",
@@ -106,5 +125,7 @@ export const knoparOchLinor: FlashCard[] = [
     options: ["Bild A", "Bild B", "Bild C", "Bild D"],
     correctOptionIndex: 0,
     answerImageKey: "knopar_och_linor_10",
+     textTitle: "",
+    textInfo: "",
   },
 ];

@@ -15,6 +15,8 @@ export const navigationsinstrumentEkolod: FlashCard[] = [
       "5 meter.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Ekolodets mätning",
+  textInfo: "Ett ekolod mäter avståndet från givaren i båtens botten ner till sjöbotten. Om ekolodet inte är kalibrerat visar det just detta avstånd, inte det totala djupet från vattenytan. Därför kan det visa ett mindre värde än det verkliga djupet."
   },
   {
     id: "navigationsinstrument_ekolod-2",
@@ -31,5 +33,7 @@ export const navigationsinstrumentEkolod: FlashCard[] = [
       "Båten går för långsamt.",
     ],
     correctOptionIndex: 2,
+     textTitle: "När ekolodet tappar signal",
+  textInfo: "Om siffrorna på ekolodet börjar blinka eller försvinner beror det oftast på att djupet är större än vad ekolodet klarar av att mäta. Då blir ekot för svagt för att kunna registreras och instrumentet kan inte visa ett korrekt värde."
   },
 ];

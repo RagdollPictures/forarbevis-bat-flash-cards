@@ -16,6 +16,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "10 sekunder.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Kort ljudsignal",
+textInfo: "En kort ljudsignal ska vara ungefär 1 sekund lång och används för att signalera olika manövrar, till exempel kursändringar."
   },
   {
     id: "signalering_ljudsignaler-2",
@@ -32,6 +34,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "10 sekunder.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Lång ljudsignal",
+textInfo: "En lång ljudsignal ska vara mellan 4 och 6 sekunder lång. Den används bland annat för uppmärksamhet och i dimma för att visa hur ett fartyg rör sig."
   },
   {
     id: "signalering_ljudsignaler-3",
@@ -48,6 +52,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "Fem korta signaler.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Backsignal",
+textInfo: "Tre korta ljudsignaler (. . .) betyder att propellern arbetar för back. Det innebär inte alltid att båten rör sig bakåt, utan att propellern driver i backläge."
   },
   {
     id: "signalering_ljudsignaler-4",
@@ -64,6 +70,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "En lång signal.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Kursändring styrbord",
+textInfo: "En kort ljudsignal (.) betyder att fartyget ändrar sin kurs åt styrbord, alltså åt höger sett i färdriktningen."
   },
   {
     id: "signalering_ljudsignaler-5",
@@ -80,6 +88,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "Att det är i fara.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kursändring babord",
+textInfo: "Två korta ljudsignaler (. .) betyder att fartyget ändrar sin kurs åt babord, alltså åt vänster."
   },
   {
     id: "signalering_ljudsignaler-6",
@@ -96,6 +106,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "Dimmesignal.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Tveksamhetssignal",
+textInfo: "Minst fem korta ljudsignaler (. . . . .) är en tveksamhetssignal. Den används när man är osäker på ett annat fartygs avsikter eller om man tror att man inte blivit uppmärksammad."
   },
   {
     id: "signalering_ljudsignaler-7",
@@ -112,6 +124,8 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "Tveksamhetssignal.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Uppmärksamhetssignal",
+textInfo: "En lång ljudsignal (_) används som uppmärksamhetssignal, till exempel vid skymd sikt eller i en farledskrök för att varna andra fartyg."
   },
   {
     id: "signalering_ljudsignaler-8",
@@ -128,5 +142,7 @@ export const signaleringLjudsignaler: FlashCard[] = [
       "En linfärja.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Mistsignaler",
+textInfo: "I dimma används särskilda mistsignaler. Två långa signaler (_ _) varannan minut betyder att ett fartyg ligger stilla eller för ankare, medan en lång signal (_) betyder att ett fartyg gör fart genom vattnet."
   },
 ];

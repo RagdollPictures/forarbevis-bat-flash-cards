@@ -16,6 +16,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Satellitfel och DOP-värde.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kompassfel",
+textInfo: "De tre vanligaste orsakerna till att en magnetkompass visar fel är deviation från båtens egna magnetfält, missvisning från jordens magnetfält samt att kompassen är felmonterad, till exempel snett i förhållande till båtens längdriktning."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-2",
@@ -32,6 +34,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Se om kompassen pekar mot norr i hamn.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kontroll med enslinje",
+textInfo: "Den bästa metoden för att kontrollera en magnetkompass är att köra längs en enslinje med känd kurs. Om kompassens visning avviker från den kända kursen finns ett kompassfel."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-3",
@@ -48,6 +52,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "För att enslinjer är förbjudna att använda.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Jämförelse med navigator",
+textInfo: "Att jämföra kompassens kurs med navigatorns kurs är en relativt dålig metod eftersom navigatorn visar kurs över grund, medan kompassen visar magnetisk kurs. Dessa kan skilja sig mycket beroende på vind och ström."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-4",
@@ -64,6 +70,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Den kalibreras automatiskt utan åtgärd.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kalibrering av elektronisk kompass",
+textInfo: "En elektronisk kompass kalibreras genom att följa tillverkarens anvisningar, vilket ofta innebär att båten körs i cirklar medan kompassen justerar sig själv."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-5",
@@ -80,6 +88,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Genom att jämföra med ekolodet.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kontroll av logg",
+textInfo: "Loggen kontrolleras genom att jämföra uppmätt distans eller fart med kända värden, till exempel en noggrant uppmätt sträcka på sjökortet eller navigatorns fart, även om ström och vind kan påverka resultatet."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-6",
@@ -96,6 +106,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Genom att kontrollera DOP-värdet.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kontroll av ekolod",
+textInfo: "Ekolodet kontrolleras genom att jämföra det visade djupet med ett känt djup från sjökortet på en plats där botten är jämn och vattenståndet är normalt."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-7",
@@ -112,6 +124,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Genom att starta om enheten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kontroll av navigator",
+textInfo: "Navigatorn kontrolleras genom att jämföra den visade positionen med verkligheten, till exempel genom att förtöja vid en brygga och kontrollera att båten visas på rätt plats på sjökortet."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-8",
@@ -128,6 +142,8 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Att magnetkompassen störs.",
     ],
     correctOptionIndex: 1,
+    textTitle: "DOP-värde",
+textInfo: "Ett högt DOP-värde indikerar att GNSS-mottagningen är dålig och att positionen kan vara mindre noggrann. Lägre värde innebär bättre precision."
   },
   {
     id: "navigationsinstrument_instrumentkontroll-9",
@@ -144,5 +160,7 @@ export const navigationsinstrumentInstrumentkontroll: FlashCard[] = [
       "Endast nära höga berg.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Störningar i GNSS",
+textInfo: "GNSS-signaler kan störas ut av externa faktorer, till exempel militära system eller omgivande hinder. Detta kan leda till felaktig position eller att ingen position visas alls."
   },
 ];

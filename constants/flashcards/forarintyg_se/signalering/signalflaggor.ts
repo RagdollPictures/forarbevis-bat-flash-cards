@@ -16,5 +16,7 @@ export const signaleringSignalflaggor: FlashCard[] = [
       "Signalflagga D, gul och röd.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Dykflagga A",
+textInfo: "Signalflagga A används för att visa att dykare finns i vattnet. Den är blå och vit och betyder att andra fartyg ska hålla avstånd och passera med låg fart för att undvika att skada dykare."
   }
 ];

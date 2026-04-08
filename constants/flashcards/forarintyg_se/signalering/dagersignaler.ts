@@ -16,6 +16,8 @@ export const signaleringDagersignaler: FlashCard[] = [
       "En cylinder.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ankarklot",
+textInfo: "När en båt ligger för ankare ska ett svart klot hissas så långt fram som möjligt. Det visar att båten ligger stilla och inte är skyldig att väja."
   },
   {
     id: "signalering_dagersignaler-2",
@@ -32,6 +34,8 @@ export const signaleringDagersignaler: FlashCard[] = [
       "Två koner bas mot bas.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Motorkon",
+textInfo: "En segelbåt som använder motor samtidigt som seglen är uppe ska visa en motorkon med spetsen nedåt. Detta visar att båten räknas som motorbåt och ska följa dess väjningsregler."
   },
   {
     id: "signalering_dagersignaler-3",
@@ -48,5 +52,7 @@ export const signaleringDagersignaler: FlashCard[] = [
       "Det är förbjudet enligt lag.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Linfärja",
+    textInfo: "Man ska hålla stort avstånd till en linfärja eftersom den går på en vajer som kan lyftas upp mot vattenytan. Risk finns annars att fastna i vajern."
   },
 ];

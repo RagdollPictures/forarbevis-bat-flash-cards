@@ -16,5 +16,7 @@ export const sjomanskapKladsel: FlashCard[] = [
       "Baddräkt med flytväst.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Klädsel vid kallt vatten",
+textInfo: "Vid vattentemperaturer under 15 grader krävs torrdräkt för att minska risken för nedkylning. Vid exempelvis kajakpaddling i 10 grader kallt vatten är torrdräkt nödvändig för att kunna klara ett fall i vattnet."
   },
 ];

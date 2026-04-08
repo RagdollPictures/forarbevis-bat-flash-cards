@@ -15,6 +15,8 @@ export const manovreringHogFart: FlashCard[] = [
       "Flyttar besättningen till fören.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Wobbling i hög fart",
+  textInfo: "Om en båt börjar wobbla (pendla från sida till sida) i hög fart beror det oftast på för hög fart eller fel trim. För att återfå stabilitet måste man omedelbart minska farten, eftersom instabiliteten annars kan öka och bli farlig."
   },
   {
     id: "manovrering_hog_fart-2",
@@ -31,5 +33,7 @@ export const manovreringHogFart: FlashCard[] = [
       "För att undvika överhettning av motorn.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Dödmansgrepp",
+  textInfo: "Ett dödmansgrepp är en säkerhetsanordning som stoppar motorn om föraren lämnar sin plats, till exempel om man faller överbord. Det minskar risken att båten fortsätter okontrollerat och orsakar olyckor."
   },
 ];

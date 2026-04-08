@@ -16,6 +16,8 @@ export const sjomanskapSjovardighet: FlashCard[] = [
       "CE-klass D.",
     ],
     correctOptionIndex: 1,
+    textTitle: "CE-klass och användningsområde",
+textInfo: "För färder utomskärs, till exempel mellan Stockholm och Gotland, krävs minst CE-klass B. Denna klass är anpassad för öppet hav med högre vågor och hårdare vindar än inomskärs."
   },
   {
     id: "sjomanskap_sjovardighet-2",
@@ -32,6 +34,8 @@ export const sjomanskapSjovardighet: FlashCard[] = [
       "När den är CE-märkt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vad innebär sjövärdighet?",
+textInfo: "En båt är sjövärdig när den har rätt utrustning för färden och allt fungerar som det ska. Det gäller särskilt utrustning för navigation, säkerhet och nödsituationer."
   },
   {
     id: "sjomanskap_sjovardighet-3",
@@ -48,5 +52,7 @@ export const sjomanskapSjovardighet: FlashCard[] = [
       "Farten minskar marginellt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Risker med överlast",
+textInfo: "Att lasta en båt över dess tillåtna gräns försämrar stabiliteten och gör båten farligare att framföra. En överlastad båt kan bli svår att kontrollera och riskerar att kantra."
   },
 ];
