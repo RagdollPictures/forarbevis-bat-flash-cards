@@ -15,6 +15,9 @@ export const mataKortDistans: FlashCard[] = [
       "2,4 M.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Hur mäter man distans i sjökort?",
+    textInfo: "För att mäta en distans i sjökortet använder man en passare. Man placerar ena spetsen på startpunkten och den andra på slutpunkten så att avståndet mellan spetsarna motsvarar sträckan. Därefter flyttar man passaren till latitudskalan på sidan av sjökortet och placerar spetsarna mot skalan. Där läser man av distansen i distansminuter (M). Latitudskalan används eftersom en minut där alltid motsvarar en distansminut (1852 meter), vilket ger ett korrekt avstånd oavsett var på kartan man mäter."
+
   },
   {
     id: "mata_kort_distans-2",
@@ -28,6 +31,9 @@ export const mataKortDistans: FlashCard[] = [
       "0,9 M.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
+    
   },
   {
     id: "mata_kort_distans-3",
@@ -43,6 +49,9 @@ export const mataKortDistans: FlashCard[] = [
       "0,8 M.",
     ],
     correctOptionIndex: 1,
+  textTitle: "",
+    textInfo: "",
+    
   },
   {
     id: "mata_kort_distans-4",
@@ -58,6 +67,9 @@ export const mataKortDistans: FlashCard[] = [
       "2,0 M.",
     ],
     correctOptionIndex: 1,
+  textTitle: "",
+    textInfo: "",
+    
   },
   {
     id: "mata_kort_distans-5",
@@ -73,5 +85,8 @@ export const mataKortDistans: FlashCard[] = [
       "~400 meter.",
     ],
     correctOptionIndex: 1,
+  textTitle: "",
+    textInfo: "",
+    
   },
 ];

@@ -14,6 +14,8 @@ export const vaderstreck: FlashCard[] = [
       "Nord.",
     ],
     correctOptionIndex: 3,
+    textTitle: "Uppåt på jorden",
+    textInfo: "På jorden är norr alltid uppåt, det vill säga i riktning mot nordpolen. Detta gäller även på sjökort där norr alltid är uppåt när texten är rättvänd."
   },
   {
     id: "vaderstreck-2",
@@ -28,6 +30,8 @@ export const vaderstreck: FlashCard[] = [
       "270°.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Gradtal – öst",
+    textInfo: "Riktningen öst (E) motsvarar 90° i 360°-systemet. Gradtalen används för att ange riktning mer exakt än med bara ord."
   },
   {
     id: "vaderstreck-3",
@@ -42,6 +46,8 @@ export const vaderstreck: FlashCard[] = [
       "360°.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Gradtal – väst",
+    textInfo: "Riktningen väst (W) motsvarar 270°. Det är motsatt riktning till öst (90°)."
   },
   {
     id: "vaderstreck-4",
@@ -56,6 +62,8 @@ export const vaderstreck: FlashCard[] = [
       "Väst.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Bokstaven E",
+    textInfo: "Bokstaven E står för öst (East). Internationellt används E istället för Ö eller O för att undvika missförstånd."
   },
   {
     id: "vaderstreck-5",
@@ -71,5 +79,7 @@ export const vaderstreck: FlashCard[] = [
       "Azimuter.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Delväderstreck",
+    textInfo: "De väderstreck som ligger mellan de fyra huvudväderstrecken kallas interkardinaler. Exempel är nordost (NE), sydost (SE), sydväst (SW) och nordväst (NW)."
   },
 ];

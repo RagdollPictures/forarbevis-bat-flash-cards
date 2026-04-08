@@ -14,6 +14,8 @@ export const avdriftStrom: FlashCard[] = [
       "Propellerns rotation.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Vad orsakar avdrift?",
+    textInfo: "Avdrift orsakas av vinden som trycker båten i sidled. När det blåser från sidan påverkas både segelbåtar och motorbåtar och drivs bort från sin tänkta kurs.",
   },
   {
     id: "avdrift_strom-2",
@@ -29,6 +31,8 @@ export const avdriftStrom: FlashCard[] = [
       "Alltid mot babord.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Åt vilket håll blir avdriften?",
+    textInfo: "Avdriften sker åt det håll vinden blåser. Om vinden kommer från vänster trycks båten åt höger, och om vinden kommer från höger trycks båten åt vänster.",
   },
   {
     id: "avdrift_strom-3",
@@ -45,5 +49,7 @@ export const avdriftStrom: FlashCard[] = [
       "Endast farten genom vattnet påverkas.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Vad händer med båten i strömmande vatten?",
+    textInfo: "När det finns ström rör sig vattnet, och båten följer med i denna rörelse. Det innebär att båten förflyttas i strömmens riktning, även om man själv styr rakt fram.",
   },
 ];

@@ -15,6 +15,8 @@ export const fastaSjomarken: FlashCard[] = [
       "Fläck, boj, prick, sjömärke, tavla, mast, kummel och fyr.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Olika typer av fasta sjömärken",
+    textInfo: "Det finns åtta olika typer av fasta sjömärken: båk, kummel, stång, tavla, fast märke, fläck, fyr och sjövägmärken. Alla dessa används för att hjälpa navigatören att hitta rätt och undvika hinder.",
   },
   {
     id: "fasta_sjomarken-2",
@@ -29,6 +31,8 @@ export const fastaSjomarken: FlashCard[] = [
       "Träreglar.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Kummel – material",
+    textInfo: "Ett kummel är nästan alltid byggt av murade stenblock. De är ofta målade i svart och vitt för att synas tydligt.",
   },
   {
     id: "fasta_sjomarken-3",
@@ -39,10 +43,12 @@ export const fastaSjomarken: FlashCard[] = [
     options: [
       "Stål.",
       "Betong.",
-      "Trä (plankor och reglar).",
+      "Trä.",
       "Glasfiber.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Stång – material",
+    textInfo: "En stång är nästan alltid byggd av trä, oftast i form av plankor och reglar. Konstruktionen gör att den syns bra på långt håll.",
   },
   {
     id: "fasta_sjomarken-4",
@@ -57,6 +63,8 @@ export const fastaSjomarken: FlashCard[] = [
       "På öppet vatten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Fast märke – placering",
+    textInfo: "Ett fast märke står nästan alltid på ett grund. Det markerar att det är grunt vatten där och att man bör hålla avstånd.",
   },
   {
     id: "fasta_sjomarken-5",
@@ -72,6 +80,8 @@ export const fastaSjomarken: FlashCard[] = [
       "enslinje.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fyr – sjökortssymbol",
+    textInfo: "En fyr markeras på sjökortet med en stjärnsymbol. Fyrar är viktiga navigationshjälpmedel både i mörker och dagsljus.",
   },
   {
     id: "fasta_sjomarken-6",
@@ -86,6 +96,8 @@ export const fastaSjomarken: FlashCard[] = [
       "På floder.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Angöringsfyr – placering",
+    textInfo: "En angöringsfyr är oftast placerad långt ut i ytterskärgården eller ute till havs. Den är ofta stor och används som första riktmärke när man närmar sig land."
   },
   {
     id: "fasta_sjomarken-7",
@@ -100,7 +112,9 @@ export const fastaSjomarken: FlashCard[] = [
       "Signalfyrar.",
     ],
     correctOptionIndex: 2,
-  },
+    textTitle: "Fyrar med färgade sektorer",
+    textInfo: "Fyrar som lyser med olika färger åt olika håll kallas sektorfyrar. Det vita ljuset visar rätt väg, medan rött och grönt visar att man är fel i sidled."
+   },
   {
     id: "fasta_sjomarken-8",
     question:
@@ -115,6 +129,8 @@ export const fastaSjomarken: FlashCard[] = [
       "Riktlinje.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Enslinje – vad är det?",
+    textInfo: "När två fasta sjömärken är placerade så att de ligger exakt bakom varandra från en viss position kallas det en enslinje. När märkena står i linje vet man att man håller rätt kurs."
   },
   {
     id: "fasta_sjomarken-9",
@@ -130,5 +146,7 @@ export const fastaSjomarken: FlashCard[] = [
       "Fyrar, kummel, tavlor och prickar.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Sjövägmärken – typer",
+    textInfo: "Det finns fyra typer av sjövägmärken: varningsmärken, förbudsmärken, påbudsmärken och upplysningsmärken. De används för att ge information, varningar och regler till sjötrafiken."
   },
 ];

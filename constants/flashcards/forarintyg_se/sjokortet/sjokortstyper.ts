@@ -15,6 +15,8 @@ export const sjokortstyper: FlashCard[] = [
       "Båtsportkort.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Planering och öppet hav",
+    textInfo: "De sjökort som används för planering eller längre färder på öppet hav kallas översiktskort. De har liten skala (t.ex. runt 1:500 000) och visar stora områden men med få detaljer."
   },
   {
     id: "sjokortstyper-2",
@@ -30,6 +32,8 @@ export const sjokortstyper: FlashCard[] = [
       "Specialkort.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Utanför skärgården",
+    textInfo: "När man navigerar utanför skärgården, längs kusten men inte inne bland öar, använder man kustkort. De är anpassade för kustnära navigation men saknar detaljer inne i skärgården."
   },
   {
     id: "sjokortstyper-3",
@@ -44,6 +48,8 @@ export const sjokortstyper: FlashCard[] = [
       "1:50 000.",
     ],
     correctOptionIndex: 3,
+    textTitle: "Skärgårdskort – skala",
+    textInfo: "Skärgårdskort har vanligtvis skalan 1:50 000. De innehåller många detaljer och används för navigation inne i skärgården där noggrannhet är viktig.",
   },
   {
     id: "sjokortstyper-4",
@@ -59,6 +65,8 @@ export const sjokortstyper: FlashCard[] = [
       "Djupkort.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Sjökort för fritidsbåtar",
+    textInfo: "Sjökort som är särskilt anpassade för fritidsbåtar kallas båtsportkort. De är ofta samlade i pärmar och innehåller skärgårdskort, specialkort och hamnkort i ett praktiskt format."
   },
   {
     id: "sjokortstyper-5",
@@ -74,6 +82,8 @@ export const sjokortstyper: FlashCard[] = [
       "1 000 meter.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skala – avstånd i verkligheten",
+    textInfo: "På ett sjökort i skalan 1:50 000 motsvarar 1 mm i verkligheten 50 meter. Det betyder att 2 mm på sjökortet motsvarar 100 meter i verkligheten."
   },
   {
     id: "sjokortstyper-6",
@@ -88,6 +98,8 @@ export const sjokortstyper: FlashCard[] = [
       "Papperskort.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Sjökort i navigator",
+    textInfo: "De sjökort som används i en navigator kallas elektroniska sjökort. De visas på en skärm och visar båtens position i realtid."
   },
   {
     id: "sjokortstyper-7",
@@ -103,6 +115,8 @@ export const sjokortstyper: FlashCard[] = [
       "Kustbevakningen.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ansvarig myndighet",
+    textInfo: "I Sverige är det Sjöfartsverket som ansvarar för att ta fram sjökort och sjökortsdata."
   },
   {
     id: "sjokortstyper-8",
@@ -118,6 +132,8 @@ export const sjokortstyper: FlashCard[] = [
       "Båtsportkort.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Tresiffriga sjökort",
+    textInfo: "Ett sjökort med ett tresiffrigt nummer, till exempel 616 eller 931, är ett skärgårdskort. Dessa används för detaljerad navigation i skärgården."
   },
   {
     id: "sjokortstyper-9",
@@ -127,6 +143,8 @@ export const sjokortstyper: FlashCard[] = [
     answer: "Två.",
     options: ["En.", "Två.", "Tre.", "Fyra."],
     correctOptionIndex: 1,
+    textTitle: "Kustkort – antal siffror",
+    textInfo: "Kustkort har tvåsiffriga nummer. Numret visar vilken typ av sjökort det är och skiljer det från andra kategorier."
   },
   {
     id: "sjokortstyper-10",
@@ -141,6 +159,8 @@ export const sjokortstyper: FlashCard[] = [
       "1:100 000.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Skala – skärgårdskort (övningskort 616/931)",
+    textInfo: "Övningssjökorten 616 och 931 är skärgårdskort och har skalan 1:50 000.",
   },
   {
     id: "sjokortstyper-11",
@@ -155,5 +175,7 @@ export const sjokortstyper: FlashCard[] = [
       "1:10 000.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skala – specialkort (6163/9313)",
+    textInfo: "Övningssjökorten 6163 och 9313 är specialkort och har skalan 1:25 000. De används i områden där ännu fler detaljer behövs, till exempel i trafikerade farleder."
   },
 ];

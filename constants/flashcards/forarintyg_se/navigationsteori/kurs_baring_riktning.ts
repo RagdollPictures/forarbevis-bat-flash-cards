@@ -14,6 +14,8 @@ export const kursBaringRiktning: FlashCard[] = [
       "Mellan kompass och GPS.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Vad mäts kurs mellan?",
+    textInfo: "En kurs är den riktning som båten färdas i. Den mäts mellan norr och båtens långskeppslinje, alltså den riktning som fören pekar.",
   },
   {
     id: "kurs_baring_riktning-2",
@@ -28,6 +30,8 @@ export const kursBaringRiktning: FlashCard[] = [
       "Mellan vinden och kursen.",
     ],
     correctOptionIndex: 1,
+     textTitle: "Vad mäts bäring mellan?",
+    textInfo: "En bäring visar var något ligger i förhållande till norr. Den mäts mellan norr och den punkt eller det objekt som bäringen pekar mot.",
   },
   {
     id: "kurs_baring_riktning-3",
@@ -43,5 +47,7 @@ export const kursBaringRiktning: FlashCard[] = [
       "Mellan vinden och fören.",
     ],
     correctOptionIndex: 2,
+     textTitle: "Vad mäts riktning mellan?",
+    textInfo: "En riktning beskriver var något finns i förhållande till den egna båten. Den mäts mellan båtens långskeppslinje och det objekt som riktningen pekar mot.",
   },
 ];

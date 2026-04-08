@@ -15,6 +15,9 @@ export const taFramPosition: FlashCard[] = [
       "N57°53,9' / E011°32,5'.",
     ],
     correctOptionIndex: 0,
+  textTitle: "Hur tar man fram en position i sjökort?",
+  textInfo: "För att ta fram en position använder man en passare för att läsa av latitud och longitud var för sig. För latitud placerar man ena spetsen på platsen och den andra på en latitudparallell, flyttar passaren till latitudskalan och läser av värdet i nordlig eller sydlig riktning. För longitud gör man på samma sätt men använder istället en longitudparallell och läser av på skalan uppe eller nere i sjökortet i östlig eller västlig riktning. Positionen skrivs alltid med latitud först och longitud sedan."
+
   },
   {
     id: "ta_fram_position-2",
@@ -30,6 +33,8 @@ export const taFramPosition: FlashCard[] = [
       "N57°51,2' / E011°31,5'.",
     ],
     correctOptionIndex: 0,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "ta_fram_position-3",
@@ -45,6 +50,8 @@ export const taFramPosition: FlashCard[] = [
       "N57°47,5' / E011°32,4'.",
     ],
     correctOptionIndex: 0,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "ta_fram_position-4",
@@ -60,5 +67,7 @@ export const taFramPosition: FlashCard[] = [
       "N57°34,7' / E011°38,5'.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
   },
 ];

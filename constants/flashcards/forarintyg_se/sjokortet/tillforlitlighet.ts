@@ -14,6 +14,8 @@ export const tillforlitlighet: FlashCard[] = [
       "Kustbevakningen.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Myndighet som gör sjömätningar",
+    textInfo: "I Sverige är det främst Sjöfartsverket som gör sjömätningar för svenska sjökort. Det finns också privata företag som mäter upp vissa områden, men Sjöfartsverket är den myndighet som ansvarar för de svenska sjökorten."
   },
   {
     id: "tillforlitlighet-2",
@@ -29,6 +31,8 @@ export const tillforlitlighet: FlashCard[] = [
       "SJV.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Veckovisa rättelser",
+    textInfo: "De rättelser och uppdateringar som ges ut varje vecka för sjökort kallas Ufs, vilket står för Underrättelser för sjöfarande. Där publiceras löpande ny information om förändringar och fel som har upptäckts i sjökort eller farvatten."
   },
   {
     id: "tillforlitlighet-4",
@@ -44,6 +48,8 @@ export const tillforlitlighet: FlashCard[] = [
       "JRCC.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fel på sjökort",
+    textInfo: "Om man upptäcker fel på ett sjökort, till exempel ett grund som inte finns markerat, ska det anmälas till Sjöfartsverket. De tar emot felrapporter och ansvarar för att sjökort och sjökortsdata rättas."
   },
   {
     id: "tillforlitlighet-5",
@@ -59,5 +65,7 @@ export const tillforlitlighet: FlashCard[] = [
       "Över 300 år sedan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Gamla sjömätningar inomskärs",
+    textInfo: "Mellan öarna inomskärs är sjömätningarna ofta mycket gamla. I många områden gjordes de för runt 100 år sedan, ibland ännu längre tillbaka, vilket betyder att sjökorten där kan vara mindre tillförlitliga än i moderna farleder och ute till havs."
   },
 ];

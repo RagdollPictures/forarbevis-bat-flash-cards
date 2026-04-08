@@ -14,6 +14,8 @@ export const navigationsbestick: FlashCard[] = [
       "Pejlkompass.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Mäta distans",
+    textInfo: "Det bestick man använder för att mäta avstånd på ett sjökort är en passare. Avståndet mellan spetsarna justeras så att man kan mäta distanser mellan olika punkter."
   },
   {
     id: "navigationsbestick-2",
@@ -28,6 +30,8 @@ export const navigationsbestick: FlashCard[] = [
       "Logg.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Mäta kurs",
+    textInfo: "För att mäta riktning eller kurs på sjökortet använder man en transportör. Den används för att läsa av vinklar i grader, till exempel vilken kurs man ska styra."
   },
   {
     id: "navigationsbestick-3",
@@ -43,6 +47,8 @@ export const navigationsbestick: FlashCard[] = [
       "Kompass.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Flytta kursmätning",
+    textInfo: "För att kunna förflytta och arbeta med transportören på sjökortet använder man en linjal. Den hjälper till att flytta kurslinjer utan att ändra riktningen."
   },
   {
     id: "navigationsbestick-4",
@@ -58,5 +64,7 @@ export const navigationsbestick: FlashCard[] = [
       "För att bläck förstör kortet direkt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Blyertspenna – varför?",
+    textInfo: "Man använder en blyertspenna när man ritar på sjökort eftersom det man ritat då går att sudda bort. Det gör att man kan korrigera sina markeringar utan att skada sjökortet."
   },
 ];

@@ -15,6 +15,9 @@ export const krysspejling: FlashCard[] = [
       "8 meter.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Hur gör man en krysspejling i sjökort?",
+    textInfo: "Vid krysspejling tar man bäringar till två kända objekt, till exempel fyrar, med en pejlkompass. Dessa bäringar ritas sedan in som linjer i sjökortet från respektive objekt. Där linjerna korsar varandra är den egna positionen. Metoden används för att snabbt och relativt noggrant bestämma var man befinner sig."
+
   },
   {
     id: "krysspejling-2",
@@ -30,6 +33,8 @@ export const krysspejling: FlashCard[] = [
       "27 meter.",
     ],
     correctOptionIndex: 2,
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "krysspejling-3",
@@ -45,6 +50,8 @@ export const krysspejling: FlashCard[] = [
       "Ett fiskodlingsområde.",
     ],
     correctOptionIndex: 2,
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "krysspejling-4",
@@ -60,5 +67,7 @@ export const krysspejling: FlashCard[] = [
       "24 meter.",
     ],
     correctOptionIndex: 2,
+     textTitle: "",
+    textInfo: "",
   },
 ];

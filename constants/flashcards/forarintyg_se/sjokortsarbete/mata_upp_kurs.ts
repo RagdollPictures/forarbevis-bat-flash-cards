@@ -15,6 +15,8 @@ export const mataUppKurs: FlashCard[] = [
       "225°.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Hur mäter man upp en kurs i sjökort?",
+    textInfo: "För att mäta en kurs lägger man först en linjal mellan start- och målpunkt och håller den stilla. Därefter placerar man transportören mot linjalen med spetsen i färdriktningen. Transportören förflyttas sedan parallellt tills dess centrum ligger över en longitudparallell. Då kan man läsa av den rättvisande kursen på gradskalan där siffrorna är rättvända mot dig."
   },
   {
     id: "mata_upp_kurs-2",
@@ -30,6 +32,8 @@ export const mataUppKurs: FlashCard[] = [
       "290°.",
     ],
     correctOptionIndex: 1,
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "mata_upp_kurs-3",
@@ -45,6 +49,8 @@ export const mataUppKurs: FlashCard[] = [
       "198°.",
     ],
     correctOptionIndex: 1,
+     textTitle: "",
+    textInfo: "",
   },
   {
     id: "mata_upp_kurs-4",
@@ -60,5 +66,7 @@ export const mataUppKurs: FlashCard[] = [
       "044°.",
     ],
     correctOptionIndex: 1,
+     textTitle: "",
+    textInfo: "",
   },
 ];

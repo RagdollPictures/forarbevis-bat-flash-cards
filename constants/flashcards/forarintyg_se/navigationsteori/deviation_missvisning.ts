@@ -15,6 +15,8 @@ export const deviationMissvisning: FlashCard[] = [
       "Vindens påverkan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vad orsakar deviation på magnetkompassen ombord?",
+    textInfo: "Deviation orsakas av magnetiska störningar ombord på båten. Det kan vara metallföremål, motorer, kablar och annan utrustning som påverkar kompassen och gör att den visar fel.",
   },
   {
     id: "deviation_missvisning-2",
@@ -31,6 +33,8 @@ export const deviationMissvisning: FlashCard[] = [
       "Endast i hård vind.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Förändras deviationen om kursen ändras?",
+    textInfo: "Ja, deviationen förändras när man ändrar kurs. Det beror på att båtens magnetiska påverkan samverkar olika med jordens magnetfält beroende på vilken riktning båten har.",
   },
   {
     id: "deviation_missvisning-3",
@@ -46,6 +50,8 @@ export const deviationMissvisning: FlashCard[] = [
       "Endast i insjöar.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Är deviationen olika beroende på var man befinner sig?",
+    textInfo: "Nej, deviationen beror på båten – inte platsen. Samma båt har samma deviation oavsett om den befinner sig på västkusten eller ostkusten.",
   },
   {
     id: "deviation_missvisning-4",
@@ -61,6 +67,8 @@ export const deviationMissvisning: FlashCard[] = [
       "Batterifel.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Vad orsakar missvisning på magnetkompassen?",
+    textInfo: "Missvisning orsakas av jordens magnetfält och att den magnetiska nordpolen inte ligger på samma plats som den geografiska nordpolen. Kompassen pekar mot den magnetiska nordpolen, medan kartor utgår från den geografiska.",
   },
   {
     id: "deviation_missvisning-5",
@@ -77,6 +85,8 @@ export const deviationMissvisning: FlashCard[] = [
       "Endast vid låg fart.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Förändras missvisningen om kursen ändras?",
+    textInfo: "Nej, missvisningen påverkas inte av vilken kurs man håller. Den är i princip konstant inom ett område och förändras bara om man flyttar sig geografiskt eller över tid.",
   },
   {
     id: "deviation_missvisning-6",
@@ -92,5 +102,7 @@ export const deviationMissvisning: FlashCard[] = [
       "Endast i insjöar.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Är missvisningen olika på västkusten och ostkusten?",
+    textInfo: "Ja, missvisningen varierar beroende på plats. I Sverige är den till exempel mindre på västkusten och större i norra Östersjön.",
   },
 ];

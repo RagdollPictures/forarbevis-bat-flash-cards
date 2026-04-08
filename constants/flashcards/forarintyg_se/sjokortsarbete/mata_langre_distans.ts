@@ -15,6 +15,8 @@ export const mataLangreDistans: FlashCard[] = [
       "~6,9 M.",
     ],
     correctOptionIndex: 1,
+  textTitle: "Hur mäter man längre distanser i sjökort?",
+  textInfo: "Vid längre distanser räcker inte passaren i ett steg. Då ställer man först in passaren på exakt 1 distansminut på latitudskalan. Sedan placerar man ena spetsen på startpunkten och 'stegar' fram passaren mot målet, steg för steg, och räknar antalet hela distansminuter. När man kommer nära slutpunkten justerar man passaren för den sista delen och läser av den på latitudskalan. Till sist summerar man hela steg och den sista delen för att få den totala distansen i distansminuter."
   },
   {
     id: "mata_langre_distans-2",
@@ -30,6 +32,8 @@ export const mataLangreDistans: FlashCard[] = [
       "~7 M.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "mata_langre_distans-3",
@@ -45,6 +49,8 @@ export const mataLangreDistans: FlashCard[] = [
       "~12 M.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "mata_langre_distans-4",
@@ -60,5 +66,7 @@ export const mataLangreDistans: FlashCard[] = [
       "~30 M.",
     ],
     correctOptionIndex: 2,
+    textTitle: "",
+    textInfo: "",
   },
 ];

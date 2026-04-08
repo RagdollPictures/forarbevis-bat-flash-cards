@@ -14,6 +14,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Ekolodet.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Vilket instrument visar kompasskurs (KK)?",
+    textInfo: "Kompasskursen (KK) visas av den magnetiska kompassen ombord. Det är den kurs du faktiskt styr efter i båten.",
   },
   {
     id: "ratta_satta_kurs-2",
@@ -28,6 +30,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Magnetisk kurs.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Vad kallas kursen man mäter i sjökortet?",
+    textInfo: "Den kurs man mäter eller ritar ut i sjökortet kallas rättvisande kurs (K). Den baseras på geografisk nord och är utgångspunkt vid planering.",
   },
   {
     id: "ratta_satta_kurs-3",
@@ -42,6 +46,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Magnetisk bäring.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Vilken kurs visas på navigatorn?",
+    textInfo: "Navigatorn visar kurs över grund (KÖG). Det är den verkliga riktningen båten rör sig över botten.",
   },
   {
     id: "ratta_satta_kurs-4",
@@ -57,6 +63,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Fart och tid.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Vilka fel finns mellan kompasskurs och rättvisande kurs?",
+    textInfo: "Mellan KK och K måste man ta hänsyn till: Deviation (d) – båtens magnetiska påverkan och missvisning (m) – jordens magnetiska påverkan",
   },
   {
     id: "ratta_satta_kurs-5",
@@ -72,6 +80,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Vindstyrka och siktdjup.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Vilka fel finns mellan rättvisande kurs och kurs över grund?",
+    textInfo: "Mellan K och KÖG påverkas kursen av: Avdrift – vindens påverkan och ström – vattnets rörelse",
   },
   {
     id: "ratta_satta_kurs-6",
@@ -87,6 +97,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "Multiplicerat med två.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Vilket tecken har ostliga fel?",
+    textInfo: "I beräkningar gäller: Ostliga fel (E) = positiva (+) Västliga fel (W) = negativa (−)",
   },
   {
     id: "ratta_satta_kurs-7",
@@ -102,6 +114,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "098°.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Hur påverkar missvisning kursen?",
+    textInfo: "Om du styr 090° (KK) och har +4° ostlig missvisning: kursen blir 094° (KÖG). Ostlig = lägg till",
   },
   {
     id: "ratta_satta_kurs-8",
@@ -117,6 +131,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "100°.",
     ],
     correctOptionIndex: 2,
+      textTitle: "Hur kompenserar man för avdrift?",
+    textInfo: "Om du vill gå 090° (KÖG) men har 5° avdrift från höger: du måste styra 095° (KK). Du styr upp mot vinden",
   },
   {
     id: "ratta_satta_kurs-9",
@@ -132,6 +148,8 @@ export const rattaSattaKurs: FlashCard[] = [
       "179°.",
     ],
     correctOptionIndex: 1,
+      textTitle: "Hur rättar man en bäring?",
+    textInfo: "Om du mäter 185° (KK) och har 4° västlig missvisning: rättvisande bäring blir 181° (K) Västlig = dra bort",
   },
   {
     id: "ratta_satta_kurs-10",
@@ -147,5 +165,7 @@ export const rattaSattaKurs: FlashCard[] = [
       "342°.",
     ],
     correctOptionIndex: 0,
+      textTitle: "Hur sätter man kurs från sjökort till kompass?",
+    textInfo: "Om kursen i sjökortet är 350° (K) och missvisningen är +4°E: - kompasskurs blir 346° (KK) Du räknar baklänges",
   },
 ];

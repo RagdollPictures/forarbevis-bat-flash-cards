@@ -14,6 +14,9 @@ export const markeraPosition: FlashCard[] = [
       "Ett punktmärke.",
     ],
     correctOptionIndex: 2,
+  textTitle: "Hur markerar man en position i sjökort?",
+  textInfo: "För att markera en position använder man en passare för både latitud och longitud. Man börjar med att mäta upp latituden från latitudskalan och lägger ut den på rätt latitudparallell i sjökortet. Därefter gör man samma sak med longituden från longitudskalan och lägger ut den på rätt longitudparallell. När båda avstånden är utlagda flyttar man passarna så att de möts – där spetsarna möts är den exakta positionen."
+
   },
   {
     id: "markera_position-2",
@@ -28,6 +31,8 @@ export const markeraPosition: FlashCard[] = [
       "Donsö Svartskär.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "markera_position-3",
@@ -43,6 +48,8 @@ export const markeraPosition: FlashCard[] = [
       "Ett mittledsmärke.",
     ],
     correctOptionIndex: 2,
+    textTitle: "",
+    textInfo: "",
   },
   {
     id: "markera_position-4",
@@ -58,5 +65,7 @@ export const markeraPosition: FlashCard[] = [
       "25 meter.",
     ],
     correctOptionIndex: 1,
+    textTitle: "",
+    textInfo: "",
   },
 ];

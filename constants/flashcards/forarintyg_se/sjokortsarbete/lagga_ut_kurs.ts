@@ -15,6 +15,10 @@ export const laggaUtKurs: FlashCard[] = [
       "Donsö.",
     ],
     correctOptionIndex: 1,
+    
+  textTitle: "Hur lägger man ut en kurs i sjökort?",
+  textInfo: "För att lägga ut en kurs börjar man med att placera transportören så att dess centrum ligger på en longitudparallell och ställa in rätt gradtal. Därefter parallellförflyttar man transportören med hjälp av en linjal tills dess kant passerar startpositionen. När transportören ligger rätt kan man följa kanten eller rita en linje för att se vart kursen leder."
+
   },
   {
     id: "lagga_ut_kurs-2",
@@ -30,6 +34,8 @@ export const laggaUtKurs: FlashCard[] = [
       "Stora Pölsan.",
     ],
     correctOptionIndex: 2,
+       textTitle: "",
+    textInfo: "",
   },
   {
     id: "lagga_ut_kurs-3",
@@ -46,6 +52,8 @@ export const laggaUtKurs: FlashCard[] = [
       "Räven.",
     ],
     correctOptionIndex: 1,
+       textTitle: "",
+    textInfo: "",
   },
   {
     id: "lagga_ut_kurs-4",
@@ -61,6 +69,8 @@ export const laggaUtKurs: FlashCard[] = [
       "Sör-Kråkan.",
     ],
     correctOptionIndex: 1,
+       textTitle: "",
+    textInfo: "",
   },
 ];
 

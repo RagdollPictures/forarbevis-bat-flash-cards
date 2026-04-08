@@ -14,6 +14,8 @@ export const distans: FlashCard[] = [
       "2 000 meter.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hur många meter är en distansminut?",
+    textInfo: "En distansminut (M) är en längdenhet som används vid navigation och motsvarar 1 852 meter. Den är kopplad till jordens storlek och används istället för meter eller kilometer till sjöss.",
   },
   {
     id: "distans-2",
@@ -30,5 +32,7 @@ export const distans: FlashCard[] = [
       "Ingen av dem.",
     ],
     correctOptionIndex: 1,
+       textTitle: "Är en distansminut kopplad till latituden eller longituden?",
+    textInfo: "En distansminut är kopplad till latituden. En latitudgrad är uppdelad i 60 minuter, och varje sådan minut motsvarar exakt en distansminut.",
   },
 ];
