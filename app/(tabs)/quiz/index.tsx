@@ -255,7 +255,7 @@ export default function QuizMenuScreen() {
     height: layout.viewBox.height * scale,
   }}
 >
-  {/* SVG BACKGROUND */}
+  {/* SVG bakgrund */}
   <LevelSvg
     width={screenWidth}
     height={layout.viewBox.height * scale}
@@ -265,7 +265,7 @@ export default function QuizMenuScreen() {
       top: 0,
     }}
   />
-          {firstNodes.map((node) => {
+          {placedNodes.map((node) => {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
             const isUnlocked = unlockedIds.has(node.quizId);
@@ -356,7 +356,7 @@ export default function QuizMenuScreen() {
 
                 <Text
                   numberOfLines={2}
-                  style={[styles.title, !isUnlocked && styles.tileLocked]}
+                  style={[styles.title, !isUnlocked && styles.titleLocked]}
                 >
                   {node.title}
                 </Text>
