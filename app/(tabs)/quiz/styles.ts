@@ -81,7 +81,32 @@ export const styles = StyleSheet.create({
     color: "#111",
   },
 
-  titleLocked: {
-    color: "rgba(17,17,17,0.55)",
+  tileLocked: {
+  opacity: 0.4,
+},
+titleLocked: {
+  color: "rgba(17,17,17,0.55)",
+},
+absoluteNode: {
+  position: "absolute",
+  width: 90,
+  alignItems: "center",
+},
+
+readCircle: {
+  width: 90,
+  height: 90,
+  borderRadius: 45,
+  backgroundColor: "#ffffff",
+  alignItems: "center",
+  justifyContent: "center",
+  shadowColor: "#000",
+  shadowOffset: {
+    width: 0,
+    height: 4,
   },
+  shadowOpacity: 0.12,
+  shadowRadius: 8,
+  elevation: 4,
+},
 });

@@ -1,0 +1,36 @@
+{
+  "viewBox": {
+    "width": 375,
+    "height": 7000
+  },
+  "anchors": [
+    {
+      "id": "anchor_read_001",
+      "type": "read",
+      "index": 1,
+      "x": 97,
+      "y": 92.13
+    },
+    {
+      "id": "anchor_quiz_001",
+      "type": "quiz",
+      "index": 1,
+      "x": 268.28,
+      "y": 130.19
+    },
+    {
+      "id": "anchor_read_002",
+      "type": "read",
+      "index": 2,
+      "x": 110.71,
+      "y": 215.45
+    },
+    {
+      "id": "anchor_quiz_002",
+      "type": "quiz",
+      "index": 2,
+      "x": 268.28,
+      "y": 290.05
+    }
+  ]
+}

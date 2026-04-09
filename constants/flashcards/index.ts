@@ -453,6 +453,28 @@ export type Quiz = {
   deck: MultipleChoiceCard[];
 };
 
+export type ReadSection = {
+  id: string;
+  title: string;
+  body: string;
+};
+
+export function buildReadSections(deckId: string): ReadSection[] {
+  const cards = getDeck(deckId);
+
+  return cards
+    .map((card, index) => {
+      if (!card.textTitle && !card.textInfo) return null;
+
+      return {
+        id: `${deckId}-${index}`,
+        title: card.textTitle ?? `Avsnitt ${index + 1}`,
+        body: card.textInfo ?? "",
+      };
+    })
+    .filter((s): s is ReadSection => s !== null);
+}
+
 function isMultipleChoiceCard(c: FlashCard): c is MultipleChoiceCard {
   const anyC: any = c;
   return (
