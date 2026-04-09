@@ -1,9 +1,9 @@
 import { router } from "expo-router";
 import { useEffect } from "react";
 
-export default function QuizIndexScreen() {
+export default function GameIndexScreen() {
   useEffect(() => {
-    router.replace("/quiz/level_001");
+    router.replace("/game/level_001");
   }, []);
 
   return null;

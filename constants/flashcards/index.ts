@@ -529,6 +529,39 @@ export function getQuizzes(sourceId: string): Quiz[] {
     .filter((q) => q.deck.length > 0);
 }
 
+function findChapterById(chapters: Chapter[], chapterId: string): Chapter | null {
+  for (const ch of chapters) {
+    if (ch.id === chapterId) return ch;
+
+    if (ch.children?.length) {
+      const found = findChapterById(ch.children, chapterId);
+      if (found) return found;
+    }
+  }
+
+  return null;
+}
+
+export function getQuizzesForChapter(sourceId: string, chapterId: string): Quiz[] {
+  const chapters = getChapters(sourceId);
+  const chapter = findChapterById(chapters, chapterId);
+
+  if (!chapter) return [];
+
+  const targets = chapter.children?.length ? chapter.children : [chapter];
+
+  return targets
+    .filter((ch): ch is Chapter & { deckId: string } => !!ch.deckId)
+    .map((ch) => ({
+      id: ch.id,
+      title: ch.title,
+      subtitle: chapter.title,
+      sourceId,
+      deck: buildQuizDeckFromDeckId(ch.deckId),
+    }))
+    .filter((q) => q.deck.length > 0);
+}
+
 export function getQuizById(quizId: string): Quiz | null {
   for (const source of sources) {
     const quiz = getQuizzes(source.id).find((q) => q.id === quizId);

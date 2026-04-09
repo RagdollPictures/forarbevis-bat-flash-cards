@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 2000">
+  <defs>
+    <style>
+      .cls-1 {
+        font-size: 25.69px;
+      }
+
+      .cls-1, .cls-2 {
+        fill: #0183e1;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-3 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-4 {
+        fill: #8ae7d4;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        fill: #fff;
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: .02em;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-14 {
+        letter-spacing: -.02em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-2 {
+        font-size: 22.31px;
+      }
+    </style>
+  </defs>
+  <g id="bg">
+    <polygon class="cls-4" points="375 2003.06 0 2002.41 0 0 375 .65 375 2003.06"/>
+  </g>
+  <g id="path">
+    <path class="cls-13" d="M199.66,169.55c57.51.04,112.44-1.09,111.25,63.37-2.54,137.08-239.02,3.07-239.02,137.04s245.05,28.92,245.05,159.47c0,172-244.22,6.98-244.22,158.46,0,0-9.24,99.04,116.93,83.73,126.17-15.31,126.63,32.41,127.3,74.73s-16.5,110.42-119.43,64.82c-69.29-30.69-125.16,61.22-125.16,101.74,0,0-8.35,65.15,117.31,60.48s127.39,54.49,127.31,107.42-62.98,42.03-152.96,42.03-100.59,66.94-99.95,115.2,38.57,66.94,141.81,48.26,111.11,26.46,111.11,80.95-39.01,99.63-151.7,43.59c-100.17-49.81-101.22,141.66-101.22,141.66"/>
+  </g>
+  <g id="anchor_read_016">
+    <circle class="cls-7" cx="199.66" cy="172.25" r="10"/>
+  </g>
+  <g id="anchor_quiz_016">
+    <circle class="cls-7" cx="307.24" cy="253.04" r="10"/>
+  </g>
+  <g id="anchor_read_017">
+    <circle class="cls-7" cx="163.99" cy="301.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_017">
+    <circle class="cls-7" cx="72.21" cy="374.4" r="10"/>
+  </g>
+  <g id="anchor_read_018">
+    <circle class="cls-7" cx="199.66" cy="452.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_018">
+    <circle class="cls-7" cx="316.95" cy="556.54" r="10"/>
+  </g>
+  <g id="anchor_read_019">
+    <circle class="cls-7" cx="173.99" cy="614.14" r="10"/>
+  </g>
+  <g id="anchor_quiz_019">
+    <circle class="cls-7" cx="72.34" cy="705.33" r="10"/>
+  </g>
+  <g id="anchor_read_020">
+    <circle class="cls-7" cx="199.66" cy="768.26" r="10"/>
+  </g>
+  <g id="anchor_quiz_020">
+    <circle class="cls-7" cx="317.24" cy="860.05" r="10"/>
+  </g>
+  <g id="anchor_read_021">
+    <circle class="cls-7" cx="98.04" cy="945.73" r="10"/>
+  </g>
+  <g id="anchor_quiz_021">
+    <circle class="cls-7" cx="165.25" cy="1070.27" r="10"/>
+  </g>
+  <g id="anchor_read_022">
+    <circle class="cls-7" cx="316.95" cy="1155.89" r="10"/>
+  </g>
+  <g id="anchor_quiz_022">
+    <circle class="cls-7" cx="165.25" cy="1220.1" r="10"/>
+  </g>
+  <g id="anchor_read_023">
+    <circle class="cls-7" cx="62.21" cy="1305.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_023">
+    <circle class="cls-7" cx="163.99" cy="1390.96" r="10"/>
+  </g>
+  <g id="anchor_read_024">
+    <circle class="cls-7" cx="317.24" cy="1470.36" r="10"/>
+  </g>
+  <g id="anchor_quiz_024">
+    <circle class="cls-7" cx="108.04" cy="1509.28" r="10"/>
+  </g>
+  <g id="text_praktiskt_arbete_i_sjokort">
+    <text class="cls-1" transform="translate(164.02 1697.18)"><tspan class="cls-3" x="0" y="0">T</tspan><tspan class="cls-9" x="10.95" y="0">est</tspan></text>
+    <text class="cls-2" transform="translate(62.34 1729.87)"><tspan class="cls-14" x="0" y="0">P</tspan><tspan class="cls-11" x="11.51" y="0">r</tspan><tspan x="18.7" y="0">aktiskt </tspan><tspan class="cls-6" x="83.95" y="0">A</tspan><tspan class="cls-15" x="97.54" y="0">r</tspan><tspan x="104.92" y="0">be</tspan><tspan class="cls-8" x="128.8" y="0">t</tspan><tspan x="136.05" y="0">e i </tspan><tspan class="cls-5" x="161.91" y="0">S</tspan><tspan class="cls-12" x="172.82" y="0">jöko</tspan><tspan class="cls-10" x="213.21" y="0">r</tspan><tspan x="221.04" y="0">t</tspan></text>
+    <rect class="cls-13" x="28.83" y="1652.5" width="318.93" height="97.24" rx="10" ry="10"/>
+  </g>
+</svg>
