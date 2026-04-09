@@ -4,14 +4,14 @@ import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import level1 from "../../../assets/game/level_001.json";
-import type { LevelLayout } from "./levelTypes";
-
+import LevelSvg from "../../../assets/game/level_001.svg";
 import { getQuizzes } from "../../../constants/flashcards";
 import {
   getAllQuizProgress,
   type SavedQuizProgress,
   saveQuizProgress,
 } from "../../../constants/flashcards/quizProgress";
+import type { LevelLayout } from "./levelTypes";
 
 import { colorScheme } from "@/constants/colors";
 import ProgressRing from "./components/ProgressRing";
@@ -249,12 +249,22 @@ export default function QuizMenuScreen() {
         ) : null}
 
         <View
-          style={{
-            position: "relative",
-            width: "100%",
-            height: 420,
-          }}
-        >
+  style={{
+    position: "relative",
+    width: "100%",
+    height: layout.viewBox.height * scale,
+  }}
+>
+  {/* SVG BACKGROUND */}
+  <LevelSvg
+    width={screenWidth}
+    height={layout.viewBox.height * scale}
+    style={{
+      position: "absolute",
+      left: 0,
+      top: 0,
+    }}
+  />
           {firstNodes.map((node) => {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
@@ -300,7 +310,7 @@ export default function QuizMenuScreen() {
 
                   <Text
                     numberOfLines={2}
-                    style={[styles.title, !isUnlocked && styles.tileLocked]}
+                    style={[styles.title, !isUnlocked && styles.titleLocked]}
                   >
                     {node.title}
                   </Text>
