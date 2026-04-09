@@ -10,12 +10,14 @@ export const miljoEcoDriving: FlashCard[] = [
     answer:
       "Alkylatbensin, Ecopar-diesel eller HVO100-diesel.",
     options: [
-      "95-oktanig bensin.",
+      "Blankdiesel.",
       "Alkylatbensin.",
       "Standarddiesel utan inblandning.",
       "Tvåtaktsbensin med oljeblandning.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Miljövänligare bränslen",
+textInfo: "Miljövänligare alternativ till vanlig bensin och diesel är exempelvis alkylatbensin, EcoPar och HVO100. Dessa bränslen ger renare förbränning, minskar utsläpp och kan dessutom göra att motorn slits mindre och fungerar bättre över tid."
   },
   {
     id: "miljo_eco_driving-2",
@@ -32,6 +34,8 @@ export const miljoEcoDriving: FlashCard[] = [
       "Endast toppfarten påverkas, inte bränsleförbrukningen.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Beväxning på propellern",
+textInfo: "Beväxning på propellern påverkar effektiviteten kraftigt. Redan mindre påväxt kan minska propellerns effektivitet med upp till 50%, vilket leder till högre bränsleförbrukning och sämre prestanda."
   },
   {
     id: "miljo_eco_driving-3",
@@ -48,6 +52,8 @@ export const miljoEcoDriving: FlashCard[] = [
       "Vid maximal fart.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ekonomisk fart för motorbåt",
+textInfo: "En planande motorbåt har oftast sin mest ekonomiska fart strax över planingströskeln. Där går båten som mest effektivt i förhållande till bränsleförbrukning och hastighet."
   },
   {
     id: "miljo_eco_driving-4",
@@ -64,5 +70,7 @@ export const miljoEcoDriving: FlashCard[] = [
       "Vid fullgas.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Ekonomisk fart för segelbåt",
+textInfo: "För segelbåtar ligger den mest ekonomiska motorfarten oftast runt 50% av motorns maxvarvtal. Detta ger en bra balans mellan fart och bränsleförbrukning."
   },
 ];

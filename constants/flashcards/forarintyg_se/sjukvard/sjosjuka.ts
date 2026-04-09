@@ -16,6 +16,8 @@ export const sjukvardSjosjuka: FlashCard[] = [
         "Penicillin.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Sjösjukemedicin",
+textInfo: "Vanliga läkemedel mot sjösjuka i Sverige är Postafen (tabletter), Calma (tuggummi) och Scopoderm (plåster). De används främst förebyggande, men Calma och Scopoderm kan även fungera när sjösjukan redan brutit ut."
   },
   {
     id: "sjukvard_sjosjuka-2",
@@ -32,6 +34,8 @@ export const sjukvardSjosjuka: FlashCard[] = [
         "Att sitta under däck utan sikt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Förebygga sjösjuka",
+textInfo: "Sjösjuka förebyggs genom att personen är varm, torr, mätt, glad och delaktig. Att styra båten, vara aktiv ombord och vistas i frisk luft minskar risken avsevärt."
   },
   {
     id: "sjukvard_sjosjuka-3",
@@ -48,6 +52,8 @@ export const sjukvardSjosjuka: FlashCard[] = [
         "Endast om man sover.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Sjösjuka och kroppsläge",
+textInfo: "Man kan bli sjösjuk även när man ligger ner, men det är ovanligt. Att ligga ner lindrar ofta besvären och kan hjälpa kroppen att återhämta sig."
   },
   {
     id: "sjukvard_sjosjuka-4",
@@ -64,6 +70,8 @@ export const sjukvardSjosjuka: FlashCard[] = [
         "Bara med medicin.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Tillvänjning till sjögång",
+textInfo: "Kroppen kan vänja sig vid sjögång över tid. Ju mer man utsätts för gungande rörelser, desto mindre känslig blir man och risken för sjösjuka minskar."
   },
   {
     id: "sjukvard_sjosjuka-5",
@@ -80,5 +88,7 @@ export const sjukvardSjosjuka: FlashCard[] = [
         "För att hålla personen varm.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Säkerhet vid sjösjuka",
+textInfo: "En kraftigt sjösjuk person kan ha svårt att ta hand om sig själv. Därför ska personen säkras med livlina så att den inte riskerar att falla överbord."
   },
 ];

@@ -15,6 +15,8 @@ export const miljoAllemansratten: FlashCard[] = [
       "Endast dagtid.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Förtöjning vid privat brygga",
+textInfo: "Allemansrätten tillåter att man tillfälligt förtöjer vid en privat brygga om den inte ligger i direkt anslutning till ett bostadshus. Det viktiga är att inte störa ägaren eller inskränka på deras privatliv, och att man visar hänsyn."
   },
   {
     id: "miljo_allemansratten-2",
@@ -30,6 +32,8 @@ export const miljoAllemansratten: FlashCard[] = [
       "Endast i skärgården.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Allemansrätten på vatten",
+textInfo: "Allemansrätten gäller både på land och på vatten. Det innebär att man får färdas med båt, bada, ankra och tillfälligt övernatta, så länge man inte stör eller förstör."
   },
   {
     id: "miljo_allemansratten-3",
@@ -45,6 +49,8 @@ export const miljoAllemansratten: FlashCard[] = [
       "Ja, om man inte skadar något.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Hänsyn till markägare",
+textInfo: "Man får aldrig störa en fastighetsägare inom ramen för allemansrätten. Grundprincipen är 'inte störa, inte förstöra', vilket innebär att man måste hålla avstånd till bostäder och visa respekt för privatlivet."
   },
   {
     id: "miljo_allemansratten-4",
@@ -61,6 +67,8 @@ export const miljoAllemansratten: FlashCard[] = [
       "Endast i naturreservat, inte i nationalparker.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Allemansrätten i skyddade områden",
+textInfo: "Allemansrätten gäller även i nationalparker och naturreservat, men kan vara begränsad där. Det kan finnas särskilda regler om till exempel förtöjning, eldning eller vistelse, som måste följas."
   },
   {
     id: "miljo_allemansratten-5",
@@ -77,5 +85,7 @@ export const miljoAllemansratten: FlashCard[] = [
       "Båten måste stå torr i minst en vecka.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kräftsmitta och utrustning",
+textInfo: "Om man flyttar en båt eller utrustning från vatten med kräftsmitta måste den rengöras noggrant, torkas eller desinficeras. Detta för att förhindra att smittan sprids till andra vatten."
   },
 ];

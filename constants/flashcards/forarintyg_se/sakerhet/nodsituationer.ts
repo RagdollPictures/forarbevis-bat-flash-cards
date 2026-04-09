@@ -16,6 +16,9 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "För att kunna ropa rätt riktning.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Man överbord",
+textInfo: "Det är viktigt att hela tiden peka på personen i vattnet eftersom det annars är mycket lätt att tappa bort hen, särskilt i vågor eller mörker. Pekandet hjälper besättningen att snabbt hitta tillbaka till rätt position."
+    
   },
   {
     id: "sakerhet_nodsituationer-2",
@@ -32,6 +35,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Starta motorn och lämna hamnen.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Brand ombord",
+textInfo: "Vid brand ombord ska man först rädda och evakuera alla personer, därefter larma omgivningen och räddningstjänsten, och sedan försöka släcka branden om det kan göras säkert."
   },
   {
     id: "sakerhet_nodsituationer-3",
@@ -48,6 +53,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Däcksbelysning.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vanliga orsaker till läckage",
+textInfo: "De vanligaste orsakerna till läckage är trasiga eller lossnade slangar samt skador vid skrovgenomföringar. Regelbundet underhåll minskar risken för sådana problem."
   },
   {
     id: "sakerhet_nodsituationer-4",
@@ -64,6 +71,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "I farleder.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Grundstötningar",
+textInfo: "De flesta grundstötningar sker nära hemmahamnen där man tror sig kunna området och slappnar av i navigationen."
   },
   {
     id: "sakerhet_nodsituationer-5",
@@ -80,8 +89,9 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Endast större fartyg.",
     ],
     correctOptionIndex: 2,
-  },
-  {
+    textTitle: "Väjningsplikt",
+textInfo: "Man kan aldrig lita på att en annan båt väjer även om den har väjningsplikt. Man ska alltid vara beredd på att andra kan göra fel."
+  },{
     id: "sakerhet_nodsituationer-6",
     question:
       "Vad är vanligaste orsaken till att en båtmotor inte fungerar?",
@@ -96,6 +106,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Låg batterispänning.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Motorhaveri",
+textInfo: "Den vanligaste orsaken till att en båtmotor inte fungerar är problem i bränslesystemet, till exempel bränslebrist, luft i systemet eller igensatta filter."
   },
   {
     id: "sakerhet_nodsituationer-7",
@@ -112,6 +124,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Ring en vän.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Roderhaveri",
+textInfo: "Vid roderhaveri och risk att driva in i fara ska man i första hand ankra för att stoppa båten och undvika att situationen förvärras."
   },
   {
     id: "sakerhet_nodsituationer-8",
@@ -128,6 +142,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Mot vinden.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Rigghaveri",
+textInfo: "Vid rigghaveri faller masten oftast ut över skrovsidan i lä, alltså den sida som är skyddad från vinden."
   },
   {
     id: "sakerhet_nodsituationer-9",
@@ -144,6 +160,8 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "Vid bad.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Personskador",
+textInfo: "De flesta personskador sker i hamnar, ofta i samband med att man kliver mellan båt och brygga eller rör sig på hala ytor."
   },
   {
     id: "sakerhet_nodsituationer-10",
@@ -160,5 +178,7 @@ export const sakerhetNodsituationer: FlashCard[] = [
       "GPS.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Viktigaste säkerhetsutrustningen",
+textInfo: "Flytvästen är den viktigaste säkerhetsutrustningen ombord. Den kan rädda liv och är avgörande för att minska risken för drunkning."
   },
 ];

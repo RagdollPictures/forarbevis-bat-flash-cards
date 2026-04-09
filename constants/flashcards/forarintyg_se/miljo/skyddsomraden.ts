@@ -15,6 +15,8 @@ export const miljoSkyddsomraden: FlashCard[] = [
       "10 knop.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Fart i hänsynsområde",
+textInfo: "I ett hänsynsområde rekommenderas en låg fart på högst 5 knop. Syftet är att minska svall, buller och störningar för både människor, djurliv och förtöjda båtar."
   },
   {
     id: "miljo_skyddsomraden-2",
@@ -27,9 +29,11 @@ export const miljoSkyddsomraden: FlashCard[] = [
       "Ja, om man bara stannar kort tid.",
       "Ja, om man inte stör fåglarna.",
       "Nej.",
-      "Endast utanför häckningssäsong.",
+      "Ja, men endast utanför häckningssäsong.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fågelskyddsområde – tillträde",
+textInfo: "Man får inte gå i land eller vistas inom ett aktivt fågelskyddsområde under den tid förbudet gäller. Reglerna finns för att skydda fåglar under häckningsperioden då de är extra känsliga för störningar."
   },
   {
     id: "miljo_skyddsomraden-3",
@@ -46,6 +50,8 @@ export const miljoSkyddsomraden: FlashCard[] = [
       "Reglerna är desamma överallt och behöver inte kontrolleras.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Regler i naturreservat",
+textInfo: "Reglerna i ett naturreservat framgår främst av informationsskyltar på platsen. Man kan även få mer information från kommunen eller länsstyrelsen, eftersom varje naturreservat har egna föreskrifter."
   },
   {
     id: "miljo_skyddsomraden-4",
@@ -61,5 +67,7 @@ export const miljoSkyddsomraden: FlashCard[] = [
       "Sjöfartsverket.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Beslut om hänsynsområden",
+textInfo: "Det är Länsstyrelsen som beslutar om att införa hänsynsområden. De gör detta för att skydda känsliga miljöer och säkerställa att natur och människor inte störs i området."
   },
 ];

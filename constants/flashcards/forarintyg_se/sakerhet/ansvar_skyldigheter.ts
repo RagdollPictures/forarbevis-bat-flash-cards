@@ -16,6 +16,8 @@ export const sakerhetAnsvarSkyldigheter: FlashCard[] = [
       "Endast om Kustbevakningen begär det.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Skyldighet att bistå vid nödsituation",
+textInfo: "Som befälhavare har man skyldighet att bistå andra fartyg i sjönöd, så länge det kan ske utan allvarlig fara för det egna fartyget eller besättningen. Detta är en grundläggande del av gott sjömanskap."
   },
   {
     id: "sakerhet_ansvar_skyldigheter-2",
@@ -32,6 +34,8 @@ export const sakerhetAnsvarSkyldigheter: FlashCard[] = [
       "Endast körkort för bil.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Krav för vattenskoter",
+textInfo: "För att få köra vattenskoter i Sverige krävs att man har ett särskilt förarbevis för vattenskoter. Detta intyg utfärdas av Transportstyrelsen."
   },
   {
     id: "sakerhet_ansvar_skyldigheter-3",
@@ -48,5 +52,7 @@ export const sakerhetAnsvarSkyldigheter: FlashCard[] = [
       "Inget intyg krävs.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Krav för större fritidsbåt",
+textInfo: "För att få vara befälhavare på en fritidsbåt som är längre än 12 meter och bredare än 4 meter krävs att man har kustskepparintyg. Detta intyg visar att man har tillräcklig kunskap för att framföra större båtar."
   },
 ];

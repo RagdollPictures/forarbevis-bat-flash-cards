@@ -16,6 +16,8 @@ export const sjukvardNedkylning: FlashCard[] = [
         "Cirka 50 gånger snabbare.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Nedkylning i vatten",
+textInfo: "Kallt vatten kyler ner kroppen cirka 20 gånger snabbare än kall luft, vilket gör det mycket farligare att hamna i vattnet."
   },
   {
     id: "sjukvard_nedkylning-2",
@@ -32,6 +34,8 @@ export const sjukvardNedkylning: FlashCard[] = [
         "Genom att undvika mössa.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Förebygga nedkylning",
+textInfo: "Nedkylning förebyggs genom att hålla sig torr, skydda sig mot vind och bära rätt kläder i flera lager."
   },
   {
     id: "sjukvard_nedkylning-3",
@@ -48,5 +52,7 @@ export const sjukvardNedkylning: FlashCard[] = [
         "Lämna personen att värma sig själv genom rörelse.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Behandling av lätt nedkylning",
+textInfo: "En lätt nedkyld person ska få torra och varma kläder samt skydd mot vind, exempelvis genom att bäddas ner."
   },
 ];

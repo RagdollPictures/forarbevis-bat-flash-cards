@@ -16,6 +16,8 @@ export const sakerhetBransle: FlashCard[] = [
       "För att undvika dålig lukt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Ventilation av bensinångor",
+textInfo: "Bensinångor är tyngre än luft och samlas i båtens lågpunkter. Därför måste man ventilera ordentligt efter tankning eller innan start av en bensinmotor, annars finns risk för explosion vid en gnista."
   },
   {
     id: "sakerhet_bransle-2",
@@ -32,6 +34,8 @@ export const sakerhetBransle: FlashCard[] = [
       "Brandfilt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Brandsläckare vid bränslebrand",
+textInfo: "Vid bränder i bränslen som bensin, diesel eller gasol ska man använda en pulverbrandsläckare av typen ABC. Den är effektiv för att snabbt kväva branden."
   },
   {
     id: "sakerhet_bransle-3",
@@ -48,6 +52,8 @@ export const sakerhetBransle: FlashCard[] = [
       "30 liter.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Bränsleförbrukning per distans",
+textInfo: "Om en båt förbrukar 3 liter per distansminut och kör 20 distansminuter blir den totala förbrukningen 60 liter. Beräkningen görs genom att multiplicera förbrukningen per distans med antalet distansminuter."
   },
   {
     id: "sakerhet_bransle-4",
@@ -64,5 +70,7 @@ export const sakerhetBransle: FlashCard[] = [
       "7 timmar.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Räckvidd med bränslereserv",
+textInfo: "Om tanken rymmer 100 liter och man vill ha 30 liter kvar, kan 70 liter användas. Med en förbrukning på 7 liter per timme räcker bränslet i 10 timmar, vilket avgör hur långt man kan färdas."
   },
 ];

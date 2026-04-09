@@ -10,6 +10,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "Ett lågtryck.",
     options: ["Ett högtryck.", "Ett lågtryck.", "Inget av dem.", "Båda lika ofta."],
     correctOptionIndex: 1,
+    textTitle: "Högtryck och lågtryck",
+textInfo: "Lågtryck innebär oftast sämre väder med moln, nederbörd och mer vind, medan högtryck ofta ger stabilt och klart väder."
   },
   {
     id: "vader_meteorologi-2",
@@ -19,6 +21,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "1013 hPa (mbar).",
     options: ["980 hPa.", "1000 hPa.", "1013 hPa.", "1050 hPa."],
     correctOptionIndex: 2,
+    textTitle: "Normalt lufttryck",
+textInfo: "Det normala lufttrycket är cirka 1013 hPa (hektopascal), vilket används som referensvärde i väderprognoser."
   },
   {
     id: "vader_meteorologi-3",
@@ -28,6 +32,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "Barometer.",
     options: ["Termometer.", "Barometer.", "Hygrometer.", "Anemometer."],
     correctOptionIndex: 1,
+    textTitle: "Barometer",
+textInfo: "Instrumentet som mäter lufttryck kallas barometer och används för att förutse väderförändringar."
   },
   {
     id: "vader_meteorologi-4",
@@ -43,6 +49,8 @@ export const vaderMeteorologi: FlashCard[] = [
       "Endast vid lågtryck.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Isobarer",
+textInfo: "Lufttrycket förändras inte längs en isobar, eftersom en isobar är en linje där lufttrycket är lika."
   },
   {
     id: "vader_meteorologi-5",
@@ -53,6 +61,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "H.",
     options: ["L.", "H.", "T.", "P."],
     correctOptionIndex: 1,
+    textTitle: "Högtryck på väderkarta",
+textInfo: "Ett högtryck markeras med bokstaven H på en väderkarta."
   },
   {
     id: "vader_meteorologi-6",
@@ -63,6 +73,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "L.",
     options: ["H.", "L.", "M.", "K."],
     correctOptionIndex: 1,
+    textTitle: "Lågtryck på väderkarta",
+textInfo: "Ett lågtryck markeras med bokstaven L på en väderkarta."
   },
   {
     id: "vader_meteorologi-7",
@@ -78,6 +90,8 @@ export const vaderMeteorologi: FlashCard[] = [
       "Från nordost mot sydväst.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vanlig tryckbana",
+textInfo: "Den vanligaste riktningen för hög- och lågtryck som passerar Sverige är från sydväst mot nordost."
   },
   {
     id: "vader_meteorologi-8",
@@ -93,6 +107,8 @@ export const vaderMeteorologi: FlashCard[] = [
       "Luftfuktigheten ökar.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Vindriktning förändras",
+textInfo: "Vindriktningen förändras när hög- eller lågtryck rör sig över ett område och påverkar luftens rörelse."
   },
   {
     id: "vader_meteorologi-9",
@@ -103,6 +119,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "Mot söder.",
     options: ["Mot norr.", "Mot söder.", "Mot öster.", "Mot väster."],
     correctOptionIndex: 1,
+    textTitle: "Nordlig vind",
+textInfo: "Nordlig vind innebär att vinden kommer från norr och luften rör sig mot söder."
   },
   {
     id: "vader_meteorologi-10",
@@ -112,6 +130,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "Meter per sekund (m/s).",
     options: ["Knop.", "Kilometer per timme.", "Meter per sekund.", "Beaufort."],
     correctOptionIndex: 2,
+    textTitle: "Vindstyrka",
+textInfo: "Vindstyrka mäts i meter per sekund (m/s), vilket anger hur snabbt luften rör sig."
   },
   {
     id: "vader_meteorologi-11",
@@ -122,6 +142,8 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "Över 14 m/s.",
     options: ["Över 8 m/s.", "Över 11 m/s.", "Över 14 m/s.", "Över 20 m/s."],
     correctOptionIndex: 2,
+    textTitle: "Kuling",
+textInfo: "Kulingvarning utfärdas när medelvinden förväntas överstiga 14 m/s."
   },
   {
     id: "vader_meteorologi-12",
@@ -137,6 +159,8 @@ export const vaderMeteorologi: FlashCard[] = [
       "Max 7 m/s hela tiden.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Vindprognos 7 (14)",
+textInfo: "Angivelsen 7 (14) betyder 7 m/s i medelvind och upp till 14 m/s i byvindar."
   },
   {
     id: "vader_meteorologi-13",
@@ -147,5 +171,7 @@ export const vaderMeteorologi: FlashCard[] = [
     answer: "1000 meter.",
     options: ["200 meter.", "500 meter.", "1000 meter.", "2000 meter."],
     correctOptionIndex: 2,
+    textTitle: "Dimma",
+textInfo: "Dimma innebär att sikten är mindre än 1000 meter."
   },
 ];

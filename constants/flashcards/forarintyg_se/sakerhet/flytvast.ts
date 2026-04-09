@@ -16,6 +16,8 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Ingenting ska få plats.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Rätt spänd flytväst",
+textInfo: "En flytväst ska sitta lagom hårt. Man ska precis kunna få in sin knutna hand mellan kroppen och midjebandet. Sitter den för löst kan den glida av, och sitter den för hårt blir den obekväm."
   },
   {
     id: "sakerhet_flytvast-2",
@@ -32,6 +34,8 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Ingen väst behövs om vuxen är nära.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Flytväst för barn",
+textInfo: "Barn som befinner sig nära vatten ska använda en räddningsväst med krage. Den vänder barnet så att ansiktet hamnar uppåt i vattnet och minskar risken för drunkning."
   },
   {
     id: "sakerhet_flytvast-3",
@@ -48,6 +52,8 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Endast reflexer.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Viktig utrustning",
+textInfo: "En bra flytväst bör minst vara utrustad med grenband, reflexer och visselpipa. Grenbandet håller västen på plats, reflexer gör att man syns bättre och visselpipan gör att man kan kalla på hjälp."
   },
   {
     id: "sakerhet_flytvast-4",
@@ -64,6 +70,8 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Endast efter användning.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Kontroll av uppblåsbar väst",
+textInfo: "En uppblåsbar flytväst ska kontrolleras minst en gång per år. Detta säkerställer att utlösaren, gaspatronen och själva västen fungerar som de ska."
   },
   {
     id: "sakerhet_flytvast-5",
@@ -80,6 +88,8 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Nej, den är självkorrigerande.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Egen kontroll",
+textInfo: "Man kan själv kontrollera en uppblåsbar flytväst efter att ha lärt sig hur det görs. Det är en enkel men viktig åtgärd för att säkerställa att västen fungerar vid en nödsituation."
   },
   {
     id: "sakerhet_flytvast-6",
@@ -96,5 +106,7 @@ export const sakerhetFlytvast: FlashCard[] = [
       "Att den flyter för mycket.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Risk med okontrollerad väst",
+textInfo: "En uppblåsbar flytväst som inte är kontrollerad kan sluta fungera och inte blåsa upp sig i vattnet. Då fungerar den inte som skydd utan blir istället en extra belastning."
   },
 ];

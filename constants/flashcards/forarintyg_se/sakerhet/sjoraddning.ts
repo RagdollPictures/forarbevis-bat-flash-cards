@@ -16,6 +16,8 @@ export const sakerhetSjoraddning: FlashCard[] = [
       "Försvarsmakten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Ansvarig för sjöräddning",
+textInfo: "I Sverige är det Sjöfartsverket som ansvarar för sjöräddningen. De leder arbetet via Sjöräddningscentralen och samordnar insatser till havs och i större sjöar."
   },
   {
     id: "sakerhet_sjoraddning-2",
@@ -32,6 +34,8 @@ export const sakerhetSjoraddning: FlashCard[] = [
       "E-post till Sjöfartsverket.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Larmvägar till sjöräddning",
+textInfo: "Sjöräddningscentralen kan larmas på flera sätt: via DSC genom distress-knappen på VHF-radio, genom ett MAYDAY-anrop på VHF eller genom att ringa 112 och bli kopplad till sjöräddningen."
   },
   {
     id: "sakerhet_sjoraddning-3",
@@ -48,6 +52,8 @@ export const sakerhetSjoraddning: FlashCard[] = [
       "SRC och Marine Sweden.",
     ],
     correctOptionIndex: 2,
+    textTitle: "JRCC och Sweden Rescue",
+textInfo: "Sjöräddningscentralen kallas även JRCC (Joint Rescue Coordination Center) och använder anropsnamnet Sweden Rescue vid radiokommunikation."
   },
   {
     id: "sakerhet_sjoraddning-4",
@@ -64,6 +70,8 @@ export const sakerhetSjoraddning: FlashCard[] = [
       "Endast polis.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Sjöräddningsresurser",
+textInfo: "Sjöräddningsresurser består bland annat av räddningshelikoptrar, Sjöräddningssällskapets båtar, Kustbevakningen, sjöpolisen, Försvarsmakten och andra fartyg i närheten som kan hjälpa till."
   },
   {
     id: "sakerhet_sjoraddning-5",
@@ -80,5 +88,7 @@ export const sakerhetSjoraddning: FlashCard[] = [
       "Endast genom 112.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Assistans utanför nödsituation",
+textInfo: "Man kan få hjälp även utanför nödsituationer genom medlemskap i Sjöräddningssällskapet eller genom en assistansförsäkring som täcker till exempel bogsering eller motorproblem."
   },
 ];

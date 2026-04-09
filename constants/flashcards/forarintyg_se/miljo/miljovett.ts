@@ -15,6 +15,8 @@ export const miljoMiljovett: FlashCard[] = [
       "Endast i internationellt vatten.",
     ],
     correctOptionIndex: 2,
+   textTitle: "Oljeutsläpp",
+textInfo: "Det är alltid förbjudet att släppa ut olja i vattnet, oavsett avstånd från land. Olja och bränslen skadar både djurliv och miljö och kan spridas över stora områden på vattenytan. All spillolja ska istället tas om hand och lämnas till en miljöstation."
   },
   {
     id: "miljo_miljovett-2",
@@ -31,6 +33,8 @@ export const miljoMiljovett: FlashCard[] = [
       "Man ansvarar bara för sin egen båt.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Lämna platsen",
+textInfo: "En plats i naturen ska lämnas i minst samma skick som när man kom, men helst i bättre skick. Det innebär att man tar med sig allt skräp och gärna plockar upp sådant som andra lämnat efter sig. På så sätt bidrar man till en renare och mer hållbar miljö."
   },
   {
     id: "miljo_miljovett-3",
@@ -47,6 +51,8 @@ export const miljoMiljovett: FlashCard[] = [
       "Räcken, rep och kapell.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Störningar från båt",
+textInfo: "Svall, buller och avgaser från båtar kan störa både djur och människor. Höga svallvågor kan skada stränder och båtar, buller kan skrämma djurliv och avgaser påverkar miljön negativt. Att köra lugnt och visa hänsyn är därför viktigt."
   },
   {
     id: "miljo_miljovett-4",
@@ -63,6 +69,8 @@ export const miljoMiljovett: FlashCard[] = [
       "Styra i sicksack för bättre kontroll.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Köra i grunt vatten",
+textInfo: "I grunt vatten ska man köra långsamt och försiktigt eftersom botten ofta är känslig. Propellern och båtens rörelser kan skada växt- och djurliv, särskilt i områden med till exempel ålgräs. Låg fart minskar både miljöpåverkan och risken för skador på båten."
   },
   {
     id: "miljo_miljovett-5",
@@ -78,5 +86,7 @@ export const miljoMiljovett: FlashCard[] = [
       "Bort från solen.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Fåglars flykt",
+textInfo: "Flyende fåglar lyfter normalt mot vinden eftersom det ger bättre lyftkraft. Genom att hålla sig på läsidan av fåglar med båten kan man minska risken att störa dem i onödan."
   },
 ];

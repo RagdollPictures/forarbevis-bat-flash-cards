@@ -16,6 +16,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Länspumpen.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Viktigaste nödutrustningen",
+textInfo: "Den enskilt viktigaste nödutrustningen ombord är flytvästen. Den ska alltid vara påtagen och korrekt knäppt, eftersom många liv hade kunnat räddas om fler hade använt flytväst vid olyckor."
   },
   {
     id: "sakerhet_nodutrustning-2",
@@ -32,6 +34,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "1 meter.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Räddningsstege",
+textInfo: "En räddningsstege ska gå minst 56 cm under vattenytan för att en person i vattnet ska kunna ta sig upp. Den ska kunna fällas ner av den som ligger i vattnet."
   },
   {
     id: "sakerhet_nodutrustning-3",
@@ -48,6 +52,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Cirka 30 sekunder.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Brandsläckarens användningstid",
+textInfo: "En 2 kilos pulverbrandsläckare töms på cirka 8 sekunder. Det innebär att man måste agera snabbt och effektivt vid brand ombord."
   },
   {
     id: "sakerhet_nodutrustning-4",
@@ -64,6 +70,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Brandsläckare.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Utrustning vid läckage",
+textInfo: "Vid läckage används exempelvis länspump och läcktätningsutrustning. Träkilar, träpluggar eller att trycka en dyna mot läckan kan minska inflödet av vatten tills hjälp finns."
   },
   {
     id: "sakerhet_nodutrustning-5",
@@ -80,6 +88,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Stänga av motorn och lämna båten.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Åtgärder vid kraftig grundstötning",
+textInfo: "Vid en kraftig grundstötning kan man minska konsekvenserna genom att låta båten stå kvar på grundet för att undvika att den sjunker, eller köra den till grunt vatten och medvetet sätta den på grund igen."
   },
   {
     id: "sakerhet_nodutrustning-6",
@@ -96,6 +106,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Fotografera skadorna.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Prioritet efter kollision",
+textInfo: "Efter en kollision är det viktigaste att kontrollera om någon är skadad och ta hand om personskador. Materiella skador och ansvar utreds först senare."
   },
   {
     id: "sakerhet_nodutrustning-7",
@@ -112,6 +124,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Hoppar i land.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Åtgärd vid motorhaveri nära land",
+textInfo: "Om motorn stannar nära land är första åtgärden att ankra, så att båten inte driver okontrollerat och riskerar att hamna i en farlig situation."
   },
   {
     id: "sakerhet_nodutrustning-8",
@@ -128,6 +142,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Stänger av all el.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Åtgärd vid roderhaveri",
+textInfo: "Om roderhaveri inträffar och man inte kan ankra eller reparera felet ska man kalla på hjälp, till exempel från sjöräddningen, för att undvika att situationen förvärras."
   },
   {
     id: "sakerhet_nodutrustning-9",
@@ -144,6 +160,8 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "Tång.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Verktyg vid rigghaveri",
+textInfo: "Vid rigghaveri kan man använda verktyg som vinkelkap, bågfil eller bultsax för att kapa wire och riggdelar. Detta förhindrar att skrovet eller motorn skadas ytterligare."
   },
   {
     id: "sakerhet_nodutrustning-10",
@@ -160,5 +178,7 @@ export const sakerhetNodutrustning: FlashCard[] = [
       "GPS.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Utrustning vid personskada",
+textInfo: "Vid en personskada ska man ta med ett första hjälpen-kit. Det används för att snabbt kunna behandla sår och skador tills vidare hjälp kan fås."
   },
 ];

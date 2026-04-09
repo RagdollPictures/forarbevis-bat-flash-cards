@@ -15,6 +15,8 @@ export const vaderRisker: FlashCard[] = [
       "Det är alltid lika tät dimma överallt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Dimma och läsida",
+textInfo: "Dimma är oftast lättare på läsidan av en ö där vinden är svagare."
   },
   {
     id: "vader_risker-2",
@@ -31,6 +33,8 @@ export const vaderRisker: FlashCard[] = [
       "Lätt bris och klart väder.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Väder som innebär risker",
+textInfo: "Riskfyllt väder kan vara exempelvis regn, åska, dimma och hårda vindar."
   },
   {
     id: "vader_risker-3",
@@ -46,6 +50,8 @@ export const vaderRisker: FlashCard[] = [
       "Kustdata.",
     ],
     correctOptionIndex: 1,
+    textTitle: "ViVa",
+textInfo: "ViVa är Sjöfartsverkets tjänst där man kan se aktuellt vattenstånd, vind och annan väderdata."
   },
   {
     id: "vader_risker-4",
@@ -62,5 +68,7 @@ export const vaderRisker: FlashCard[] = [
       "Samma fart som i klart väder.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Fart i dimma",
+textInfo: "Vid dimma ska man hålla så låg fart att man hinner stanna innan ett hinder dyker upp."
   },
 ];

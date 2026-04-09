@@ -15,6 +15,8 @@ export const miljoToaletter: FlashCard[] = [
       "Det är alltid förbjudet.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Tömning av septiktank till havs",
+textInfo: "Toalettavfall från fritidsbåtar får endast släppas ut i havet om båten befinner sig minst 12 nautiska mil från land, alltså utanför Sveriges territorialvatten. Detta är för att skydda kustnära miljöer från föroreningar."
   },
   {
     id: "miljo_toaletter-2",
@@ -30,6 +32,8 @@ export const miljoToaletter: FlashCard[] = [
       "Ja, om det är biologiskt nedbrytbart.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Septiktank i insjö",
+textInfo: "Det är aldrig tillåtet att tömma toalettavfall i insjöar. Alla utsläpp där är förbjudna eftersom vattnet är mer känsligt och inte byts ut lika snabbt som i havet."
   },
   {
     id: "miljo_toaletter-3",
@@ -45,5 +49,7 @@ export const miljoToaletter: FlashCard[] = [
       "Endast om kommunen godkänner det.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Avgift för toatömning",
+textInfo: "Båtklubbar och hamnar får ta ut en avgift för att använda toatömningsstationer. Detta infördes för att kunna täcka kostnader för drift, underhåll och miljösäker hantering av avfallet."
   },
 ];

@@ -16,6 +16,8 @@ export const sakerhetElsakerhet: FlashCard[] = [
       "Den med längst kabel.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Anslutning av landströmskabel",
+textInfo: "Landströmskabeln ska alltid anslutas i båten först och därefter i uttaget på kajen. På så sätt minskar risken för att kabeln är strömförande om den skulle hamna i vattnet."
   },
   {
     id: "sakerhet_elsakerhet-2",
@@ -32,6 +34,8 @@ export const sakerhetElsakerhet: FlashCard[] = [
       "Med högtryckstvätt.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Rengöring av batterier",
+textInfo: "Batterier rengörs med en lätt fuktad trasa, gärna med lite diskmedel. Det förhindrar att smuts och fett samlas och minskar risken för brand eller elektriska problem."
   },
   {
     id: "sakerhet_elsakerhet-3",
@@ -48,6 +52,8 @@ export const sakerhetElsakerhet: FlashCard[] = [
       "Endast vid 230V-system.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Säkring i elsystemet",
+textInfo: "Det ska alltid finnas en säkring mellan batteribanken och elcentralen. Den fungerar som en huvudsäkring och skyddar systemet från skador vid fel eller kortslutning."
   },
   {
     id: "sakerhet_elsakerhet-4",
@@ -64,6 +70,8 @@ export const sakerhetElsakerhet: FlashCard[] = [
       "För låg säkring i båten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Jordfelsbrytare löser ut",
+textInfo: "Om jordfelsbrytaren löser ut bör man misstänka fukt i kontakter eller skarvar, eller skador på landströmskabeln. Detta kan orsaka jordfel och måste åtgärdas innan fortsatt användning."
   },
   {
     id: "sakerhet_elsakerhet-5",
@@ -80,5 +88,7 @@ export const sakerhetElsakerhet: FlashCard[] = [
       "Tända en lampa för att se bättre.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Lukt av ruttna ägg",
+textInfo: "Om det luktar ruttna ägg i båten tyder det på att batteriet avger vätgas (knallgas), vilket är explosivt. Man ska omedelbart stoppa laddningen, undvika gnistor, kontrollera batteriet och vädra ordentligt."
   },
 ];

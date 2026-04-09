@@ -15,6 +15,8 @@ export const miljoBottenfarg: FlashCard[] = [
       "Havs- och vattenmyndigheten.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kemikalieinspektionen",
+textInfo: "Kemikalieinspektionen är den myndighet som granskar och godkänner bottenfärger i Sverige. Eftersom många bottenfärger innehåller ämnen som påverkar miljön klassas de som bekämpningsmedel och måste därför kontrolleras innan de får användas."
   },
   {
     id: "miljo_bottenfarg-2",
@@ -30,6 +32,8 @@ export const miljoBottenfarg: FlashCard[] = [
       "Alla typer av bottenfärg är tillåtna.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Bottenfärg i Östersjön och insjöar",
+textInfo: "I norra Östersjön och i insjöar får man endast använda biocidfria bottenfärger. Det beror på att miljön där är känsligare och att behovet av giftiga ämnen för att motverka påväxt är mindre."
   },
   {
     id: "miljo_bottenfarg-3",
@@ -45,6 +49,8 @@ export const miljoBottenfarg: FlashCard[] = [
       "Silikonbaserad färg.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Bottenfärg på Västkusten",
+textInfo: "På Västkusten får man använda så kallad västkustfärg som innehåller biocider. Detta är tillåtet eftersom påväxten av exempelvis havstulpaner är betydligt större där och annars skulle påverka båtens funktion kraftigt."
   },
   {
     id: "miljo_bottenfarg-4",
@@ -60,5 +66,7 @@ export const miljoBottenfarg: FlashCard[] = [
       "Ja, om man spolar av bryggan efteråt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Sanering av bottenfärg",
+textInfo: "Man får inte skrapa av gammal bottenfärg utan att samla upp färgresterna. Färgen innehåller miljöfarliga ämnen som annars kan spridas i naturen och påverka djur och växter under lång tid."
   },
 ];

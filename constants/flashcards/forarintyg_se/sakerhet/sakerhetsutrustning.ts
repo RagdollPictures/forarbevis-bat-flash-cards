@@ -16,6 +16,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "För att öka farten.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Varför man har säkerhetsutrustning",
+textInfo: "Säkerhetsutrustning används för att förebygga olyckor och minska risken att en situation utvecklas till en nödsituation. Till skillnad från nödutrustning används den alltså innan något allvarligt har hänt."
   },
   {
     id: "sakerhet_sakerhetsutrustning-2",
@@ -32,6 +34,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "GPS.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot man överbord",
+textInfo: "Säkerhetsutrustning som minskar risken för man överbord är till exempel mantåg, som fungerar som ett skydd längs relingen, och livlina, som hindrar personen från att falla överbord vid arbete på däck. Även dödmansgrepp är viktigt i mindre motorbåtar."
   },
   {
     id: "sakerhet_sakerhetsutrustning-3",
@@ -48,6 +52,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Ekolod.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot brand ombord",
+textInfo: "Brandvarnare och gaslarm är viktig säkerhetsutrustning ombord. Brandvarnaren gör att en brand upptäcks tidigt, och gaslarm varnar om gasol läcker ut innan det hinner bli en explosion eller brand."
   },
   {
     id: "sakerhet_sakerhetsutrustning-4",
@@ -64,6 +70,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Kompass.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd vid läckage",
+textInfo: "Vid läckage är nivålarm och länspumpar viktig säkerhetsutrustning. Ett nivålarm varnar tidigt om vatten kommer in i båten, och länspumpar hjälper till att hålla båten flytande medan man försöker hitta och stoppa läckan."
   },
   {
     id: "sakerhet_sakerhetsutrustning-5",
@@ -80,6 +88,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Livboj.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot grundstötning",
+textInfo: "Sjökort och ekolod är två viktiga hjälpmedel för att minska risken för grundstötning. Sjökort visar var det är säkert att köra, och ekolod kan varna för grunt vatten, särskilt om det har ett djuplarm."
   },
   {
     id: "sakerhet_sakerhetsutrustning-6",
@@ -96,6 +106,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Båtsmanstol.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Skydd mot kollision",
+textInfo: "Lanternor, radarreflektor och signalhorn minskar risken för kollision. Lanternor gör att båten syns i mörker, radarreflektorn gör att man syns bättre på andra fartygs radar, och signalhorn kan användas för att påkalla uppmärksamhet."
   },
   {
     id: "sakerhet_sakerhetsutrustning-7",
@@ -112,6 +124,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Signalhorn.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot motorhaveri",
+textInfo: "För att minska risken för motorhaveri är motorlarm, regelbundet underhåll och reservdelar viktig säkerhetsutrustning. Genom service, filterbyten och kontroll av olja och kylsystem förebygger man många vanliga motorproblem."
   },
   {
     id: "sakerhet_sakerhetsutrustning-8",
@@ -128,6 +142,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Kompass.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot roderhaveri",
+textInfo: "Roderhaveri förebyggs främst genom underhåll, service och reservdelar. Det gäller till exempel styrvajrar, roderlager, länkar och andra delar i styrsystemet som behöver kontrolleras regelbundet."
   },
   {
     id: "sakerhet_sakerhetsutrustning-9",
@@ -144,6 +160,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Signalhorn.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Skydd mot rigghaveri",
+textInfo: "Rigghaveri förebyggs bäst genom noggrann kontroll, underhåll och byte av slitna delar i riggen. Vant, stag, sprintar, vantskruvar och infästningar måste kontrolleras regelbundet för att minska risken för haveri."
   },
   {
     id: "sakerhet_sakerhetsutrustning-10",
@@ -160,6 +178,8 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Ekolod.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot personskada",
+textInfo: "För att minska risken för personskador bör man använda stege, stegfender eller annan lösning som gör att man kan kliva säkert ombord eller iland utan att behöva hoppa. En hjälpande hand eller ett rep att hålla i kan också göra stor skillnad."
   },
   {
     id: "sakerhet_sakerhetsutrustning-11",
@@ -176,5 +196,7 @@ export const sakerhetSakerhetsutrustning: FlashCard[] = [
       "Lanternor.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Skydd mot sjukdom",
+textInfo: "För att minska risken vid sjukdom bör man ha med personliga mediciner och gärna ett enklare skeppsapotek ombord. Det kan innehålla till exempel sjösjukemedicin, allergimedicin och smärtstillande."
   },
 ];

@@ -16,6 +16,8 @@ export const sjukvardBrannskador: FlashCard[] = [
       "Så länge det känns obehagligt.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Kylning av brännskada",
+textInfo: "En brännskada ska kylas med kallt eller svalt vatten i minst 15 minuter för att minska skadans omfattning."
   },
   {
     id: "sjukvard_brannskador-2",
@@ -32,6 +34,8 @@ export const sjukvardBrannskador: FlashCard[] = [
       "Fjärde graden.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Första gradens brännskada",
+textInfo: "Första gradens brännskada innebär att huden blir röd och kan få mindre blåsor, exempelvis vid solbränna."
   },
   {
     id: "sjukvard_brannskador-3",
@@ -48,6 +52,8 @@ export const sjukvardBrannskador: FlashCard[] = [
       "Ytlig hudirritation.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Andra gradens brännskada",
+textInfo: "Andra gradens brännskada ger svullnad och stora blåsor, exempelvis vid kontakt med kokande vatten."
   },
   {
     id: "sjukvard_brannskador-4",
@@ -64,6 +70,8 @@ export const sjukvardBrannskador: FlashCard[] = [
       "Endast ytskada utan hudpåverkan.",
     ],
     correctOptionIndex: 2,
+    textTitle: "Tredje gradens brännskada",
+textInfo: "Tredje gradens brännskada innebär att alla hudlager är skadade. Huden kan bli vit, svart eller förkolnad och skadan är mycket allvarlig."
   },
   {
     id: "sjukvard_brannskador-5",
@@ -80,6 +88,8 @@ export const sjukvardBrannskador: FlashCard[] = [
       "Endast efter läkares ordination.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Smärtlindring vid brännskada",
+textInfo: "Smärtstillande läkemedel, som exempelvis Alvedon, kan ges till en person med brännskada."
   },
   {
     id: "sjukvard_brannskador-6",
@@ -96,5 +106,7 @@ export const sjukvardBrannskador: FlashCard[] = [
       "De är för täta.",
     ],
     correctOptionIndex: 1,
+    textTitle: "Förband vid brännskador",
+textInfo: "Vanliga förband kan fastna i brännskador. Därför bör man använda särskilda brännskadeförband som inte fastnar i såret."
   },
 ];

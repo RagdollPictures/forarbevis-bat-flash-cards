@@ -10,6 +10,8 @@ export const sjukvardGrundlaggande: FlashCard[] = [
     answer: "1177 – Sjukvårdsrådgivning.",
     options: ["112.", "1177.", "114 14.", "Kanal 16."],
     correctOptionIndex: 1,
+    textTitle: "Sjukvårdsrådgivning vid osäkerhet",
+textInfo: "Vid icke akuta sjukvårdsproblem, exempelvis om någon mår dåligt och man är osäker på vad man ska göra, ska man kontakta 1177. Där får man rådgivning om hur situationen bör hanteras."
   },
   {
     id: "sjukvard_grundlaggande-2",
@@ -20,6 +22,8 @@ export const sjukvardGrundlaggande: FlashCard[] = [
     answer: "112.",
     options: ["112.", "1177.", "113 13.", "114 14."],
     correctOptionIndex: 0,
+    textTitle: "Akut sjukvård i hamn",
+textInfo: "Vid en allvarlig skada i hamn, exempelvis om någon ramlar och skadar sig, ska man ringa 112. SOS Alarm kopplar då in rätt räddningsresurser."
   },
   {
     id: "sjukvard_grundlaggande-3",
@@ -30,6 +34,8 @@ export const sjukvardGrundlaggande: FlashCard[] = [
     answer: "Kanal 16.",
     options: ["Kanal 68.", "Kanal 70.", "Kanal 16.", "Kanal 72."],
     correctOptionIndex: 2,
+    textTitle: "Akut sjukvård till sjöss",
+textInfo: "Vid akuta medicinska problem till sjöss använder man VHF-radio på kanal 16 för att larma. Alternativt kan man ringa 112 om täckning finns."
   },
   {
     id: "sjukvard_grundlaggande-4",
@@ -45,6 +51,8 @@ export const sjukvardGrundlaggande: FlashCard[] = [
       "Vinterjacka, paraply, stövlar och termos.",
     ],
     correctOptionIndex: 0,
+    textTitle: "Innehåll i första hjälpen-väska",
+textInfo: "En första hjälpen-väska bör innehålla utrustning som sax, tryckförband, lindor, plåster och sårrengöringsmedel. Med denna utrustning kan man hantera många skador i väntan på vård."
   },
   {
     id: "sjukvard_grundlaggande-5",
@@ -61,5 +69,7 @@ export const sjukvardGrundlaggande: FlashCard[] = [
       "L: Livboj, A: Ankare, B: Bogsering, C: Cederträ, D: Däck, E: Ekolod.",
     ],
     correctOptionIndex: 0,
+    textTitle: "L-ABCDE-metoden",
+textInfo: "L-ABCDE är en metod för att prioritera åtgärder vid allvarliga olyckor. L står för livsfarligt läge, A för luftvägar, B för andning, C för cirkulation, D för medvetandegrad och E för exponering av kroppen för att upptäcka skador. Metoden säkerställer att livshotande problem hanteras i rätt ordning."
   },
 ];
