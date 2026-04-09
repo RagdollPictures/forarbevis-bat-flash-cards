@@ -2,9 +2,9 @@ import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
 import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getQuizById } from "../../../constants/flashcards";
-import { cardImages } from "../../../constants/flashcards/cardImages";
-import type { FlashCard } from "../../../constants/flashcards/types";
+import { getQuizById } from "../../constants/flashcards";
+import { cardImages } from "../../constants/flashcards/cardImages";
+import type { FlashCard } from "../../constants/flashcards/types";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 
 import { styles } from "./_quiz/styles";

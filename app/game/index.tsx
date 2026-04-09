@@ -3,10 +3,10 @@ import { useEffect } from "react";
 
 export default function GameIndexScreen() {
   useEffect(() => {
-    router.push({
-  pathname: "/game/[levelId]",
-  params: { levelId: "level_002" },
-});
+    router.replace({
+      pathname: "/game/[levelId]",
+      params: { levelId: "level_001" },
+    });
   }, []);
 
   return null;

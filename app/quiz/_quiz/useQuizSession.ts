@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { saveQuizProgress } from "../../../../constants/flashcards/quizProgress";
-import type { FlashCard } from "../../../../constants/flashcards/types";
+import { saveQuizProgress } from "../../../constants/flashcards/quizProgress";
+import type { FlashCard } from "../../../constants/flashcards/types";
 import { shuffle } from "./shuffle";
 
 function clampInt(n: number, min: number, max: number) {

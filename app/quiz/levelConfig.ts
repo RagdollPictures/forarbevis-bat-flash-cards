@@ -1,8 +1,8 @@
 import type { ComponentType } from "react";
-import level001 from "../../../assets/game/level_001.json";
-import Level001Svg from "../../../assets/game/level_001.svg";
-import level002 from "../../../assets/game/level_002.json";
-import Level002Svg from "../../../assets/game/level_002.svg";
+import level001 from "../../assets/game/level_001.json";
+import Level001Svg from "../../assets/game/level_001.svg";
+import level002 from "../../assets/game/level_002.json";
+import Level002Svg from "../../assets/game/level_002.svg";
 import type { LevelLayout } from "./levelTypes";
 
 export type LevelId = "level_001" | "level_002";

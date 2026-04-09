@@ -1,6 +1,6 @@
 // app/(tabs)/quiz-menu/utils/progress.ts
 import { colorScheme } from "@/constants/colors";
-import type { SavedQuizProgress } from "../../../../constants/flashcards/quizProgress";
+import type { SavedQuizProgress } from "../../../constants/flashcards/quizProgress";
 
 export function getProgressColor(percent: number) {
   if (percent <= 30) return colorScheme.orange;

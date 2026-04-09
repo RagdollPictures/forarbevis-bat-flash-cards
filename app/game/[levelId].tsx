@@ -4,23 +4,23 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import ProgressRing from "../(tabs)/quiz/components/ProgressRing";
-import { getIconNameByQuizId } from "../(tabs)/quiz/icons/quizIconMap";
-import SvgIcon from "../(tabs)/quiz/icons/svgIcon";
-import { levelsById, type LevelId } from "../(tabs)/quiz/levelConfig";
-import {
-  loadClearedSet,
-  saveClearedSet,
-  UNLOCK_PERCENT,
-} from "../(tabs)/quiz/storage/cleared";
-import { styles } from "../(tabs)/quiz/styles";
-import { calcPercent } from "../(tabs)/quiz/utils/progress";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import {
   getAllQuizProgress,
   saveQuizProgress,
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
+import ProgressRing from "../quiz/components/ProgressRing";
+import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
+import SvgIcon from "../quiz/icons/svgIcon";
+import { levelsById, type LevelId } from "../quiz/levelConfig";
+import {
+  loadClearedSet,
+  saveClearedSet,
+  UNLOCK_PERCENT,
+} from "../quiz/storage/cleared";
+import { styles } from "../quiz/styles";
+import { calcPercent } from "../quiz/utils/progress";
 
 type QuizItem = {
   id: string;
