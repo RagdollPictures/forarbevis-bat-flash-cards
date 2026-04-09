@@ -239,7 +239,10 @@ export default function QuizMenuScreen() {
             
             <Pressable
   onPress={() => {
-    router.push("/quiz/level_002");
+    router.push({
+  pathname: "/game/[levelId]",
+  params: { levelId: "level_002" },
+});
   }}
   style={styles.devResetBtn}
 >
