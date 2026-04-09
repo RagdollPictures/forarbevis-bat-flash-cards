@@ -35,6 +35,15 @@ export default function FlashCard({ card, resetKey }: Props) {
         <Text style={styles.answer}>{card.answer}</Text>
       )}
 
+
+{showAnswer && card.textTitle && (
+  <Text style={styles.textTitle}>{card.textTitle}</Text>
+)}
+
+{showAnswer && card.textInfo && (
+  <Text style={styles.textInfo}>{card.textInfo}</Text>
+)}
+
       {showAnswer && answerImage && (
         <Image source={answerImage} style={styles.image} />
       )}
@@ -52,6 +61,8 @@ const styles = StyleSheet.create({
   card: { backgroundColor: '#ffffff',padding: 24, borderRadius: 16, borderWidth: 1, borderColor: '#ffffff', elevation: 3, gap: 16 },
   question: { fontSize: 20, fontWeight: "600" },
   answer: { fontSize: 18, opacity: 0.8 },
+  textTitle: {fontSize: 20},
+  textInfo: {fontSize: 18},
   image: {
     width: "100%",
     height: 220,

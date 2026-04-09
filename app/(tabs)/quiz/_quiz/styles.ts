@@ -48,6 +48,7 @@ export const styles = StyleSheet.create({
   },
   progressWrong: {
     backgroundColor: colorScheme.orange,
+   
   },
 
   card: {
@@ -87,9 +88,19 @@ export const styles = StyleSheet.create({
     backgroundColor: colorScheme.orange,
    
   },
-  optionText: {
+   optionText: {
     fontSize: 16,
     color: "#111",
+  },
+  optionTextCorrect: {
+    fontSize: 16,
+    color: "#111",
+    fontWeight: "800",
+  },
+   optionTextWrong: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#fff",
   },
   optionTextChecked: {
     color: "#111",
@@ -107,7 +118,7 @@ export const styles = StyleSheet.create({
     backgroundColor: "#111",
   },
   buttonSecondary: {
-    backgroundColor: "#f3f3f3",
+    backgroundColor: colorScheme.green,
   },
   buttonText: {
     color: "#fff",
@@ -135,4 +146,23 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     color: "#444",
   },
+ infoBox: {
+  marginTop: 16,
+  padding: 14,
+  borderRadius: 12,
+  backgroundColor: "#f3f4f6",
+},
+
+infoTitle: {
+  fontSize: 16,
+  fontWeight: "700",
+  marginBottom: 6,
+  color: "#111",
+},
+
+infoText: {
+  fontSize: 15,
+  lineHeight: 22,
+  color: "#333",
+},
 });

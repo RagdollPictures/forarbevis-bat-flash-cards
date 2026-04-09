@@ -102,7 +102,10 @@ export default function QuizScreen() {
           onSelect={s.onSelect}
           onNext={s.onNext}
           showNextButton={s.isChecked}
-         isLast={s.isFinished}
+          isLast={s.isFinished}
+          textTitle={s.card.textTitle}
+          textInfo={s.card.textInfo}
+        
         />
       </ScrollView>
     </SafeAreaView>

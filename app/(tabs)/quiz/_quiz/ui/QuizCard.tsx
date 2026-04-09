@@ -13,6 +13,8 @@ export default function QuizCard({
   onNext,
   showNextButton,
   isLast,
+  textTitle,
+  textInfo,
 }: {
   questionText: string;
   imageSource?: any;
@@ -24,6 +26,8 @@ export default function QuizCard({
   onNext: () => void;
   showNextButton: boolean;
   isLast: boolean;
+   textTitle?: string;
+  textInfo?: string;
 }) {
   return (
     <View style={styles.card}>
@@ -51,9 +55,10 @@ export default function QuizCard({
             >
               <Text
                 style={[
-                  styles.optionText,
-                  (isCorrect || isWrong) && styles.optionTextChecked,
-                ]}
+  styles.optionText,
+  isCorrect && styles.optionTextCorrect,
+  isWrong && styles.optionTextWrong,
+]}
               >
                 {opt}
               </Text>
@@ -61,6 +66,8 @@ export default function QuizCard({
           );
         })}
       </View>
+
+
 
       {showNextButton ? (
         <View style={styles.actions}>
@@ -70,7 +77,23 @@ export default function QuizCard({
             </Text>
           </Pressable>
         </View>
+
+        
       ) : null}
+
+      {isChecked && (textTitle || textInfo) ? (
+  <View style={styles.infoBox}>
+    {textTitle ? (
+      <Text style={styles.infoTitle}>{textTitle}</Text>
+    ) : null}
+
+    {textInfo ? (
+      <Text style={styles.infoText}>{textInfo}</Text>
+    ) : null}
+  </View>
+) : null}
     </View>
+
+    
   );
 }
