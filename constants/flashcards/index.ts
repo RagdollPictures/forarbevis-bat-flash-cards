@@ -159,6 +159,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       children: [
         { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
         { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
+        {
+      id: "sjokortet_sjomarken_quiz",
+      title: "Kapitelquiz",
+      quizId: "sjokortet_sjomarken_quiz",
+      type: "quiz",
+    },
       ],
     },
 
@@ -457,6 +463,7 @@ export type Quiz = {
   subtitle?: string;
   sourceId: string;
   deck: MultipleChoiceCard[];
+  chapterId?: string;
 };
 
 export type ReadSection = {
@@ -562,12 +569,13 @@ export function getQuizzesForChapter(sourceId: string, chapterId: string): Quiz[
 
       if (deck.length > 0) {
         result.push({
-          id: child.quizId,
-          title: child.title,
-          subtitle: chapter.title,
-          sourceId,
-          deck,
-        });
+  id: child.quizId,
+  title: child.title,
+  subtitle: chapter.title,
+  sourceId,
+  deck,
+  chapterId: chapter.id,
+});
       }
 
       continue;
@@ -646,12 +654,13 @@ export function getQuizById(quizId: string): Quiz | null {
       if (deck.length === 0) return null;
 
       return {
-        id: quizId,
-        title: quizNode?.title ?? "Kapitelquiz",
-        subtitle: chapter.title,
-        sourceId: source.id,
-        deck,
-      };
+  id: quizId,
+  title: quizNode?.title ?? "Kapitelquiz",
+  subtitle: chapter.title,
+  sourceId: source.id,
+  deck,
+  chapterId: chapter.id,
+};
     }
 
     const directQuiz = getQuizzes(source.id).find((q) => q.id === quizId);

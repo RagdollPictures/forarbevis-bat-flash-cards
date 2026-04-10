@@ -10,13 +10,27 @@ export default function QuizFinished({
   total,
   onRestart,
   isChapterQuiz = false,
+  nextLevelId = null,
 }: {
   title: string;
   score: number;
   total: number;
   onRestart: () => void;
   isChapterQuiz?: boolean;
+  nextLevelId?: string | null;
 }) {
+  const goNext = () => {
+    if (isChapterQuiz && nextLevelId) {
+      router.push({
+        pathname: "/game/[levelId]",
+        params: { levelId: nextLevelId },
+      });
+      return;
+    }
+
+    router.back();
+  };
+
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
@@ -30,11 +44,11 @@ export default function QuizFinished({
 
         <View style={styles.actions}>
           <Pressable
-            onPress={() => router.back()}
+            onPress={goNext}
             style={[styles.button, styles.buttonSecondary]}
           >
             <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
-              {isChapterQuiz ? "Till nästa level" : "Tillbaka"}
+              {isChapterQuiz && nextLevelId ? "Till nästa bana!" : "Fortsätt"}
             </Text>
           </Pressable>
         </View>

@@ -7,19 +7,30 @@ import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 
+import { levelIds, levelsById } from "../game/levelConfig";
 import { styles } from "./_quiz/styles";
 import QuizCard from "./_quiz/ui/QuizCard";
 import QuizFinished from "./_quiz/ui/QuizFinished";
 import QuizMissing from "./_quiz/ui/QuizMissing";
 import { useQuizSession } from "./_quiz/useQuizSession";
 import { validateDeck } from "./_quiz/validateDeck";
-
 export default function QuizScreen() {
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const id = typeof quizId === "string" ? quizId : "";
 const isChapterQuiz = id.endsWith("_quiz");
+
+const currentLevelIndex = levelIds.findIndex(
+  (levelId) => levelsById[levelId].chapterId === id.replace(/_quiz$/, "")
+);
+
+const nextLevelId =
+  currentLevelIndex >= 0 && currentLevelIndex < levelIds.length - 1
+    ? levelIds[currentLevelIndex + 1]
+    : null;
+    
   const resolved = getQuizById(id);
 
+  
   const screenTitle = resolved
     ? resolved.subtitle
       ? `${resolved.title} – ${resolved.subtitle}`
@@ -70,6 +81,7 @@ const isChapterQuiz = id.endsWith("_quiz");
           total={s.shuffledDeck.length}
           onRestart={s.restart}
           isChapterQuiz={isChapterQuiz}
+          nextLevelId={nextLevelId}
         />
       </ScrollView>
     </SafeAreaView>
