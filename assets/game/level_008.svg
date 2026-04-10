@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 1500">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8ae7d4;
+      }
+
+      .cls-2 {
+        letter-spacing: 0em;
+      }
+
+      .cls-3 {
+        fill: #fff;
+      }
+
+      .cls-4 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-5 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        font-size: 25.69px;
+      }
+
+      .cls-6, .cls-7 {
+        fill: #0183e1;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-8 {
+        letter-spacing: 0em;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: 0em;
+      }
+
+      .cls-11 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-13 {
+        letter-spacing: 0em;
+      }
+
+      .cls-14 {
+        letter-spacing: 0em;
+      }
+
+      .cls-15 {
+        letter-spacing: 0em;
+      }
+
+      .cls-7 {
+        font-size: 22.31px;
+      }
+    </style>
+  </defs>
+  <g id="bg-5" data-name="bg">
+    <polygon class="cls-1" points="375 1500 0 1499.52 0 0 375 .48 375 1500"/>
+  </g>
+  <g id="path-5" data-name="path">
+    <path class="cls-11" d="M316.97,162.18s9.77,93.71-111.13,65.69c-132.17-30.63-145.2,32.69-143.5,80.95,2.58,73.14,80.93,72.41,127.31,52.93,55.6-23.35,127.32-4.67,127.32,77.84,0,115.29-227.84,7.68-244.63,102.75-4.51,25.55-12.3,137.02,137.31,87.18,119.8-39.91,107.02,42.67,107.32,105.86.34,71.61-43.7,104.3-129.47,68.5-126.03-52.61-122.71,71.3-111.93,116.76,10.77,45.45,34.25,65.45,114.16,52.93,136.37-21.37,121.9,34.25,117.51,99.63-4.39,65.38-91.46,28.02-131.99,24.91-40.53-3.11-97.3,9.91-93.04,145.06"/>
+  </g>
+  <g id="anchor_read_001-8" data-name="anchor_read_001">
+    <circle class="cls-3" cx="316.95" cy="172.18" r="10"/>
+  </g>
+  <g id="anchor_quiz_001-8" data-name="anchor_quiz_001">
+    <circle class="cls-3" cx="62.21" cy="304.35" r="10"/>
+  </g>
+  <g id="anchor_read_002-8" data-name="anchor_read_002">
+    <circle class="cls-3" cx="175.25" cy="362.97" r="10"/>
+  </g>
+  <g id="anchor_quiz_002-8" data-name="anchor_quiz_002">
+    <circle class="cls-3" cx="316.95" cy="411.08" r="10"/>
+  </g>
+  <g id="anchor_read_003-7" data-name="anchor_read_003">
+    <circle class="cls-3" cx="219.66" cy="500.3" r="10"/>
+  </g>
+  <g id="anchor_quiz_003-7" data-name="anchor_quiz_003">
+    <circle class="cls-3" cx="72.21" cy="564.13" r="10"/>
+  </g>
+  <g id="anchor_read_004-7" data-name="anchor_read_004">
+    <circle class="cls-3" cx="165.25" cy="637.3" r="10"/>
+  </g>
+  <g id="anchor_quiz_004-7" data-name="anchor_quiz_004">
+    <circle class="cls-3" cx="317.24" cy="712.02" r="10"/>
+  </g>
+  <g id="anchor_read_005-7" data-name="anchor_read_005">
+    <circle class="cls-3" cx="209.66" cy="813.88" r="10"/>
+  </g>
+  <g id="anchor_quiz_005-7" data-name="anchor_quiz_005">
+    <circle class="cls-3" cx="72.34" cy="869.25" r="10"/>
+  </g>
+  <g id="anchor_read_006-5" data-name="anchor_read_006">
+    <circle class="cls-3" cx="175.25" cy="976.08" r="10"/>
+  </g>
+  <g id="anchor_quiz_006-5" data-name="anchor_quiz_006">
+    <circle class="cls-3" cx="306.95" cy="1046.67" r="10"/>
+  </g>
+  <g id="anchor_read_007-3" data-name="anchor_read_007">
+    <circle class="cls-3" cx="219.66" cy="1105.55" r="10"/>
+  </g>
+  <g id="anchor_quiz_007-3" data-name="anchor_quiz_007">
+    <circle class="cls-3" cx="88.04" cy="1181.5" r="10"/>
+  </g>
+  <g id="text_Batens_Rorelser_o_Kontroll">
+    <rect class="cls-11" x="28.83" y="1243.16" width="318.93" height="97.24" rx="10" ry="10"/>
+    <text class="cls-6" transform="translate(164.02 1303.83)"><tspan class="cls-4" x="0" y="0">T</tspan><tspan class="cls-10" x="10.95" y="0">est</tspan></text>
+    <text class="cls-7" transform="translate(86.34 83.61)"><tspan x="0" y="0">B</tspan><tspan class="cls-13" x="12.09" y="0">å</tspan><tspan class="cls-5" x="22.76" y="0">t</tspan><tspan x="30.01" y="0">ens </tspan><tspan class="cls-14" x="67.14" y="0">R</tspan><tspan class="cls-15" x="79.24" y="0">ö</tspan><tspan class="cls-12" x="91.49" y="0">r</tspan><tspan x="98.56" y="0">elser &amp; Ko</tspan><tspan class="cls-2" x="189.63" y="0">n</tspan><tspan x="201.92" y="0">t</tspan><tspan class="cls-9" x="209.31" y="0">r</tspan><tspan class="cls-8" x="216.38" y="0">oll</tspan></text>
+  </g>
+</svg>

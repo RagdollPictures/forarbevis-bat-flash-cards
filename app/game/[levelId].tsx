@@ -13,7 +13,6 @@ import {
 import ProgressRing from "../quiz/components/ProgressRing";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
-import { levelsById, type LevelId } from "../quiz/levelConfig";
 import {
   loadClearedSet,
   saveClearedSet,
@@ -21,6 +20,8 @@ import {
 } from "../quiz/storage/cleared";
 import { styles } from "../quiz/styles";
 import { calcPercent } from "../quiz/utils/progress";
+import { getLevelId, levelIds, levelsById } from "./levelConfig";
+
 
 type QuizItem = {
   id: string;
@@ -58,15 +59,13 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
 
 export default function QuizMenuScreen() {
 
+const [showDevMenu, setShowDevMenu] = useState(false);
   const params = useLocalSearchParams<{ levelId?: string }>();
-  const rawLevelId = params.levelId;
+const levelId = getLevelId(params.levelId);
 
-  const levelId: LevelId =
-    rawLevelId === "level_002" ? "level_002" : "level_001";
-
-  const level = levelsById[levelId];
-  const layout = level.layout;
-  const LevelSvg = level.Svg;
+const level = levelsById[levelId];
+const layout = level.layout;
+const LevelSvg = level.Svg;
 
   const quizzes = useMemo(
     () => getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[],
@@ -234,41 +233,57 @@ export default function QuizMenuScreen() {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-        {__DEV__ ? (
-          <View style={styles.devPanel}>
-            
-            <Pressable
-  onPress={() => {
-    router.push({
-  pathname: "/game/[levelId]",
-  params: { levelId: "level_002" },
-});
-  }}
-  style={styles.devResetBtn}
->
-  <Text style={styles.devResetText}>DEV: GO TO LEVEL 002</Text>
-</Pressable>
-            <Pressable
-              onPress={async () => {
-                await AsyncStorage.clear();
-                setClearedIds(new Set());
-                setProgressByQuizId({});
-              }}
-              style={styles.devResetBtn}
-            >
-              <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
-            </Pressable>
+       {__DEV__ ? (
+  <View style={styles.devPanel}>
+    <Pressable
+      onPress={() => setShowDevMenu((prev) => !prev)}
+      style={styles.devResetBtn}
+    >
+      <Text style={styles.devResetText}>
+        {showDevMenu ? "HIDE DEV MENU" : "SHOW DEV MENU"}
+      </Text>
+    </Pressable>
 
-            <Pressable
-              onPress={devCheatNextLockedTo100}
-              style={styles.devResetBtn}
-            >
-              <Text style={styles.devResetText}>
-                DEV: SET NEXT LOCKED TO 100%
-              </Text>
-            </Pressable>
-          </View>
-        ) : null}
+    {showDevMenu ? (
+      <>
+        {levelIds.map((id) => (
+          <Pressable
+            key={id}
+            onPress={() => {
+              router.push({
+                pathname: "/game/[levelId]",
+                params: { levelId: id },
+              });
+            }}
+            style={styles.devResetBtn}
+          >
+            <Text style={styles.devResetText}>DEV: {id.toUpperCase()}</Text>
+          </Pressable>
+        ))}
+
+        <Pressable
+          onPress={async () => {
+            await AsyncStorage.clear();
+            setClearedIds(new Set());
+            setProgressByQuizId({});
+          }}
+          style={styles.devResetBtn}
+        >
+          <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
+        </Pressable>
+
+        <Pressable
+          onPress={devCheatNextLockedTo100}
+          style={styles.devResetBtn}
+        >
+          <Text style={styles.devResetText}>
+            DEV: SET NEXT LOCKED TO 100%
+          </Text>
+        </Pressable>
+      </>
+    ) : null}
+  </View>
+) : null}
 
         <View
   style={{

@@ -1,0 +1,92 @@
+{
+  "viewBox": {
+    "width": 375,
+    "height": 1250
+  },
+  "anchors": [
+    {
+      "id": "anchor_read_001",
+      "type": "read",
+      "index": 1,
+      "x": 62.34,
+      "y": 147.16
+    },
+    {
+      "id": "anchor_quiz_001",
+      "type": "quiz",
+      "index": 1,
+      "x": 187.5,
+      "y": 205.99
+    },
+    {
+      "id": "anchor_read_002",
+      "type": "read",
+      "index": 2,
+      "x": 310.43,
+      "y": 278.09
+    },
+    {
+      "id": "anchor_quiz_002",
+      "type": "quiz",
+      "index": 2,
+      "x": 187.5,
+      "y": 343.75
+    },
+    {
+      "id": "anchor_read_003",
+      "type": "read",
+      "index": 3,
+      "x": 72.34,
+      "y": 407.5
+    },
+    {
+      "id": "anchor_quiz_003",
+      "type": "quiz",
+      "index": 3,
+      "x": 187.5,
+      "y": 488.7
+    },
+    {
+      "id": "anchor_read_004",
+      "type": "read",
+      "index": 4,
+      "x": 316.93,
+      "y": 569.73
+    },
+    {
+      "id": "anchor_quiz_004",
+      "type": "quiz",
+      "index": 4,
+      "x": 189.64,
+      "y": 655.26
+    },
+    {
+      "id": "anchor_read_005",
+      "type": "read",
+      "index": 5,
+      "x": 72.34,
+      "y": 722.79
+    },
+    {
+      "id": "anchor_quiz_005",
+      "type": "quiz",
+      "index": 5,
+      "x": 185.25,
+      "y": 810.12
+    },
+    {
+      "id": "anchor_read_006",
+      "type": "read",
+      "index": 6,
+      "x": 317.08,
+      "y": 887.55
+    },
+    {
+      "id": "anchor_quiz_006",
+      "type": "quiz",
+      "index": 6,
+      "x": 199.66,
+      "y": 952.38
+    }
+  ]
+}

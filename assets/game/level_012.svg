@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 1700">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #8ae7d4;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        letter-spacing: -.07em;
+      }
+
+      .cls-4 {
+        letter-spacing: 0em;
+      }
+
+      .cls-5 {
+        font-size: 25.69px;
+      }
+
+      .cls-5, .cls-6 {
+        fill: #0183e1;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
+      }
+
+      .cls-7 {
+        letter-spacing: 0em;
+      }
+
+      .cls-8 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
+      }
+
+      .cls-9 {
+        letter-spacing: 0em;
+      }
+
+      .cls-10 {
+        letter-spacing: .02em;
+      }
+
+      .cls-11 {
+        letter-spacing: 0em;
+      }
+
+      .cls-12 {
+        letter-spacing: 0em;
+      }
+
+      .cls-6 {
+        font-size: 22.31px;
+      }
+    </style>
+  </defs>
+  <g id="bg-9" data-name="bg">
+    <polygon class="cls-1" points="375 1700 0 1699.45 0 0 375 .55 375 1700"/>
+  </g>
+  <g id="path-9" data-name="path">
+    <path class="cls-8" d="M199.66,169.55c57.51.04,112.44-1.09,111.25,63.37-2.54,137.08-239.02,3.07-239.02,137.04s245.05,28.92,245.05,159.47c0,172-244.22,6.98-244.22,158.46,0,0-9.24,99.04,116.93,83.73,126.17-15.31,126.63,32.41,127.3,74.73.67,42.32-16.5,110.42-119.43,64.82-69.29-30.69-125.16,61.22-125.16,101.74,0,0-8.35,65.15,117.31,60.48,125.66-4.67,127.39,54.49,127.31,107.42-.09,52.93-62.98,42.03-152.96,42.03s-100.59,66.94-99.95,115.2c.63,48.26,38.57,66.94,141.81,48.26,103.23-18.68,111.11,26.46,111.11,80.95"/>
+  </g>
+  <g id="anchor_read_001-12" data-name="anchor_read_001">
+    <circle class="cls-2" cx="199.66" cy="172.25" r="10"/>
+  </g>
+  <g id="anchor_quiz_001-12" data-name="anchor_quiz_001">
+    <circle class="cls-2" cx="307.24" cy="253.04" r="10"/>
+  </g>
+  <g id="anchor_read_002-12" data-name="anchor_read_002">
+    <circle class="cls-2" cx="163.99" cy="301.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_002-12" data-name="anchor_quiz_002">
+    <circle class="cls-2" cx="72.21" cy="374.4" r="10"/>
+  </g>
+  <g id="anchor_read_003-11" data-name="anchor_read_003">
+    <circle class="cls-2" cx="199.66" cy="452.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_003-11" data-name="anchor_quiz_003">
+    <circle class="cls-2" cx="316.95" cy="556.54" r="10"/>
+  </g>
+  <g id="anchor_read_004-11" data-name="anchor_read_004">
+    <circle class="cls-2" cx="173.99" cy="614.14" r="10"/>
+  </g>
+  <g id="anchor_quiz_004-11" data-name="anchor_quiz_004">
+    <circle class="cls-2" cx="72.34" cy="705.33" r="10"/>
+  </g>
+  <g id="anchor_read_005-10" data-name="anchor_read_005">
+    <circle class="cls-2" cx="199.66" cy="768.26" r="10"/>
+  </g>
+  <g id="anchor_quiz_005-10" data-name="anchor_quiz_005">
+    <circle class="cls-2" cx="317.24" cy="860.05" r="10"/>
+  </g>
+  <g id="anchor_read_006-8" data-name="anchor_read_006">
+    <circle class="cls-2" cx="98.04" cy="945.73" r="10"/>
+  </g>
+  <g id="anchor_quiz_006-8" data-name="anchor_quiz_006">
+    <circle class="cls-2" cx="165.25" cy="1070.27" r="10"/>
+  </g>
+  <g id="anchor_read_007-5" data-name="anchor_read_007">
+    <circle class="cls-2" cx="316.95" cy="1155.89" r="10"/>
+  </g>
+  <g id="anchor_quiz_007-5" data-name="anchor_quiz_007">
+    <circle class="cls-2" cx="165.25" cy="1220.1" r="10"/>
+  </g>
+  <g id="anchor_read_008-3" data-name="anchor_read_008">
+    <circle class="cls-2" cx="62.21" cy="1305.24" r="10"/>
+  </g>
+  <g id="anchor_quiz_008-3" data-name="anchor_quiz_008">
+    <circle class="cls-2" cx="163.99" cy="1390.96" r="10"/>
+  </g>
+  <g id="text_Sakerhet_o_Beredskap">
+    <text class="cls-5" transform="translate(164.02 1527.07)"><tspan class="cls-3" x="0" y="0">T</tspan><tspan class="cls-7" x="10.95" y="0">est</tspan></text>
+    <text class="cls-6" transform="translate(62.34 84.31)"><tspan class="cls-4" x="0" y="0">S</tspan><tspan x="11.07" y="0">äke</tspan><tspan class="cls-11" x="43.47" y="0">r</tspan><tspan x="50.85" y="0">het &amp; </tspan><tspan class="cls-11" x="104.76" y="0">B</tspan><tspan x="116.95" y="0">e</tspan><tspan class="cls-9" x="128.13" y="0">r</tspan><tspan class="cls-12" x="135.2" y="0">eds</tspan><tspan class="cls-10" x="167.8" y="0">k</tspan><tspan x="178.67" y="0">ap</tspan></text>
+    <rect class="cls-8" x="28.83" y="1468.01" width="318.93" height="97.24" rx="10" ry="10"/>
+  </g>
+</svg>

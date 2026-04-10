@@ -1,0 +1,120 @@
+{
+  "viewBox": {
+    "width": 375,
+    "height": 1700
+  },
+  "anchors": [
+    {
+      "id": "anchor_read_001",
+      "type": "read",
+      "index": 1,
+      "x": 199.66,
+      "y": 172.25
+    },
+    {
+      "id": "anchor_quiz_001",
+      "type": "quiz",
+      "index": 1,
+      "x": 307.24,
+      "y": 253.04
+    },
+    {
+      "id": "anchor_read_002",
+      "type": "read",
+      "index": 2,
+      "x": 163.99,
+      "y": 301.24
+    },
+    {
+      "id": "anchor_quiz_002",
+      "type": "quiz",
+      "index": 2,
+      "x": 72.21,
+      "y": 374.4
+    },
+    {
+      "id": "anchor_read_003",
+      "type": "read",
+      "index": 3,
+      "x": 199.66,
+      "y": 452.24
+    },
+    {
+      "id": "anchor_quiz_003",
+      "type": "quiz",
+      "index": 3,
+      "x": 316.95,
+      "y": 556.54
+    },
+    {
+      "id": "anchor_read_004",
+      "type": "read",
+      "index": 4,
+      "x": 173.99,
+      "y": 614.14
+    },
+    {
+      "id": "anchor_quiz_004",
+      "type": "quiz",
+      "index": 4,
+      "x": 72.34,
+      "y": 705.33
+    },
+    {
+      "id": "anchor_read_005",
+      "type": "read",
+      "index": 5,
+      "x": 199.66,
+      "y": 768.26
+    },
+    {
+      "id": "anchor_quiz_005",
+      "type": "quiz",
+      "index": 5,
+      "x": 317.24,
+      "y": 860.05
+    },
+    {
+      "id": "anchor_read_006",
+      "type": "read",
+      "index": 6,
+      "x": 98.04,
+      "y": 945.73
+    },
+    {
+      "id": "anchor_quiz_006",
+      "type": "quiz",
+      "index": 6,
+      "x": 165.25,
+      "y": 1070.27
+    },
+    {
+      "id": "anchor_read_007",
+      "type": "read",
+      "index": 7,
+      "x": 316.95,
+      "y": 1155.89
+    },
+    {
+      "id": "anchor_quiz_007",
+      "type": "quiz",
+      "index": 7,
+      "x": 165.25,
+      "y": 1220.1
+    },
+    {
+      "id": "anchor_read_008",
+      "type": "read",
+      "index": 8,
+      "x": 62.21,
+      "y": 1305.24
+    },
+    {
+      "id": "anchor_quiz_008",
+      "type": "quiz",
+      "index": 8,
+      "x": 163.99,
+      "y": 1390.96
+    }
+  ]
+}
