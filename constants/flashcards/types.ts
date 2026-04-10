@@ -11,7 +11,6 @@ export type FlashCard = {
   textInfo?: string;
 };
 
-
 export type Source = {
   id: string;
   title: string;
@@ -21,5 +20,8 @@ export type Chapter = {
   id: string;
   title: string;
   deckId?: string;
+  quizId?: string;
+  type?: "deck" | "quiz" | "chapter";
   children?: Chapter[];
 };
+

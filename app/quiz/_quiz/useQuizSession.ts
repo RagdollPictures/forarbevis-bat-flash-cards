@@ -3,6 +3,24 @@ import { saveQuizProgress } from "../../../constants/flashcards/quizProgress";
 import type { FlashCard } from "../../../constants/flashcards/types";
 import { shuffle } from "./shuffle";
 
+
+const QUIZ_LENGTH = 10;
+
+function shuffleArray<T>(array: T[]): T[] {
+  const copy = [...array];
+
+  for (let i = copy.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [copy[i], copy[j]] = [copy[j], copy[i]];
+  }
+
+  return copy;
+}
+
+function buildSessionDeck<T>(deck: T[]): T[] {
+  return shuffleArray(deck).slice(0, Math.min(QUIZ_LENGTH, deck.length));
+}
+
 function clampInt(n: number, min: number, max: number) {
   return Math.max(min, Math.min(max, n));
 }
@@ -49,7 +67,7 @@ export function useQuizSession({
   useEffect(() => {
     if (deck.length === 0) return;
 
-    const nextDeck = shuffle(deck);
+    const nextDeck = buildSessionDeck(deck);
 
     setQueue(nextDeck);
     setProgress(Array(nextDeck.length).fill(null));
@@ -69,7 +87,7 @@ export function useQuizSession({
     setFirstTryCorrectCount(0);
 
     setQuiz({ options: [], correctOptionIndex: -1 });
-  }, [deck.length]);
+  }, [quizId, deck.length]);
 
   const safeIndex = Math.min(index, Math.max(0, queue.length - 1));
   const card = queue[safeIndex];
@@ -242,7 +260,7 @@ export function useQuizSession({
   const restart = () => {
     if (deck.length === 0) return;
 
-    const nextDeck = shuffle(deck);
+   const nextDeck = buildSessionDeck(deck);
 
     setQueue(nextDeck);
     setProgress(Array(nextDeck.length).fill(null));

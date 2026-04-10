@@ -9,28 +9,34 @@ export default function QuizFinished({
   score,
   total,
   onRestart,
+  isChapterQuiz = false,
 }: {
   title: string;
   score: number;
   total: number;
   onRestart: () => void;
+  isChapterQuiz?: boolean;
 }) {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-       
-
         <View style={styles.resultCard}>
-         
-          <Text style={styles.resultText}>Grattis!</Text>
+          <Text style={styles.resultText}>
+            {isChapterQuiz
+              ? "Grattis du är redo för nästa level"
+              : "Grattis!"}
+          </Text>
         </View>
 
         <View style={styles.actions}>
-          
-          <Pressable onPress={() => router.back()} style={[styles.button, styles.buttonSecondary]}>
-            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>Redo för nästa nivå!</Text>
+          <Pressable
+            onPress={() => router.back()}
+            style={[styles.button, styles.buttonSecondary]}
+          >
+            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
+              {isChapterQuiz ? "Till nästa level" : "Tillbaka"}
+            </Text>
           </Pressable>
-
         </View>
       </ScrollView>
     </SafeAreaView>

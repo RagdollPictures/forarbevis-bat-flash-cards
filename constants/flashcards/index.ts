@@ -142,7 +142,13 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
         { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
         { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
-         { id: "symboler", title: "Symboler", deckId: "symboler" }
+        { id: "symboler", title: "Symboler", deckId: "symboler" },
+        {
+      id: "sjokortet_quiz",
+      title: "Kapitelquiz",
+      quizId: "sjokortet_quiz",
+      type: "quiz",
+    },
       ],
     },
 
@@ -548,25 +554,110 @@ export function getQuizzesForChapter(sourceId: string, chapterId: string): Quiz[
 
   if (!chapter) return [];
 
-  const targets = chapter.children?.length ? chapter.children : [chapter];
+  const result: Quiz[] = [];
 
-  return targets
-    .filter((ch): ch is Chapter & { deckId: string } => !!ch.deckId)
-    .map((ch) => ({
-      id: ch.id,
-      title: ch.title,
-      subtitle: chapter.title,
-      sourceId,
-      deck: buildQuizDeckFromDeckId(ch.deckId),
-    }))
-    .filter((q) => q.deck.length > 0);
+  for (const child of chapter.children ?? []) {
+    if (child.type === "quiz" && child.quizId) {
+      const deck = buildQuizDeckFromChapter(chapter);
+
+      if (deck.length > 0) {
+        result.push({
+          id: child.quizId,
+          title: child.title,
+          subtitle: chapter.title,
+          sourceId,
+          deck,
+        });
+      }
+
+      continue;
+    }
+
+    if (child.deckId) {
+      const deck = buildQuizDeckFromDeckId(child.deckId);
+
+      if (deck.length > 0) {
+        result.push({
+          id: child.id,
+          title: child.title,
+          subtitle: chapter.title,
+          sourceId,
+          deck,
+        });
+      }
+    }
+  }
+
+  return result;
+}
+
+function getAllDeckIdsFromChapter(chapter: Chapter): string[] {
+  if (!chapter.children?.length) {
+    return chapter.deckId ? [chapter.deckId] : [];
+  }
+
+  const ids: string[] = [];
+
+  for (const child of chapter.children) {
+    if (child.type === "quiz") continue;
+    ids.push(...getAllDeckIdsFromChapter(child));
+  }
+
+  return ids;
+}
+
+function buildQuizDeckFromChapter(chapter: Chapter): MultipleChoiceCard[] {
+  const deckIds = getAllDeckIdsFromChapter(chapter);
+
+  return deckIds.flatMap((deckId) =>
+    getDeck(deckId).filter(isMultipleChoiceCard)
+  );
+}
+
+function findChapterByQuizId(chapters: Chapter[], quizId: string): Chapter | null {
+  for (const ch of chapters) {
+    const hasQuizChild = (ch.children ?? []).some(
+      (child) => child.quizId === quizId
+    );
+
+    if (hasQuizChild) return ch;
+
+    if (ch.children?.length) {
+      const found = findChapterByQuizId(ch.children, quizId);
+      if (found) return found;
+    }
+  }
+
+  return null;
 }
 
 export function getQuizById(quizId: string): Quiz | null {
   for (const source of sources) {
-    const quiz = getQuizzes(source.id).find((q) => q.id === quizId);
-    if (quiz) return quiz;
+    const chapters = getChapters(source.id);
+
+    const chapter = findChapterByQuizId(chapters, quizId);
+    if (chapter) {
+      const quizNode = (chapter.children ?? []).find(
+        (child) => child.quizId === quizId
+      );
+
+      const deck = buildQuizDeckFromChapter(chapter);
+
+      if (deck.length === 0) return null;
+
+      return {
+        id: quizId,
+        title: quizNode?.title ?? "Kapitelquiz",
+        subtitle: chapter.title,
+        sourceId: source.id,
+        deck,
+      };
+    }
+
+    const directQuiz = getQuizzes(source.id).find((q) => q.id === quizId);
+    if (directQuiz) return directQuiz;
   }
+
   return null;
 }
 

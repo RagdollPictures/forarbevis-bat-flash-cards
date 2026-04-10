@@ -17,7 +17,7 @@ import { validateDeck } from "./_quiz/validateDeck";
 export default function QuizScreen() {
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const id = typeof quizId === "string" ? quizId : "";
-
+const isChapterQuiz = id.endsWith("_quiz");
   const resolved = getQuizById(id);
 
   const screenTitle = resolved
@@ -69,6 +69,7 @@ export default function QuizScreen() {
           score={s.score}
           total={s.shuffledDeck.length}
           onRestart={s.restart}
+          isChapterQuiz={isChapterQuiz}
         />
       </ScrollView>
     </SafeAreaView>
