@@ -15,21 +15,24 @@
       }
 
       .cls-4 {
-        letter-spacing: -.07em;
-      }
-
-      .cls-5 {
         letter-spacing: 0em;
       }
 
-      .cls-6 {
+      .cls-5 {
         letter-spacing: -.02em;
       }
 
-      .cls-7 {
+      .cls-6 {
         fill: #0183e1;
         font-family: MyriadPro-Regular, 'Myriad Pro';
         font-size: 25.69px;
+      }
+
+      .cls-7 {
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
       }
 
       .cls-8 {
@@ -37,17 +40,6 @@
       }
 
       .cls-9 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-10 {
-        letter-spacing: 0em;
-      }
-
-      .cls-11 {
         letter-spacing: 0em;
       }
     </style>
@@ -56,8 +48,8 @@
     <polygon class="cls-2" points="375 1252.3 0 1251.89 0 2.3 375 2.7 375 1252.3"/>
   </g>
   <g id="path-2" data-name="path">
-    <path class="cls-9" d="M62.75,154.39c-12.18,107.44,250.44-4.57,248.16,118.83-2.54,137.08-239.02,3.07-239.02,137.04s245.05,28.92,245.05,159.47c0,172-244.22,6.98-244.22,158.46,0,0-9.24,99.04,116.93,83.73s126.63,32.41,127.3,74.73"/>
-    <rect class="cls-9" x="28.83" y="885.71" width="318.93" height="97.24" rx="10" ry="10"/>
+    <path class="cls-7" d="M62.75,154.39c-12.18,107.44,250.44-4.57,248.16,118.83-2.54,137.08-239.02,3.07-239.02,137.04s245.05,28.92,245.05,159.47c0,172-244.22,6.98-244.22,158.46,0,0-9.24,99.04,116.93,83.73s126.63,32.41,127.3,74.73"/>
+    <rect class="cls-7" x="28.83" y="885.71" width="318.93" height="97.24" rx="10" ry="10"/>
   </g>
   <g id="anchor_read_001-5" data-name="anchor_read_001">
     <circle class="cls-3" cx="62.34" cy="147.16" r="10"/>
@@ -74,7 +66,7 @@
   <g id="anchor_read_003-4" data-name="anchor_read_003">
     <circle class="cls-3" cx="72.34" cy="407.5" r="10"/>
   </g>
-  <g id="anchor_quiz_003-4" data-name="anchor_quiz_003">
+  <g id="anchor_quiz_003-5" data-name="anchor_quiz_003">
     <circle class="cls-3" cx="187.5" cy="488.7" r="10"/>
   </g>
   <g id="anchor_read_004-4" data-name="anchor_read_004">
@@ -89,8 +81,10 @@
   <g id="anchor_quiz_005-4" data-name="anchor_quiz_005">
     <circle class="cls-3" cx="185.25" cy="810.12" r="10"/>
   </g>
+  <g id="anchor_quiz_006-4" data-name="anchor_quiz_006">
+    <circle class="cls-3" cx="179.64" cy="935.73" r="10"/>
+  </g>
   <g id="text_Navigering_i_Praktiken">
-    <text class="cls-7" transform="translate(40.14 78.24)"><tspan x="0" y="0">N</tspan><tspan class="cls-5" x="16.91" y="0">a</tspan><tspan x="29.08" y="0">vige</tspan><tspan class="cls-10" x="74.69" y="0">r</tspan><tspan class="cls-1" x="83.19" y="0">ing i </tspan><tspan class="cls-6" x="134.73" y="0">P</tspan><tspan class="cls-11" x="147.99" y="0">r</tspan><tspan x="156.27" y="0">aktiken</tspan></text>
-    <text class="cls-7" transform="translate(164.02 947.33)"><tspan class="cls-4" x="0" y="0">T</tspan><tspan class="cls-8" x="10.95" y="0">est</tspan></text>
+    <text class="cls-6" transform="translate(40.14 78.24)"><tspan x="0" y="0">N</tspan><tspan class="cls-4" x="16.91" y="0">a</tspan><tspan x="29.08" y="0">vige</tspan><tspan class="cls-8" x="74.69" y="0">r</tspan><tspan class="cls-1" x="83.19" y="0">ing i </tspan><tspan class="cls-5" x="134.73" y="0">P</tspan><tspan class="cls-9" x="147.99" y="0">r</tspan><tspan x="156.27" y="0">aktiken</tspan></text>
   </g>
 </svg>

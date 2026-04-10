@@ -15,11 +15,11 @@
       }
 
       .cls-4 {
-        letter-spacing: -.07em;
+        letter-spacing: -.01em;
       }
 
       .cls-5 {
-        letter-spacing: -.01em;
+        letter-spacing: 0em;
       }
 
       .cls-6 {
@@ -31,12 +31,14 @@
       }
 
       .cls-8 {
-        font-size: 25.69px;
+        fill: none;
+        stroke: #fff;
+        stroke-miterlimit: 10;
+        stroke-width: 3px;
       }
 
-      .cls-8, .cls-9 {
-        fill: #0183e1;
-        font-family: MyriadPro-Regular, 'Myriad Pro';
+      .cls-9 {
+        letter-spacing: 0em;
       }
 
       .cls-10 {
@@ -44,29 +46,12 @@
       }
 
       .cls-11 {
-        letter-spacing: 0em;
-      }
-
-      .cls-12 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-13 {
-        letter-spacing: 0em;
-      }
-
-      .cls-14 {
-        letter-spacing: 0em;
-      }
-
-      .cls-9 {
+        fill: #0183e1;
+        font-family: MyriadPro-Regular, 'Myriad Pro';
         font-size: 22.31px;
       }
 
-      .cls-15 {
+      .cls-12 {
         letter-spacing: -.01em;
       }
     </style>
@@ -75,7 +60,7 @@
     <rect class="cls-1" x="-2.25" y="-1.23" width="375" height="1079.65"/>
   </g>
   <g id="path-11" data-name="path">
-    <path class="cls-12" d="M316.97,162.18s9.77,93.71-111.13,65.69c-132.17-30.63-145.2,32.69-143.5,80.95,2.58,73.14,80.93,72.41,127.31,52.93,55.6-23.35,127.32-4.67,127.32,77.84,0,115.29-227.84,7.68-244.63,102.75-4.51,25.55-12.3,137.02,137.31,87.18,119.8-39.91,107.02,42.67,107.32,105.86.34,71.61-130.92-48.5-128.67,90.1"/>
+    <path class="cls-8" d="M316.97,162.18s9.77,93.71-111.13,65.69c-132.17-30.63-145.2,32.69-143.5,80.95,2.58,73.14,80.93,72.41,127.31,52.93,55.6-23.35,127.32-4.67,127.32,77.84,0,115.29-227.84,7.68-244.63,102.75-4.51,25.55-12.3,137.02,137.31,87.18,119.8-39.91,107.02,42.67,107.32,105.86.34,71.61-130.92-48.5-128.67,90.1"/>
   </g>
   <g id="anchor_read_001-14" data-name="anchor_read_001">
     <circle class="cls-3" cx="316.95" cy="172.18" r="10"/>
@@ -92,7 +77,7 @@
   <g id="anchor_read_003-13" data-name="anchor_read_003">
     <circle class="cls-3" cx="219.66" cy="500.3" r="10"/>
   </g>
-  <g id="anchor_quiz_003-13" data-name="anchor_quiz_003">
+  <g id="anchor_quiz_003-14" data-name="anchor_quiz_003">
     <circle class="cls-3" cx="72.21" cy="564.13" r="10"/>
   </g>
   <g id="anchor_read_004-13" data-name="anchor_read_004">
@@ -101,9 +86,11 @@
   <g id="anchor_quiz_004-13" data-name="anchor_quiz_004">
     <circle class="cls-3" cx="317.24" cy="712.02" r="10"/>
   </g>
+  <g id="anchor_quiz_005-13" data-name="anchor_quiz_005">
+    <circle class="cls-3" cx="185.27" cy="881.64" r="10"/>
+  </g>
   <g id="text_Meteorologi_for_batfolk">
-    <rect class="cls-12" x="28.83" y="831.81" width="318.93" height="97.24" rx="10" ry="10"/>
-    <text class="cls-8" transform="translate(164.02 892.48)"><tspan class="cls-4" x="0" y="0">T</tspan><tspan class="cls-11" x="10.95" y="0">est</tspan></text>
-    <text class="cls-9" transform="translate(75.34 83.61)"><tspan class="cls-7" x="0" y="0">M</tspan><tspan class="cls-14" x="18.07" y="0">e</tspan><tspan class="cls-6" x="29.25" y="0">t</tspan><tspan x="36.51" y="0">eo</tspan><tspan class="cls-13" x="59.94" y="0">r</tspan><tspan class="cls-14" x="67.01" y="0">olo</tspan><tspan class="cls-6" x="96.78" y="0">g</tspan><tspan x="109.12" y="0">i </tspan><tspan class="cls-15" x="119.07" y="0">f</tspan><tspan class="cls-14" x="125.29" y="0">ör b</tspan><tspan class="cls-2" x="162.27" y="0">å</tspan><tspan x="172.93" y="0">t</tspan><tspan class="cls-5" x="180.32" y="0">f</tspan><tspan class="cls-10" x="186.55" y="0">olk</tspan></text>
+    <rect class="cls-8" x="28.03" y="825.52" width="318.93" height="97.24" rx="10" ry="10"/>
+    <text class="cls-11" transform="translate(75.34 83.61)"><tspan class="cls-6" x="0" y="0">M</tspan><tspan class="cls-10" x="18.07" y="0">e</tspan><tspan class="cls-5" x="29.25" y="0">t</tspan><tspan x="36.51" y="0">eo</tspan><tspan class="cls-9" x="59.94" y="0">r</tspan><tspan class="cls-10" x="67.01" y="0">olo</tspan><tspan class="cls-5" x="96.78" y="0">g</tspan><tspan x="109.12" y="0">i </tspan><tspan class="cls-12" x="119.07" y="0">f</tspan><tspan class="cls-10" x="125.29" y="0">ör b</tspan><tspan class="cls-2" x="162.27" y="0">å</tspan><tspan x="172.93" y="0">t</tspan><tspan class="cls-4" x="180.32" y="0">f</tspan><tspan class="cls-7" x="186.55" y="0">olk</tspan></text>
   </g>
 </svg>

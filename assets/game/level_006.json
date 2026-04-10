@@ -75,32 +75,11 @@
       "y": 869.25
     },
     {
-      "id": "anchor_read_006",
-      "type": "read",
-      "index": 6,
-      "x": 175.25,
-      "y": 976.08
-    },
-    {
       "id": "anchor_quiz_006",
       "type": "quiz",
       "index": 6,
-      "x": 306.95,
-      "y": 1046.67
-    },
-    {
-      "id": "anchor_read_007",
-      "type": "read",
-      "index": 7,
-      "x": 219.66,
-      "y": 1105.55
-    },
-    {
-      "id": "anchor_quiz_007",
-      "type": "quiz",
-      "index": 7,
-      "x": 88.04,
-      "y": 1181.5
+      "x": 192.58,
+      "y": 1094.63
     }
   ]
 }

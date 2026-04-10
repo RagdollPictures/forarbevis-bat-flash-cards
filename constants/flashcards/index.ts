@@ -179,6 +179,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "lagga_ut_kurs", title: "Lägga ut kurs", deckId: "lagga_ut_kurs" },
         { id: "mata_upp_kurs", title: "Mäta upp kurs", deckId: "mata_upp_kurs" },
         { id: "krysspejling", title: "Krysspejling", deckId: "krysspejling" },
+         {
+      id: "sjokortsarbete_quiz",
+      title: "Kapitelquiz",
+      quizId: "sjokortsarbete_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -194,6 +200,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "deviation_missvisning", title: "Deviation & missvisning", deckId: "deviation_missvisning" },
         { id: "avdrift_strom", title: "Avdrift & ström", deckId: "avdrift_strom" },
         { id: "ratta_satta_kurs", title: "Rätta & sätta kurs", deckId: "ratta_satta_kurs" },
+         {
+      id: "navigationsteori_quiz",
+      title: "Kapitelquiz",
+      quizId: "navigationsteori_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -205,6 +217,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "optisk_navigation", title: "Optisk navigation", deckId: "optisk_navigation" },
         { id: "instrumentnavigation", title: "Instrumentnavigation", deckId: "instrumentnavigation" },
         { id: "navigatornavigation", title: "Navigatornavigation", deckId: "navigatornavigation" },
+        {
+      id: "praktisk_navigation_quiz",
+      title: "Kapitelquiz",
+      quizId: "praktisk_navigationi_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -216,6 +234,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "vajningsregler_segelbatar", title: "Segelbåtar", deckId: "vajningsregler_segelbatar" },
         { id: "vajningsregler_motorbatar", title: "Motorbåtar", deckId: "vajningsregler_motorbatar" },
         { id: "vajningsregler_fartyg", title: "Fartyg", deckId: "vajningsregler_fartyg" },
+        {
+      id: "vajningsregler_quiz",
+      title: "Kapitelquiz",
+      quizId: "vajningsregler_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -228,6 +252,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "lanternor_motorbatar", title: "Motorbåtar", deckId: "lanternor_motorbatar" },
         { id: "lanternor_fartyg", title: "Fartyg", deckId: "lanternor_fartyg" },
         { id: "lanternor_sarskilda_fartyg", title: "Särskilda fartyg", deckId: "lanternor_sarskilda_fartyg" },
+         {
+      id: "lanternor_quiz",
+      title: "Kapitelquiz",
+      quizId: "lanternor_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -241,6 +271,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "manovrering_fortoja", title: "Förtöja", deckId: "manovrering_fortoja" },
         { id: "manovrering_kasta_loss", title: "Kasta loss", deckId: "manovrering_kasta_loss" },
         { id: "manovrering_segelbat", title: "Segelbåt", deckId: "manovrering_segelbat" },
+         {
+      id: "lanternor_quiz",
+      title: "Kapitelquiz",
+      quizId: "lanternor_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -253,6 +289,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "navigationsinstrument_satellit", title: "Satellit", deckId: "navigationsinstrument_satellit" },
         { id: "navigationsinstrument_navigator", title: "Navigator", deckId: "navigationsinstrument_navigator" },
         { id: "navigationsinstrument_instrumentkontroll", title: "Instrumentkontroll", deckId: "navigationsinstrument_instrumentkontroll" },
+        {
+      id: "navigationsinstrument_quiz",
+      title: "Kapitelquiz",
+      quizId: "navigationsinstrument_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -268,6 +310,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "sjomanskap_sjofylleri", title: "Sjöfylleri", deckId: "sjomanskap_sjofylleri" },
         { id: "sjomanskap_flaggor", title: "Flaggor", deckId: "sjomanskap_flaggor" },
         { id: "sjomanskap_stabilitet", title: "Stabilitet", deckId: "sjomanskap_stabilitet" },
+         {
+      id: "sjomanskap_quiz",
+      title: "Kapitelquiz",
+      quizId: "sjomanskap_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -278,6 +326,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "signalering_dagersignaler", title: "Dagersignaler", deckId: "signalering_dagersignaler" },
         { id: "signalering_ljudsignaler", title: "Ljudsignaler", deckId: "signalering_ljudsignaler" },
         { id: "signalering_signalflaggor", title: "Signalflaggor", deckId: "signalering_signalflaggor" },
+          {
+      id: "signalering_quiz",
+      title: "Kapitelquiz",
+      quizId: "signalering_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -292,6 +346,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "sakerhet_bransle", title: "Bränsle", deckId: "sakerhet_bransle" },
         { id: "sakerhet_sjoraddning", title: "Sjöräddning", deckId: "sakerhet_sjoraddning" },
         { id: "sakerhet_ansvar_skyldigheter", title: "Ansvar & skyldigheter", deckId: "sakerhet_ansvar_skyldigheter" },
+         {
+      id: "sakerhet_quiz",
+      title: "Kapitelquiz",
+      quizId: "sakerhet_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -302,6 +362,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "sjukvard_sjosjuka", title: "Sjösjuka", deckId: "sjukvard_sjosjuka" },
         { id: "sjukvard_nedkylning", title: "Nedkylning", deckId: "sjukvard_nedkylning" },
         { id: "sjukvard_brannskador", title: "Brännskador", deckId: "sjukvard_brannskador" },
+         {
+      id: "sjukvard_quiz",
+      title: "Kapitelquiz",
+      quizId: "sjukvard_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -312,6 +378,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "vader_vaderprognoser", title: "Väderprognoser", deckId: "vader_vaderprognoser" },
         { id: "vader_vind_och_vagor", title: "Vind och vågor", deckId: "vader_vind_och_vagor" },
         { id: "vader_risker", title: "Risker", deckId: "vader_risker" },
+        {
+      id: "vader_quiz",
+      title: "Kapitelquiz",
+      quizId: "vader_quiz",
+      type: "quiz",
+    },
       ],
     },
     {
@@ -324,6 +396,12 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "miljo_eco_driving", title: "Eco-driving", deckId: "miljo_eco_driving" },
         { id: "miljo_allemansratten", title: "Allemansrätten", deckId: "miljo_allemansratten" },
         { id: "miljo_skyddsomraden", title: "Skyddsområden", deckId: "miljo_skyddsomraden" },
+         {
+      id: "miljo_quiz",
+      title: "Kapitelquiz",
+      quizId: "miljo_quiz",
+      type: "quiz",
+    },
       ],
     },
   ],

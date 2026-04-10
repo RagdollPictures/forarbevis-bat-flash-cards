@@ -105,7 +105,7 @@ export const levelsById = {
     layout: level011 as LevelLayout,
     Svg: Level011Svg,
   },
-  level_0012: {
+  level_012: {
     chapterId: "sakerhet",
     layout: level012 as LevelLayout,
     Svg: Level012Svg,

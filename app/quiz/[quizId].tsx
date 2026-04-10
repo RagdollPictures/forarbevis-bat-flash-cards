@@ -5,32 +5,36 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { getQuizById } from "../../constants/flashcards";
 import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
-import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
-
 import { levelIds, levelsById } from "../game/levelConfig";
 import { styles } from "./_quiz/styles";
+import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
 import QuizFinished from "./_quiz/ui/QuizFinished";
 import QuizMissing from "./_quiz/ui/QuizMissing";
 import { useQuizSession } from "./_quiz/useQuizSession";
 import { validateDeck } from "./_quiz/validateDeck";
+
 export default function QuizScreen() {
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const id = typeof quizId === "string" ? quizId : "";
-const isChapterQuiz = id.endsWith("_quiz");
+  const isChapterQuiz = id.endsWith("_quiz");
 
-const currentLevelIndex = levelIds.findIndex(
-  (levelId) => levelsById[levelId].chapterId === id.replace(/_quiz$/, "")
-);
-
-const nextLevelId =
-  currentLevelIndex >= 0 && currentLevelIndex < levelIds.length - 1
-    ? levelIds[currentLevelIndex + 1]
-    : null;
-    
   const resolved = getQuizById(id);
 
-  
+  const currentChapterId = resolved?.chapterId ?? null;
+
+  const currentLevelIndex =
+    currentChapterId == null
+      ? -1
+      : levelIds.findIndex(
+          (levelId) => levelsById[levelId].chapterId === currentChapterId
+        );
+
+  const nextLevelId =
+    currentLevelIndex >= 0 && currentLevelIndex < levelIds.length - 1
+      ? levelIds[currentLevelIndex + 1]
+      : null;
+
   const screenTitle = resolved
     ? resolved.subtitle
       ? `${resolved.title} – ${resolved.subtitle}`
@@ -68,26 +72,25 @@ const nextLevelId =
   }
 
   if (s.isFinished) {
-  return (
-    <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>{screenTitle}</Text>
+    return (
+      <SafeAreaView style={styles.safe}>
+        <ScrollView contentContainerStyle={styles.container}>
+          <Text style={styles.title}>{screenTitle}</Text>
 
-        <BoatProgressBar value={1} />
+          <BoatProgressBar value={1} />
 
-        <QuizFinished
-          title={screenTitle}
-          score={s.score}
-          total={s.shuffledDeck.length}
-          onRestart={s.restart}
-          isChapterQuiz={isChapterQuiz}
-          nextLevelId={nextLevelId}
-        />
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
+          <QuizFinished
+            title={screenTitle}
+            score={s.score}
+            total={s.shuffledDeck.length}
+            onRestart={s.restart}
+            isChapterQuiz={isChapterQuiz}
+            nextLevelId={nextLevelId}
+          />
+        </ScrollView>
+      </SafeAreaView>
+    );
+  }
 
   const questionText = s.card.questionQuiz ?? s.card.question ?? "";
 
@@ -95,15 +98,16 @@ const nextLevelId =
     !!s.card.imageKey &&
     Object.prototype.hasOwnProperty.call(cardImages, s.card.imageKey);
 
-  const imageSource = hasQuestionImage ? cardImages[s.card.imageKey!] : undefined;
+  const imageSource = hasQuestionImage
+    ? cardImages[s.card.imageKey!]
+    : undefined;
 
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>{screenTitle}</Text>
 
-<BoatProgressBar value={s.visualProgress} />
-
+        <BoatProgressBar value={s.visualProgress} />
 
         <QuizCard
           questionText={questionText}
@@ -118,7 +122,6 @@ const nextLevelId =
           isLast={s.isFinished}
           textTitle={s.card.textTitle}
           textInfo={s.card.textInfo}
-        
         />
       </ScrollView>
     </SafeAreaView>
