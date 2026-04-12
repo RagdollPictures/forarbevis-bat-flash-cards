@@ -7,7 +7,7 @@ import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
-import { bonusLevels, isBonusUnlocked } from "../../constants/flashcards/forarintyg_se/bonusLevels";
+import { bonusLevels, isBonusUnlocked } from "../../constants/flashcards/bonusLevels";
 import {
   getAllQuizProgress,
   saveQuizProgress,
@@ -313,7 +313,7 @@ const bgAnchor = useMemo(() => {
         key={bonus.id}
         onPress={() => {
           if (!isUnlocked) return;
-          router.push(bonus.route as any);
+          router.push(`/quiz/${bonus.quizId}`);
         }}
         style={[
           styles.bonusBtn,

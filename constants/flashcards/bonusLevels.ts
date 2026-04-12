@@ -1,21 +1,18 @@
 export type BonusLevel = {
   id: string;
   title: string;
-  route: string;
+  quizId: string;
   unlockWhenClearedQuizId: string;
-  iconName?: string;
 };
 
 export const bonusLevels: BonusLevel[] = [
   {
     id: "flaggor",
     title: "Flaggor",
-    route: "/bonus/flaggor",
-    unlockWhenClearedQuizId: "sjokortet",
-    iconName: "flag",
+    quizId: "flaggor_quiz",
+    unlockWhenClearedQuizId: "sjokortet_quiz",
   },
 ];
-
 export function isBonusUnlocked(
   unlockWhenClearedQuizId: string,
   clearedIds: Set<string>
