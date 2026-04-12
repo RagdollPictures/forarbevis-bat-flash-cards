@@ -7,44 +7,35 @@ import level003 from "../../assets/game/level_003.json";
 import Level003Svg from "../../assets/game/level_003.svg";
 import level004 from "../../assets/game/level_004.json";
 import Level004Svg from "../../assets/game/level_004.svg";
-
 import level005 from "../../assets/game/level_005.json";
 import Level005Svg from "../../assets/game/level_005.svg";
-
 import level006 from "../../assets/game/level_006.json";
 import Level006Svg from "../../assets/game/level_006.svg";
-
 import level007 from "../../assets/game/level_007.json";
 import Level007Svg from "../../assets/game/level_007.svg";
-
 import level008 from "../../assets/game/level_008.json";
 import Level008Svg from "../../assets/game/level_008.svg";
-
 import level009 from "../../assets/game/level_009.json";
 import Level009Svg from "../../assets/game/level_009.svg";
-
 import level010 from "../../assets/game/level_010.json";
 import Level010Svg from "../../assets/game/level_010.svg";
-
 import level011 from "../../assets/game/level_011.json";
 import Level011Svg from "../../assets/game/level_011.svg";
-
 import level012 from "../../assets/game/level_012.json";
 import Level012Svg from "../../assets/game/level_012.svg";
-
 import level013 from "../../assets/game/level_013.json";
 import Level013Svg from "../../assets/game/level_013.svg";
-
 import level014 from "../../assets/game/level_014.json";
 import Level014Svg from "../../assets/game/level_014.svg";
-
 import level015 from "../../assets/game/level_015.json";
 import Level015Svg from "../../assets/game/level_015.svg";
 
-import type { LevelLayout } from "./levelTypes";
+import type { LevelLayout } from "../../app/game/levelTypes";
 
 export type LevelConfig = {
   chapterId: string;
+  label: string;
+  iconName: string;
   layout: LevelLayout;
   Svg: ComponentType<any>;
 };
@@ -52,80 +43,109 @@ export type LevelConfig = {
 export const levelsById = {
   level_001: {
     chapterId: "sjokortet",
+    label: "Kartunderlag & koordinater",
+    iconName: "map",
     layout: level001 as LevelLayout,
     Svg: Level001Svg,
   },
   level_002: {
     chapterId: "sjokortet_sjomarken",
+    label: "Sjövägsmärken & markeringar",
+    iconName: "map",
     layout: level002 as LevelLayout,
     Svg: Level002Svg,
   },
   level_003: {
     chapterId: "sjokortsarbete",
+    label: "Praktiskt arbete i sjökort",
+    iconName: "map",
     layout: level003 as LevelLayout,
     Svg: Level003Svg,
   },
   level_004: {
     chapterId: "navigationsteori",
+    label: "Navigationsprinciper",
+    iconName: "map",
     layout: level004 as LevelLayout,
     Svg: Level004Svg,
   },
   level_005: {
     chapterId: "praktisk_navigation",
+    label: "Navigering i praktiken",
+    iconName: "map",
     layout: level005 as LevelLayout,
     Svg: Level005Svg,
   },
   level_006: {
     chapterId: "vajningsregler",
+    label: "Trafikregler till sjöss",
+    iconName: "map",
     layout: level006 as LevelLayout,
     Svg: Level006Svg,
   },
   level_007: {
     chapterId: "lanternor",
+    label: "Navigationsljus",
+    iconName: "map",
     layout: level007 as LevelLayout,
     Svg: Level007Svg,
   },
   level_008: {
     chapterId: "manovrering",
+    label: "Båtens rörelser & kontroll",
+    iconName: "map",
     layout: level008 as LevelLayout,
     Svg: Level008Svg,
   },
   level_009: {
     chapterId: "navigationsinstrument",
+    label: "Instrument & utrustning",
+    iconName: "map",
     layout: level009 as LevelLayout,
     Svg: Level009Svg,
   },
   level_010: {
     chapterId: "sjomanskap",
+    label: "Båtvett & ombordkunskap",
+    iconName: "map",
     layout: level010 as LevelLayout,
     Svg: Level010Svg,
   },
   level_011: {
     chapterId: "signalering",
+    label: "Kommunikation till sjöss",
+    iconName: "map",
     layout: level011 as LevelLayout,
     Svg: Level011Svg,
   },
   level_012: {
     chapterId: "sakerhet",
+    label: "Säkerhet & beredskap",
+    iconName: "map",
     layout: level012 as LevelLayout,
     Svg: Level012Svg,
   },
   level_013: {
     chapterId: "sjukvard",
+    label: "Första hjälpen ombord",
+    iconName: "map",
     layout: level013 as LevelLayout,
     Svg: Level013Svg,
   },
   level_014: {
     chapterId: "vader",
+    label: "Meteorologi för båtfolk",
+    iconName: "map",
     layout: level014 as LevelLayout,
     Svg: Level014Svg,
   },
   level_015: {
     chapterId: "miljo",
+    label: "Natur och ansvar",
+    iconName: "map",
     layout: level015 as LevelLayout,
     Svg: Level015Svg,
   },
-
 } satisfies Record<string, LevelConfig>;
 
 export type LevelId = keyof typeof levelsById;

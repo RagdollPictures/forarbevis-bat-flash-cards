@@ -132,4 +132,77 @@ bonusBtnText: {
   color: "#fff",
   fontWeight: "700",
 },
+
+levelMenuToggle: {
+  marginHorizontal: 12,
+  marginBottom: 12,
+  paddingVertical: 12,
+  borderRadius: 14,
+  backgroundColor: colorScheme.darkBlue,
+  alignItems: "center",
+},
+
+levelMenuToggleText: {
+  color: "#fff",
+  fontWeight: "700",
+  fontSize: 16,
+},
+
+levelMenuWrap: {
+  gap: 12,
+  marginHorizontal: 12,
+  marginBottom: 16,
+},
+
+levelMenuItem: {
+  flexDirection: "row",
+  alignItems: "center",
+  gap: 14,
+  paddingHorizontal: 14,
+  paddingVertical: 12,
+  borderRadius: 18,
+  backgroundColor: "#fff",
+},
+
+levelMenuItemLocked: {
+  opacity: 0.45,
+},
+
+levelMenuItemCurrent: {
+  borderWidth: 2,
+  borderColor: colorScheme.darkBlue,
+},
+
+levelMenuIconCircle: {
+  width: 54,
+  height: 54,
+  borderRadius: 27,
+  backgroundColor: "#f4f4f4",
+  alignItems: "center",
+  justifyContent: "center",
+  position: "relative",
+},
+
+levelMenuLockBadge: {
+  position: "absolute",
+  right: -4,
+  bottom: -4,
+  width: 22,
+  height: 22,
+  borderRadius: 11,
+  backgroundColor: "#222",
+  alignItems: "center",
+  justifyContent: "center",
+},
+
+levelMenuLabel: {
+  flex: 1,
+  fontSize: 18,
+  fontWeight: "600",
+  color: "#111",
+},
+
+levelMenuLabelLocked: {
+  color: "#777",
+},
 });

@@ -7,7 +7,10 @@ import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
-import { bonusLevels, isBonusUnlocked } from "../../constants/flashcards/bonusLevels";
+import {
+  bonusLevels,
+  isBonusUnlocked,
+} from "../../constants/flashcards/bonusLevels";
 import {
   getAllQuizProgress,
   saveQuizProgress,
@@ -29,6 +32,20 @@ type QuizItem = {
   id: string;
   title: string;
   subtitle?: string;
+};
+
+type MenuLevel = {
+  chapterId: string;
+  label: string;
+  iconName: string;
+  layout: any;
+  Svg: any;
+};
+
+type BonusLevelItem = {
+  id: string;
+  title: string;
+  unlockWhenClearedQuizId: string;
 };
 
 type PlacedNode =
@@ -59,76 +76,77 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
   return Math.max(0, Math.min(100, Math.round((correct / total) * 100)));
 }
 
-
 export default function QuizMenuScreen() {
+  const [showDevMenu, setShowDevMenu] = useState(false);
+  const [showLevelMenu, setShowLevelMenu] = useState(false);
 
-const [showDevMenu, setShowDevMenu] = useState(false);
   const params = useLocalSearchParams<{ levelId?: string }>();
-const levelId = getLevelId(params.levelId);
+  const levelId = getLevelId(params.levelId);
 
-const level = levelsById[levelId];
-const layout = level.layout;
-const LevelSvg = level.Svg;
+  const levelMap = levelsById as Record<string, MenuLevel>;
+  const currentLevel = levelMap[levelId];
+  const layout = currentLevel.layout;
+  const LevelSvg = currentLevel.Svg;
+
+  const safeBonusLevels = bonusLevels as BonusLevelItem[];
 
   const quizzes = useMemo(
-    () => getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[],
-    [level.chapterId]
+    () =>
+      getQuizzesForChapter("forarintyg", currentLevel.chapterId) as QuizItem[],
+    [currentLevel.chapterId]
   );
 
   const bonusQuizzes = useMemo(
-  () => getQuizzesForChapter("forarintyg", "bonus") as QuizItem[],
-  []
-);
-console.log("bonusQuizzes", bonusQuizzes);
+    () => getQuizzesForChapter("forarintyg", "bonus") as QuizItem[],
+    []
+  );
 
   const screenWidth = Dimensions.get("window").width;
   const scale = screenWidth / layout.viewBox.width;
 
- const placedNodes = useMemo<PlacedNode[]>(() => {
-  const result: PlacedNode[] = [];
+  const placedNodes = useMemo<PlacedNode[]>(() => {
+    const result: PlacedNode[] = [];
 
-  for (const anchor of layout.anchors) {
-    if (!("type" in anchor) || !("index" in anchor)) continue;
+    for (const anchor of layout.anchors) {
+      if (!("type" in anchor) || !("index" in anchor)) continue;
 
-    const quizIndex = anchor.index - 1;
-    const quiz = quizzes[quizIndex];
+      const quizIndex = anchor.index - 1;
+      const quiz = quizzes[quizIndex];
 
-    if (!quiz) continue;
+      if (!quiz) continue;
 
-    if (anchor.type === "read") {
-      result.push({
-        id: anchor.id,
-        type: "read",
-        deckId: quiz.id,
-        title: quiz.title,
-        quizId: quiz.id,
-        x: anchor.x,
-        y: anchor.y,
-      });
-      continue;
+      if (anchor.type === "read") {
+        result.push({
+          id: anchor.id,
+          type: "read",
+          deckId: quiz.id,
+          title: quiz.title,
+          quizId: quiz.id,
+          x: anchor.x,
+          y: anchor.y,
+        });
+        continue;
+      }
+
+      if (anchor.type === "quiz") {
+        result.push({
+          id: anchor.id,
+          type: "quiz",
+          quizId: quiz.id,
+          title: quiz.title,
+          subtitle: quiz.subtitle,
+          x: anchor.x,
+          y: anchor.y,
+        });
+      }
     }
 
-    if (anchor.type === "quiz") {
-      result.push({
-        id: anchor.id,
-        type: "quiz",
-        quizId: quiz.id,
-        title: quiz.title,
-        subtitle: quiz.subtitle,
-        x: anchor.x,
-        y: anchor.y,
-      });
-    }
-  }
+    return result;
+  }, [layout, quizzes]);
 
-  return result;
-}, [layout, quizzes]);
-
-const bgAnchor = useMemo(() => {
-  return layout.anchors.find((anchor) => anchor.id === "anchor_bg");
-}, [layout]);
-
-  const firstNodes = useMemo(() => placedNodes.slice(0, 3), [placedNodes]);
+  const bgAnchor = useMemo(() => {
+    return layout.anchors.find((anchor: any) => anchor.id === "anchor_bg");
+  }, [layout]);
 
   const [progressByQuizId, setProgressByQuizId] = useState<
     Record<string, SavedQuizProgress>
@@ -208,17 +226,46 @@ const bgAnchor = useMemo(() => {
     return s;
   }, [quizzes, clearedIds]);
 
-  const unlockedBonusIds = useMemo(() => {
-  const s = new Set<string>();
+  const unlockedLevelIds = useMemo(() => {
+    const s = new Set<string>();
 
-  for (const bonus of bonusLevels) {
-    if (isBonusUnlocked(bonus.unlockWhenClearedQuizId, clearedIds)) {
-      s.add(bonus.id);
+    if (levelIds.length === 0) return s;
+
+    s.add(levelIds[0]);
+
+    for (let i = 1; i < levelIds.length; i++) {
+      const prevLevelId = levelIds[i - 1];
+      const prevLevel = levelMap[prevLevelId];
+
+      if (!prevLevel) break;
+
+      const prevQuizzes = getQuizzesForChapter(
+        "forarintyg",
+        prevLevel.chapterId
+      ) as QuizItem[];
+
+      const finalQuiz = prevQuizzes[prevQuizzes.length - 1];
+
+      if (!finalQuiz) break;
+      if (!clearedIds.has(finalQuiz.id)) break;
+
+      s.add(levelIds[i]);
     }
-  }
 
-  return s;
-}, [clearedIds]);
+    return s;
+  }, [clearedIds, levelMap]);
+
+  const unlockedBonusIds = useMemo(() => {
+    const s = new Set<string>();
+
+    for (const bonus of safeBonusLevels) {
+      if (isBonusUnlocked(bonus.unlockWhenClearedQuizId, clearedIds)) {
+        s.add(bonus.id);
+      }
+    }
+
+    return s;
+  }, [clearedIds, safeBonusLevels]);
 
   const devCheatNextLockedTo100 = useCallback(async () => {
     if (quizzes.length === 0) return;
@@ -258,116 +305,177 @@ const bgAnchor = useMemo(() => {
   return (
     <SafeAreaView style={styles.safe}>
       <ScrollView contentContainerStyle={styles.container}>
-       {__DEV__ ? (
-  <View style={styles.devPanel}>
-    <Pressable
-      onPress={() => setShowDevMenu((prev) => !prev)}
-      style={styles.devResetBtn}
-    >
-      <Text style={styles.devResetText}>
-        {showDevMenu ? "HIDE DEV MENU" : "SHOW DEV MENU"}
-      </Text>
-    </Pressable>
+        {__DEV__ ? (
+          <View style={styles.devPanel}>
+            <Pressable
+              onPress={() => setShowDevMenu((prev) => !prev)}
+              style={styles.devResetBtn}
+            >
+              <Text style={styles.devResetText}>
+                {showDevMenu ? "HIDE DEV MENU" : "SHOW DEV MENU"}
+              </Text>
+            </Pressable>
 
-    {showDevMenu ? (
-      <>
-        {levelIds.map((id) => (
-          <Pressable
-            key={id}
-            onPress={() => {
-              router.push({
-                pathname: "/game/[levelId]",
-                params: { levelId: id },
-              });
-            }}
-            style={styles.devResetBtn}
-          >
-            <Text style={styles.devResetText}>DEV: {id.toUpperCase()}</Text>
-          </Pressable>
-        ))}
+            {showDevMenu ? (
+              <>
+                {levelIds.map((id) => (
+                  <Pressable
+                    key={id}
+                    onPress={() => {
+                      router.push({
+                        pathname: "/game/[levelId]",
+                        params: { levelId: id },
+                      });
+                    }}
+                    style={styles.devResetBtn}
+                  >
+                    <Text style={styles.devResetText}>
+                      DEV: {id.toUpperCase()}
+                    </Text>
+                  </Pressable>
+                ))}
+
+                <Pressable
+                  onPress={async () => {
+                    await AsyncStorage.clear();
+                    setClearedIds(new Set());
+                    setProgressByQuizId({});
+                  }}
+                  style={styles.devResetBtn}
+                >
+                  <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
+                </Pressable>
+
+                <Pressable
+                  onPress={devCheatNextLockedTo100}
+                  style={styles.devResetBtn}
+                >
+                  <Text style={styles.devResetText}>
+                    DEV: SET NEXT LOCKED TO 100%
+                  </Text>
+                </Pressable>
+              </>
+            ) : null}
+          </View>
+        ) : null}
 
         <Pressable
-          onPress={async () => {
-            await AsyncStorage.clear();
-            setClearedIds(new Set());
-            setProgressByQuizId({});
-          }}
-          style={styles.devResetBtn}
+          onPress={() => setShowLevelMenu((prev) => !prev)}
+          style={styles.levelMenuToggle}
         >
-          <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
-        </Pressable>
-
-        <Pressable
-          onPress={devCheatNextLockedTo100}
-          style={styles.devResetBtn}
-        >
-          <Text style={styles.devResetText}>
-            DEV: SET NEXT LOCKED TO 100%
+          <Text style={styles.levelMenuToggleText}>
+            {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
           </Text>
         </Pressable>
-      </>
-    ) : null}
-  </View>
-) : null}
 
-<View style={styles.bonusBar}>
-  {bonusQuizzes.map((quiz) => {
-    const bonus = bonusLevels.find((item) => item.id === quiz.id);
-    const isUnlocked = bonus
-      ? unlockedBonusIds.has(bonus.id)
-      : false;
+        {showLevelMenu ? (
+          <View style={styles.levelMenuWrap}>
+            {Object.entries(levelMap).map(([id, menuLevel]) => {
+              if (!menuLevel) return null;
 
-    return (
-      <Pressable
-        key={quiz.id}
-        onPress={() => {
-          if (!isUnlocked) return;
-          router.push(`/quiz/${quiz.id}`);
-        }}
-        style={[
-          styles.bonusBtn,
-          !isUnlocked && styles.bonusBtnLocked,
-        ]}
-      >
-        <Text style={styles.bonusBtnText}>
-          {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
-        </Text>
-      </Pressable>
-    );
-  })}
-</View>
+              const isUnlocked = unlockedLevelIds.has(id);
+              const isCurrent = id === levelId;
+
+              return (
+                <Pressable
+                  key={id}
+                  onPress={() => {
+                    if (!isUnlocked) return;
+                    router.push({
+                      pathname: "/game/[levelId]",
+                      params: { levelId: id },
+                    });
+                  }}
+                  disabled={!isUnlocked}
+                  style={[
+                    styles.levelMenuItem,
+                    !isUnlocked && styles.levelMenuItemLocked,
+                    isCurrent && styles.levelMenuItemCurrent,
+                  ]}
+                >
+                  <View style={styles.levelMenuIconCircle}>
+                    <SvgIcon
+                      name={menuLevel.iconName}
+                      size={24}
+                      color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                    />
+                    {!isUnlocked ? (
+                      <View style={styles.levelMenuLockBadge}>
+                        <SvgIcon name="lock" size={14} color="#fff" />
+                      </View>
+                    ) : null}
+                  </View>
+
+                  <Text
+                    style={[
+                      styles.levelMenuLabel,
+                      !isUnlocked && styles.levelMenuLabelLocked,
+                    ]}
+                  >
+                    {menuLevel.label}
+                  </Text>
+                </Pressable>
+              );
+            })}
+          </View>
+        ) : null}
+
+        <View style={styles.bonusBar}>
+          {bonusQuizzes.map((quiz) => {
+            const bonus =
+              safeBonusLevels.filter((entry) => entry.id === quiz.id)[0] ??
+              null;
+            const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
+
+            return (
+              <Pressable
+                key={quiz.id}
+                disabled={!isUnlocked}
+                onPress={() => {
+                  if (!isUnlocked) return;
+                  router.push(`/quiz/${quiz.id}`);
+                }}
+                style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
+              >
+                <Text style={styles.bonusBtnText}>
+                  {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
 
         <View
-  style={{
-    position: "relative",
-    width: "100%",
-    height: layout.viewBox.height * scale,
-  }}
->
-{bgAnchor ? (
-    <Image
-      source={level_001_bg}
-      contentFit="contain"
-      style={{
-        position: "absolute",
-        left: (bgAnchor.x - layout.viewBox.width / 2) * scale,
-        top: (bgAnchor.y - layout.viewBox.height / 2) * scale,
-        width: layout.viewBox.width * scale,
-        height: layout.viewBox.height * scale,
-      }}
-    />
-  ) : null}
-  {/* SVG bakgrund */}
-  <LevelSvg
-    width={screenWidth}
-    height={layout.viewBox.height * scale}
-    style={{
-      position: "absolute",
-      left: 0,
-      top: 0,
-    }}
-  />
-  
+          style={{
+            position: "relative",
+            width: "100%",
+            height: layout.viewBox.height * scale,
+          }}
+        >
+          {bgAnchor ? (
+            <Image
+              source={level_001_bg}
+              contentFit="contain"
+              style={{
+                position: "absolute",
+                left: (bgAnchor.x - layout.viewBox.width / 2) * scale,
+                top: (bgAnchor.y - layout.viewBox.height / 2) * scale,
+                width: layout.viewBox.width * scale,
+                height: layout.viewBox.height * scale,
+              }}
+            />
+          ) : null}
+
+          <LevelSvg
+            width={screenWidth}
+            height={layout.viewBox.height * scale}
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+            }}
+          />
+
           {placedNodes.map((node) => {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
@@ -410,13 +518,6 @@ const bgAnchor = useMemo(() => {
                       </View>
                     ) : null}
                   </View>
-{/*
-                  <Text
-                    numberOfLines={2}
-                    style={[styles.title, !isUnlocked && styles.titleLocked]}
-                  >
-                    {node.title}
-                  </Text>*/}
                 </Pressable>
               );
             }
@@ -456,13 +557,6 @@ const bgAnchor = useMemo(() => {
                     </View>
                   ) : null}
                 </View>
-
-               {/*<Text
-                  numberOfLines={2}
-                  style={[styles.title, !isUnlocked && styles.titleLocked]}
-                >
-                  {node.title}
-                </Text>*/}
               </Pressable>
             );
           })}
