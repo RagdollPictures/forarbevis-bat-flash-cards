@@ -7,6 +7,7 @@ import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
+import { bonusLevels, isBonusUnlocked } from "../../constants/flashcards/forarintyg_se/bonusLevels";
 import {
   getAllQuizProgress,
   saveQuizProgress,
@@ -201,6 +202,18 @@ const bgAnchor = useMemo(() => {
     return s;
   }, [quizzes, clearedIds]);
 
+  const unlockedBonusIds = useMemo(() => {
+  const s = new Set<string>();
+
+  for (const bonus of bonusLevels) {
+    if (isBonusUnlocked(bonus.unlockWhenClearedQuizId, clearedIds)) {
+      s.add(bonus.id);
+    }
+  }
+
+  return s;
+}, [clearedIds]);
+
   const devCheatNextLockedTo100 = useCallback(async () => {
     if (quizzes.length === 0) return;
 
@@ -290,6 +303,30 @@ const bgAnchor = useMemo(() => {
     ) : null}
   </View>
 ) : null}
+
+<View style={styles.bonusBar}>
+  {bonusLevels.map((bonus) => {
+    const isUnlocked = unlockedBonusIds.has(bonus.id);
+
+    return (
+      <Pressable
+        key={bonus.id}
+        onPress={() => {
+          if (!isUnlocked) return;
+          router.push(bonus.route as any);
+        }}
+        style={[
+          styles.bonusBtn,
+          !isUnlocked && styles.bonusBtnLocked,
+        ]}
+      >
+        <Text style={styles.bonusBtnText}>
+          {isUnlocked ? bonus.title : `🔒 ${bonus.title}`}
+        </Text>
+      </Pressable>
+    );
+  })}
+</View>
 
         <View
   style={{

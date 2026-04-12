@@ -108,4 +108,28 @@ readCircle: {
   shadowRadius: 8,
   elevation: 4,
 },
+
+bonusBar: {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  gap: 8,
+  marginBottom: 16,
+  paddingHorizontal: 12,
+},
+
+bonusBtn: {
+  paddingHorizontal: 12,
+  paddingVertical: 10,
+  borderRadius: 999,
+  backgroundColor: colorScheme.darkBlue,
+},
+
+bonusBtnLocked: {
+  opacity: 0.4,
+},
+
+bonusBtnText: {
+  color: "#fff",
+  fontWeight: "700",
+},
 });
