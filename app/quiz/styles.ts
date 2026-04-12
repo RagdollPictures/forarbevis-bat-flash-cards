@@ -81,7 +81,7 @@ export const styles = StyleSheet.create({
   },
 
   tileLocked: {
-  opacity: 0.4,
+  opacity: 1,
 },
 titleLocked: {
   color: "rgba(17,17,17,0.55)",

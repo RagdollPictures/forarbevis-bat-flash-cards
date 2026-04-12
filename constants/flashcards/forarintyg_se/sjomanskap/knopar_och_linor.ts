@@ -116,16 +116,4 @@ textInfo: "När man lägger fast en tamp på en knap bör linan gå minst tre va
      textTitle: "",
     textInfo: "",
   },
-  {
-    id: "knopar_och_linor-10",
-    question: "Lägg fast en tamp på en knap.",
-    questionQuiz:
-      "Vilken bild visar hur man lägger fast en tamp korrekt på en knap?",
-    answer: "",
-    options: ["Bild A", "Bild B", "Bild C", "Bild D"],
-    correctOptionIndex: 0,
-    answerImageKey: "knopar_och_linor_10",
-     textTitle: "",
-    textInfo: "",
-  },
 ];

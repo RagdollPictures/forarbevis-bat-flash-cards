@@ -1,9 +1,11 @@
 import { colorScheme } from "@/constants/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { Image } from "expo-image";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import {
   getAllQuizProgress,
@@ -21,7 +23,6 @@ import {
 import { styles } from "../quiz/styles";
 import { calcPercent } from "../quiz/utils/progress";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
-
 
 type QuizItem = {
   id: string;
@@ -57,6 +58,7 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
   return Math.max(0, Math.min(100, Math.round((correct / total) * 100)));
 }
 
+
 export default function QuizMenuScreen() {
 
 const [showDevMenu, setShowDevMenu] = useState(false);
@@ -79,7 +81,7 @@ const LevelSvg = level.Svg;
   const result: PlacedNode[] = [];
 
   for (const anchor of layout.anchors) {
-    if (typeof anchor.index !== "number") continue;
+    if (!("type" in anchor) || !("index" in anchor)) continue;
 
     const quizIndex = anchor.index - 1;
     const quiz = quizzes[quizIndex];
@@ -114,6 +116,10 @@ const LevelSvg = level.Svg;
 
   return result;
 }, [layout, quizzes]);
+
+const bgAnchor = useMemo(() => {
+  return layout.anchors.find((anchor) => anchor.id === "anchor_bg");
+}, [layout]);
 
   const firstNodes = useMemo(() => placedNodes.slice(0, 3), [placedNodes]);
 
@@ -292,6 +298,19 @@ const LevelSvg = level.Svg;
     height: layout.viewBox.height * scale,
   }}
 >
+{bgAnchor ? (
+    <Image
+      source={level_001_bg}
+      contentFit="contain"
+      style={{
+        position: "absolute",
+        left: (bgAnchor.x - layout.viewBox.width / 2) * scale,
+        top: (bgAnchor.y - layout.viewBox.height / 2) * scale,
+        width: layout.viewBox.width * scale,
+        height: layout.viewBox.height * scale,
+      }}
+    />
+  ) : null}
   {/* SVG bakgrund */}
   <LevelSvg
     width={screenWidth}
@@ -302,6 +321,7 @@ const LevelSvg = level.Svg;
       top: 0,
     }}
   />
+  
           {placedNodes.map((node) => {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
@@ -344,13 +364,13 @@ const LevelSvg = level.Svg;
                       </View>
                     ) : null}
                   </View>
-
+{/*
                   <Text
                     numberOfLines={2}
                     style={[styles.title, !isUnlocked && styles.titleLocked]}
                   >
                     {node.title}
-                  </Text>
+                  </Text>*/}
                 </Pressable>
               );
             }
@@ -391,12 +411,12 @@ const LevelSvg = level.Svg;
                   ) : null}
                 </View>
 
-                <Text
+               {/*<Text
                   numberOfLines={2}
                   style={[styles.title, !isUnlocked && styles.titleLocked]}
                 >
                   {node.title}
-                </Text>
+                </Text>*/}
               </Pressable>
             );
           })}

@@ -5,6 +5,11 @@
   },
   "anchors": [
     {
+      "id": "anchor_bg",
+      "x": 187.5,
+      "y": 625
+    },
+    {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,

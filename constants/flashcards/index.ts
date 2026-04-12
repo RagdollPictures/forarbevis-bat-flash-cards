@@ -1,5 +1,3 @@
-import { miljoEcoDriving } from "./forarintyg_se/miljo/eco_driving";
-
 import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
 import { lanternorMotorbatar } from "./forarintyg_se/lanternor/motorbatar";
@@ -15,6 +13,7 @@ import { manovreringKastaLoss } from "./forarintyg_se/manovrering/kasta_loss";
 import { manovreringSegelbat } from "./forarintyg_se/manovrering/segelbat";
 import { miljoAllemansratten } from "./forarintyg_se/miljo/allemansratten";
 import { miljoBottenfarg } from "./forarintyg_se/miljo/bottenfarg";
+import { miljoEcoDriving } from "./forarintyg_se/miljo/eco_driving";
 import { miljoMiljovett } from "./forarintyg_se/miljo/miljovett";
 import { miljoSkyddsomraden } from "./forarintyg_se/miljo/skyddsomraden";
 import { miljoToaletter } from "./forarintyg_se/miljo/toaletter";
@@ -397,13 +396,25 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "miljo_allemansratten", title: "Allemansrätten", deckId: "miljo_allemansratten" },
         { id: "miljo_skyddsomraden", title: "Skyddsområden", deckId: "miljo_skyddsomraden" },
          {
-      id: "miljo_quiz",
-      title: "Kapitelquiz",
-      quizId: "miljo_quiz",
-      type: "quiz",
-    },
+            id: "miljo_quiz",
+            title: "Kapitelquiz",
+            quizId: "miljo_quiz",
+            type: "quiz",
+          },
+    
       ],
     },
+
+
+    {
+      id: "bonus",
+      title: "Bonus",
+      children: [
+        { id: "bonus_flaggor", title: "Bonusflaggor", deckId: "bonus_flaggor" },
+     
+      ],
+    },
+
   ],
 };
 
