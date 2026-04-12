@@ -75,6 +75,12 @@ const LevelSvg = level.Svg;
     [level.chapterId]
   );
 
+  const bonusQuizzes = useMemo(
+  () => getQuizzesForChapter("forarintyg", "bonus") as QuizItem[],
+  []
+);
+console.log("bonusQuizzes", bonusQuizzes);
+
   const screenWidth = Dimensions.get("window").width;
   const scale = screenWidth / layout.viewBox.width;
 
@@ -305,15 +311,18 @@ const bgAnchor = useMemo(() => {
 ) : null}
 
 <View style={styles.bonusBar}>
-  {bonusLevels.map((bonus) => {
-    const isUnlocked = unlockedBonusIds.has(bonus.id);
+  {bonusQuizzes.map((quiz) => {
+    const bonus = bonusLevels.find((item) => item.id === quiz.id);
+    const isUnlocked = bonus
+      ? unlockedBonusIds.has(bonus.id)
+      : false;
 
     return (
       <Pressable
-        key={bonus.id}
+        key={quiz.id}
         onPress={() => {
           if (!isUnlocked) return;
-          router.push(`/quiz/${bonus.quizId}`);
+          router.push(`/quiz/${quiz.id}`);
         }}
         style={[
           styles.bonusBtn,
@@ -321,7 +330,7 @@ const bgAnchor = useMemo(() => {
         ]}
       >
         <Text style={styles.bonusBtnText}>
-          {isUnlocked ? bonus.title : `🔒 ${bonus.title}`}
+          {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
         </Text>
       </Pressable>
     );

@@ -1,3 +1,12 @@
+import { bonusDagersignaler } from "./forarintyg_se/bonus/dagersignaler";
+import { bonusFartDistansTid } from "./forarintyg_se/bonus/fart_distans_tid";
+import { bonusFlaggor } from "./forarintyg_se/bonus/flaggor";
+import { bonusFortojningslinor } from "./forarintyg_se/bonus/fortojningslinor";
+import { bonusLanternor } from "./forarintyg_se/bonus/lanternor";
+import { bonusLjudsignaler } from "./forarintyg_se/bonus/ljudsignaler";
+import { bonusSjomarken } from "./forarintyg_se/bonus/sjomarken";
+import { bonusStromAvdrift } from "./forarintyg_se/bonus/strom_avdrift";
+import { bonusSymboler } from "./forarintyg_se/bonus/symboler";
 import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
 import { lanternorMotorbatar } from "./forarintyg_se/lanternor/motorbatar";
@@ -410,7 +419,15 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       id: "bonus",
       title: "Bonus",
       children: [
-        { id: "bonus_flaggor", title: "Bonusflaggor", deckId: "bonus_flaggor" },
+        { id: "bonus_flaggor", title: "Flaggor", deckId: "bonus_flaggor" },
+      { id: "bonus_dagersignaler", title: "Dagersignaler", deckId: "bonus_dagersignaler" },
+      { id: "bonus_sjomarken", title: "Sjömärken", deckId: "bonus_sjomarken" },
+      { id: "bonus_symboler", title: "Symboler", deckId: "bonus_symboler" },
+      { id: "bonus_lanternor", title: "Lanternor", deckId: "bonus_lanternor" },
+      { id: "bonus_fart_distans_tid", title: "Fart Distans Tid", deckId: "bonus_fart_distans_tid" },
+      { id: "bonus_ljudsignaler", title: "Ljudsignaler", deckId: "bonus_ljudsignaler" },
+       { id: "bonus_fortojningslinor", title: "Förtöjningslinor", deckId: "bonus_fortojningslinor" },
+      { id: "bonus_strom_avdrift", title: "Ström & Avdrift", deckId: "bonus_strom_avdrift" },
      
       ],
     },
@@ -530,6 +547,16 @@ export const decksById: Record<string, FlashCard[]> = {
   miljo_eco_driving: miljoEcoDriving,
   miljo_allemansratten: miljoAllemansratten,
   miljo_skyddsomraden: miljoSkyddsomraden,
+
+  bonus_flaggor: bonusFlaggor,
+  bonus_dagersignaler: bonusDagersignaler,
+  bonus_sjomarken: bonusSjomarken,
+   bonus_symboler: bonusSymboler,
+    bonus_lanternor: bonusLanternor,
+    bonus_fart_distans_tid: bonusFartDistansTid,
+    bonus_ljudsignaler: bonusLjudsignaler,
+    bonus_fortojningslinor: bonusFortojningslinor,
+    bonus_strom_avdrift: bonusStromAvdrift,
 };
 
 export function getChapters(sourceId: string): Chapter[] {
