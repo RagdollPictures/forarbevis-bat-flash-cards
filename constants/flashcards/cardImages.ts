@@ -1,3 +1,4 @@
+
 export const cardImages: Record<string, any> = {
   "utmarkning_av_grund_prickar_och_bojar_4_4_a": require("../../assets/cards/utmarkning_av_grund_prickar_och_bojar_4_4_a.png"),
   "utmarkning_av_grund_prickar_och_bojar_4_4_d": require("../../assets/cards/utmarkning_av_grund_prickar_och_bojar_4_4_d.png"),
@@ -64,5 +65,15 @@ export const cardImages: Record<string, any> = {
 "flagga_oscar": require("../../assets/cards/symboler_16_ver02.jpg"),
 "flagga_delta": require("../../assets/cards/symboler_17_ver02.jpg"),
 "flagga_bravo": require("../../assets/cards/symboler_18_ver02.jpg"),
+
+"bonus_dagersignaler_01": require("../../assets/cards/bonus_dagersignaler_01.jpg"),
+"bonus_dagersignaler_02": require("../../assets/cards/bonus_dagersignaler_02.jpg"),
+"bonus_dagersignaler_03": require("../../assets/cards/bonus_dagersignaler_03.jpg"),
+"bonus_dagersignaler_04": require("../../assets/cards/bonus_dagersignaler_04.jpg"),
+"bonus_dagersignaler_05": require("../../assets/cards/bonus_dagersignaler_05.jpg"),
+"bonus_dagersignaler_06": require("../../assets/cards/bonus_dagersignaler_06.jpg"),
+"bonus_dagersignaler_07": require("../../assets/cards/bonus_dagersignaler_07.jpg"),
+"bonus_dagersignaler_08": require("../../assets/cards/bonus_dagersignaler_08.jpg"),
+"bonus_dagersignaler_09": require("../../assets/cards/bonus_dagersignaler_09.jpg"),
 
 };
