@@ -6,7 +6,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag ändrar min kurs åt styrbord.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_02",
+      "bonus_ljudsignaler_03",
+      "bonus_ljudsignaler_01",
+      "bonus_ljudsignaler_04"
+    ],
     correctOptionIndex: 2,
     textTitle: "Styrbord",
     textInfo:
@@ -17,7 +23,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag ändrar min kurs åt babord.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_03",
+      "bonus_ljudsignaler_02",
+      "bonus_ljudsignaler_04",
+      "bonus_ljudsignaler_05"
+    ],
     correctOptionIndex: 1,
     textTitle: "Babord",
     textInfo:
@@ -28,7 +40,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Min propeller arbetar för back.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_03",
+      "bonus_ljudsignaler_04",
+      "bonus_ljudsignaler_05",
+      "bonus_ljudsignaler_07"
+    ],
     correctOptionIndex: 0,
     textTitle: "Back",
     textInfo:
@@ -39,7 +57,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Tveksamhetssignal",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_08",
+      "bonus_ljudsignaler_07",
+      "bonus_ljudsignaler_05",
+      "bonus_ljudsignaler_04"
+    ],
     correctOptionIndex: 3,
     textTitle: "Tveksamhet",
     textInfo:
@@ -50,7 +74,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Uppmärksamhetssignal",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_08",
+      "bonus_ljudsignaler_07",
+      "bonus_ljudsignaler_05",
+      "bonus_ljudsignaler_09"
+    ],
     correctOptionIndex: 2,
     textTitle: "Uppmärksamhet",
     textInfo:
@@ -61,7 +91,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag gör fart genom vattnet.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_06",
+      "bonus_ljudsignaler_07",
+      "bonus_ljudsignaler_08",
+      "bonus_ljudsignaler_09"
+    ],
     correctOptionIndex: 0,
     textTitle: "Mistsignal framfart",
     textInfo:
@@ -72,7 +108,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag gör inte fart genom vattnet / jag ligger för ankare.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_10",
+      "bonus_ljudsignaler_07",
+      "bonus_ljudsignaler_08",
+      "bonus_ljudsignaler_09"
+    ],
     correctOptionIndex: 1,
     textTitle: "Mistsignal stilla",
     textInfo:
@@ -83,7 +125,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag är en segelbåt på väg.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_05",
+      "bonus_ljudsignaler_04",
+      "bonus_ljudsignaler_09",
+      "bonus_ljudsignaler_08"
+    ],
     correctOptionIndex: 3,
     textTitle: "Mistsignal segelbåt",
     textInfo:
@@ -94,7 +142,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag avser att köra om dig på styrbordssida.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_12",
+      "bonus_ljudsignaler_11",
+      "bonus_ljudsignaler_09",
+      "bonus_ljudsignaler_10"
+    ],
     correctOptionIndex: 2,
     textTitle: "Omkörning styrbord",
     textInfo:
@@ -105,7 +159,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Jag avser att köra om dig på babordssida.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_10",
+      "bonus_ljudsignaler_11",
+      "bonus_ljudsignaler_12",
+      "bonus_ljudsignaler_09"
+    ],
     correctOptionIndex: 0,
     textTitle: "Omkörning babord",
     textInfo:
@@ -116,7 +176,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Uppfattat. Det är okej att köra om mig.",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_12",
+      "bonus_ljudsignaler_11",
+      "bonus_ljudsignaler_09",
+      "bonus_ljudsignaler_06"
+    ],
     correctOptionIndex: 1,
     textTitle: "Omkörning bekräftad",
     textInfo:
@@ -127,7 +193,13 @@ export const bonusLjudsignaler: FlashCard[] = [
     question: "",
     questionQuiz: "Lotsbåt i lotsningstjänst",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_ljudsignaler_07",
+      "bonus_ljudsignaler_04",
+      "bonus_ljudsignaler_02",
+      "bonus_ljudsignaler_12"
+    ],
     correctOptionIndex: 3,
     textTitle: "Lotsbåt",
     textInfo:

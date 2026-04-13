@@ -111,4 +111,17 @@ export const cardImages: Record<string, any> = {
 "bonus_lanternor_13": require("../../assets/cards/bonus_lanternor_13.jpg"),
 "bonus_lanternor_14": require("../../assets/cards/bonus_lanternor_14.jpg"),
 "bonus_lanternor_15": require("../../assets/cards/bonus_lanternor_15.jpg"),
+
+"bonus_ljudsignaler_01": require("../../assets/cards/bonus_ljudsignaler_01.jpg"),
+"bonus_ljudsignaler_02": require("../../assets/cards/bonus_ljudsignaler_02.jpg"),
+"bonus_ljudsignaler_03": require("../../assets/cards/bonus_ljudsignaler_03.jpg"),
+"bonus_ljudsignaler_04": require("../../assets/cards/bonus_ljudsignaler_04.jpg"),
+"bonus_ljudsignaler_05": require("../../assets/cards/bonus_ljudsignaler_05.jpg"),
+"bonus_ljudsignaler_06": require("../../assets/cards/bonus_ljudsignaler_06.jpg"),
+"bonus_ljudsignaler_07": require("../../assets/cards/bonus_ljudsignaler_07.jpg"),
+"bonus_ljudsignaler_08": require("../../assets/cards/bonus_ljudsignaler_08.jpg"),
+"bonus_ljudsignaler_09": require("../../assets/cards/bonus_ljudsignaler_09.jpg"),
+"bonus_ljudsignaler_10": require("../../assets/cards/bonus_ljudsignaler_10.jpg"),
+"bonus_ljudsignaler_11": require("../../assets/cards/bonus_ljudsignaler_11.jpg"),
+"bonus_ljudsignaler_12": require("../../assets/cards/bonus_ljudsignaler_12.jpg"),
 };
