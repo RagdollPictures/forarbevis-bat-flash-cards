@@ -60,10 +60,28 @@ export const styles = StyleSheet.create({
     marginTop: 16,
     elevation: 10,
     backgroundColor: "#ffffff",
-    borderRadius: 10,
-    
+    borderRadius: 14,
+    padding: 16,
   },
 
+  question: {
+    fontSize: 18,
+    fontWeight: "700",
+    lineHeight: 24,
+    color: "#111",
+  },
+
+  imageWrapper: {
+    marginTop: 12,
+    borderRadius: 20,
+    overflow: "hidden",
+  },
+
+  questionImage: {
+    width: "100%",
+    height: 220,
+ 
+  },
 
   options: {
     marginTop: 14,
@@ -106,7 +124,10 @@ export const styles = StyleSheet.create({
     color: "#111",
     fontWeight: "700",
   },
-
+optionImageWrapper: {
+  borderRadius: 12,
+  overflow: "hidden",
+},
   optionImage: {
     width: "100%",
     height: 110,

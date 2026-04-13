@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import { styles } from "../../styles";
+import { styles } from "../styles";
 
 export default function QuizCard({
   questionText,
@@ -40,7 +40,7 @@ export default function QuizCard({
           <Image
             source={imageSource}
             style={styles.questionImage}
-            resizeMode="contain"
+            resizeMode="cover"
           />
         </view>
       ) : null}
@@ -63,11 +63,13 @@ export default function QuizCard({
               ]}
             >
              {optionImageSource ? (
+               <View style={styles.optionImageWrapper}>
   <Image
     source={optionImageSource}
     style={styles.optionImage}
     resizeMode="contain"
   />
+  </View>
 ) : (
   <Text
     style={[
