@@ -4,9 +4,15 @@ export const bonusLanternor: FlashCard[] = [
   {
     id: "bonus_lanternor-1",
     question: "",
-    questionQuiz: "Motorbåt under gång",
+    questionQuiz: "Vilken bild representerar en motorbåt påväg till höger?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_02",
+      "bonus_lanternor_01",
+      "bonus_lanternor_03",
+      "bonus_lanternor_04"
+    ],
     correctOptionIndex: 1,
     textTitle: "Motorbåt",
     textInfo:
@@ -15,9 +21,15 @@ export const bonusLanternor: FlashCard[] = [
   {
     id: "bonus_lanternor-2",
     question: "",
-    questionQuiz: "Segelbåt under gång",
+    questionQuiz: "Vilken bild representerar en segelbåt på väg emot dig",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_03",
+      "bonus_lanternor_04",
+      "bonus_lanternor_02",
+      "bonus_lanternor_05"
+    ],
     correctOptionIndex: 2,
     textTitle: "Segelbåt",
     textInfo:
@@ -26,53 +38,82 @@ export const bonusLanternor: FlashCard[] = [
   {
     id: "bonus_lanternor-3",
     question: "",
-    questionQuiz: "Segelbåt som går för motor",
+    questionQuiz: "Segelbåt som går för motor påväg till höger",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_03",
+      "bonus_lanternor_10",
+      "bonus_lanternor_06",
+      "bonus_lanternor_05"
+    ],
     correctOptionIndex: 0,
     textTitle: "Segel + motor",
     textInfo:
       "Visar samma lanternor som en motorbåt, inklusive vitt toppljus."
   },
   {
-    id: "bonus_lanternor-4",
-    question: "",
-    questionQuiz: "Småbåt under gång",
-    answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
-    correctOptionIndex: 3,
-    textTitle: "Småbåt",
-    textInfo:
-      "Kombinerad röd och grön lanterna samt ett vitt runtlysande ljus."
-  },
-  {
-    id: "bonus_lanternor-5",
-    question: "",
-    questionQuiz: "Fartyg över 50 meter",
-    answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
-    correctOptionIndex: 1,
-    textTitle: "Stort fartyg",
-    textInfo:
-      "Röd och grön lanterna samt två vita toppljus ovanpå varandra och ett vitt akterljus."
-  },
-  {
-    id: "bonus_lanternor-6",
+   id: "bonus_lanternor-4",
     question: "",
     questionQuiz: "Fartyg som ligger för ankare",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_06",
+      "bonus_lanternor_07",
+      "bonus_lanternor_04",
+      "bonus_lanternor_08"
+    ],
     correctOptionIndex: 2,
     textTitle: "Ankare",
     textInfo:
       "Ett vitt runtlysande ljus. Större fartyg visar två vita ljus, ett fram och ett akterut."
   },
   {
+    id: "bonus_lanternor-5",
+    question: "",
+    questionQuiz: "Fartyg över 50 meter påväg till vänster",
+    answer: "",
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_06",
+      "bonus_lanternor_05",
+      "bonus_lanternor_09",
+      "bonus_lanternor_08"
+    ],
+    correctOptionIndex: 1,
+    textTitle: "Stort fartyg",
+    textInfo:
+      "Röd och grön lanterna samt två vita toppljus ovanpå varandra och ett vitt akterljus."
+  },
+ {
+    id: "bonus_lanternor-6",
+    question: "",
+    questionQuiz: "Bogserande fartyg",
+    answer: "",
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_09",
+      "bonus_lanternor_08",
+      "bonus_lanternor_07",
+      "bonus_lanternor_06"
+    ],
+    correctOptionIndex: 3,
+    textTitle: "Bogsering",
+    textInfo:
+      "Två eller tre vita toppljus ovanpå varandra samt gult akterljus ovanför det vita."
+  }, {
     id: "bonus_lanternor-7",
     question: "",
     questionQuiz: "Ej manöverfärdigt fartyg",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_07",
+      "bonus_lanternor_08",
+      "bonus_lanternor_09",
+      "bonus_lanternor_10"
+    ],
     correctOptionIndex: 0,
     textTitle: "Ej manöverfärdig",
     textInfo:
@@ -83,7 +124,13 @@ export const bonusLanternor: FlashCard[] = [
     question: "",
     questionQuiz: "Begränsad manöverförmåga",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_11",
+      "bonus_lanternor_10",
+      "bonus_lanternor_09",
+      "bonus_lanternor_08"
+    ],
     correctOptionIndex: 3,
     textTitle: "Begränsad manöver",
     textInfo:
@@ -94,7 +141,13 @@ export const bonusLanternor: FlashCard[] = [
     question: "",
     questionQuiz: "Fiskefartyg (ej trål)",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_10",
+      "bonus_lanternor_09",
+      "bonus_lanternor_11",
+      "bonus_lanternor_12"
+    ],
     correctOptionIndex: 1,
     textTitle: "Fiske",
     textInfo:
@@ -105,7 +158,13 @@ export const bonusLanternor: FlashCard[] = [
     question: "",
     questionQuiz: "Fiskefartyg (trål)",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_11",
+      "bonus_lanternor_12",
+      "bonus_lanternor_10",
+      "bonus_lanternor_13"
+    ],
     correctOptionIndex: 2,
     textTitle: "Trålning",
     textInfo:
@@ -116,7 +175,13 @@ export const bonusLanternor: FlashCard[] = [
     question: "",
     questionQuiz: "Fartyg som gått på grund",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_11",
+      "bonus_lanternor_12",
+      "bonus_lanternor_14",
+      "bonus_lanternor_13"
+    ],
     correctOptionIndex: 0,
     textTitle: "Grundstött",
     textInfo:
@@ -125,12 +190,69 @@ export const bonusLanternor: FlashCard[] = [
   {
     id: "bonus_lanternor-12",
     question: "",
-    questionQuiz: "Bogserande fartyg",
+    questionQuiz: "Linfärja",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
-    correctOptionIndex: 3,
-    textTitle: "Bogsering",
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_13",
+      "bonus_lanternor_12",
+      "bonus_lanternor_14",
+      "bonus_lanternor_15"
+    ],
+    correctOptionIndex: 1,
+    textTitle: "Linfärja",
     textInfo:
-      "Två eller tre vita toppljus ovanpå varandra samt gult akterljus ovanför det vita."
-  }
+      "Tre röda toppljus i en triangel med spetsen uppåt"
+  },
+   {
+    id: "bonus_lanternor-13",
+    question: "",
+    questionQuiz: "Begränsat av sitt djupgående",
+    answer: "",
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_11",
+      "bonus_lanternor_12",
+      "bonus_lanternor_10",
+      "bonus_lanternor_13"
+    ],
+    correctOptionIndex: 3,
+    textTitle: "Djupgående",
+    textInfo:
+      "Fartyg begränsat av sitt djupgående"
+  },
+   {
+    id: "bonus_lanternor-14",
+    question: "",
+    questionQuiz: "Lotsbåt",
+    answer: "",
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_02",
+      "bonus_lanternor_04",
+      "bonus_lanternor_14",
+      "bonus_lanternor_15"
+    ],
+    correctOptionIndex: 2,
+    textTitle: "Lotsbåt",
+    textInfo:
+      "En lotsbåt visar två runtlysande ljus: vitt över rött.En lotsbåt visar två runtlysande ljus: vitt över rött."
+  },
+   {
+    id: "bonus_lanternor-15",
+    question: "",
+    questionQuiz: "Mudderverk",
+    answer: "",
+     options: ["", "", "", ""],
+    optionImageKeys: [
+      "bonus_lanternor_05",
+      "bonus_lanternor_15",
+      "bonus_lanternor_08",
+      "bonus_lanternor_10"
+    ],
+    correctOptionIndex: 1,
+    textTitle: "Mudderverk",
+    textInfo:
+      "Ett mudderverk är ett fartyg eller en maskin som används för att gräva upp material från botten av vatten — till exempel sand, lera eller grus."
+  },
 ];

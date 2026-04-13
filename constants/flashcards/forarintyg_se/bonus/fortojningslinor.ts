@@ -4,9 +4,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-1",
     question: "",
-    questionQuiz: "Vilken lina är en förända?",
+    questionQuiz: "Vilken av de röda linorna är en förända?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_02",
+    "bonus_fortojningslinor_01",
+    "bonus_fortojningslinor_06",
+    "bonus_fortojningslinor_04"
+  ],
     correctOptionIndex: 1,
     textTitle: "Förända",
     textInfo:
@@ -15,9 +21,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-2",
     question: "",
-    questionQuiz: "Vilken lina är en för tvärända?",
+    questionQuiz: "Vilken av de röda linorna är en för-tvärända?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_03",
+    "bonus_fortojningslinor_05",
+    "bonus_fortojningslinor_02",
+    "bonus_fortojningslinor_06"
+  ],
     correctOptionIndex: 2,
     textTitle: "För tvärända",
     textInfo:
@@ -26,9 +38,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-3",
     question: "",
-    questionQuiz: "Vilken lina är ett förspring?",
+    questionQuiz: "Vilken av de röda linorna är ett förspring?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_03",
+    "bonus_fortojningslinor_04",
+    "bonus_fortojningslinor_01",
+    "bonus_fortojningslinor_05"
+  ],
     correctOptionIndex: 0,
     textTitle: "Förspring",
     textInfo:
@@ -37,9 +55,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-4",
     question: "",
-    questionQuiz: "Vilken lina är ett akterspring?",
+    questionQuiz: "Vilken av de röda linorna är ett akterspring?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_02",
+    "bonus_fortojningslinor_01",
+    "bonus_fortojningslinor_06",
+    "bonus_fortojningslinor_04"
+  ],
     correctOptionIndex: 3,
     textTitle: "Akterspring",
     textInfo:
@@ -48,9 +72,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-5",
     question: "",
-    questionQuiz: "Vilken lina är en akter tvärända?",
+    questionQuiz: "Vilken av de röda linorna är en akter-tvärända?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+   options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_02",
+    "bonus_fortojningslinor_01",
+    "bonus_fortojningslinor_05",
+    "bonus_fortojningslinor_03"
+  ],
     correctOptionIndex: 2,
     textTitle: "Akter tvärända",
     textInfo:
@@ -59,9 +89,15 @@ export const bonusFortojningslinor: FlashCard[] = [
   {
     id: "bonus_fortojningslinor-6",
     question: "",
-    questionQuiz: "Vilken lina är en akterända?",
+    questionQuiz: "Vilken av de röda linorna är en akterända?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_fortojningslinor_02",
+    "bonus_fortojningslinor_06",
+    "bonus_fortojningslinor_05",
+    "bonus_fortojningslinor_04"
+  ],
     correctOptionIndex: 1,
     textTitle: "Akterända",
     textInfo:

@@ -6,12 +6,12 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Dykare i vattnet",
     answer: "",
-    options: ["Alfa", "Oscar", "Delta", "Bravo"],
+    options: ["", "", "", ""],
   optionImageKeys: [
-    "flagga_alfa",
-    "flagga_oscar",
-    "flagga_delta",
-    "flagga_bravo"
+    "bonus_flaggor_01",
+    "bonus_flaggor_07",
+    "bonus_flaggor_05",
+    "bonus_flaggor_03"
   ],
     correctOptionIndex: 0,
     textTitle: "Alfa",
@@ -23,7 +23,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Man överbord",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_06",
+    "bonus_flaggor_02",
+    "bonus_flaggor_04",
+    "bonus_flaggor_01"
+  ],
     correctOptionIndex: 1,
     textTitle: "Oscar",
     textInfo:
@@ -34,7 +40,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Håll undan från mig",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_03",
+    "bonus_flaggor_05",
+    "bonus_flaggor_07",
+    "bonus_flaggor_01"
+  ],
     correctOptionIndex: 0,
     textTitle: "Delta",
     textInfo:
@@ -45,7 +57,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Fartyget hanterar farlig last",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_01",
+    "bonus_flaggor_02",
+    "bonus_flaggor_06",
+    "bonus_flaggor_04"
+  ],
     correctOptionIndex: 3,
     textTitle: "Bravo",
     textInfo:
@@ -56,7 +74,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Jag behöver hjälp",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+     options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_01",
+    "bonus_flaggor_07",
+    "bonus_flaggor_05",
+    "bonus_flaggor_03"
+  ],
     correctOptionIndex: 2,
     textTitle: "Whiskey",
     textInfo:
@@ -67,7 +91,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Alla ska ombord / avgång",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_03",
+    "bonus_flaggor_06",
+    "bonus_flaggor_04",
+    "bonus_flaggor_02"
+  ],
     correctOptionIndex: 1,
     textTitle: "Papa",
     textInfo:
@@ -78,7 +108,13 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Ja / bekräftat",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_flaggor_07",
+    "bonus_flaggor_01",
+    "bonus_flaggor_05",
+    "bonus_flaggor_03"
+  ],
     correctOptionIndex: 0,
     textTitle: "Charlie",
     textInfo:

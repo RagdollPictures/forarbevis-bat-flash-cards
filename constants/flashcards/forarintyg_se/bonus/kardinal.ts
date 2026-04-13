@@ -6,7 +6,13 @@ export const bonusKardinal: FlashCard[] = [
     question: "",
     questionQuiz: "Vilket är ett nordkardinalmärke?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_kardinal_01",
+    "bonus_kardinal_02",
+    "bonus_kardinal_03",
+    "bonus_kardinal_04"
+  ],
     correctOptionIndex: 0,
     textTitle: "Nordkardinal",
     textInfo:
@@ -17,7 +23,13 @@ export const bonusKardinal: FlashCard[] = [
     question: "",
     questionQuiz: "Vilket är ett ostkardinalmärke?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_kardinal_01",
+    "bonus_kardinal_02",
+    "bonus_kardinal_03",
+    "bonus_kardinal_04"
+  ],
     correctOptionIndex: 1,
     textTitle: "Ostkardinal",
     textInfo:
@@ -28,7 +40,13 @@ export const bonusKardinal: FlashCard[] = [
     question: "",
     questionQuiz: "Vilket är ett sydkardinalmärke?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_kardinal_01",
+    "bonus_kardinal_02",
+    "bonus_kardinal_03",
+    "bonus_kardinal_04"
+  ],
     correctOptionIndex: 2,
     textTitle: "Sydkardinal",
     textInfo:
@@ -39,7 +57,13 @@ export const bonusKardinal: FlashCard[] = [
     question: "",
     questionQuiz: "Vilket är ett västkardinalmärke?",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
+    options: ["", "", "", ""],
+  optionImageKeys: [
+    "bonus_kardinal_01",
+    "bonus_kardinal_02",
+    "bonus_kardinal_03",
+    "bonus_kardinal_04"
+  ],
     correctOptionIndex: 3,
     textTitle: "Västkardinal",
     textInfo:
