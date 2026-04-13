@@ -1,6 +1,6 @@
 import React from "react";
 import { Image, Pressable, Text, View } from "react-native";
-import { styles } from "../styles";
+import { styles } from "../../styles";
 
 export default function QuizCard({
   questionText,
