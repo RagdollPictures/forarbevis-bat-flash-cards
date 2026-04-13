@@ -207,4 +207,24 @@ export const styles = StyleSheet.create({
   levelMenuLabelLocked: {
     color: "#777",
   },
+
+  imageWrapper: {
+  marginTop: 12,
+  borderRadius: 20,
+  overflow: "hidden",
+},
+
+questionImage: {
+  width: "100%",
+  height: 220,
+},
+optionImageWrapper: {
+  borderRadius: 12,
+  overflow: "hidden",
+},
+
+optionImage: {
+  width: "100%",
+  height: 110,
+},
 });

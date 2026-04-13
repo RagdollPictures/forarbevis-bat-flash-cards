@@ -36,13 +36,13 @@ export default function QuizCard({
       <Text style={styles.question}>{questionText}</Text>
 
       {imageSource ? (
-        <view style={styles.imageWrapper}>
+        <View style={styles.imageWrapper}>
           <Image
             source={imageSource}
             style={styles.questionImage}
             resizeMode="cover"
           />
-        </view>
+        </View>
       ) : null}
 
       <View style={styles.options}>
@@ -67,7 +67,7 @@ export default function QuizCard({
   <Image
     source={optionImageSource}
     style={styles.optionImage}
-    resizeMode="contain"
+    resizeMode="cover"
   />
   </View>
 ) : (
