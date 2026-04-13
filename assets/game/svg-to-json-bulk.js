@@ -19,12 +19,30 @@ function normalizeAnchorId(rawId, dataName) {
 }
 
 function parseAnchorMeta(anchorId) {
-  const match = anchorId.match(/^anchor_(read|quiz)_(\d+)$/);
-  if (!match) return null;
-  return {
-    type: match[1],
-    index: Number(match[2]),
-  };
+  if (anchorId === "anchor_bg") {
+    return {
+      mode: "bg",
+    };
+  }
+
+  const pairMatch = anchorId.match(/^anchor_(read|quiz)_(\d+)$/);
+  if (pairMatch) {
+    return {
+      mode: "level",
+      type: pairMatch[1],
+      index: Number(pairMatch[2]),
+    };
+  }
+
+  const singleMatch = anchorId.match(/^anchor_(\d+)$/);
+  if (singleMatch) {
+    return {
+      mode: "menu",
+      index: Number(singleMatch[1]),
+    };
+  }
+
+  return null;
 }
 
 function extractViewBox(svgText) {
@@ -54,7 +72,11 @@ function extractAnchors(svgText) {
     const dataName = groupAttrs["data-name"] || "";
     const anchorId = normalizeAnchorId(rawId, dataName);
 
-    if (!/^anchor_(read|quiz)_\d+$/.test(anchorId)) {
+    if (
+      anchorId !== "anchor_bg" &&
+      !/^anchor_(read|quiz)_\d+$/.test(anchorId) &&
+      !/^anchor_\d+$/.test(anchorId)
+    ) {
       continue;
     }
 
@@ -62,26 +84,58 @@ function extractAnchors(svgText) {
     if (!meta) continue;
 
     const groupContent = groupMatch[2];
+
     const circleMatch = groupContent.match(/<circle\b([^>]*)\/?>/i);
-    if (!circleMatch) {
-      throw new Error(`Ingen circle hittades i gruppen ${rawId || anchorId}`);
+    const ellipseMatch = groupContent.match(/<ellipse\b([^>]*)\/?>/i);
+
+    let shapeAttrs = null;
+
+    if (circleMatch) {
+      shapeAttrs = parseAttributes(circleMatch[1]);
+    } else if (ellipseMatch) {
+      shapeAttrs = parseAttributes(ellipseMatch[1]);
+    } else if (anchorId === "anchor_bg") {
+      // Fallback: om anchor_bg inte har circle/ellipse, använd viewBox-mitten senare
+      shapeAttrs = null;
+    } else {
+      throw new Error(`Ingen circle/ellipse hittades i gruppen ${rawId || anchorId}`);
     }
 
-    const circleAttrs = parseAttributes(circleMatch[1]);
-    const x = Number(circleAttrs.cx);
-    const y = Number(circleAttrs.cy);
+    let x;
+    let y;
 
-    if (Number.isNaN(x) || Number.isNaN(y)) {
-      throw new Error(`Ogiltiga cx/cy i ${rawId || anchorId}`);
+    if (shapeAttrs) {
+      x = Number(shapeAttrs.cx);
+      y = Number(shapeAttrs.cy);
+
+      if (Number.isNaN(x) || Number.isNaN(y)) {
+        throw new Error(`Ogiltiga cx/cy i ${rawId || anchorId}`);
+      }
+    } else {
+      // anchor_bg utan circle/ellipse får sättas senare i convertSvgFile
+      x = null;
+      y = null;
     }
 
-    anchors.push({
+    const anchor = {
       id: anchorId,
-      type: meta.type,
-      index: meta.index,
-      x,
-      y,
-    });
+    };
+
+    if (meta.mode === "level") {
+      anchor.type = meta.type;
+      anchor.index = meta.index;
+    }
+
+    if (meta.mode === "menu") {
+      anchor.index = meta.index;
+    }
+
+    if (x !== null && y !== null) {
+      anchor.x = x;
+      anchor.y = y;
+    }
+
+    anchors.push(anchor);
   }
 
   const seen = new Set();
@@ -93,8 +147,18 @@ function extractAnchors(svgText) {
   }
 
   anchors.sort((a, b) => {
-    if (a.index !== b.index) return a.index - b.index;
+    if (a.id === "anchor_bg") return -1;
+    if (b.id === "anchor_bg") return 1;
+
+    const aIndex = typeof a.index === "number" ? a.index : Number.MAX_SAFE_INTEGER;
+    const bIndex = typeof b.index === "number" ? b.index : Number.MAX_SAFE_INTEGER;
+
+    if (aIndex !== bIndex) return aIndex - bIndex;
+
     if (a.type === b.type) return 0;
+    if (!a.type) return -1;
+    if (!b.type) return 1;
+
     return a.type === "read" ? -1 : 1;
   });
 
@@ -105,6 +169,12 @@ function convertSvgFile(svgPath) {
   const svgText = fs.readFileSync(svgPath, "utf8");
   const viewBox = extractViewBox(svgText);
   const anchors = extractAnchors(svgText);
+
+  const bgAnchor = anchors.find((a) => a.id === "anchor_bg");
+  if (bgAnchor && (typeof bgAnchor.x !== "number" || typeof bgAnchor.y !== "number")) {
+    bgAnchor.x = viewBox.width / 2;
+    bgAnchor.y = viewBox.height / 2;
+  }
 
   const jsonData = {
     viewBox,
@@ -118,7 +188,7 @@ function convertSvgFile(svgPath) {
     svgPath,
     outPath,
     anchorCount: anchors.length,
-    pairCount: anchors.length / 2,
+    pairCount: anchors.filter((a) => a.type === "read" || a.type === "quiz").length / 2,
     viewBox,
   };
 }

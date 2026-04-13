@@ -26,6 +26,7 @@ import {
 } from "../quiz/storage/cleared";
 import { styles } from "../quiz/styles";
 import { calcPercent } from "../quiz/utils/progress";
+import ChapterMenuMap from "./ChapterMenuMap";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
 
 type QuizItem = {
@@ -360,65 +361,22 @@ export default function QuizMenuScreen() {
         ) : null}
 
         <Pressable
-          onPress={() => setShowLevelMenu((prev) => !prev)}
-          style={styles.levelMenuToggle}
-        >
-          <Text style={styles.levelMenuToggleText}>
-            {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-          </Text>
-        </Pressable>
+  onPress={() => setShowLevelMenu((prev) => !prev)}
+  style={styles.levelMenuToggle}
+>
+  <Text style={styles.levelMenuToggleText}>
+    {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+  </Text>
+</Pressable>
 
-        {showLevelMenu ? (
-          <View style={styles.levelMenuWrap}>
-            {Object.entries(levelMap).map(([id, menuLevel]) => {
-              if (!menuLevel) return null;
+{showLevelMenu ? (
+  <ChapterMenuMap
+    currentLevelId={levelId}
+    unlockedLevelIds={unlockedLevelIds}
+  />
+) : null}
 
-              const isUnlocked = unlockedLevelIds.has(id);
-              const isCurrent = id === levelId;
-
-              return (
-                <Pressable
-                  key={id}
-                  onPress={() => {
-                    if (!isUnlocked) return;
-                    router.push({
-                      pathname: "/game/[levelId]",
-                      params: { levelId: id },
-                    });
-                  }}
-                  disabled={!isUnlocked}
-                  style={[
-                    styles.levelMenuItem,
-                    !isUnlocked && styles.levelMenuItemLocked,
-                    isCurrent && styles.levelMenuItemCurrent,
-                  ]}
-                >
-                  <View style={styles.levelMenuIconCircle}>
-                    <SvgIcon
-                      name={menuLevel.iconName}
-                      size={24}
-                      color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                    />
-                    {!isUnlocked ? (
-                      <View style={styles.levelMenuLockBadge}>
-                        <SvgIcon name="lock" size={14} color="#fff" />
-                      </View>
-                    ) : null}
-                  </View>
-
-                  <Text
-                    style={[
-                      styles.levelMenuLabel,
-                      !isUnlocked && styles.levelMenuLabelLocked,
-                    ]}
-                  >
-                    {menuLevel.label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
-        ) : null}
+        
 
         <View style={styles.bonusBar}>
           {bonusQuizzes.map((quiz) => {
