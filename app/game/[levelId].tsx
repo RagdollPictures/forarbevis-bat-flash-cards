@@ -305,8 +305,7 @@ export default function QuizMenuScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <ScrollView contentContainerStyle={styles.container}>
-        {__DEV__ ? (
+       {__DEV__ ? (
           <View style={styles.devPanel}>
             <Pressable
               onPress={() => setShowDevMenu((prev) => !prev)}
@@ -360,7 +359,7 @@ export default function QuizMenuScreen() {
           </View>
         ) : null}
 
-        <Pressable
+              <Pressable
   onPress={() => setShowLevelMenu((prev) => !prev)}
   style={styles.levelMenuToggle}
 >
@@ -368,6 +367,10 @@ export default function QuizMenuScreen() {
     {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
   </Text>
 </Pressable>
+      <ScrollView contentContainerStyle={styles.container}>
+       
+
+  
 
 {showLevelMenu ? (
   <ChapterMenuMap

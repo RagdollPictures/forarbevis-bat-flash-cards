@@ -15,7 +15,7 @@ export const styles = StyleSheet.create({
   devPanel: {
     gap: 10,
     marginTop: 8,
-    marginBottom: 12,
+    marginBottom: 12
   },
   devResetBtn: {
     backgroundColor: "#ffffff",

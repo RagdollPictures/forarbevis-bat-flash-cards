@@ -46,8 +46,18 @@ export const bonusLevels: BonusLevel[] = [
     unlockWhenClearedQuizId: "sjokortet_quiz",
   },
   {
-    id: "bonus_strom_avdrift",
-    title: "Ström & Avdrift",
+    id: "bonus_kursberakning",
+    title: "Kursberäkning",
+    unlockWhenClearedQuizId: "sjokortet_quiz",
+  },
+  {
+    id: "bonus_navigator",
+    title: "Navigator",
+    unlockWhenClearedQuizId: "sjokortet_quiz",
+  },
+  {
+    id: "bonus_kardinal",
+    title: "Navigator",
     unlockWhenClearedQuizId: "sjokortet_quiz",
   },
 ];

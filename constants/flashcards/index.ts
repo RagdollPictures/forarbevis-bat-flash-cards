@@ -2,10 +2,12 @@ import { bonusDagersignaler } from "./forarintyg_se/bonus/dagersignaler";
 import { bonusFartDistansTid } from "./forarintyg_se/bonus/fart_distans_tid";
 import { bonusFlaggor } from "./forarintyg_se/bonus/flaggor";
 import { bonusFortojningslinor } from "./forarintyg_se/bonus/fortojningslinor";
+import { bonusKardinal } from "./forarintyg_se/bonus/kardinal";
+import { bonusKursberakning } from "./forarintyg_se/bonus/kursberakning";
 import { bonusLanternor } from "./forarintyg_se/bonus/lanternor";
 import { bonusLjudsignaler } from "./forarintyg_se/bonus/ljudsignaler";
+import { bonusNavigator } from "./forarintyg_se/bonus/navigator";
 import { bonusSjomarken } from "./forarintyg_se/bonus/sjomarken";
-import { bonusStromAvdrift } from "./forarintyg_se/bonus/strom_avdrift";
 import { bonusSymboler } from "./forarintyg_se/bonus/symboler";
 import { lanternorFartyg } from "./forarintyg_se/lanternor/fartyg";
 import { lanternorInledning } from "./forarintyg_se/lanternor/inledning";
@@ -427,7 +429,9 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       { id: "bonus_fart_distans_tid", title: "Fart Distans Tid", deckId: "bonus_fart_distans_tid" },
       { id: "bonus_ljudsignaler", title: "Ljudsignaler", deckId: "bonus_ljudsignaler" },
        { id: "bonus_fortojningslinor", title: "Förtöjningslinor", deckId: "bonus_fortojningslinor" },
-      { id: "bonus_strom_avdrift", title: "Ström & Avdrift", deckId: "bonus_strom_avdrift" },
+      { id: "bonus_kursberakning", title: "Kursberäkning", deckId: "bonus_kursberakning" },
+      { id: "bonus_navigator", title: "Navigator", deckId: "bonus_navigator" },
+      { id: "bonus_kardinal", title: "Kardinalmärken", deckId: "bonus_kardinal" },
      
       ],
     },
@@ -556,7 +560,9 @@ export const decksById: Record<string, FlashCard[]> = {
     bonus_fart_distans_tid: bonusFartDistansTid,
     bonus_ljudsignaler: bonusLjudsignaler,
     bonus_fortojningslinor: bonusFortojningslinor,
-    bonus_strom_avdrift: bonusStromAvdrift,
+    bonus_kursberakning: bonusKursberakning,
+    bonus_navigator: bonusNavigator,
+    bonus_kardinal: bonusKardinal,
 };
 
 export function getChapters(sourceId: string): Chapter[] {
