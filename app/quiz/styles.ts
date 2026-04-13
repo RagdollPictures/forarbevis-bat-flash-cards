@@ -205,4 +205,23 @@ levelMenuLabel: {
 levelMenuLabelLocked: {
   color: "#777",
 },
+ text: {
+    marginTop: 8,
+    fontSize: 16,
+    color: "#ffffff",
+  },
+screen:{
+  width: "100%",
+}
+,
+screenTitle:{
+  width: "100%",
+},
+content:{
+  width: "100%",
+},
+optionImage: {
+  width: "100%",
+  height: 100,
+},
 });

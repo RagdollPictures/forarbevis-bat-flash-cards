@@ -8,6 +8,11 @@ export function validateDeck(rawDeck: FlashCard[]) {
     if (!Number.isInteger(c.correctOptionIndex)) return false;
     if ((c.correctOptionIndex ?? -1) < 0) return false;
     if ((c.correctOptionIndex ?? 999) >= c.options.length) return false;
+     if (c.optionImageKeys) {
+      if (!Array.isArray(c.optionImageKeys)) return false;
+      if (c.optionImageKeys.length !== c.options.length) return false;
+    }
+
     return true;
   });
 }

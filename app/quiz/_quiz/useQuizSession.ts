@@ -3,7 +3,6 @@ import { saveQuizProgress } from "../../../constants/flashcards/quizProgress";
 import type { FlashCard } from "../../../constants/flashcards/types";
 import { shuffle } from "./shuffle";
 
-
 const QUIZ_LENGTH = 10;
 
 function shuffleArray<T>(array: T[]): T[] {
@@ -27,6 +26,7 @@ function clampInt(n: number, min: number, max: number) {
 
 type FrozenQuiz = {
   options: string[];
+  optionImageKeys: (string | undefined)[];
   correctOptionIndex: number;
 };
 
@@ -51,16 +51,14 @@ export function useQuizSession({
 
   const [pendingMoveToEnd, setPendingMoveToEnd] = useState(false);
 
-  // Boat meter (visual only)
   const [meterPoints, setMeterPoints] = useState(0);
 
-  // ✅ NEW: first-try tracking (per question id)
   const [seenIds, setSeenIds] = useState<Set<string>>(new Set());
   const [firstTryCorrectCount, setFirstTryCorrectCount] = useState(0);
 
-  // Freeze options per question so correct answer highlight never reshuffles
   const [quiz, setQuiz] = useState<FrozenQuiz>({
     options: [],
+    optionImageKeys: [],
     correctOptionIndex: -1,
   });
 
@@ -86,7 +84,11 @@ export function useQuizSession({
     setSeenIds(new Set());
     setFirstTryCorrectCount(0);
 
-    setQuiz({ options: [], correctOptionIndex: -1 });
+    setQuiz({
+      options: [],
+      optionImageKeys: [],
+      correctOptionIndex: -1,
+    });
   }, [quizId, deck.length]);
 
   const safeIndex = Math.min(index, Math.max(0, queue.length - 1));
@@ -95,12 +97,17 @@ export function useQuizSession({
 
   useEffect(() => {
     if (!card?.options || !Number.isInteger(card.correctOptionIndex)) {
-      setQuiz({ options: [], correctOptionIndex: -1 });
+      setQuiz({
+        options: [],
+        optionImageKeys: [],
+        correctOptionIndex: -1,
+      });
       return;
     }
 
     const zipped = card.options.map((text, originalIndex) => ({
       text,
+      imageKey: card.optionImageKeys?.[originalIndex],
       originalIndex,
     }));
 
@@ -112,6 +119,7 @@ export function useQuizSession({
 
     setQuiz({
       options: shuffledOpts.map((o) => o.text),
+      optionImageKeys: shuffledOpts.map((o) => o.imageKey),
       correctOptionIndex,
     });
 
@@ -132,7 +140,6 @@ export function useQuizSession({
     return clampInt(meterPoints, 0, total) / total;
   }, [meterPoints, total]);
 
-  // ✅ Save only when finished (same as before for unlock)
   useEffect(() => {
     if (!quizId) return;
     if (!isFinished) return;
@@ -146,12 +153,10 @@ export function useQuizSession({
 
     saveQuizProgress({
       quizId: String(quizId),
-      progress: allCorrect,       // mastery (for unlock) stays 100% on finish
+      progress: allCorrect,
       score: total,
       total,
       updatedAt: Date.now(),
-
-      // ✅ NEW fields (for menu ring)
       firstTryCorrect: firstTryCorrectCount,
       firstTryTotal: total,
     });
@@ -172,17 +177,15 @@ export function useQuizSession({
 
     const wasCorrect = i === quiz.correctOptionIndex;
 
-    // ✅ NEW: record first try only the first time we ever answer this card id
-   if (!seenIds.has(card.id)) {
-  const nextSeen = new Set(seenIds);
-  nextSeen.add(card.id);
-  setSeenIds(nextSeen);
+    if (!seenIds.has(card.id)) {
+      const nextSeen = new Set(seenIds);
+      nextSeen.add(card.id);
+      setSeenIds(nextSeen);
 
-  if (wasCorrect) {
-    setFirstTryCorrectCount((c) => c + 1);
-  }
-}
-
+      if (wasCorrect) {
+        setFirstTryCorrectCount((c) => c + 1);
+      }
+    }
 
     setSelectedIndex(i);
     setIsChecked(true);
@@ -260,7 +263,7 @@ export function useQuizSession({
   const restart = () => {
     if (deck.length === 0) return;
 
-   const nextDeck = buildSessionDeck(deck);
+    const nextDeck = buildSessionDeck(deck);
 
     setQueue(nextDeck);
     setProgress(Array(nextDeck.length).fill(null));
@@ -279,7 +282,11 @@ export function useQuizSession({
     setSeenIds(new Set());
     setFirstTryCorrectCount(0);
 
-    setQuiz({ options: [], correctOptionIndex: -1 });
+    setQuiz({
+      options: [],
+      optionImageKeys: [],
+      correctOptionIndex: -1,
+    });
   };
 
   return {
@@ -289,18 +296,14 @@ export function useQuizSession({
     quiz,
     selectedIndex,
     isChecked,
-
     score,
     isFinished,
     progress,
-
     visualProgress,
     masteredPercent,
     masteredCount,
     total,
-
     firstTryCorrectCount,
-
     onSelect,
     onNext,
     restart,

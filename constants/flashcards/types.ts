@@ -7,6 +7,7 @@ export type FlashCard = {
   correctOptionIndex?: number;
   imageKey?: string;
   answerImageKey?: string;
+  optionImageKeys?: string[];
   textTitle?: string;
   textInfo?: string;
 };

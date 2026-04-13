@@ -54,9 +54,15 @@ export const cardImages: Record<string, any> = {
 "symboler_12_ver02": require("../../assets/cards/symboler_12_ver02.jpg"),
 "symboler_13_ver02": require("../../assets/cards/symboler_13_ver02.jpg"),
 "symboler_14_ver02": require("../../assets/cards/symboler_14_ver02.jpg"),
+
 "symboler_15_ver02": require("../../assets/cards/symboler_15_ver02.jpg"),
 "symboler_16_ver02": require("../../assets/cards/symboler_16_ver02.jpg"),
 "symboler_17_ver02": require("../../assets/cards/symboler_17_ver02.jpg"),
 "symboler_18_ver02": require("../../assets/cards/symboler_18_ver02.jpg"),
+
+"flagga_alfa": require("../../assets/cards/symboler_15_ver02.jpg"),
+"flagga_oscar": require("../../assets/cards/symboler_16_ver02.jpg"),
+"flagga_delta": require("../../assets/cards/symboler_17_ver02.jpg"),
+"flagga_bravo": require("../../assets/cards/symboler_18_ver02.jpg"),
 
 };

@@ -6,8 +6,14 @@ export const bonusFlaggor: FlashCard[] = [
     question: "",
     questionQuiz: "Dykare i vattnet",
     answer: "",
-    options: ["BILD_01", "BILD_02", "BILD_03", "BILD_04"],
-    correctOptionIndex: 2,
+    options: ["Alfa", "Oscar", "Delta", "Bravo"],
+  optionImageKeys: [
+    "flagga_alfa",
+    "flagga_oscar",
+    "flagga_delta",
+    "flagga_bravo"
+  ],
+    correctOptionIndex: 0,
     textTitle: "Alfa",
     textInfo:
       "Signalflagga Alfa. Visar att dykare finns i vattnet. Håll väl undan och passera med låg fart."
