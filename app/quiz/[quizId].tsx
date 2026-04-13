@@ -6,8 +6,7 @@ import { getQuizById } from "../../constants/flashcards";
 import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
 import { levelIds, levelsById } from "../game/levelConfig";
-import { styles } from "./styles";
-
+import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
 import QuizFinished from "./_quiz/ui/QuizFinished";
@@ -47,7 +46,6 @@ export default function QuizScreen() {
   }
 
   const rawDeck = (resolved.deck ?? []) as FlashCard[];
-
   const deck = useMemo(() => validateDeck(rawDeck), [rawDeck]);
 
   if (deck.length === 0) {
@@ -78,7 +76,7 @@ export default function QuizScreen() {
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
 
-          <BoatProgressBar value={1} />
+          <BoatProgressBar value={s.visualProgress} />
 
           <QuizFinished
             title={screenTitle}
@@ -95,47 +93,44 @@ export default function QuizScreen() {
 
   const questionText = s.card.questionQuiz ?? s.card.question ?? "";
 
-const hasQuestionImage =
-  !!s.card.imageKey &&
-  Object.prototype.hasOwnProperty.call(cardImages, s.card.imageKey);
+  const hasQuestionImage =
+    !!s.card.imageKey &&
+    Object.prototype.hasOwnProperty.call(cardImages, s.card.imageKey);
 
-const imageSource = hasQuestionImage
-  ? cardImages[s.card.imageKey!]
-  : undefined;
+  const imageSource = hasQuestionImage
+    ? cardImages[s.card.imageKey!]
+    : undefined;
 
-const optionImageSources = s.quiz.optionImageKeys.map((key) => {
-  if (!key) return undefined;
-  if (!Object.prototype.hasOwnProperty.call(cardImages, key)) return undefined;
-  return cardImages[key];
-});
+  const optionImageSources = s.quiz.optionImageKeys.map((key) => {
+    if (!key) return undefined;
+    if (!Object.prototype.hasOwnProperty.call(cardImages, key)) return undefined;
+    return cardImages[key];
+  });
 
-return (
-  <SafeAreaView style={styles.screen}>
-    <Text style={styles.screenTitle}>{screenTitle}</Text>
+  return (
+    <SafeAreaView style={styles.safe}>
+      <ScrollView contentContainerStyle={styles.container}>
+        <Text style={styles.title}>{screenTitle}</Text>
 
-    <BoatProgressBar
-      progress={s.visualProgress}
-      score={s.score}
-      total={s.total}
-    />
+        <BoatProgressBar value={s.visualProgress} />
 
-    <ScrollView contentContainerStyle={styles.content}>
-      <QuizCard
-        questionText={questionText}
-        imageSource={imageSource}
-        options={s.quiz.options}
-        optionImageSources={optionImageSources}
-        correctOptionIndex={s.quiz.correctOptionIndex}
-        selectedIndex={s.selectedIndex}
-        isChecked={s.isChecked}
-        onSelect={s.onSelect}
-        onNext={s.onNext}
-        showNextButton={s.isChecked}
-        isLast={s.masteredCount >= s.total}
-        textTitle={s.card.textTitle}
-        textInfo={s.card.textInfo}
-      />
-    </ScrollView>
-  </SafeAreaView>
-);
+        <QuizCard
+          questionText={questionText}
+          imageSource={imageSource}
+          options={s.quiz.options}
+          optionImageSources={optionImageSources}
+          correctOptionIndex={s.quiz.correctOptionIndex}
+          selectedIndex={s.selectedIndex}
+          isChecked={s.isChecked}
+          onSelect={s.onSelect}
+          onNext={s.onNext}
+          showNextButton={s.isChecked}
+          isLast={s.masteredCount >= s.total}
+          textTitle={s.card.textTitle}
+          textInfo={s.card.textInfo}
+          
+        />
+      </ScrollView>
+    </SafeAreaView>
+  );
 }

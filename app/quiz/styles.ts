@@ -210,16 +210,6 @@ levelMenuLabelLocked: {
     fontSize: 16,
     color: "#ffffff",
   },
-screen:{
-  width: "100%",
-}
-,
-screenTitle:{
-  width: "100%",
-},
-content:{
-  width: "100%",
-},
 
 
   progressWrap: {
@@ -260,12 +250,13 @@ content:{
     fontSize: 18,
     fontWeight: "700",
     lineHeight: 24,
+    
   },
   questionImage: {
     width: "100%",
     height: 220,
     marginTop: 12,
-    borderRadius: 12,
+    borderRadius: 20,
   },
 
   options: {
@@ -367,10 +358,8 @@ optionImage: {
   width: "100%",
   height: 110,
 },
-nextButton:{
-  width: "100%",
-},
-nextButtonText:{
-  color:"#000",
+imageWrapper: {
+borderRadius: 20,
 }
+
 });
