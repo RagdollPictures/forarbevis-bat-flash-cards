@@ -303,6 +303,51 @@ export default function QuizMenuScreen() {
     setClearedIds(nextCleared);
   }, [quizzes, unlockedIds, clearedIds]);
 
+
+  const devUnlockAllLevels = useCallback(async () => {
+  const allQuizEntries = [
+    ...levelIds.flatMap((id) => {
+      const level = levelMap[id];
+      if (!level) return [];
+
+      return getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[];
+    }),
+    ...(getQuizzesForChapter("forarintyg", "bonus") as QuizItem[]),
+  ];
+
+  const uniqueQuizIds = Array.from(new Set(allQuizEntries.map((q) => q.id)));
+
+  const now = Date.now();
+
+  const nextProgressByQuizId: Record<string, SavedQuizProgress> = {};
+  const nextCleared = new Set(clearedIds);
+
+  for (const quizId of uniqueQuizIds) {
+    const fake: SavedQuizProgress = {
+      quizId,
+      progress: ["correct"],
+      score: 1,
+      total: 1,
+      updatedAt: now,
+      firstTryCorrect: 1,
+      firstTryTotal: 1,
+    };
+
+    nextProgressByQuizId[quizId] = fake;
+    nextCleared.add(quizId);
+
+    await saveQuizProgress(fake);
+  }
+
+  await saveClearedSet(nextCleared);
+
+  setProgressByQuizId((prev) => ({
+    ...prev,
+    ...nextProgressByQuizId,
+  }));
+  setClearedIds(nextCleared);
+}, [clearedIds, levelMap]);
+
   return (
     <SafeAreaView style={styles.safe}>
        {__DEV__ ? (
@@ -318,22 +363,7 @@ export default function QuizMenuScreen() {
 
             {showDevMenu ? (
               <>
-                {levelIds.map((id) => (
-                  <Pressable
-                    key={id}
-                    onPress={() => {
-                      router.push({
-                        pathname: "/game/[levelId]",
-                        params: { levelId: id },
-                      });
-                    }}
-                    style={styles.devResetBtn}
-                  >
-                    <Text style={styles.devResetText}>
-                      DEV: {id.toUpperCase()}
-                    </Text>
-                  </Pressable>
-                ))}
+                
 
                 <Pressable
                   onPress={async () => {
@@ -354,6 +384,13 @@ export default function QuizMenuScreen() {
                     DEV: SET NEXT LOCKED TO 100%
                   </Text>
                 </Pressable>
+
+                <Pressable
+  onPress={devUnlockAllLevels}
+  style={styles.devResetBtn}
+>
+  <Text style={styles.devResetText}>DEV: UNLOCK ALL LEVELS</Text>
+</Pressable>
               </>
             ) : null}
           </View>
