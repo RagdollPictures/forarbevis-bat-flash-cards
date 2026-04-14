@@ -41,15 +41,15 @@
       "id": "anchor_read_003",
       "type": "read",
       "index": 3,
-      "x": 209.66,
-      "y": 406.91
+      "x": 316.97,
+      "y": 606.92
     },
     {
       "id": "anchor_quiz_003",
       "type": "quiz",
       "index": 3,
-      "x": 209.66,
-      "y": 406.91
+      "x": 82.34,
+      "y": 685.33
     },
     {
       "id": "anchor_quiz_004",

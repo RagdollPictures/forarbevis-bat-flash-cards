@@ -33,8 +33,9 @@ export const symboler: FlashCard[] = [
       "7 meter och 9 decimeter.",
     ],
     correctOptionIndex: 1,
-    textTitle: "Djupsiffra 9^7",
-    textInfo: "Om djupet anges som 9^7 på sjökortet betyder det 9 meter och 7 decimeter. På sjökort skrivs alltså delar av meter utan decimaltecken i själva djupsiffran."
+    textTitle: "Djupsiffra 9⁷",
+    textInfo: "Om djupet anges som 9⁷ på sjökortet betyder det 9 meter och 7 decimeter. På sjökort skrivs alltså delar av meter utan decimaltecken i själva djupsiffran. "
+
   },
   {
     id: "symboler-3",

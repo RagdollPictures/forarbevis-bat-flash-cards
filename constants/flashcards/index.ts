@@ -593,6 +593,7 @@ export type ReadSection = {
   id: string;
   title: string;
   body: string;
+  imageKey?: string;
 };
 
 export function buildReadSections(deckId: string): ReadSection[] {
@@ -606,6 +607,7 @@ export function buildReadSections(deckId: string): ReadSection[] {
         id: `${deckId}-${index}`,
         title: card.textTitle ?? `Avsnitt ${index + 1}`,
         body: card.textInfo ?? "",
+        ...(card.imageKey ? { imageKey: card.imageKey } : {}),
       };
     })
     .filter((s): s is ReadSection => s !== null);

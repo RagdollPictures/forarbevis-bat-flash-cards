@@ -1,8 +1,9 @@
 import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { buildReadSections } from "../../constants/flashcards";
+import { cardImages } from "../../constants/flashcards/cardImages";
 
 export default function ReadScreen() {
   const params = useLocalSearchParams<{ deckId?: string; title?: string }>();
@@ -21,17 +22,33 @@ export default function ReadScreen() {
           {title}
         </Text>
 
-        {sections.map((section) => (
-          <View key={section.id} style={{ marginBottom: 28 }}>
-            <Text style={{ fontSize: 20, fontWeight: "800", marginBottom: 10 }}>
-              {section.title}
-            </Text>
+        {sections.map((section) => {
+          const imageSource = section.imageKey
+            ? cardImages[section.imageKey]
+            : undefined;
 
-            <Text style={{ fontSize: 16, lineHeight: 24 }}>
-              {section.body}
-            </Text>
-          </View>
-        ))}
+          return (
+            <View key={section.id} style={{ marginBottom: 28 }}>
+              <Text style={{ fontSize: 20, fontWeight: "800", marginBottom: 10 }}>
+                {section.title}
+              </Text>
+
+              <Text style={{ fontSize: 16, lineHeight: 24 }}>
+                {section.body}
+              </Text>
+
+              {imageSource ? (
+                <View style={{ marginTop: 14 }}>
+                  <Image
+                    source={imageSource}
+                    style={{ width: "100%", height: 180 }}
+                    resizeMode="contain"
+                  />
+                </View>
+              ) : null}
+            </View>
+          );
+        })}
       </ScrollView>
     </SafeAreaView>
   );
