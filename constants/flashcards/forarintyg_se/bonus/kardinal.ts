@@ -113,4 +113,5 @@ export const bonusKardinal: FlashCard[] = [
     textInfo:
       "Du ska passera väster om märket eftersom det visar att säkert vatten finns där."
   }
+  
 ];

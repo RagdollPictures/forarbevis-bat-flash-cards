@@ -6,7 +6,7 @@ export const bonusLanternor: FlashCard[] = [
     question: "",
     questionQuiz: "Vilken bild representerar en motorbåt påväg till höger?",
     answer: "",
-     options: ["", "", "", ""],
+    options: ["", "", "", ""],
     optionImageKeys: [
       "bonus_lanternor_02",
       "bonus_lanternor_01",

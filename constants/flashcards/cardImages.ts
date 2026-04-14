@@ -24,7 +24,6 @@ export const cardImages: Record<string, any> = {
 "flytande_sjomarken_09_ver02": require("../../assets/cards/flytande_sjomarken_09_ver02.jpg"),
 
 
-
 "fasta_sjomarken_05_facit": require("../../assets/cards/fasta_sjomarken_05_facit.jpg"),
 "fasta_sjomarken_05_facit_ver02": require("../../assets/cards/fasta_sjomarken_05_facit_ver02.jpg"),
 "mata_kort_distans_01": require("../../assets/cards/mata_kort_distans_01.jpg"),
@@ -32,6 +31,7 @@ export const cardImages: Record<string, any> = {
 "farledsnavigation_02": require("../../assets/cards/farledsnavigation_02.jpg"),
 "farledsnavigation_02_ver02": require("../../assets/cards/farledsnavigation_02_ver02.jpg"),
 "segelbatar_09": require("../../assets/cards/segelbatar_09.jpg"),
+
 "knopar_och_linor_06": require("../../assets/cards/knopar_och_linor_06.jpg"),
 "knopar_och_linor_07": require("../../assets/cards/knopar_och_linor_07.jpg"),
 "knopar_och_linor_08": require("../../assets/cards/knopar_och_linor_08.jpg"),
@@ -124,4 +124,28 @@ export const cardImages: Record<string, any> = {
 "bonus_ljudsignaler_10": require("../../assets/cards/bonus_ljudsignaler_10.jpg"),
 "bonus_ljudsignaler_11": require("../../assets/cards/bonus_ljudsignaler_11.jpg"),
 "bonus_ljudsignaler_12": require("../../assets/cards/bonus_ljudsignaler_12.jpg"),
+
+
+"bonus_sjomarken_01": require("../../assets/cards/bonus_sjomarken_01.jpg"),
+"bonus_sjomarken_02": require("../../assets/cards/bonus_sjomarken_02.jpg"),
+"bonus_sjomarken_03": require("../../assets/cards/bonus_sjomarken_03.jpg"),
+"bonus_sjomarken_04": require("../../assets/cards/bonus_sjomarken_04.jpg"),
+"bonus_sjomarken_05": require("../../assets/cards/bonus_sjomarken_05.jpg"),
+"bonus_sjomarken_06": require("../../assets/cards/bonus_sjomarken_06.jpg"),
+"bonus_sjomarken_07": require("../../assets/cards/bonus_sjomarken_07.jpg"),
+"bonus_sjomarken_08": require("../../assets/cards/bonus_sjomarken_08.jpg"),
+"bonus_sjomarken_09": require("../../assets/cards/bonus_sjomarken_09.jpg"),
+"bonus_sjomarken_10": require("../../assets/cards/bonus_sjomarken_10.jpg"),
+"bonus_sjomarken_11": require("../../assets/cards/bonus_sjomarken_11.jpg"),
+"bonus_sjomarken_12": require("../../assets/cards/bonus_sjomarken_12.jpg"),
+"bonus_sjomarken_13": require("../../assets/cards/bonus_sjomarken_13.jpg"),
+"bonus_sjomarken_14": require("../../assets/cards/bonus_sjomarken_14.jpg"),
+"bonus_sjomarken_15": require("../../assets/cards/bonus_sjomarken_15.jpg"),
+"bonus_sjomarken_16": require("../../assets/cards/bonus_sjomarken_16.jpg"),
+"bonus_sjomarken_17": require("../../assets/cards/bonus_sjomarken_17.jpg"),
+"bonus_sjomarken_18": require("../../assets/cards/bonus_sjomarken_18.jpg"),
+"bonus_sjomarken_19": require("../../assets/cards/bonus_sjomarken_19.jpg"),
+"bonus_sjomarken_20": require("../../assets/cards/bonus_sjomarken_20.jpg"),
+"bonus_sjomarken_21": require("../../assets/cards/bonus_sjomarken_21.jpg"),
+"bonus_sjomarken_22": require("../../assets/cards/bonus_sjomarken_22.jpg"),
 };
