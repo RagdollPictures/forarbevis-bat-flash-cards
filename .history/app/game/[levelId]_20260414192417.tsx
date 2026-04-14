@@ -18,7 +18,6 @@ import {
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import LottieLoop from "../quiz/components/LottieLoop";
-import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
@@ -85,8 +84,8 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [showLevelMenu, setShowLevelMenu] = useState(false);
-  const [pressedId, setPressedId] = useState<string | null>(null);
-  const [transitioningId, setTransitioningId] = useState<string | null>(null);
+   const [pressedId, setPressedId] = useState<string | null>(null);
+const [transitioningId, setTransitioningId] = useState<string | null>(null);
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -113,6 +112,7 @@ export default function QuizMenuScreen() {
   const scale = screenWidth / layout.viewBox.width;
 
   const placedNodes = useMemo<PlacedNode[]>(() => {
+    
     const result: PlacedNode[] = [];
 
     for (const anchor of layout.anchors) {
@@ -164,9 +164,6 @@ export default function QuizMenuScreen() {
   useFocusEffect(
     useCallback(() => {
       let alive = true;
-
-      setPressedId(null);
-      setTransitioningId(null);
 
       (async () => {
         const [map, cleared] = await Promise.all([
@@ -313,115 +310,121 @@ export default function QuizMenuScreen() {
     setClearedIds(nextCleared);
   }, [quizzes, unlockedIds, clearedIds]);
 
+
   const devUnlockAllLevels = useCallback(async () => {
-    const allQuizEntries = [
-      ...levelIds.flatMap((id) => {
-        const level = levelMap[id];
-        if (!level) return [];
+  const allQuizEntries = [
+    ...levelIds.flatMap((id) => {
+      const level = levelMap[id];
+      if (!level) return [];
 
-        return getQuizzesForChapter(
-          "forarintyg",
-          level.chapterId
-        ) as QuizItem[];
-      }),
-      ...(getQuizzesForChapter("forarintyg", "bonus") as QuizItem[]),
-    ];
+      return getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[];
+    }),
+    ...(getQuizzesForChapter("forarintyg", "bonus") as QuizItem[]),
+  ];
 
-    const uniqueQuizIds = Array.from(new Set(allQuizEntries.map((q) => q.id)));
+  const uniqueQuizIds = Array.from(new Set(allQuizEntries.map((q) => q.id)));
 
-    const now = Date.now();
+  const now = Date.now();
 
-    const nextProgressByQuizId: Record<string, SavedQuizProgress> = {};
-    const nextCleared = new Set(clearedIds);
+  const nextProgressByQuizId: Record<string, SavedQuizProgress> = {};
+  const nextCleared = new Set(clearedIds);
 
-    for (const quizId of uniqueQuizIds) {
-      const fake: SavedQuizProgress = {
-        quizId,
-        progress: ["correct"],
-        score: 1,
-        total: 1,
-        updatedAt: now,
-        firstTryCorrect: 1,
-        firstTryTotal: 1,
-      };
 
-      nextProgressByQuizId[quizId] = fake;
-      nextCleared.add(quizId);
+  for (const quizId of uniqueQuizIds) {
+    const fake: SavedQuizProgress = {
+      quizId,
+      progress: ["correct"],
+      score: 1,
+      total: 1,
+      updatedAt: now,
+      firstTryCorrect: 1,
+      firstTryTotal: 1,
+    };
 
-      await saveQuizProgress(fake);
-    }
+    nextProgressByQuizId[quizId] = fake;
+    nextCleared.add(quizId);
 
-    await saveClearedSet(nextCleared);
+    await saveQuizProgress(fake);
+  }
 
-    setProgressByQuizId((prev) => ({
-      ...prev,
-      ...nextProgressByQuizId,
-    }));
-    setClearedIds(nextCleared);
-  }, [clearedIds, levelMap]);
+  await saveClearedSet(nextCleared);
+
+  setProgressByQuizId((prev) => ({
+    ...prev,
+    ...nextProgressByQuizId,
+  }));
+  setClearedIds(nextCleared);
+}, [clearedIds, levelMap]);
 
   return (
     <SafeAreaView style={styles.safe}>
-      {__DEV__ ? (
-        <View style={styles.devPanel}>
-          <Pressable
-            onPress={() => setShowDevMenu((prev) => !prev)}
-            style={styles.devResetBtn}
-          >
-            <Text style={styles.devResetText}>
-              {showDevMenu ? "HIDE DEV MENU" : "SHOW DEV MENU"}
-            </Text>
-          </Pressable>
+       {__DEV__ ? (
+          <View style={styles.devPanel}>
+            <Pressable
+              onPress={() => setShowDevMenu((prev) => !prev)}
+              style={styles.devResetBtn}
+            >
+              <Text style={styles.devResetText}>
+                {showDevMenu ? "HIDE DEV MENU" : "SHOW DEV MENU"}
+              </Text>
+            </Pressable>
 
-          {showDevMenu ? (
-            <>
-              <Pressable
-                onPress={async () => {
-                  await AsyncStorage.clear();
-                  setClearedIds(new Set());
-                  setProgressByQuizId({});
-                }}
-                style={styles.devResetBtn}
-              >
-                <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
-              </Pressable>
+            {showDevMenu ? (
+              <>
+                
 
-              <Pressable
-                onPress={devCheatNextLockedTo100}
-                style={styles.devResetBtn}
-              >
-                <Text style={styles.devResetText}>
-                  DEV: SET NEXT LOCKED TO 100%
-                </Text>
-              </Pressable>
+                <Pressable
+                  onPress={async () => {
+                    await AsyncStorage.clear();
+                    setClearedIds(new Set());
+                    setProgressByQuizId({});
+                  }}
+                  style={styles.devResetBtn}
+                >
+                  <Text style={styles.devResetText}>RESET ALL DATA (DEV)</Text>
+                </Pressable>
 
-              <Pressable
-                onPress={devUnlockAllLevels}
-                style={styles.devResetBtn}
-              >
-                <Text style={styles.devResetText}>DEV: UNLOCK ALL LEVELS</Text>
-              </Pressable>
-            </>
-          ) : null}
-        </View>
-      ) : null}
+                <Pressable
+                  onPress={devCheatNextLockedTo100}
+                  style={styles.devResetBtn}
+                >
+                  <Text style={styles.devResetText}>
+                    DEV: SET NEXT LOCKED TO 100%
+                  </Text>
+                </Pressable>
 
-      <Pressable
-        onPress={() => setShowLevelMenu((prev) => !prev)}
-        style={styles.levelMenuToggle}
-      >
-        <Text style={styles.levelMenuToggleText}>
-          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-        </Text>
-      </Pressable>
-
-      <ScrollView contentContainerStyle={styles.container}>
-        {showLevelMenu ? (
-          <ChapterMenuMap
-            currentLevelId={levelId}
-            unlockedLevelIds={unlockedLevelIds}
-          />
+                <Pressable
+  onPress={devUnlockAllLevels}
+  style={styles.devResetBtn}
+>
+  <Text style={styles.devResetText}>DEV: UNLOCK ALL LEVELS</Text>
+</Pressable>
+              </>
+            ) : null}
+          </View>
         ) : null}
+
+              <Pressable
+  onPress={() => setShowLevelMenu((prev) => !prev)}
+  style={styles.levelMenuToggle}
+>
+  <Text style={styles.levelMenuToggleText}>
+    {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+  </Text>
+</Pressable>
+      <ScrollView contentContainerStyle={styles.container}>
+       
+
+  
+
+{showLevelMenu ? (
+  <ChapterMenuMap
+    currentLevelId={levelId}
+    unlockedLevelIds={unlockedLevelIds}
+  />
+) : null}
+
+        
 
         <View style={styles.bonusBar}>
           {bonusQuizzes.map((quiz) => {
@@ -483,29 +486,28 @@ export default function QuizMenuScreen() {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
             const isUnlocked = unlockedIds.has(node.quizId);
-            const isPressed = pressedId === node.id;
-            const isTransitioning = transitioningId === node.id;
+          const isPressed = pressedId === node.id;
 
             if (node.type === "read") {
               return (
                 <Pressable
                   key={node.id}
                   onPress={() => {
-                    if (!isUnlocked) return;
+  if (!isUnlocked) return;
 
-                    setPressedId(node.id);
-                    setTransitioningId(node.id);
+  setPressedId(node.id);
 
-                    setTimeout(() => {
-                      router.push({
-                        pathname: "/read/[deckId]",
-                        params: {
-                          deckId: node.deckId,
-                          title: node.title,
-                        },
-                      });
-                    }, 220);
-                  }}
+  setTimeout(() => {
+    router.push({
+      pathname: "/read/[deckId]",
+      params: {
+        deckId: node.deckId,
+        title: node.title,
+      },
+    });
+    setPressedId(null);
+  }, 150);
+}}
                   disabled={!isUnlocked}
                   style={[
                     styles.absoluteNode,
@@ -513,42 +515,46 @@ export default function QuizMenuScreen() {
                     !isUnlocked && styles.tileLocked,
                   ]}
                 >
-                  <FloatingNode
-                    delay={(node.x + node.y) % 1200}
-                    amplitude={3}
-                    rotateDeg={1.5}
-                  >
-                    <NodeTransitionWrap
-                      isPressed={isPressed}
-                      isTransitioning={isTransitioning}
-                    >
-                      <LottieLoop
-                        source={animPlatformWaterLily_01}
-                        style={{
-                          position: "absolute",
-                          width: 256,
-                          height: 256,
-                        }}
-                      />
-                      <View style={styles.ringWrap}>
-                        <View style={styles.readCircle}>
-                          <View style={styles.iconInner}>
-                            <SvgIcon
-                              name="book"
-                              size={30}
-                              color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                            />
-                          </View>
-                        </View>
+                 <FloatingNode
+        delay={(node.x + node.y) % 1200}
+        amplitude={3}
+        rotateDeg={1.5}
+      >
+        
+      <View
+  style={{
+    alignItems: "center",
+    justifyContent: "center",
+    transform: [{ scale: isPressed ? 1.12 : 1 }],
+  }}
+>
+       <LottieLoop
+    source={animPlatformWaterLily_01}
+    style={{
+      position: "absolute",
+      width: 256,
+      height: 256,
+    }}
+  />
+        <View style={styles.ringWrap}>
+          <View style={styles.readCircle}>
+            <View style={styles.iconInner}>
+              <SvgIcon
+                name="book"
+                size={30}
+                color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+              />
+            </View>
+          </View>
 
-                        {!isUnlocked ? (
-                          <View style={styles.lockBadge}>
-                            <SvgIcon name="lock" size={14} color="#ffffff" />
-                          </View>
-                        ) : null}
-                      </View>
-                    </NodeTransitionWrap>
-                  </FloatingNode>
+          {!isUnlocked ? (
+            <View style={styles.lockBadge}>
+              <SvgIcon name="lock" size={14} color="#ffffff" />
+            </View>
+          ) : null}
+        </View>
+        </View>
+      </FloatingNode>
                 </Pressable>
               );
             }
@@ -558,63 +564,65 @@ export default function QuizMenuScreen() {
             const iconName = getIconNameByQuizId(node.quizId);
 
             return (
-              <Pressable
-                key={node.id}
-                onPress={() => {
-                  if (!isUnlocked) return;
+  <Pressable
+    key={node.id}
+   onPress={() => {
+  if (!isUnlocked) return;
 
-                  setPressedId(node.id);
-                  setTransitioningId(node.id);
+  setPressedId(node.id);
 
-                  setTimeout(() => {
-                    router.push(`/quiz/${node.quizId}`);
-                  }, 220);
-                }}
-                disabled={!isUnlocked}
-                style={[
-                  styles.absoluteNode,
-                  { left, top },
-                  !isUnlocked && styles.tileLocked,
-                ]}
-              >
-                <FloatingNode
-                  delay={(node.x + node.y) % 1400}
-                  amplitude={4}
-                  rotateDeg={2}
-                >
-                  <NodeTransitionWrap
-                    isPressed={isPressed}
-                    isTransitioning={isTransitioning}
-                  >
-                    <LottieLoop
-                      source={animPlatformWaterLily_01}
-                      style={{
-                        position: "absolute",
-                        width: 256,
-                        height: 256,
-                      }}
-                    />
-                    <View style={styles.ringWrap}>
-                      <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
-                        <View style={styles.iconInner}>
-                          <SvgIcon
-                            name={iconName}
-                            size={30}
-                            color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                          />
-                        </View>
-                      </ProgressRing>
+  setTimeout(() => {
+    router.push(`/quiz/${node.quizId}`);
+    setPressedId(null);
+  }, 150);
+}}
+    disabled={!isUnlocked}
+    style={[
+      styles.absoluteNode,
+      { left, top },
+      !isUnlocked && styles.tileLocked,
+    ]}
+  >
+    <FloatingNode
+      delay={(node.x + node.y) % 1400}
+      amplitude={4}
+      rotateDeg={2}
+    ><View
+  style={{
+    alignItems: "center",
+    justifyContent: "center",
+    transform: [{ scale: isPressed ? 1.12 : 1 }],
+  }}
+>
+         <LottieLoop
+    source={animPlatformWaterLily_01}
+    style={{
+      position: "absolute",
+      width: 256,
+      height: 256,
+    }}
+  />
+      <View style={styles.ringWrap}>
+        <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
+          <View style={styles.iconInner}>
+            <SvgIcon
+              name={iconName}
+              size={30}
+              color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+            />
+          </View>
+        </ProgressRing>
 
-                      {!isUnlocked ? (
-                        <View style={styles.lockBadge}>
-                          <SvgIcon name="lock" size={14} color="#ffffff" />
-                        </View>
-                      ) : null}
-                    </View>
-                  </NodeTransitionWrap>
-                </FloatingNode>
-              </Pressable>
-            );
+        {!isUnlocked ? (
+          <View style={styles.lockBadge}>
+            <SvgIcon name="lock" size={14} color="#ffffff" />
+          </View>
+        ) : null}
+      </View>
+      </View>
+    </FloatingNode>
+  </Pressable>
+);
           })}
         </View>
       </ScrollView>

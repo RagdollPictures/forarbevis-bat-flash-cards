@@ -18,7 +18,6 @@ import {
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import LottieLoop from "../quiz/components/LottieLoop";
-import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
@@ -164,9 +163,6 @@ export default function QuizMenuScreen() {
   useFocusEffect(
     useCallback(() => {
       let alive = true;
-
-      setPressedId(null);
-      setTransitioningId(null);
 
       (async () => {
         const [map, cleared] = await Promise.all([
@@ -319,10 +315,7 @@ export default function QuizMenuScreen() {
         const level = levelMap[id];
         if (!level) return [];
 
-        return getQuizzesForChapter(
-          "forarintyg",
-          level.chapterId
-        ) as QuizItem[];
+        return getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[];
       }),
       ...(getQuizzesForChapter("forarintyg", "bonus") as QuizItem[]),
     ];
@@ -426,8 +419,7 @@ export default function QuizMenuScreen() {
         <View style={styles.bonusBar}>
           {bonusQuizzes.map((quiz) => {
             const bonus =
-              safeBonusLevels.filter((entry) => entry.id === quiz.id)[0] ??
-              null;
+              safeBonusLevels.filter((entry) => entry.id === quiz.id)[0] ?? null;
             const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
 
             return (
@@ -504,6 +496,8 @@ export default function QuizMenuScreen() {
                           title: node.title,
                         },
                       });
+                      setPressedId(null);
+                      setTransitioningId(null);
                     }, 220);
                   }}
                   disabled={!isUnlocked}
@@ -518,9 +512,16 @@ export default function QuizMenuScreen() {
                     amplitude={3}
                     rotateDeg={1.5}
                   >
-                    <NodeTransitionWrap
-                      isPressed={isPressed}
-                      isTransitioning={isTransitioning}
+                    <View
+                      style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transform: [
+                          { scale: isTransitioning ? 0.9 : isPressed ? 1.12 : 1 },
+                          { translateY: isTransitioning ? 100 : 0 },
+                        ],
+                        opacity: isTransitioning ? 0.2 : 1,
+                      }}
                     >
                       <LottieLoop
                         source={animPlatformWaterLily_01}
@@ -547,7 +548,7 @@ export default function QuizMenuScreen() {
                           </View>
                         ) : null}
                       </View>
-                    </NodeTransitionWrap>
+                    </View>
                   </FloatingNode>
                 </Pressable>
               );
@@ -568,6 +569,8 @@ export default function QuizMenuScreen() {
 
                   setTimeout(() => {
                     router.push(`/quiz/${node.quizId}`);
+                    setPressedId(null);
+                    setTransitioningId(null);
                   }, 220);
                 }}
                 disabled={!isUnlocked}
@@ -582,9 +585,16 @@ export default function QuizMenuScreen() {
                   amplitude={4}
                   rotateDeg={2}
                 >
-                  <NodeTransitionWrap
-                    isPressed={isPressed}
-                    isTransitioning={isTransitioning}
+                  <View
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transform: [
+                        { scale: isTransitioning ? 0.9 : isPressed ? 1.12 : 1 },
+                        { translateY: isTransitioning ? 500 : 0 },
+                      ],
+                      opacity: isTransitioning ? 0.2 : 1,
+                    }}
                   >
                     <LottieLoop
                       source={animPlatformWaterLily_01}
@@ -611,7 +621,7 @@ export default function QuizMenuScreen() {
                         </View>
                       ) : null}
                     </View>
-                  </NodeTransitionWrap>
+                  </View>
                 </FloatingNode>
               </Pressable>
             );

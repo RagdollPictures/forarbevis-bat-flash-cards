@@ -165,9 +165,6 @@ export default function QuizMenuScreen() {
     useCallback(() => {
       let alive = true;
 
-      setPressedId(null);
-      setTransitioningId(null);
-
       (async () => {
         const [map, cleared] = await Promise.all([
           getAllQuizProgress(),
@@ -319,10 +316,7 @@ export default function QuizMenuScreen() {
         const level = levelMap[id];
         if (!level) return [];
 
-        return getQuizzesForChapter(
-          "forarintyg",
-          level.chapterId
-        ) as QuizItem[];
+        return getQuizzesForChapter("forarintyg", level.chapterId) as QuizItem[];
       }),
       ...(getQuizzesForChapter("forarintyg", "bonus") as QuizItem[]),
     ];
@@ -426,8 +420,7 @@ export default function QuizMenuScreen() {
         <View style={styles.bonusBar}>
           {bonusQuizzes.map((quiz) => {
             const bonus =
-              safeBonusLevels.filter((entry) => entry.id === quiz.id)[0] ??
-              null;
+              safeBonusLevels.filter((entry) => entry.id === quiz.id)[0] ?? null;
             const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
 
             return (
@@ -504,6 +497,8 @@ export default function QuizMenuScreen() {
                           title: node.title,
                         },
                       });
+                      setPressedId(null);
+                      setTransitioningId(null);
                     }, 220);
                   }}
                   disabled={!isUnlocked}
@@ -518,10 +513,10 @@ export default function QuizMenuScreen() {
                     amplitude={3}
                     rotateDeg={1.5}
                   >
-                    <NodeTransitionWrap
-                      isPressed={isPressed}
-                      isTransitioning={isTransitioning}
-                    >
+                   <NodeTransitionWrap
+  isPressed={isPressed}
+  isTransitioning={isTransitioning}
+>
                       <LottieLoop
                         source={animPlatformWaterLily_01}
                         style={{
@@ -568,6 +563,8 @@ export default function QuizMenuScreen() {
 
                   setTimeout(() => {
                     router.push(`/quiz/${node.quizId}`);
+                    setPressedId(null);
+                    setTransitioningId(null);
                   }, 220);
                 }}
                 disabled={!isUnlocked}
@@ -582,9 +579,16 @@ export default function QuizMenuScreen() {
                   amplitude={4}
                   rotateDeg={2}
                 >
-                  <NodeTransitionWrap
-                    isPressed={isPressed}
-                    isTransitioning={isTransitioning}
+                  <View
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transform: [
+                        { scale: isTransitioning ? 0.9 : isPressed ? 1.12 : 1 },
+                        { translateY: isTransitioning ? 500 : 0 },
+                      ],
+                      opacity: isTransitioning ? 0.2 : 1,
+                    }}
                   >
                     <LottieLoop
                       source={animPlatformWaterLily_01}
@@ -611,7 +615,7 @@ export default function QuizMenuScreen() {
                         </View>
                       ) : null}
                     </View>
-                  </NodeTransitionWrap>
+                  </View>
                 </FloatingNode>
               </Pressable>
             );

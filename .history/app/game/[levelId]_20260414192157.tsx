@@ -18,7 +18,6 @@ import {
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import LottieLoop from "../quiz/components/LottieLoop";
-import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
@@ -152,6 +151,14 @@ export default function QuizMenuScreen() {
     return result;
   }, [layout, quizzes]);
 
+  const transitioningNode = useMemo(() => {
+    return placedNodes.find((n) => n.id === transitioningId) ?? null;
+  }, [placedNodes, transitioningId]);
+
+  const transitionOffsetY = transitioningNode
+    ? -(transitioningNode.y * scale - 200)
+    : 0;
+
   const bgAnchor = useMemo(() => {
     return layout.anchors.find((anchor: any) => anchor.id === "anchor_bg");
   }, [layout]);
@@ -164,9 +171,6 @@ export default function QuizMenuScreen() {
   useFocusEffect(
     useCallback(() => {
       let alive = true;
-
-      setPressedId(null);
-      setTransitioningId(null);
 
       (async () => {
         const [map, cleared] = await Promise.all([
@@ -453,6 +457,10 @@ export default function QuizMenuScreen() {
             position: "relative",
             width: "100%",
             height: layout.viewBox.height * scale,
+            transform: [
+              { translateY: transitionOffsetY },
+              { scale: transitioningNode ? 1.12 : 1 },
+            ],
           }}
         >
           {bgAnchor ? (
@@ -484,7 +492,6 @@ export default function QuizMenuScreen() {
             const top = node.y * scale - 45;
             const isUnlocked = unlockedIds.has(node.quizId);
             const isPressed = pressedId === node.id;
-            const isTransitioning = transitioningId === node.id;
 
             if (node.type === "read") {
               return (
@@ -504,6 +511,8 @@ export default function QuizMenuScreen() {
                           title: node.title,
                         },
                       });
+                      setPressedId(null);
+                      setTransitioningId(null);
                     }, 220);
                   }}
                   disabled={!isUnlocked}
@@ -518,9 +527,12 @@ export default function QuizMenuScreen() {
                     amplitude={3}
                     rotateDeg={1.5}
                   >
-                    <NodeTransitionWrap
-                      isPressed={isPressed}
-                      isTransitioning={isTransitioning}
+                    <View
+                      style={{
+                        alignItems: "center",
+                        justifyContent: "center",
+                        transform: [{ scale: isPressed ? 1.12 : 1 }],
+                      }}
                     >
                       <LottieLoop
                         source={animPlatformWaterLily_01}
@@ -547,7 +559,7 @@ export default function QuizMenuScreen() {
                           </View>
                         ) : null}
                       </View>
-                    </NodeTransitionWrap>
+                    </View>
                   </FloatingNode>
                 </Pressable>
               );
@@ -568,6 +580,8 @@ export default function QuizMenuScreen() {
 
                   setTimeout(() => {
                     router.push(`/quiz/${node.quizId}`);
+                    setPressedId(null);
+                    setTransitioningId(null);
                   }, 220);
                 }}
                 disabled={!isUnlocked}
@@ -582,9 +596,12 @@ export default function QuizMenuScreen() {
                   amplitude={4}
                   rotateDeg={2}
                 >
-                  <NodeTransitionWrap
-                    isPressed={isPressed}
-                    isTransitioning={isTransitioning}
+                  <View
+                    style={{
+                      alignItems: "center",
+                      justifyContent: "center",
+                      transform: [{ scale: isPressed ? 1.12 : 1 }],
+                    }}
                   >
                     <LottieLoop
                       source={animPlatformWaterLily_01}
@@ -595,7 +612,11 @@ export default function QuizMenuScreen() {
                       }}
                     />
                     <View style={styles.ringWrap}>
-                      <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
+                      <ProgressRing
+                        percent={ringPercent}
+                        size={90}
+                        strokeWidth={7}
+                      >
                         <View style={styles.iconInner}>
                           <SvgIcon
                             name={iconName}
@@ -611,7 +632,7 @@ export default function QuizMenuScreen() {
                         </View>
                       ) : null}
                     </View>
-                  </NodeTransitionWrap>
+                  </View>
                 </FloatingNode>
               </Pressable>
             );
