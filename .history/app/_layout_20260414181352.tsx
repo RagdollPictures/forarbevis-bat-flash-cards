@@ -6,21 +6,21 @@ export default function RootLayout() {
   return (
     <SafeAreaProvider>
       <Stack screenOptions={{ headerShown: false }} initialRouteName="(tabs)">
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-       
         <Stack.Screen
-          name="quiz/[quizId]"
-          options={{
-            headerShown: false,
-             animation: "slide_from_bottom",
-          }}
-        />
+  name="quiz/[quizId]"
+  options={{
+    headerShown: false,
+    presentation: "modal",
+    animation: "fade",
+  }}
+/>
 
 <Stack.Screen
   name="read/[deckId]"
   options={{
     headerShown: false,
-    animation: "slide_from_bottom",
+    presentation: "modal",
+    animation: "fade",
   }}
 />
       </Stack>

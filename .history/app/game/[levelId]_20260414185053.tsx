@@ -519,13 +519,7 @@ export default function QuizMenuScreen() {
         rotateDeg={1.5}
       >
         
-      <View
-  style={{
-    alignItems: "center",
-    justifyContent: "center",
-    transform: [{ scale: isPressed ? 1.12 : 1 }],
-  }}
->
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
        <LottieLoop
     source={animPlatformWaterLily_01}
     style={{

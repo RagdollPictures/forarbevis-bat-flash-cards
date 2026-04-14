@@ -327,6 +327,9 @@ export default function QuizMenuScreen() {
   const nextProgressByQuizId: Record<string, SavedQuizProgress> = {};
   const nextCleared = new Set(clearedIds);
 
+  const [showDevMenu, setShowDevMenu] = useState(false);
+const [showLevelMenu, setShowLevelMenu] = useState(false);
+const [pressedId, setPressedId] = useState<string | null>(null);
 
   for (const quizId of uniqueQuizIds) {
     const fake: SavedQuizProgress = {
@@ -484,28 +487,21 @@ export default function QuizMenuScreen() {
             const left = node.x * scale - 45;
             const top = node.y * scale - 45;
             const isUnlocked = unlockedIds.has(node.quizId);
-          const isPressed = pressedId === node.id;
+          
 
             if (node.type === "read") {
               return (
                 <Pressable
                   key={node.id}
-                  onPress={() => {
-  if (!isUnlocked) return;
-
-  setPressedId(node.id);
-
-  setTimeout(() => {
-    router.push({
-      pathname: "/read/[deckId]",
-      params: {
-        deckId: node.deckId,
-        title: node.title,
-      },
-    });
-    setPressedId(null);
-  }, 150);
-}}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/read/[deckId]",
+                      params: {
+                        deckId: node.deckId,
+                        title: node.title,
+                      },
+                    })
+                  }
                   disabled={!isUnlocked}
                   style={[
                     styles.absoluteNode,
@@ -519,13 +515,7 @@ export default function QuizMenuScreen() {
         rotateDeg={1.5}
       >
         
-      <View
-  style={{
-    alignItems: "center",
-    justifyContent: "center",
-    transform: [{ scale: isPressed ? 1.12 : 1 }],
-  }}
->
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
        <LottieLoop
     source={animPlatformWaterLily_01}
     style={{
@@ -585,13 +575,8 @@ export default function QuizMenuScreen() {
       delay={(node.x + node.y) % 1400}
       amplitude={4}
       rotateDeg={2}
-    ><View
-  style={{
-    alignItems: "center",
-    justifyContent: "center",
-    transform: [{ scale: isPressed ? 1.12 : 1 }],
-  }}
->
+    >
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
          <LottieLoop
     source={animPlatformWaterLily_01}
     style={{

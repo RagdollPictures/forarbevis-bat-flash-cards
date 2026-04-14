@@ -490,22 +490,15 @@ export default function QuizMenuScreen() {
               return (
                 <Pressable
                   key={node.id}
-                  onPress={() => {
-  if (!isUnlocked) return;
-
-  setPressedId(node.id);
-
-  setTimeout(() => {
-    router.push({
-      pathname: "/read/[deckId]",
-      params: {
-        deckId: node.deckId,
-        title: node.title,
-      },
-    });
-    setPressedId(null);
-  }, 150);
-}}
+                  onPress={() =>
+                    router.push({
+                      pathname: "/read/[deckId]",
+                      params: {
+                        deckId: node.deckId,
+                        title: node.title,
+                      },
+                    })
+                  }
                   disabled={!isUnlocked}
                   style={[
                     styles.absoluteNode,
@@ -519,13 +512,7 @@ export default function QuizMenuScreen() {
         rotateDeg={1.5}
       >
         
-      <View
-  style={{
-    alignItems: "center",
-    justifyContent: "center",
-    transform: [{ scale: isPressed ? 1.12 : 1 }],
-  }}
->
+      <View style={{ alignItems: "center", justifyContent: "center" }}>
        <LottieLoop
     source={animPlatformWaterLily_01}
     style={{
