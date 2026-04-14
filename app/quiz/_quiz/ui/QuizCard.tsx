@@ -40,7 +40,7 @@ export default function QuizCard({
           <Image
             source={imageSource}
             style={styles.questionImage}
-            resizeMode="cover"
+            resizeMode="contain"
           />
         </View>
       ) : null}

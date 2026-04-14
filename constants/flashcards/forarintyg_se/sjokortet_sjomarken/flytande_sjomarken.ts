@@ -26,7 +26,7 @@ export const flytandeSjomarken: FlashCard[] = [
     options: [
       "Gult och svart.",
       "Blått och vitt.",
-      "Gröna (styrbord) och röda (babord).",
+      "Gröna och röda.",
       "Rött och vitt.",
     ],
     correctOptionIndex: 2,
@@ -57,7 +57,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "I vilket väderstreck från hindret är detta kardinalmärke placerat?",
     answer: "Öst om hindret.",
-    imageKey: "flytande_sjomarken_04_ver02",
+    imageKey: "flytande_sjomarken_04",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -76,7 +76,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken riktning från hindret visar detta märke?",
     answer: "Norr om hindret.",
-    imageKey: "flytande_sjomarken_05_ver02",
+    imageKey: "flytande_sjomarken_05",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -94,7 +94,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilket väderstreck från hindret markerar detta sjömärke?",
     answer: "Väster om hindret.",
-    imageKey: "flytande_sjomarken_06_ver02",
+    imageKey: "flytande_sjomarken_06",
     options: [
       "Norr om hindret.",
       "Väster om hindret.",
@@ -112,7 +112,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilket väderstreck från hindret står dessa märken?",
     answer: "Söder om hindret.",
-    imageKey: "flytande_sjomarken_07_ver02",
+    imageKey: "flytande_sjomarken_07",
     options: [
       "Norr om hindret.",
       "Söder om hindret.",
@@ -130,7 +130,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken sida av farleden markerar dessa lateralmärken?",
     answer: "Babord.",
-    imageKey: "flytande_sjomarken_08_ver02",
+    imageKey: "flytande_sjomarken_08",
     options: [
       "Styrbord.",
       "Babord.",
@@ -147,7 +147,7 @@ export const flytandeSjomarken: FlashCard[] = [
     questionQuiz:
       "Vilken farledssida representeras av dessa märken?",
     answer: "Styrbord.",
-    imageKey: "flytande_sjomarken_09_ver02",
+    imageKey: "flytande_sjomarken_09",
     options: [
       "Babord.",
       "Mitt i farleden.",

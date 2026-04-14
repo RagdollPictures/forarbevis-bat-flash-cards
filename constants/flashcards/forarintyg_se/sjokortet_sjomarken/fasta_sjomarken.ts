@@ -71,7 +71,7 @@ export const fastaSjomarken: FlashCard[] = [
     question: "Vad betyder denna symbolen i ett sjökort?",
     questionQuiz:
       "Vad betyder denna symbolen i ett sjökort?",
-      imageKey: "fasta_sjomarken_05_facit_ver02",
+      imageKey: "fasta_sjomarken_05",
     answer: "fyr",
     options: [
       "boj.",

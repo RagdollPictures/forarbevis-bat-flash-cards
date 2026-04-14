@@ -5,6 +5,11 @@
   },
   "anchors": [
     {
+      "id": "anchor_bg",
+      "x": 187.5,
+      "y": 500
+    },
+    {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
@@ -33,11 +38,25 @@
       "y": 481.64
     },
     {
+      "id": "anchor_read_003",
+      "type": "read",
+      "index": 3,
+      "x": 209.66,
+      "y": 406.91
+    },
+    {
       "id": "anchor_quiz_003",
       "type": "quiz",
       "index": 3,
+      "x": 209.66,
+      "y": 406.91
+    },
+    {
+      "id": "anchor_quiz_004",
+      "type": "quiz",
+      "index": 4,
       "x": 188.3,
-      "y": 655.26
+      "y": 865.9
     }
   ]
 }

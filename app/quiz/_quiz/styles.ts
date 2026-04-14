@@ -125,7 +125,7 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
   },
 optionImageWrapper: {
-  borderRadius: 12,
+  borderRadius: 6,
   overflow: "hidden",
 },
   optionImage: {

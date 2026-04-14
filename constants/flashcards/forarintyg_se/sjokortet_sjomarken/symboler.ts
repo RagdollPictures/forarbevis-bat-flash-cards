@@ -25,7 +25,7 @@ export const symboler: FlashCard[] = [
     questionQuiz:
       "Vad anger denna djupmarkering i sjökortet?",
     answer: "Att vattendjupet är 9 meter och 7 decimeter.",
-    imageKey: "symboler_02_ver02",
+    imageKey: "symboler_02",
     options: [
       "9,0 meter.",
       "9 meter och 7 decimeter.",
@@ -41,7 +41,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad representerar denna brosymbol?",
     answer: "Fast bro med segelfri höjd i meter.",
-    imageKey: "symboler_03_ver02",
+    imageKey: "symboler_03",
     options: [
       "Öppningsbar bro.",
       "Fast bro med segelfri bredd i meter.",
@@ -57,7 +57,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna brosymbol?",
     answer: "Öppningsbar bro.",
-    imageKey: "symboler_04_ver02",
+    imageKey: "symboler_04",
     options: [
       "Fast bro.",
       "Öppningsbar bro.",
@@ -73,7 +73,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad markerar denna symbol i vattnet?",
     answer: "Bränning (grund, grynna).",
-    imageKey: "symboler_05_ver02",
+    imageKey: "symboler_05",
     options: [
       "Djupgrop.",
       "Grund.",
@@ -89,7 +89,7 @@ export const symboler: FlashCard[] = [
     question: "Vad kallas dessa symboler på sjökortet?",
     questionQuiz: "Vad kallas linjer som visar samma djup?",
     answer: "Djupkurvor.",
-    imageKey: "symboler_06_ver02",
+    imageKey: "symboler_06",
     options: [
       "Farledslinjer.",
       "Djupkurvor.",
@@ -105,7 +105,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna strandlinjesymbol?",
     answer: "Ej kartlagd strandlinje.",
-    imageKey: "symboler_07_ver02",
+    imageKey: "symboler_07",
     options: [
       "Kartlagd strandlinje.",
       "Brygga.",
@@ -121,7 +121,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna pil i farleden?",
     answer: "Farledspil.",
-    imageKey: "symboler_08_ver02",
+    imageKey: "symboler_08",
     options: [
       "Strömriktning.",
       "Farledspil.",
@@ -137,7 +137,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad betyder denna farledsmarkering?",
     answer: "Farled som ligger på en enslinje.",
-    imageKey: "symboler_09_ver02",
+    imageKey: "symboler_09",
     options: [
       "Farled med utprickning.",
       "Enslinje.",
@@ -153,7 +153,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad markerar denna farled?",
     answer: "Farled med flytande utprickning.",
-    imageKey: "symboler_10_ver02",
+    imageKey: "symboler_10",
     options: [
       "Farled utan märken.",
       "Farled med fasta märken.",
@@ -169,7 +169,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna anläggning i vattnet?",
     answer: "Fiskodling.",
-    imageKey: "symboler_11_ver02",
+    imageKey: "symboler_11",
     options: [
       "Hamnområde.",
       "Fiskodling.",
@@ -185,7 +185,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad representerar denna landbaserade symbol?",
     answer: "Kyrka (kyrktorn).",
-    imageKey: "symboler_12_ver02",
+    imageKey: "symboler_12",
     options: [
       "Fyr.",
       "Kyrka.",
@@ -201,7 +201,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad markerar detta skyddsområde?",
     answer: "Fågelskyddsområde.",
-    imageKey: "symboler_13_ver02",
+    imageKey: "symboler_13",
     options: [
       "Naturhamn.",
       "Fågelskyddsområde.",
@@ -217,7 +217,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna linje i kanten av sjökortet?",
     answer: "Sjökortsgräns till annat sjökort.",
-    imageKey: "symboler_14_ver02",
+    imageKey: "symboler_14",
     options: [
       "Djupgräns.",
       "Sjökortsgräns.",
@@ -233,7 +233,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna symbol i en kanal?",
     answer: "Sluss.",
-    imageKey: "symboler_15_ver02",
+    imageKey: "symboler_15",
     options: [
       "Bro.",
       "Sluss.",
@@ -249,7 +249,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna strandlinje?",
     answer: "Kartlagd strandlinje.",
-    imageKey: "symboler_16_ver02",
+    imageKey: "symboler_16",
     options: [
       "Ej kartlagd strandlinje.",
       "Kartlagd strandlinje.",
@@ -265,7 +265,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad markerar denna symbol under vattenytan?",
     answer: "Undervattenssten.",
-    imageKey: "symboler_17_ver02",
+    imageKey: "symboler_17",
     options: [
       "Sandbank.",
       "Undervattenssten.",
@@ -281,7 +281,7 @@ export const symboler: FlashCard[] = [
     question: "Vad betyder denna symbol på sjökortet?",
     questionQuiz: "Vad visar denna linje på sjökortet?",
     answer: "Undervattenskabel.",
-    imageKey: "symboler_18_ver02",
+    imageKey: "symboler_18",
     options: [
       "Undervattenskabel.",
       "Gasledning.",

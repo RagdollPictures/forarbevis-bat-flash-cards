@@ -152,7 +152,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "elektroniska_sjokort", title: "Elektroniska sjökort", deckId: "elektroniska_sjokort" },
         { id: "tillforlitlighet", title: "Tillförlitlighet", deckId: "tillforlitlighet" },
         { id: "longitud_latitud", title: "Longitud och latitud", deckId: "longitud_latitud" },
-        { id: "symboler", title: "Symboler", deckId: "symboler" },
+      
         {
       id: "sjokortet_quiz",
       title: "Kapitelquiz",
@@ -169,6 +169,7 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
       children: [
         { id: "flytande_sjomarken", title: "Flytande sjömärken", deckId: "flytande_sjomarken" },
         { id: "fasta_sjomarken", title: "Fasta sjömärken", deckId: "fasta_sjomarken" },
+          { id: "symboler", title: "Symboler", deckId: "symboler" },
         {
       id: "sjokortet_sjomarken_quiz",
       title: "Kapitelquiz",

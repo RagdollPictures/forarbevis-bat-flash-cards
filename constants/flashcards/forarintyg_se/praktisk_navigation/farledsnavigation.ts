@@ -33,7 +33,7 @@ export const farledsnavigation: FlashCard[] = [
       "Backa.",
     ],
     correctOptionIndex: 1,
-    imageKey: "farledsnavigation_02_ver02",
+    imageKey: "farledsnavigation_02",
        textTitle: "Enslinje och kurskorrigering",
   textInfo: "Om man ligger fel i sidled mot en enslinje måste man styra mot linjen för att komma rätt. Genom att justera kursen tills objekten ligger i linje hamnar man på rätt färdväg."
   },
