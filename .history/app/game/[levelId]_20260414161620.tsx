@@ -514,8 +514,8 @@ export default function QuizMenuScreen() {
     source={animPlatformWaterLily_01}
     style={{
       position: "absolute",
-      width: 256,
-      height: 256,
+      width: 130,
+      height: 130,
     }}
   />
         <View style={styles.ringWrap}>
@@ -569,8 +569,8 @@ export default function QuizMenuScreen() {
     source={animPlatformWaterLily_01}
     style={{
       position: "absolute",
-      width: 256,
-      height: 256,
+      width: 130,
+      height: 130,
     }}
   />
       <View style={styles.ringWrap}>

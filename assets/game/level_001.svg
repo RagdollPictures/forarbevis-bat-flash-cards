@@ -1,94 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 2400">
-  <defs>
-    <style>
-      .cls-1 {
-        letter-spacing: 0em;
-      }
-
-      .cls-2 {
-        letter-spacing: 0em;
-      }
-
-      .cls-3, .cls-4 {
-        fill: #fff;
-      }
-
-      .cls-5 {
-        letter-spacing: .02em;
-      }
-
-      .cls-6 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-7 {
-        letter-spacing: 0em;
-      }
-
-      .cls-4 {
-        font-family: MyriadPro-Regular, 'Myriad Pro';
-        font-size: 9.62px;
-      }
-
-      .cls-8 {
-        letter-spacing: .02em;
-      }
-
-      .cls-9 {
-        letter-spacing: 0em;
-      }
-
-      .cls-10 {
-        letter-spacing: 0em;
-      }
-
-      .cls-11 {
-        fill: #01c0d2;
-      }
-    </style>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="2400" viewBox="0 0 375 2400">
   <g id="anchor_bg">
-    <polygon class="cls-11" points="375 2400 0 2399.22 0 0 375 .78 375 2400"/>
+    <polygon points="375 2400 0 2399.2244 0 0 375 .7756 375 2400" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_001">
-    <circle class="cls-3" cx="62.34" cy="147.16" r="10"/>
+    <circle cx="100.3894" cy="149.9258" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_001">
-    <circle class="cls-3" cx="187.5" cy="350.47" r="10"/>
+    <circle cx="210.3307" cy="311.0338" r="10" fill="#fff"/>
   </g>
   <g id="anchor_read_002">
-    <circle class="cls-3" cx="310.43" cy="553.78" r="10"/>
+    <circle cx="280.9348" cy="531.7963" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_002">
-    <circle class="cls-3" cx="187.5" cy="757.09" r="10"/>
+    <circle cx="160.5183" cy="757.7805" r="10" fill="#fff"/>
   </g>
   <g id="anchor_read_003">
-    <circle class="cls-3" cx="72.34" cy="960.4" r="10"/>
+    <circle cx="97.2445" cy="960.3987" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_003">
-    <circle class="cls-3" cx="187.5" cy="1163.71" r="10"/>
+    <circle cx="215.1735" cy="1157.4823" r="10" fill="#fff"/>
   </g>
   <g id="anchor_read_004">
-    <circle class="cls-3" cx="316.93" cy="1367.02" r="10"/>
+    <circle cx="292.7196" cy="1365.6352" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_004">
-    <circle class="cls-3" cx="189.64" cy="1570.33" r="10"/>
+    <circle cx="177.183" cy="1569.6371" r="10" fill="#fff"/>
   </g>
   <g id="anchor_read_005">
-    <circle class="cls-3" cx="72.34" cy="1773.64" r="10"/>
+    <circle cx="105.208" cy="1770.1862" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_005">
-    <circle class="cls-3" cx="108.86" cy="1976.95" r="10"/>
+    <circle cx="148.2996" cy="1972.7981" r="10" fill="#fff"/>
   </g>
   <g id="anchor_quiz_006">
-    <circle class="cls-3" cx="188.86" cy="2182.53" r="10"/>
-    <rect class="cls-6" x="28.03" y="2133.91" width="318.93" height="97.24" rx="10" ry="10"/>
+    <circle cx="188.8563" cy="2182.5306" r="10" fill="#fff"/>
+    <rect x="28.0342" y="2133.9121" width="318.9316" height="97.2368" rx="10" ry="10" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="3"/>
   </g>
   <g id="text_Kartunderlag_Koordinater">
-    <text class="cls-4" transform="translate(240.83 20.74)"><tspan class="cls-8" x="0" y="0">K</tspan><tspan x="5.37" y="0">a</tspan><tspan class="cls-5" x="10.01" y="0">r</tspan><tspan x="13.38" y="0">tunde</tspan><tspan class="cls-2" x="37.45" y="0">r</tspan><tspan x="40.64" y="0">lag &amp; Koo</tspan><tspan class="cls-1" x="78.6" y="0">r</tspan><tspan x="81.65" y="0">din</tspan><tspan class="cls-9" x="94.67" y="0">a</tspan><tspan class="cls-10" x="99.27" y="0">t</tspan><tspan class="cls-7" x="102.4" y="0">er</tspan></text>
+    <text transform="translate(240.8313 20.7358)" fill="#fff" font-family="MyriadPro-Regular, &apos;Myriad Pro&apos;" font-size="9.6212"><tspan x="0" y="0" letter-spacing=".016em">K</tspan><tspan x="5.3687" y="0">a</tspan><tspan x="10.0059" y="0" letter-spacing=".024em">r</tspan><tspan x="13.3828" y="0">tunde</tspan><tspan x="37.4546" y="0" letter-spacing=".004em">r</tspan><tspan x="40.6392" y="0">lag &amp; Koo</tspan><tspan x="78.6035" y="0" letter-spacing="-.01em">r</tspan><tspan x="81.6533" y="0">din</tspan><tspan x="94.6704" y="0" letter-spacing="-.004em">a</tspan><tspan x="99.2695" y="0" letter-spacing="-.006em">t</tspan><tspan x="102.3965" y="0" letter-spacing="0em">er</tspan></text>
   </g>
 </svg>

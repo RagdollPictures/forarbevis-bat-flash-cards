@@ -31,8 +31,6 @@ import { calcPercent } from "../quiz/utils/progress";
 import ChapterMenuMap from "./ChapterMenuMap";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
 
-const animPlatformWaterLily_01 = require("../../assets/lottie/platform_water_lily_01.json");
-
 type QuizItem = {
   id: string;
   title: string;
@@ -508,14 +506,13 @@ export default function QuizMenuScreen() {
         amplitude={3}
         rotateDeg={1.5}
       >
-        
       <View style={{ alignItems: "center", justifyContent: "center" }}>
        <LottieLoop
-    source={animPlatformWaterLily_01}
+    source={require("../../assets/lottie/car.json")}
     style={{
       position: "absolute",
-      width: 256,
-      height: 256,
+      width: 130,
+      height: 130,
     }}
   />
         <View style={styles.ringWrap}>
@@ -566,11 +563,11 @@ export default function QuizMenuScreen() {
     >
       <View style={{ alignItems: "center", justifyContent: "center" }}>
          <LottieLoop
-    source={animPlatformWaterLily_01}
+    source={require("../../assets/lottie/car.json")}
     style={{
       position: "absolute",
-      width: 256,
-      height: 256,
+      width: 130,
+      height: 130,
     }}
   />
       <View style={styles.ringWrap}>

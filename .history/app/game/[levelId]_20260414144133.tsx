@@ -17,8 +17,8 @@ import {
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
-import LottieLoop from "../quiz/components/LottieLoop";
 import ProgressRing from "../quiz/components/ProgressRing";
+import WaterRipple from "../quiz/components/waterRipple";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
 import {
@@ -30,8 +30,6 @@ import { styles } from "../quiz/styles";
 import { calcPercent } from "../quiz/utils/progress";
 import ChapterMenuMap from "./ChapterMenuMap";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
-
-const animPlatformWaterLily_01 = require("../../assets/lottie/platform_water_lily_01.json");
 
 type QuizItem = {
   id: string;
@@ -508,16 +506,8 @@ export default function QuizMenuScreen() {
         amplitude={3}
         rotateDeg={1.5}
       >
-        
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-       <LottieLoop
-    source={animPlatformWaterLily_01}
-    style={{
-      position: "absolute",
-      width: 256,
-      height: 256,
-    }}
-  />
+      <WaterRipple/>
         <View style={styles.ringWrap}>
           <View style={styles.readCircle}>
             <View style={styles.iconInner}>
@@ -565,14 +555,7 @@ export default function QuizMenuScreen() {
       rotateDeg={2}
     >
       <View style={{ alignItems: "center", justifyContent: "center" }}>
-         <LottieLoop
-    source={animPlatformWaterLily_01}
-    style={{
-      position: "absolute",
-      width: 256,
-      height: 256,
-    }}
-  />
+        <WaterRipple/>
       <View style={styles.ringWrap}>
         <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
           <View style={styles.iconInner}>
