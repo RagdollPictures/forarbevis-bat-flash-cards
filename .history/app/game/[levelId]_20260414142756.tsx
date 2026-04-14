@@ -18,7 +18,6 @@ import {
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import ProgressRing from "../quiz/components/ProgressRing";
-import WaterRipple from "../quiz/components/waterRipple";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
 import {
@@ -501,32 +500,29 @@ export default function QuizMenuScreen() {
                     !isUnlocked && styles.tileLocked,
                   ]}
                 >
-                 <FloatingNode
-        delay={(node.x + node.y) % 1200}
-        amplitude={3}
-        rotateDeg={1.5}
-      >
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-      <WaterRipple/>
-        <View style={styles.ringWrap}>
-          <View style={styles.readCircle}>
-            <View style={styles.iconInner}>
-              <SvgIcon
-                name="book"
-                size={30}
-                color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-              />
-            </View>
-          </View>
+                  <FloatingNode
+  delay={(node.x + node.y) % 1200}
+  amplitude={3}
+  rotateDeg={1.5}
+>
+  <View style={styles.ringWrap}>
+    <View style={styles.readCircle}>
+      <View style={styles.iconInner}>
+        <SvgIcon
+          name="book"
+          size={30}
+          color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+        />
+      </View>
+    </View>
 
-          {!isUnlocked ? (
-            <View style={styles.lockBadge}>
-              <SvgIcon name="lock" size={14} color="#ffffff" />
-            </View>
-          ) : null}
-        </View>
-        </View>
-      </FloatingNode>
+    {!isUnlocked ? (
+      <View style={styles.lockBadge}>
+        <SvgIcon name="lock" size={14} color="#ffffff" />
+      </View>
+    ) : null}
+  </View>
+</FloatingNode>
                 </Pressable>
               );
             }
@@ -536,47 +532,38 @@ export default function QuizMenuScreen() {
             const iconName = getIconNameByQuizId(node.quizId);
 
             return (
-  <Pressable
-    key={node.id}
-    onPress={() => {
-      if (!isUnlocked) return;
-      router.push(`/quiz/${node.quizId}`);
-    }}
-    disabled={!isUnlocked}
-    style={[
-      styles.absoluteNode,
-      { left, top },
-      !isUnlocked && styles.tileLocked,
-    ]}
-  >
-    <FloatingNode
-      delay={(node.x + node.y) % 1400}
-      amplitude={4}
-      rotateDeg={2}
-    >
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <WaterRipple/>
-      <View style={styles.ringWrap}>
-        <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
-          <View style={styles.iconInner}>
-            <SvgIcon
-              name={iconName}
-              size={30}
-              color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-            />
-          </View>
-        </ProgressRing>
+              <Pressable
+                key={node.id}
+                onPress={() => {
+                  if (!isUnlocked) return;
+                  router.push(`/quiz/${node.quizId}`);
+                }}
+                disabled={!isUnlocked}
+                style={[
+                  styles.absoluteNode,
+                  { left, top },
+                  !isUnlocked && styles.tileLocked,
+                ]}
+              >
+                <View style={styles.ringWrap}>
+  <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
+    <View style={styles.iconInner}>
+      <SvgIcon
+        name={iconName}
+        size={30}
+        color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+      />
+    </View>
+  </ProgressRing>
 
-        {!isUnlocked ? (
-          <View style={styles.lockBadge}>
-            <SvgIcon name="lock" size={14} color="#ffffff" />
-          </View>
-        ) : null}
-      </View>
-      </View>
-    </FloatingNode>
-  </Pressable>
-);
+  {!isUnlocked ? (
+    <View style={styles.lockBadge}>
+      <SvgIcon name="lock" size={14} color="#ffffff" />
+    </View>
+  ) : null}
+</View>
+              </Pressable>
+            );
           })}
         </View>
       </ScrollView>

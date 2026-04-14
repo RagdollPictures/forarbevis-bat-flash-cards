@@ -554,8 +554,6 @@ export default function QuizMenuScreen() {
       amplitude={4}
       rotateDeg={2}
     >
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <WaterRipple/>
       <View style={styles.ringWrap}>
         <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
           <View style={styles.iconInner}>
@@ -572,7 +570,6 @@ export default function QuizMenuScreen() {
             <SvgIcon name="lock" size={14} color="#ffffff" />
           </View>
         ) : null}
-      </View>
       </View>
     </FloatingNode>
   </Pressable>

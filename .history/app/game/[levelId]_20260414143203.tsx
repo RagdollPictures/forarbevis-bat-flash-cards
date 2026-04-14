@@ -18,7 +18,6 @@ import {
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import ProgressRing from "../quiz/components/ProgressRing";
-import WaterRipple from "../quiz/components/waterRipple";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
 import {
@@ -501,32 +500,23 @@ export default function QuizMenuScreen() {
                     !isUnlocked && styles.tileLocked,
                   ]}
                 >
-                 <FloatingNode
-        delay={(node.x + node.y) % 1200}
-        amplitude={3}
-        rotateDeg={1.5}
-      >
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-      <WaterRipple/>
-        <View style={styles.ringWrap}>
-          <View style={styles.readCircle}>
-            <View style={styles.iconInner}>
-              <SvgIcon
-                name="book"
-                size={30}
-                color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-              />
-            </View>
-          </View>
+                  <View style={styles.ringWrap}>
+                    <View style={styles.readCircle}>
+                      <View style={styles.iconInner}>
+                        <SvgIcon
+                          name="book"
+                          size={30}
+                          color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                        />
+                      </View>
+                    </View>
 
-          {!isUnlocked ? (
-            <View style={styles.lockBadge}>
-              <SvgIcon name="lock" size={14} color="#ffffff" />
-            </View>
-          ) : null}
-        </View>
-        </View>
-      </FloatingNode>
+                    {!isUnlocked ? (
+                      <View style={styles.lockBadge}>
+                        <SvgIcon name="lock" size={14} color="#ffffff" />
+                      </View>
+                    ) : null}
+                  </View>
                 </Pressable>
               );
             }
@@ -554,8 +544,6 @@ export default function QuizMenuScreen() {
       amplitude={4}
       rotateDeg={2}
     >
-      <View style={{ alignItems: "center", justifyContent: "center" }}>
-        <WaterRipple/>
       <View style={styles.ringWrap}>
         <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
           <View style={styles.iconInner}>
@@ -572,7 +560,6 @@ export default function QuizMenuScreen() {
             <SvgIcon name="lock" size={14} color="#ffffff" />
           </View>
         ) : null}
-      </View>
       </View>
     </FloatingNode>
   </Pressable>
