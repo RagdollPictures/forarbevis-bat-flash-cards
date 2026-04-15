@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="375" height="2400" viewBox="0 0 375 2400">
-  <g id="anchor_bg">
-    <polygon points="375 2400 0 2399.2244 0 0 375 .7756 375 2400" fill="#01c0d2"/>
-  </g>
   <g id="anchor_read_001">
     <circle cx="100.3894" cy="149.9258" r="10" fill="#01c0d2"/>
   </g>

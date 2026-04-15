@@ -1,37 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="375" height="2971.7832" viewBox="0 0 375 2971.7832">
-  <g id="bg-8" data-name="bg">
-    <polygon points="375 3060.7486 0 3059.7595 0 0 375 .9891 375 3060.7486" fill="#01c0d2"/>
-  </g>
   <g id="anchor_read_001-12" data-name="anchor_read_001">
     <circle cx="199.656" cy="172.2513" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_001-12" data-name="anchor_quiz_001">
-    <circle cx="307.2407" cy="340.0548" r="10" fill="#01c0d2"/>
+    <circle cx="274.1795" cy="340.0548" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_002-12" data-name="anchor_read_002">
     <circle cx="163.9925" cy="507.8584" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_002-12" data-name="anchor_quiz_002">
-    <circle cx="72.211" cy="675.662" r="10" fill="#01c0d2"/>
+    <circle cx="93.0167" cy="675.662" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_003-12" data-name="anchor_read_003">
     <circle cx="199.656" cy="843.4655" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_003-12" data-name="anchor_quiz_003">
-    <circle cx="316.9524" cy="1011.2691" r="10" fill="#01c0d2"/>
+    <circle cx="283.8911" cy="1011.2691" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_004-11" data-name="anchor_read_004">
     <circle cx="173.9925" cy="1179.0727" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_004-12" data-name="anchor_quiz_004">
-    <circle cx="72.3425" cy="1346.8762" r="10" fill="#01c0d2"/>
+    <circle cx="93.1482" cy="1346.8762" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_005-10" data-name="anchor_read_005">
     <circle cx="199.656" cy="1514.6798" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_005-11" data-name="anchor_quiz_005">
-    <circle cx="317.2407" cy="1682.4834" r="10" fill="#01c0d2"/>
+    <circle cx="284.1795" cy="1682.4834" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_006-7" data-name="anchor_read_006">
     <circle cx="98.0384" cy="1850.287" r="10" fill="#01c0d2"/>
@@ -40,13 +37,13 @@
     <circle cx="165.2535" cy="2018.0905" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_007-5" data-name="anchor_read_007">
-    <circle cx="316.9524" cy="2185.8941" r="10" fill="#01c0d2"/>
+    <circle cx="283.8911" cy="2185.8941" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_007-7" data-name="anchor_quiz_007">
     <circle cx="165.2535" cy="2353.6977" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_008-3" data-name="anchor_read_008">
-    <circle cx="62.211" cy="2521.5012" r="10" fill="#01c0d2"/>
+    <circle cx="83.0167" cy="2521.5012" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_008-4" data-name="anchor_quiz_008">
     <circle cx="163.9925" cy="2689.3048" r="10" fill="#01c0d2"/>
