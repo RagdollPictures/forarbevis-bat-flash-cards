@@ -1,94 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 1500">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #8ae7d4;
-      }
-
-      .cls-2 {
-        letter-spacing: 0em;
-      }
-
-      .cls-3 {
-        fill: #fff;
-      }
-
-      .cls-4 {
-        letter-spacing: 0em;
-      }
-
-      .cls-5 {
-        letter-spacing: .02em;
-      }
-
-      .cls-6 {
-        letter-spacing: 0em;
-      }
-
-      .cls-7 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-8 {
-        letter-spacing: 0em;
-      }
-
-      .cls-9 {
-        letter-spacing: -.05em;
-      }
-
-      .cls-10 {
-        fill: #0183e1;
-        font-family: MyriadPro-Regular, 'Myriad Pro';
-        font-size: 22.31px;
-      }
-    </style>
-  </defs>
-  <g id="bg-3" data-name="bg">
-    <polygon class="cls-1" points="375 1500 0 1499.52 0 0 375 .48 375 1500"/>
-  </g>
-  <g id="path-3" data-name="path">
-    <path class="cls-7" d="M316.97,162.18s9.77,93.71-111.13,65.69c-132.17-30.63-145.2,32.69-143.5,80.95,2.58,73.14,80.93,72.41,127.31,52.93,55.6-23.35,127.32-4.67,127.32,77.84,0,115.29-227.84,7.68-244.63,102.75-4.51,25.55-12.3,137.02,137.31,87.18,119.8-39.91,107.02,42.67,107.32,105.86.34,71.61-43.7,104.3-129.47,68.5-126.03-52.61-122.71,71.3-111.93,116.76,10.77,45.45,190.7-71.98,193.75,121.13"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="2209.2403" viewBox="0 0 375 2209.2403">
+  <g id="bg-2" data-name="bg">
+    <polygon points="375 2279.509 0 2278.7724 0 0 375 .7366 375 2279.509" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_001-6" data-name="anchor_read_001">
-    <circle class="cls-3" cx="316.95" cy="172.18" r="10"/>
+    <circle cx="316.9524" cy="172.1786" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_001-6" data-name="anchor_quiz_001">
-    <circle class="cls-3" cx="62.21" cy="304.35" r="10"/>
+    <circle cx="62.211" cy="363.5036" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_002-6" data-name="anchor_read_002">
-    <circle class="cls-3" cx="175.25" cy="362.97" r="10"/>
+    <circle cx="175.2535" cy="554.8286" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_002-6" data-name="anchor_quiz_002">
-    <circle class="cls-3" cx="316.95" cy="411.08" r="10"/>
+    <circle cx="316.9524" cy="746.1536" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_read_003-5" data-name="anchor_read_003">
-    <circle class="cls-3" cx="219.66" cy="500.3" r="10"/>
+  <g id="anchor_read_003-6" data-name="anchor_read_003">
+    <circle cx="219.656" cy="937.4786" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_003-6" data-name="anchor_quiz_003">
-    <circle class="cls-3" cx="72.21" cy="564.13" r="10"/>
+    <circle cx="72.211" cy="1128.8036" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_004-5" data-name="anchor_read_004">
-    <circle class="cls-3" cx="165.25" cy="637.3" r="10"/>
+    <circle cx="165.2535" cy="1320.1286" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_quiz_004-5" data-name="anchor_quiz_004">
-    <circle class="cls-3" cx="317.24" cy="712.02" r="10"/>
+  <g id="anchor_quiz_004-6" data-name="anchor_quiz_004">
+    <circle cx="317.2407" cy="1511.4536" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_005-5" data-name="anchor_read_005">
-    <circle class="cls-3" cx="209.66" cy="813.88" r="10"/>
+    <circle cx="209.656" cy="1702.7786" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_005-5" data-name="anchor_quiz_005">
-    <circle class="cls-3" cx="72.34" cy="869.25" r="10"/>
+    <circle cx="72.3425" cy="1894.1036" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_006-5" data-name="anchor_quiz_006">
-    <circle class="cls-3" cx="192.58" cy="1094.63" r="10"/>
+    <circle cx="192.5804" cy="2085.4286" r="10" fill="#01c0d2"/>
   </g>
   <g id="text_Trafikregler_till_Sjoss">
-    <rect class="cls-7" x="28.83" y="1041.25" width="318.93" height="97.24" rx="10" ry="10"/>
-    <text class="cls-10" transform="translate(86.34 83.61)"><tspan class="cls-9" x="0" y="0">T</tspan><tspan class="cls-4" x="10.09" y="0">r</tspan><tspan x="17.27" y="0">afi</tspan><tspan class="cls-5" x="39.7" y="0">k</tspan><tspan class="cls-8" x="50.54" y="0">r</tspan><tspan x="57.62" y="0">egler till </tspan><tspan class="cls-2" x="137.61" y="0">S</tspan><tspan class="cls-6" x="148.52" y="0">jöss</tspan></text>
+    <text transform="translate(86.3419 83.6123)" fill="#0183e1" font-family="MyriadPro-Regular, &apos;Myriad Pro&apos;" font-size="22.3145"><tspan x="0" y="0" letter-spacing="-.045em">T</tspan><tspan x="10.0859" y="0" letter-spacing="-.005em">r</tspan><tspan x="17.2715" y="0">afi</tspan><tspan x="39.6973" y="0" letter-spacing=".017em">k</tspan><tspan x="50.542" y="0" letter-spacing="-.01em">r</tspan><tspan x="57.6157" y="0">egler till </tspan><tspan x="137.6113" y="0" letter-spacing="-.004em">S</tspan><tspan x="148.5225" y="0" letter-spacing="0em">jöss</tspan></text>
   </g>
 </svg>

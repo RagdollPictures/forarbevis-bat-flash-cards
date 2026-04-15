@@ -1,71 +1,71 @@
 {
   "viewBox": {
     "width": 375,
-    "height": 960
+    "height": 1810.7006
   },
   "anchors": [
     {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
-      "x": 62.34,
-      "y": 147.16
+      "x": 62.3383,
+      "y": 147.1585
     },
     {
       "id": "anchor_quiz_001",
       "type": "quiz",
       "index": 1,
       "x": 187.5,
-      "y": 205.99
+      "y": 337.5986
     },
     {
       "id": "anchor_read_002",
       "type": "read",
       "index": 2,
-      "x": 310.43,
-      "y": 278.09
+      "x": 310.4309,
+      "y": 528.0388
     },
     {
       "id": "anchor_quiz_002",
       "type": "quiz",
       "index": 2,
       "x": 187.5,
-      "y": 343.75
+      "y": 718.4789
     },
     {
       "id": "anchor_read_003",
       "type": "read",
       "index": 3,
-      "x": 72.34,
-      "y": 407.5
+      "x": 72.3383,
+      "y": 908.9191
     },
     {
       "id": "anchor_quiz_003",
       "type": "quiz",
       "index": 3,
       "x": 187.5,
-      "y": 488.7
+      "y": 1099.3593
     },
     {
       "id": "anchor_read_004",
       "type": "read",
       "index": 4,
-      "x": 316.93,
-      "y": 569.73
+      "x": 316.9339,
+      "y": 1289.7994
     },
     {
       "id": "anchor_quiz_004",
       "type": "quiz",
       "index": 4,
-      "x": 189.64,
-      "y": 655.26
+      "x": 189.6361,
+      "y": 1480.2396
     },
     {
       "id": "anchor_quiz_005",
       "type": "quiz",
       "index": 5,
-      "x": 192.01,
-      "y": 776.85
+      "x": 192.0087,
+      "y": 1670.6797
     }
   ]
 }

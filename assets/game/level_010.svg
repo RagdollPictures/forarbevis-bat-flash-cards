@@ -1,122 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 2000">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #8ae7d4;
-      }
-
-      .cls-2 {
-        fill: #fff;
-      }
-
-      .cls-3 {
-        letter-spacing: 0em;
-      }
-
-      .cls-4 {
-        letter-spacing: 0em;
-      }
-
-      .cls-5 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-6 {
-        letter-spacing: 0em;
-      }
-
-      .cls-7 {
-        letter-spacing: 0em;
-      }
-
-      .cls-8 {
-        letter-spacing: .02em;
-      }
-
-      .cls-9 {
-        letter-spacing: 0em;
-      }
-
-      .cls-10 {
-        letter-spacing: 0em;
-      }
-
-      .cls-11 {
-        fill: #0183e1;
-        font-family: MyriadPro-Regular, 'Myriad Pro';
-        font-size: 22.31px;
-      }
-    </style>
-  </defs>
-  <g id="bg-7" data-name="bg">
-    <polygon class="cls-1" points="375 2003.06 0 2002.41 0 0 375 .65 375 2003.06"/>
-  </g>
-  <g id="path-7" data-name="path">
-    <path class="cls-5" d="M199.66,169.55c57.51.04,112.44-1.09,111.25,63.37-2.54,137.08-239.02,3.07-239.02,137.04s245.05,28.92,245.05,159.47c0,172-244.22,6.98-244.22,158.46,0,0-9.24,99.04,116.93,83.73,126.17-15.31,126.63,32.41,127.3,74.73.67,42.32-16.5,110.42-119.43,64.82-69.29-30.69-125.16,61.22-125.16,101.74,0,0-8.35,65.15,117.31,60.48,125.66-4.67,127.39,54.49,127.31,107.42-.09,52.93-62.98,42.03-152.96,42.03s-100.59,66.94-99.95,115.2,38.57,66.94,141.81,48.26c103.23-18.68,111.11,26.46,111.11,80.95,0,54.49-39.01,99.63-151.7,43.59-100.17-49.81-101.22,141.66-101.22,141.66"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="3741.2334" viewBox="0 0 375 3741.2334">
+  <g id="bg-6" data-name="bg">
+    <polygon points="375 3809.8742 0 3808.643 0 0 375 1.2312 375 3809.8742" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_001-10" data-name="anchor_read_001">
-    <circle class="cls-2" cx="199.66" cy="172.25" r="10"/>
+    <circle cx="199.656" cy="172.2513" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_001-10" data-name="anchor_quiz_001">
-    <circle class="cls-2" cx="307.24" cy="253.04" r="10"/>
+    <circle cx="307.2407" cy="361.7761" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_002-10" data-name="anchor_read_002">
-    <circle class="cls-2" cx="163.99" cy="301.24" r="10"/>
+    <circle cx="163.9925" cy="551.301" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_002-10" data-name="anchor_quiz_002">
-    <circle class="cls-2" cx="72.21" cy="374.4" r="10"/>
+    <circle cx="72.211" cy="740.8259" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_read_003-9" data-name="anchor_read_003">
-    <circle class="cls-2" cx="199.66" cy="452.24" r="10"/>
+  <g id="anchor_read_003-10" data-name="anchor_read_003">
+    <circle cx="199.656" cy="930.3508" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_003-10" data-name="anchor_quiz_003">
-    <circle class="cls-2" cx="316.95" cy="556.54" r="10"/>
+    <circle cx="316.9524" cy="1119.8756" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_004-9" data-name="anchor_read_004">
-    <circle class="cls-2" cx="173.99" cy="614.14" r="10"/>
+    <circle cx="173.9925" cy="1309.4005" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_quiz_004-9" data-name="anchor_quiz_004">
-    <circle class="cls-2" cx="72.34" cy="705.33" r="10"/>
+  <g id="anchor_quiz_004-10" data-name="anchor_quiz_004">
+    <circle cx="72.3425" cy="1498.9254" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_005-9" data-name="anchor_read_005">
-    <circle class="cls-2" cx="199.66" cy="768.26" r="10"/>
+    <circle cx="199.656" cy="1688.4503" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_005-9" data-name="anchor_quiz_005">
-    <circle class="cls-2" cx="317.24" cy="860.05" r="10"/>
+    <circle cx="317.2407" cy="1877.9751" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_read_006-7" data-name="anchor_read_006">
-    <circle class="cls-2" cx="98.04" cy="945.73" r="10"/>
+  <g id="anchor_read_006-6" data-name="anchor_read_006">
+    <circle cx="98.0384" cy="2067.5" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_006-9" data-name="anchor_quiz_006">
-    <circle class="cls-2" cx="165.25" cy="1070.27" r="10"/>
+    <circle cx="165.2535" cy="2257.0249" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_007-4" data-name="anchor_read_007">
-    <circle class="cls-2" cx="316.95" cy="1155.89" r="10"/>
+    <circle cx="316.9524" cy="2446.5498" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_quiz_007-7" data-name="anchor_quiz_007">
-    <circle class="cls-2" cx="165.25" cy="1220.1" r="10"/>
+  <g id="anchor_quiz_007-6" data-name="anchor_quiz_007">
+    <circle cx="165.2535" cy="2636.0747" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_008-2" data-name="anchor_read_008">
-    <circle class="cls-2" cx="62.21" cy="1305.24" r="10"/>
+    <circle cx="62.211" cy="2825.5995" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_008-3" data-name="anchor_quiz_008">
-    <circle class="cls-2" cx="163.99" cy="1390.96" r="10"/>
+    <circle cx="163.9925" cy="3015.1244" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_009-2" data-name="anchor_read_009">
-    <circle class="cls-2" cx="317.24" cy="1470.36" r="10"/>
+    <circle cx="317.2407" cy="3204.6493" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_009-2" data-name="anchor_quiz_009">
-    <circle class="cls-2" cx="108.04" cy="1509.28" r="10"/>
+    <circle cx="108.0384" cy="3394.1742" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_010-2" data-name="anchor_quiz_010">
-    <circle class="cls-2" cx="190.48" cy="1705.46" r="10"/>
+    <circle cx="190.4838" cy="3583.699" r="10" fill="#01c0d2"/>
   </g>
   <g id="text_Batvett_o_Ombordkunskap">
-    <text class="cls-11" transform="translate(62.34 84.31)"><tspan x="0" y="0">B</tspan><tspan class="cls-7" x="12.09" y="0">å</tspan><tspan class="cls-9" x="22.76" y="0">t</tspan><tspan class="cls-6" x="30.35" y="0">v</tspan><tspan x="40.86" y="0">ett &amp; Ombo</tspan><tspan class="cls-4" x="148.7" y="0">r</tspan><tspan x="155.78" y="0">d</tspan><tspan class="cls-10" x="168.36" y="0">k</tspan><tspan x="178.92" y="0">uns</tspan><tspan class="cls-8" x="212.43" y="0">k</tspan><tspan class="cls-3" x="223.3" y="0">ap</tspan></text>
-    <rect class="cls-5" x="28.83" y="1652.5" width="318.93" height="97.24" rx="10" ry="10"/>
+    <text transform="translate(62.3443 84.3136)" fill="#0183e1" font-family="MyriadPro-Regular, &apos;Myriad Pro&apos;" font-size="22.3145"><tspan x="0" y="0">B</tspan><tspan x="12.0942" y="0" letter-spacing="-.004em">å</tspan><tspan x="22.7607" y="0" letter-spacing=".009em">t</tspan><tspan x="30.3472" y="0" letter-spacing="-.01em">v</tspan><tspan x="40.8569" y="0">ett &amp; Ombo</tspan><tspan x="148.7012" y="0" letter-spacing="-.01em">r</tspan><tspan x="155.7754" y="0">d</tspan><tspan x="168.3604" y="0" letter-spacing=".004em">k</tspan><tspan x="178.915" y="0">uns</tspan><tspan x="212.4307" y="0" letter-spacing=".018em">k</tspan><tspan x="223.2979" y="0" letter-spacing="0em">ap</tspan></text>
   </g>
 </svg>

@@ -1,96 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 375 1080">
-  <defs>
-    <style>
-      .cls-1 {
-        fill: #8ae7d4;
-      }
-
-      .cls-2 {
-        letter-spacing: 0em;
-      }
-
-      .cls-3 {
-        fill: #fff;
-      }
-
-      .cls-4 {
-        letter-spacing: -.01em;
-      }
-
-      .cls-5 {
-        letter-spacing: 0em;
-      }
-
-      .cls-6 {
-        letter-spacing: 0em;
-      }
-
-      .cls-7 {
-        letter-spacing: 0em;
-      }
-
-      .cls-8 {
-        fill: none;
-        stroke: #fff;
-        stroke-miterlimit: 10;
-        stroke-width: 3px;
-      }
-
-      .cls-9 {
-        letter-spacing: 0em;
-      }
-
-      .cls-10 {
-        letter-spacing: 0em;
-      }
-
-      .cls-11 {
-        fill: #0183e1;
-        font-family: MyriadPro-Regular, 'Myriad Pro';
-        font-size: 22.31px;
-      }
-
-      .cls-12 {
-        letter-spacing: -.01em;
-      }
-    </style>
-  </defs>
-  <g id="bg-11" data-name="bg">
-    <rect class="cls-1" x="-2.25" y="-1.23" width="375" height="1079.65"/>
-  </g>
-  <g id="path-11" data-name="path">
-    <path class="cls-8" d="M316.97,162.18s9.77,93.71-111.13,65.69c-132.17-30.63-145.2,32.69-143.5,80.95,2.58,73.14,80.93,72.41,127.31,52.93,55.6-23.35,127.32-4.67,127.32,77.84,0,115.29-227.84,7.68-244.63,102.75-4.51,25.55-12.3,137.02,137.31,87.18,119.8-39.91,107.02,42.67,107.32,105.86.34,71.61-130.92-48.5-128.67,90.1"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="1796.9785" viewBox="0 0 375 1796.9785">
+  <g id="bg-10" data-name="bg">
+    <polygon points="372.7535 1880.3386 -2.2465 1879.7305 -2.2465 -1.4078 372.7535 -.7997 372.7535 1880.3386" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_001-14" data-name="anchor_read_001">
-    <circle class="cls-3" cx="316.95" cy="172.18" r="10"/>
+    <circle cx="316.9524" cy="172.1786" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_001-14" data-name="anchor_quiz_001">
-    <circle class="cls-3" cx="62.21" cy="304.35" r="10"/>
+    <circle cx="62.211" cy="358.78" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_002-14" data-name="anchor_read_002">
-    <circle class="cls-3" cx="175.25" cy="362.97" r="10"/>
+    <circle cx="175.2535" cy="545.3813" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_002-14" data-name="anchor_quiz_002">
-    <circle class="cls-3" cx="316.95" cy="411.08" r="10"/>
+    <circle cx="316.9524" cy="731.9827" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_read_003-13" data-name="anchor_read_003">
-    <circle class="cls-3" cx="219.66" cy="500.3" r="10"/>
+  <g id="anchor_read_003-14" data-name="anchor_read_003">
+    <circle cx="219.656" cy="918.584" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_003-14" data-name="anchor_quiz_003">
-    <circle class="cls-3" cx="72.21" cy="564.13" r="10"/>
+    <circle cx="72.211" cy="1105.1854" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_004-13" data-name="anchor_read_004">
-    <circle class="cls-3" cx="165.25" cy="637.3" r="10"/>
+    <circle cx="165.2535" cy="1291.7867" r="10" fill="#01c0d2"/>
   </g>
-  <g id="anchor_quiz_004-13" data-name="anchor_quiz_004">
-    <circle class="cls-3" cx="317.24" cy="712.02" r="10"/>
+  <g id="anchor_quiz_004-14" data-name="anchor_quiz_004">
+    <circle cx="317.2407" cy="1478.3881" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_005-13" data-name="anchor_quiz_005">
-    <circle class="cls-3" cx="185.27" cy="881.64" r="10"/>
+    <circle cx="185.2741" cy="1664.9894" r="10" fill="#01c0d2"/>
   </g>
   <g id="text_Meteorologi_for_batfolk">
-    <rect class="cls-8" x="28.03" y="825.52" width="318.93" height="97.24" rx="10" ry="10"/>
-    <text class="cls-11" transform="translate(75.34 83.61)"><tspan class="cls-6" x="0" y="0">M</tspan><tspan class="cls-10" x="18.07" y="0">e</tspan><tspan class="cls-5" x="29.25" y="0">t</tspan><tspan x="36.51" y="0">eo</tspan><tspan class="cls-9" x="59.94" y="0">r</tspan><tspan class="cls-10" x="67.01" y="0">olo</tspan><tspan class="cls-5" x="96.78" y="0">g</tspan><tspan x="109.12" y="0">i </tspan><tspan class="cls-12" x="119.07" y="0">f</tspan><tspan class="cls-10" x="125.29" y="0">ör b</tspan><tspan class="cls-2" x="162.27" y="0">å</tspan><tspan x="172.93" y="0">t</tspan><tspan class="cls-4" x="180.32" y="0">f</tspan><tspan class="cls-7" x="186.55" y="0">olk</tspan></text>
+    <text transform="translate(75.3423 83.6123)" fill="#0183e1" font-family="MyriadPro-Regular, &apos;Myriad Pro&apos;" font-size="22.3145"><tspan x="0" y="0" letter-spacing=".006em">M</tspan><tspan x="18.0742" y="0" letter-spacing="0em">e</tspan><tspan x="29.2539" y="0" letter-spacing="-.006em">t</tspan><tspan x="36.5059" y="0">eo</tspan><tspan x="59.9355" y="0" letter-spacing="-.01em">r</tspan><tspan x="67.0093" y="0" letter-spacing="0em">olo</tspan><tspan x="96.7764" y="0" letter-spacing="-.006em">g</tspan><tspan x="109.1162" y="0">i </tspan><tspan x="119.0684" y="0" letter-spacing="-.013em">f</tspan><tspan x="125.2939" y="0" letter-spacing="0em">ör b</tspan><tspan x="162.2686" y="0" letter-spacing="-.004em">å</tspan><tspan x="172.9346" y="0">t</tspan><tspan x="180.3203" y="0" letter-spacing="-.013em">f</tspan><tspan x="186.5469" y="0" letter-spacing="0em">olk</tspan></text>
   </g>
 </svg>
