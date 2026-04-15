@@ -25,7 +25,6 @@ type ScreenTransitionContextValue = {
   playWaterTransition: (options?: PlayTransitionOptions) => Promise<void>;
   isTransitionRunning: boolean;
 };
-
 const bubblesAnim = require("../../assets/lottie/bubbles.json");
 
 const ScreenTransitionContext =
@@ -46,44 +45,61 @@ type WaterOverlayProps = {
 };
 
 function WaterOverlay({ active, translateY }: WaterOverlayProps) {
+  const overlayStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value }],
+    };
+  });
+
+  const backWaveStyle = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateY: translateY.value * 0.92 }],
+    };
+  });
+
   const bubbleStyle = useAnimatedStyle(() => {
     return {
       transform: [{ translateY: translateY.value * 0.97 }],
     };
   });
 
-  const overlayHeight = SCREEN_HEIGHT * 1.4;
-
-  const LOTTIE_WIDTH = 375;
-  const LOTTIE_HEIGHT = 1500;
-  const overscan = 1.18;
-
-  const scale = Math.max(
-    SCREEN_WIDTH / LOTTIE_WIDTH,
-    overlayHeight / LOTTIE_HEIGHT
-  ) * overscan;
-
-  const lottieWidth = LOTTIE_WIDTH * scale;
-  const lottieHeight = LOTTIE_HEIGHT * scale;
-
-  const lottieLeft = (SCREEN_WIDTH - lottieWidth) / 2;
-  const lottieTop = (overlayHeight - lottieHeight) / 2;
-
+  const svgHeight = SCREEN_HEIGHT * 1.4;
+const bubbleScale = 1.6; // tweak 1.4–1.8
   if (!active) return null;
 
   return (
     <View pointerEvents="auto" style={StyleSheet.absoluteFill}>
+      
+      {/* BACK WATER */}
+      {/* <AnimatedView style={[styles.overlayLayer, backWaveStyle]}>
+        <TransitionWaterBack
+          width={SCREEN_WIDTH}
+          height={svgHeight}
+          color={colorScheme.blue}
+        />
+      </AnimatedView>*/}
+
+      {/* FRONT WATER */}
+      {/* <AnimatedView style={[styles.overlayLayer, overlayStyle]}>
+        <TransitionWaterFront
+          width={SCREEN_WIDTH}
+          height={svgHeight}
+          color={colorScheme.darkBlue}
+        />
+      </AnimatedView>*/}
+
+      {/* BUBBLES */}
       <AnimatedView style={[styles.overlayLayer, bubbleStyle]}>
         <LottieView
           source={bubblesAnim}
           autoPlay
           loop={false}
           style={{
-            position: "absolute",
-            width: lottieWidth,
-            height: lottieHeight,
-            left: lottieLeft,
-            top: lottieTop,
+             position: "absolute",
+    width: SCREEN_WIDTH * bubbleScale,
+    height: svgHeight * bubbleScale,
+    left: -(SCREEN_WIDTH * (bubbleScale - 1)) / 2,
+    top: -(svgHeight * (bubbleScale - 1)) / 2,
           }}
         />
       </AnimatedView>
@@ -101,7 +117,7 @@ export function ScreenTransitionProvider({
   const [active, setActive] = useState(false);
   const [isTransitionRunning, setIsTransitionRunning] = useState(false);
 
-  const translateY = useSharedValue(SCREEN_HEIGHT);
+  const translateY = useSharedValue(SCREEN_HEIGHT + 0);
   const lockRef = useRef(false);
 
   const playWaterTransition = useCallback(
@@ -112,10 +128,10 @@ export function ScreenTransitionProvider({
       setIsTransitionRunning(true);
       setActive(true);
 
-      translateY.value = SCREEN_HEIGHT;
+      translateY.value = SCREEN_HEIGHT + 0;
 
-      const riseDuration = 300;
-      const revealDuration = 800;
+      const riseDuration = 660;
+      const revealDuration =560;
       const coveredPause = 0;
 
       translateY.value = withTiming(0, {
@@ -123,13 +139,13 @@ export function ScreenTransitionProvider({
         easing: Easing.out(Easing.cubic),
       });
 
-      await wait(riseDuration - 0);
+      await wait(riseDuration - 80);
 
       options?.onCovered?.();
 
       await wait(coveredPause);
 
-      translateY.value = withTiming(-(SCREEN_HEIGHT + 0), {
+      translateY.value = withTiming(-(SCREEN_HEIGHT + 220), {
         duration: revealDuration,
         easing: Easing.inOut(Easing.cubic),
       });

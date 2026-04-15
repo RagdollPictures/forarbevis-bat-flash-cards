@@ -2,7 +2,7 @@ import { colorScheme } from "@/constants/colors";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { Image } from "expo-image";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import React, { useCallback, useMemo, useRef, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import level_001_bg from "../../assets/game/bg.jpg";
@@ -17,6 +17,7 @@ import {
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
+import LottieLoop from "../quiz/components/LottieLoop";
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
 import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
@@ -28,12 +29,10 @@ import {
 } from "../quiz/storage/cleared";
 import { styles } from "../quiz/styles";
 import { calcPercent } from "../quiz/utils/progress";
-import { useScreenTransition } from "../transitions/ScreenTransitionProvider";
 import ChapterMenuMap from "./ChapterMenuMap";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
 
 const animPlatformWaterLily_01 = require("../../assets/lottie/platform_water_lily_01.json");
-const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.png");
 
 type QuizItem = {
   id: string;
@@ -83,18 +82,11 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
   return Math.max(0, Math.min(100, Math.round((correct / total) * 100)));
 }
 
-function wait(ms: number) {
-  return new Promise<void>((resolve) => setTimeout(resolve, ms));
-}
-
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [showLevelMenu, setShowLevelMenu] = useState(false);
   const [pressedId, setPressedId] = useState<string | null>(null);
   const [transitioningId, setTransitioningId] = useState<string | null>(null);
-
-  const pressLockRef = useRef(false);
-  const { playWaterTransition, isTransitionRunning } = useScreenTransition();
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -368,48 +360,6 @@ export default function QuizMenuScreen() {
     setClearedIds(nextCleared);
   }, [clearedIds, levelMap]);
 
-  const runRouteTransition = useCallback(
-    async ({
-      nodeId,
-      delayMs = 0,
-      go,
-    }: {
-      nodeId?: string;
-      delayMs?: number;
-      go: () => void;
-    }) => {
-      if (pressLockRef.current || isTransitionRunning) return;
-
-      pressLockRef.current = true;
-
-      if (nodeId) {
-        setPressedId(nodeId);
-        setTransitioningId(nodeId);
-      }
-
-      try {
-        if (delayMs > 0) {
-          await wait(delayMs);
-        }
-
-        await playWaterTransition({
-          onCovered: () => {
-            go();
-          },
-        });
-      } catch (error) {
-        if (nodeId) {
-          setPressedId(null);
-          setTransitioningId(null);
-        }
-        throw error;
-      } finally {
-        pressLockRef.current = false;
-      }
-    },
-    [isTransitionRunning, playWaterTransition]
-  );
-
   return (
     <SafeAreaView style={styles.safe}>
       {__DEV__ ? (
@@ -486,13 +436,7 @@ export default function QuizMenuScreen() {
                 disabled={!isUnlocked}
                 onPress={() => {
                   if (!isUnlocked) return;
-
-                 runRouteTransition({
-  delayMs: 240,
-  go: () => {
-    router.push(`/quiz/${quiz.id}`);
-  },
-});
+                  router.push(`/quiz/${quiz.id}`);
                 }}
                 style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
               >
@@ -549,19 +493,18 @@ export default function QuizMenuScreen() {
                   onPress={() => {
                     if (!isUnlocked) return;
 
-                    runRouteTransition({
-                      nodeId: node.id,
-                      delayMs: 240,
-                      go: () => {
-                        router.push({
-                          pathname: "/read/[deckId]",
-                          params: {
-                            deckId: node.deckId,
-                            title: node.title,
-                          },
-                        });
-                      },
-                    });
+                    setPressedId(node.id);
+                    setTransitioningId(node.id);
+
+                    setTimeout(() => {
+                      router.push({
+                        pathname: "/read/[deckId]",
+                        params: {
+                          deckId: node.deckId,
+                          title: node.title,
+                        },
+                      });
+                    }, 220);
                   }}
                   disabled={!isUnlocked}
                   style={[
@@ -579,15 +522,14 @@ export default function QuizMenuScreen() {
                       isPressed={isPressed}
                       isTransitioning={isTransitioning}
                     >
-                     <Image
-  source={imgPlatformWaterLily_01}
-  contentFit="contain"
-  style={{
-    position: "absolute",
-    width: 256,
-    height: 256,
-  }}
-/>
+                      <LottieLoop
+                        source={animPlatformWaterLily_01}
+                        style={{
+                          position: "absolute",
+                          width: 256,
+                          height: 256,
+                        }}
+                      />
                       <View style={styles.ringWrap}>
                         <View style={styles.readCircle}>
                           <View style={styles.iconInner}>
@@ -621,13 +563,12 @@ export default function QuizMenuScreen() {
                 onPress={() => {
                   if (!isUnlocked) return;
 
-                  runRouteTransition({
-                    nodeId: node.id,
-                    delayMs: 240,
-                    go: () => {
-                      router.push(`/quiz/${node.quizId}`);
-                    },
-                  });
+                  setPressedId(node.id);
+                  setTransitioningId(node.id);
+
+                  setTimeout(() => {
+                    router.push(`/quiz/${node.quizId}`);
+                  }, 220);
                 }}
                 disabled={!isUnlocked}
                 style={[
@@ -645,21 +586,16 @@ export default function QuizMenuScreen() {
                     isPressed={isPressed}
                     isTransitioning={isTransitioning}
                   >
-                    <Image
-  source={imgPlatformWaterLily_01}
-  contentFit="contain"
-  style={{
-    position: "absolute",
-    width: 256,
-    height: 256,
-  }}
-/>
+                    <LottieLoop
+                      source={animPlatformWaterLily_01}
+                      style={{
+                        position: "absolute",
+                        width: 256,
+                        height: 256,
+                      }}
+                    />
                     <View style={styles.ringWrap}>
-                      <ProgressRing
-                        percent={ringPercent}
-                        size={90}
-                        strokeWidth={7}
-                      >
+                      <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                         <View style={styles.iconInner}>
                           <SvgIcon
                             name={iconName}

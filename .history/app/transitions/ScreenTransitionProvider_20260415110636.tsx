@@ -114,8 +114,8 @@ export function ScreenTransitionProvider({
 
       translateY.value = SCREEN_HEIGHT;
 
-      const riseDuration = 300;
-      const revealDuration = 800;
+      const riseDuration = 660;
+      const revealDuration = 560;
       const coveredPause = 0;
 
       translateY.value = withTiming(0, {
@@ -123,13 +123,13 @@ export function ScreenTransitionProvider({
         easing: Easing.out(Easing.cubic),
       });
 
-      await wait(riseDuration - 0);
+      await wait(riseDuration - 80);
 
       options?.onCovered?.();
 
       await wait(coveredPause);
 
-      translateY.value = withTiming(-(SCREEN_HEIGHT + 0), {
+      translateY.value = withTiming(-(SCREEN_HEIGHT + 220), {
         duration: revealDuration,
         easing: Easing.inOut(Easing.cubic),
       });

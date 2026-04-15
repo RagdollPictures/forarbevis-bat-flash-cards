@@ -1,8 +1,5 @@
-import LottieView from "lottie-react-native";
-import React, { useEffect, useRef, useState } from "react";
-import { Animated, Easing, StyleSheet, View, ViewStyle } from "react-native";
-
-const splashAnim = require("../../../assets/lottie/node_water_splash.json");
+import React, { useEffect, useRef } from "react";
+import { Animated, Easing, ViewStyle } from "react-native";
 
 export default function NodeTransitionWrap({
   children,
@@ -17,19 +14,16 @@ export default function NodeTransitionWrap({
 }) {
   const translateY = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
-  const [splashKey, setSplashKey] = useState(0);
 
   useEffect(() => {
     translateY.stopAnimation();
     scale.stopAnimation();
 
     if (isTransitioning) {
-      setSplashKey((prev) => prev + 1);
-
       Animated.parallel([
         Animated.sequence([
           Animated.timing(translateY, {
-            toValue: -50,
+            toValue: -22,
             duration: 60,
             easing: Easing.out(Easing.quad),
             useNativeDriver: true,
@@ -43,14 +37,14 @@ export default function NodeTransitionWrap({
         ]),
         Animated.sequence([
           Animated.timing(scale, {
-            toValue: 1.12,
-            duration: 60,
-            easing: Easing.out(Easing.cubic),
+            toValue: 1.1,
+            duration: 70,
+            easing: Easing.out(Easing.quad),
             useNativeDriver: true,
           }),
           Animated.timing(scale, {
-            toValue: 0,
-            duration: 180,
+            toValue: 0.9,
+            duration: 170,
             easing: Easing.in(Easing.cubic),
             useNativeDriver: true,
           }),
@@ -69,7 +63,7 @@ export default function NodeTransitionWrap({
         useNativeDriver: true,
       }),
       Animated.spring(scale, {
-        toValue: isPressed ? 0.92 : 1,
+        toValue: isPressed ? 1.08 : 1,
         stiffness: 220,
         damping: 14,
         mass: 0.7,
@@ -82,41 +76,14 @@ export default function NodeTransitionWrap({
     <Animated.View
       style={[
         style,
-        styles.wrap,
         {
+          alignItems: "center",
+          justifyContent: "center",
           transform: [{ translateY }, { scale }],
         },
       ]}
     >
       {children}
-
-      {isTransitioning ? (
-        <View pointerEvents="none" style={styles.splashLayer}>
-          <LottieView
-            key={splashKey}
-            source={splashAnim}
-            autoPlay
-            loop={false}
-            style={styles.splash}
-          />
-        </View>
-      ) : null}
     </Animated.View>
   );
 }
-
-const styles = StyleSheet.create({
-  wrap: {
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  splashLayer: {
-    position: "absolute",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  splash: {
-    width: 180,
-    height: 180,
-  },
-});

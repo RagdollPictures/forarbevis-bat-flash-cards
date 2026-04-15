@@ -33,7 +33,7 @@ import ChapterMenuMap from "./ChapterMenuMap";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
 
 const animPlatformWaterLily_01 = require("../../assets/lottie/platform_water_lily_01.json");
-const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.png");
+const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.svg");
 
 type QuizItem = {
   id: string;

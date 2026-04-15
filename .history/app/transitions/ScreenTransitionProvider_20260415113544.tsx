@@ -114,7 +114,7 @@ export function ScreenTransitionProvider({
 
       translateY.value = SCREEN_HEIGHT;
 
-      const riseDuration = 300;
+      const riseDuration = 500;
       const revealDuration = 800;
       const coveredPause = 0;
 

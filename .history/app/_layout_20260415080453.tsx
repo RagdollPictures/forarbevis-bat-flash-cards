@@ -14,7 +14,7 @@ export default function RootLayout() {
             name="quiz/[quizId]"
             options={{
               headerShown: false,
-              animation: "slide_from_bottom"
+              animation: "none",
             }}
           />
 
@@ -22,7 +22,7 @@ export default function RootLayout() {
             name="read/[deckId]"
             options={{
               headerShown: false,
-              animation: "slide_from_bottom"
+              animation: "none",
             }}
           />
         </Stack>

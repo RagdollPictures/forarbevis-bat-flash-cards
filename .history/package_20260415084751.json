@@ -10,7 +10,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "lint": "expo lint",
-    "build:transition": "node scripts/build-transition-svgs.cjs"
+    "build:transition-svgs": "node scripts/build-transition-svgs.cjs"
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
