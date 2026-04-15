@@ -4,38 +4,37 @@
     <polygon points="375 2400 0 2399.2244 0 0 375 .7756 375 2400" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_001">
-    <circle cx="100.3894" cy="149.9258" r="10" fill="#fff"/>
+    <circle cx="100.3894" cy="149.9258" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_001">
-    <circle cx="210.3307" cy="311.0338" r="10" fill="#fff"/>
+    <circle cx="210.3307" cy="311.0338" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_002">
-    <circle cx="280.9348" cy="531.7963" r="10" fill="#fff"/>
+    <circle cx="280.9348" cy="531.7963" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_002">
-    <circle cx="160.5183" cy="757.7805" r="10" fill="#fff"/>
+    <circle cx="160.5183" cy="757.7805" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_003">
-    <circle cx="97.2445" cy="960.3987" r="10" fill="#fff"/>
+    <circle cx="97.2445" cy="960.3987" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_003">
-    <circle cx="215.1735" cy="1157.4823" r="10" fill="#fff"/>
+    <circle cx="215.1735" cy="1157.4823" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_004">
-    <circle cx="292.7196" cy="1365.6352" r="10" fill="#fff"/>
+    <circle cx="292.7196" cy="1365.6352" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_004">
-    <circle cx="177.183" cy="1569.6371" r="10" fill="#fff"/>
+    <circle cx="177.183" cy="1569.6371" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_read_005">
-    <circle cx="105.208" cy="1770.1862" r="10" fill="#fff"/>
+    <circle cx="105.208" cy="1770.1862" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_005">
-    <circle cx="148.2996" cy="1972.7981" r="10" fill="#fff"/>
+    <circle cx="148.2996" cy="1972.7981" r="10" fill="#01c0d2"/>
   </g>
   <g id="anchor_quiz_006">
-    <circle cx="188.8563" cy="2182.5306" r="10" fill="#fff"/>
-    <rect x="28.0342" y="2133.9121" width="318.9316" height="97.2368" rx="10" ry="10" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="3"/>
+    <circle cx="188.8563" cy="2182.5306" r="10" fill="#01c0d2"/>
   </g>
   <g id="text_Kartunderlag_Koordinater">
     <text transform="translate(240.8313 20.7358)" fill="#fff" font-family="MyriadPro-Regular, &apos;Myriad Pro&apos;" font-size="9.6212"><tspan x="0" y="0" letter-spacing=".016em">K</tspan><tspan x="5.3687" y="0">a</tspan><tspan x="10.0059" y="0" letter-spacing=".024em">r</tspan><tspan x="13.3828" y="0">tunde</tspan><tspan x="37.4546" y="0" letter-spacing=".004em">r</tspan><tspan x="40.6392" y="0">lag &amp; Koo</tspan><tspan x="78.6035" y="0" letter-spacing="-.01em">r</tspan><tspan x="81.6533" y="0">din</tspan><tspan x="94.6704" y="0" letter-spacing="-.004em">a</tspan><tspan x="99.2695" y="0" letter-spacing="-.006em">t</tspan><tspan x="102.3965" y="0" letter-spacing="0em">er</tspan></text>
