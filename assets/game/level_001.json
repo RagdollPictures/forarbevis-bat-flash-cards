@@ -33,6 +33,13 @@
       "y": 549.901
     },
     {
+      "id": "anchor_object_02",
+      "type": "object",
+      "index": 2,
+      "x": 57.6965,
+      "y": 750.099
+    },
+    {
       "id": "anchor_read_002",
       "type": "read",
       "index": 2,

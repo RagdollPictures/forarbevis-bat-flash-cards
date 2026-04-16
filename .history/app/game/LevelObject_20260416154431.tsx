@@ -10,7 +10,6 @@ type LevelObjectProps = {
 };
 
 const treeImage = require("../../assets/game/object_tree_01.png");
-const rockImage = require("../../assets/game/object_rock_01.png");
 
 export default function LevelObject({
   objectKey,
@@ -24,14 +23,6 @@ export default function LevelObject({
 
   if (objectKey === "tree") {
     source = treeImage;
-    width = 120;
-    height = 140;
-  }
-
-  if (objectKey === "rock") {
-    source = rockImage;
-    width = 110;
-    height = 80;
   }
 
   if (!source) return null;

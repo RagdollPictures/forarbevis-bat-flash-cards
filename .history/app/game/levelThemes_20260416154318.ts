@@ -12,7 +12,6 @@ const sharedThemeBase: LevelTheme = {
   },
   objects: {
     anchor_object_01: "tree",
-    anchor_object_02: "rock",
   },
 };
 

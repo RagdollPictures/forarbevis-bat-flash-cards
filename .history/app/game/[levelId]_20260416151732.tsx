@@ -206,23 +206,23 @@ export default function QuizMenuScreen() {
         <Text style={styles.headerTitle}>{currentLevel.label}</Text>
 
         <LevelMapView
-  layout={layout}
-  scale={scale}
-  screenWidth={screenWidth}
-  LevelSvg={LevelSvg}
-  bgAnchor={bgAnchor}
-  bgImageSource={theme.bgImageSource}
-  platformImageSource={theme.platformImageSource}
-  placedNodes={placedNodes}
-  objectAnchors={objectAnchors}
-  objectMap={theme.objects}
-  unlockedIds={unlockedIds}
-  progressByQuizId={progressByQuizId}
-  pressedId={pressedId}
-  transitioningId={transitioningId}
-  onPressReadNode={handlePressReadNode}
-  onPressQuizNode={handlePressQuizNode}
-/>
+          layout={layout}
+          scale={scale}
+          screenWidth={screenWidth}
+          LevelSvg={LevelSvg}
+          bgAnchor={bgAnchor}
+          bgImageSource={theme.bgImageSource}
+          platformImageSource={theme.platformImageSource}
+          placedNodes={placedNodes}
+          objectAnchors={objectAnchors}
+          objectMap={theme.objects}
+          unlockedIds={unlockedIds}
+          progressByQuizId={progressByQuizId}
+          pressedId={pressedId}
+          transitioningId={transitioningId}
+          onPressReadNode={handlePressReadNode}
+          onPressQuizNode={handlePressQuizNode}
+        />
       </ScrollView>
     </SafeAreaView>
   );
