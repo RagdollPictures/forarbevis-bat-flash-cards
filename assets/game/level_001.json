@@ -1,83 +1,141 @@
 {
   "viewBox": {
-    "width": 375,
-    "height": 2070
+    "width": 375.8787,
+    "height": 3750
   },
   "anchors": [
-    {
-      "id": "anchor_bg",
-      "x": 187.5,
-      "y": 1035
-    },
     {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
-      "x": 120.1417,
-      "y": 348.3928
+      "x": 199.656,
+      "y": 172.2513
     },
     {
       "id": "anchor_quiz_001",
       "type": "quiz",
       "index": 1,
-      "x": 244.6689,
-      "y": 488.6548
+      "x": 267.1925,
+      "y": 361.7761
     },
     {
       "id": "anchor_read_002",
       "type": "read",
       "index": 2,
-      "x": 136.5914,
-      "y": 642.1379
+      "x": 163.9925,
+      "y": 551.301
     },
     {
       "id": "anchor_quiz_002",
       "type": "quiz",
       "index": 2,
-      "x": 242.5662,
-      "y": 786.0742
+      "x": 108.5916,
+      "y": 740.8259
     },
     {
       "id": "anchor_read_003",
       "type": "read",
       "index": 3,
-      "x": 138.3106,
-      "y": 933.8403
+      "x": 199.656,
+      "y": 930.3508
     },
     {
       "id": "anchor_quiz_003",
       "type": "quiz",
       "index": 3,
-      "x": 239.8878,
-      "y": 1070.2055
+      "x": 276.9041,
+      "y": 1119.8756
     },
     {
       "id": "anchor_read_004",
       "type": "read",
       "index": 4,
-      "x": 145.2717,
-      "y": 1211.8913
+      "x": 173.9925,
+      "y": 1309.4005
     },
     {
       "id": "anchor_quiz_004",
       "type": "quiz",
       "index": 4,
-      "x": 237.9592,
-      "y": 1350.2679
+      "x": 108.7231,
+      "y": 1498.9254
     },
     {
       "id": "anchor_read_005",
       "type": "read",
       "index": 5,
-      "x": 135.5961,
-      "y": 1526.5065
+      "x": 199.656,
+      "y": 1688.4503
     },
     {
       "id": "anchor_quiz_005",
       "type": "quiz",
       "index": 5,
-      "x": 238.5913,
-      "y": 1659.4798
+      "x": 277.1925,
+      "y": 1877.9751
+    },
+    {
+      "id": "anchor_read_006",
+      "type": "read",
+      "index": 6,
+      "x": 98.0384,
+      "y": 2067.5
+    },
+    {
+      "id": "anchor_quiz_006",
+      "type": "quiz",
+      "index": 6,
+      "x": 165.2535,
+      "y": 2257.0249
+    },
+    {
+      "id": "anchor_read_007",
+      "type": "read",
+      "index": 7,
+      "x": 276.9041,
+      "y": 2446.5498
+    },
+    {
+      "id": "anchor_quiz_007",
+      "type": "quiz",
+      "index": 7,
+      "x": 165.2535,
+      "y": 2636.0747
+    },
+    {
+      "id": "anchor_read_008",
+      "type": "read",
+      "index": 8,
+      "x": 98.5916,
+      "y": 2825.5995
+    },
+    {
+      "id": "anchor_quiz_008",
+      "type": "quiz",
+      "index": 8,
+      "x": 163.9925,
+      "y": 3015.1244
+    },
+    {
+      "id": "anchor_read_009",
+      "type": "read",
+      "index": 9,
+      "x": 317.2407,
+      "y": 3204.6493
+    },
+    {
+      "id": "anchor_quiz_009",
+      "type": "quiz",
+      "index": 9,
+      "x": 108.0384,
+      "y": 3394.1742
+    },
+    {
+      "id": "anchor_quiz_010",
+      "type": "quiz",
+      "index": 10,
+      "x": 190.4838,
+      "y": 3583.699
     }
   ]
 }

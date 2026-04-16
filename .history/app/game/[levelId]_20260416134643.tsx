@@ -2,6 +2,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
@@ -205,8 +206,8 @@ export default function QuizMenuScreen() {
         screenWidth={screenWidth}
         LevelSvg={LevelSvg}
         bgAnchor={bgAnchor}
-       bgImageSource={theme.bgImageSource}
-platformImageSource={theme.platformImageSource}
+        bgImageSource={level_001_bg}
+        platformImageSource={imgPlatformWaterLily_01}
         placedNodes={placedNodes}
         unlockedIds={unlockedIds}
         progressByQuizId={progressByQuizId}

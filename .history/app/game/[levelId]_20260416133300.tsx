@@ -2,6 +2,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
@@ -25,7 +26,6 @@ import {
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
 
-
 const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.png");
 
 export default function QuizMenuScreen() {
@@ -39,7 +39,6 @@ export default function QuizMenuScreen() {
   const currentLevel = levelMap[levelId];
   const layout = currentLevel.layout;
   const LevelSvg = currentLevel.Svg;
-  const theme = currentLevel.theme;
 
   const safeBonusLevels = bonusLevels as BonusLevelItem[];
 
@@ -135,87 +134,91 @@ export default function QuizMenuScreen() {
   );
 
   return (
-  <SafeAreaView style={styles.safe}>
-    <DevMenu
-      showDevMenu={showDevMenu}
-      onToggle={() => setShowDevMenu((prev) => !prev)}
-      onReset={resetAllProgress}
-      onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
-      onUnlockAll={devUnlockAllLevels}
-    />
-
-    <Pressable
-      onPress={() => setShowLevelMenu((prev) => !prev)}
-      style={styles.levelMenuToggle}
-    >
-      <Text style={styles.levelMenuToggleText}>
-        {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-      </Text>
-    </Pressable>
-
-    <ScrollView contentContainerStyle={styles.container}>
-      {showLevelMenu ? (
-        <ChapterMenuMap
-          currentLevelId={levelId}
-          unlockedLevelIds={unlockedLevelIds}
-        />
-      ) : null}
-
-      <Text style={styles.sectionTitle}>Bonus</Text>
-
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.bonusBar}
-      >
-        {bonusQuizzes.map((quiz) => {
-          const bonus =
-            safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
-          const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
-
-          return (
-            <Pressable
-              key={quiz.id}
-              disabled={!isUnlocked}
-              onPress={() => {
-                if (!isUnlocked) return;
-
-                runRouteTransition({
-                  delayMs: 240,
-                  go: () => {
-                    router.push(`/quiz/${quiz.id}`);
-                  },
-                });
-              }}
-              style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
-            >
-              <Text style={styles.bonusBtnText}>
-                {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
-
-      <Text style={styles.headerTitle}>{currentLevel.label}</Text>
-
-      <LevelMapView
-        layout={layout}
-        scale={scale}
-        screenWidth={screenWidth}
-        LevelSvg={LevelSvg}
-        bgAnchor={bgAnchor}
-       bgImageSource={theme.bgImageSource}
-platformImageSource={theme.platformImageSource}
-        placedNodes={placedNodes}
-        unlockedIds={unlockedIds}
-        progressByQuizId={progressByQuizId}
-        pressedId={pressedId}
-        transitioningId={transitioningId}
-        onPressReadNode={handlePressReadNode}
-        onPressQuizNode={handlePressQuizNode}
+    <SafeAreaView style={styles.safe}>
+      <DevMenu
+        showDevMenu={showDevMenu}
+        onToggle={() => setShowDevMenu((prev) => !prev)}
+        onReset={resetAllProgress}
+        onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
+        onUnlockAll={devUnlockAllLevels}
       />
-    </ScrollView>
-  </SafeAreaView>
-);
+
+      <Pressable
+        onPress={() => setShowLevelMenu((prev) => !prev)}
+        style={styles.levelMenuToggle}
+      >
+        <Text style={styles.levelMenuToggleText}>
+          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+        </Text>
+      </Pressable>
+
+      <ScrollView contentContainerStyle={styles.container}>
+        {showLevelMenu ? (
+          <ChapterMenuMap
+            currentLevelId={levelId}
+            unlockedLevelIds={unlockedLevelIds}
+          />
+        ) : null}
+
+         <Text style={styles.sectionTitle}>Bonus</Text>
+
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.bonusBar}
+        >
+
+        <Text style={styles.headerTitle}>{currentLevel.label}</Text>
+
+
+
+        <LevelMapView
+          layout={layout}
+          scale={scale}
+          screenWidth={screenWidth}
+          LevelSvg={LevelSvg}
+          bgAnchor={bgAnchor}
+          bgImageSource={level_001_bg}
+          platformImageSource={imgPlatformWaterLily_01}
+          placedNodes={placedNodes}
+          unlockedIds={unlockedIds}
+          progressByQuizId={progressByQuizId}
+          pressedId={pressedId}
+          transitioningId={transitioningId}
+          onPressReadNode={handlePressReadNode}
+          onPressQuizNode={handlePressQuizNode}
+        />
+
+       
+          {bonusQuizzes.map((quiz) => {
+            const bonus =
+              safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
+            const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
+
+            return (
+              <Pressable
+                key={quiz.id}
+                disabled={!isUnlocked}
+                onPress={() => {
+                  if (!isUnlocked) return;
+
+                  runRouteTransition({
+                    delayMs: 240,
+                    go: () => {
+                      router.push(`/quiz/${quiz.id}`);
+                    },
+                  });
+                }}
+                style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
+              >
+                <Text style={styles.bonusBtnText}>
+                  {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
+      </ScrollView>
+    </SafeAreaView>
+  );
 }

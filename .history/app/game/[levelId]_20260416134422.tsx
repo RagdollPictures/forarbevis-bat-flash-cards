@@ -2,6 +2,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import level_001_bg from "../../assets/game/bg.jpg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
@@ -24,7 +25,7 @@ import {
 } from "./levelUnlocks";
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
-
+import currentLevel
 
 const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.png");
 

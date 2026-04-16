@@ -4,28 +4,12 @@ export type QuizItem = {
   subtitle?: string;
 };
 
-export type LevelTheme = {
-  bgImageSource: any;
-  platformImageSource: any;
-  palette?: {
-    sky?: string;
-    water?: string;
-    path?: string;
-    platform?: string;
-    accent?: string;
-  };
-  objects?: Record<string, string>;
-};
-
 export type MenuLevel = {
-  id: string;
   chapterId: string;
   label: string;
   iconName: string;
-  menuAnchorId: string;
   layout: any;
   Svg: any;
-  theme: LevelTheme;
 };
 
 export type BonusLevelItem = {

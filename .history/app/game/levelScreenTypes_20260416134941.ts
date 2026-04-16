@@ -22,7 +22,6 @@ export type MenuLevel = {
   chapterId: string;
   label: string;
   iconName: string;
-  menuAnchorId: string;
   layout: any;
   Svg: any;
   theme: LevelTheme;
