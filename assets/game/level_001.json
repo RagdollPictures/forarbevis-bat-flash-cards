@@ -5,6 +5,13 @@
   },
   "anchors": [
     {
+      "id": "anchor_object_01",
+      "type": "object",
+      "index": 1,
+      "x": 299.5101,
+      "y": 148.1559
+    },
+    {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,

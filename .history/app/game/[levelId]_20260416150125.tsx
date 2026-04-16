@@ -9,11 +9,7 @@ import ChapterMenuMap from "./ChapterMenuMap";
 import DevMenu from "./DevMenu";
 import LevelMapView from "./LevelMapView";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
-import {
-  getBgAnchor,
-  getObjectAnchors,
-  getPlacedNodes,
-} from "./levelNodeMapper";
+import { getBgAnchor, getPlacedNodes } from "./levelNodeMapper";
 import type {
   BonusLevelItem,
   ChapterTestPlacedNode,
@@ -29,6 +25,9 @@ import {
 } from "./levelUnlocks";
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
+
+
+const imgPlatformWaterLily_01 = require("../../assets/game/level_001_platform_01.png");
 
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
@@ -67,10 +66,6 @@ export default function QuizMenuScreen() {
     return getBgAnchor(layout);
   }, [layout]);
 
-  const objectAnchors = useMemo(() => {
-    return getObjectAnchors(layout);
-  }, [layout]);
-
   const {
     pressedId,
     transitioningId,
@@ -102,7 +97,7 @@ export default function QuizMenuScreen() {
 
   const unlockedLevelIds = useMemo(() => {
     return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
-  }, [levelIds, clearedIds, levelMap]);
+  }, [clearedIds, levelMap]);
 
   const unlockedBonusIds = useMemo(() => {
     return getUnlockedBonusIds(safeBonusLevels, clearedIds);
@@ -127,103 +122,101 @@ export default function QuizMenuScreen() {
     [runRouteTransition]
   );
 
-  const handlePressQuizNode = useCallback(
-    (node: QuizPlacedNode | ChapterTestPlacedNode) => {
-      runRouteTransition({
-        nodeId: node.id,
-        delayMs: 240,
-        go: () => {
-          router.push(`/quiz/${node.quizId}`);
-        },
-      });
-    },
-    [runRouteTransition]
-  );
+const handlePressQuizNode = useCallback(
+  (node: QuizPlacedNode | ChapterTestPlacedNode) => {
+    runRouteTransition({
+      nodeId: node.id,
+      delayMs: 240,
+      go: () => {
+        router.push(`/quiz/${node.quizId}`);
+      },
+    });
+  },
+  [runRouteTransition]
+);
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <DevMenu
-        showDevMenu={showDevMenu}
-        onToggle={() => setShowDevMenu((prev) => !prev)}
-        onReset={resetAllProgress}
-        onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
-        onUnlockAll={devUnlockAllLevels}
-      />
+  <SafeAreaView style={styles.safe}>
+    <DevMenu
+      showDevMenu={showDevMenu}
+      onToggle={() => setShowDevMenu((prev) => !prev)}
+      onReset={resetAllProgress}
+      onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
+      onUnlockAll={devUnlockAllLevels}
+    />
 
-      <Pressable
-        onPress={() => setShowLevelMenu((prev) => !prev)}
-        style={styles.levelMenuToggle}
-      >
-        <Text style={styles.levelMenuToggleText}>
-          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-        </Text>
-      </Pressable>
+    <Pressable
+      onPress={() => setShowLevelMenu((prev) => !prev)}
+      style={styles.levelMenuToggle}
+    >
+      <Text style={styles.levelMenuToggleText}>
+        {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+      </Text>
+    </Pressable>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        {showLevelMenu ? (
-          <ChapterMenuMap
-            currentLevelId={levelId}
-            unlockedLevelIds={unlockedLevelIds}
-          />
-        ) : null}
-
-        <Text style={styles.sectionTitle}>Bonus</Text>
-
-        <ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          contentContainerStyle={styles.bonusBar}
-        >
-          {bonusQuizzes.map((quiz) => {
-            const bonus =
-              safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
-            const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
-
-            return (
-              <Pressable
-                key={quiz.id}
-                disabled={!isUnlocked}
-                onPress={() => {
-                  if (!isUnlocked) return;
-
-                  runRouteTransition({
-                    delayMs: 240,
-                    go: () => {
-                      router.push(`/quiz/${quiz.id}`);
-                    },
-                  });
-                }}
-                style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
-              >
-                <Text style={styles.bonusBtnText}>
-                  {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
-                </Text>
-              </Pressable>
-            );
-          })}
-        </ScrollView>
-
-        <Text style={styles.headerTitle}>{currentLevel.label}</Text>
-
-        <LevelMapView
-          layout={layout}
-          scale={scale}
-          screenWidth={screenWidth}
-          LevelSvg={LevelSvg}
-          bgAnchor={bgAnchor}
-          bgImageSource={theme.bgImageSource}
-          platformImageSource={theme.platformImageSource}
-          placedNodes={placedNodes}
-          objectAnchors={objectAnchors}
-          objectMap={theme.objects}
-          unlockedIds={unlockedIds}
-          progressByQuizId={progressByQuizId}
-          pressedId={pressedId}
-          transitioningId={transitioningId}
-          onPressReadNode={handlePressReadNode}
-          onPressQuizNode={handlePressQuizNode}
+    <ScrollView contentContainerStyle={styles.container}>
+      {showLevelMenu ? (
+        <ChapterMenuMap
+          currentLevelId={levelId}
+          unlockedLevelIds={unlockedLevelIds}
         />
+      ) : null}
+
+      <Text style={styles.sectionTitle}>Bonus</Text>
+
+      <ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.bonusBar}
+      >
+        {bonusQuizzes.map((quiz) => {
+          const bonus =
+            safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
+          const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
+
+          return (
+            <Pressable
+              key={quiz.id}
+              disabled={!isUnlocked}
+              onPress={() => {
+                if (!isUnlocked) return;
+
+                runRouteTransition({
+                  delayMs: 240,
+                  go: () => {
+                    router.push(`/quiz/${quiz.id}`);
+                  },
+                });
+              }}
+              style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
+            >
+              <Text style={styles.bonusBtnText}>
+                {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
+              </Text>
+            </Pressable>
+          );
+        })}
       </ScrollView>
-    </SafeAreaView>
-  );
+
+      <Text style={styles.headerTitle}>{currentLevel.label}</Text>
+
+      <LevelMapView
+        layout={layout}
+        scale={scale}
+        screenWidth={screenWidth}
+        LevelSvg={LevelSvg}
+        bgAnchor={bgAnchor}
+       bgImageSource={theme.bgImageSource}
+platformImageSource={theme.platformImageSource}
+        placedNodes={placedNodes}
+        unlockedIds={unlockedIds}
+        progressByQuizId={progressByQuizId}
+        pressedId={pressedId}
+        transitioningId={transitioningId}
+        onPressReadNode={handlePressReadNode}
+        onPressQuizNode={handlePressQuizNode}
+      />
+    </ScrollView>
+  </SafeAreaView>
+);
 }
