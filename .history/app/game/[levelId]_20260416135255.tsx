@@ -12,7 +12,6 @@ import { getLevelId, levelIds, levelsById } from "./levelConfig";
 import { getBgAnchor, getPlacedNodes } from "./levelNodeMapper";
 import type {
   BonusLevelItem,
-  ChapterTestPlacedNode,
   MenuLevel,
   QuizItem,
   QuizPlacedNode,
@@ -122,18 +121,18 @@ export default function QuizMenuScreen() {
     [runRouteTransition]
   );
 
-const handlePressQuizNode = useCallback(
-  (node: QuizPlacedNode | ChapterTestPlacedNode) => {
-    runRouteTransition({
-      nodeId: node.id,
-      delayMs: 240,
-      go: () => {
-        router.push(`/quiz/${node.quizId}`);
-      },
-    });
-  },
-  [runRouteTransition]
-);
+  const handlePressQuizNode = useCallback(
+    (node: QuizPlacedNode) => {
+      runRouteTransition({
+        nodeId: node.id,
+        delayMs: 240,
+        go: () => {
+          router.push(`/quiz/${node.quizId}`);
+        },
+      });
+    },
+    [runRouteTransition]
+  );
 
   return (
   <SafeAreaView style={styles.safe}>

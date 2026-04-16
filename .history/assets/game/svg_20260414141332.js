@@ -7,11 +7,9 @@ function parseAttributes(tag) {
   const attrs = {};
   const attrRegex = /([:@\w-]+)\s*=\s*"([^"]*)"/g;
   let match;
-
   while ((match = attrRegex.exec(tag))) {
     attrs[match[1]] = match[2];
   }
-
   return attrs;
 }
 
@@ -27,14 +25,12 @@ function parseAnchorMeta(anchorId) {
     };
   }
 
-  const levelMatch = anchorId.match(
-    /^anchor_(read|quiz|chapter_test)_(\d+)$/
-  );
-  if (levelMatch) {
+  const pairMatch = anchorId.match(/^anchor_(read|quiz)_(\d+)$/);
+  if (pairMatch) {
     return {
       mode: "level",
-      type: levelMatch[1],
-      index: Number(levelMatch[2]),
+      type: pairMatch[1],
+      index: Number(pairMatch[2]),
     };
   }
 
@@ -78,7 +74,7 @@ function extractAnchors(svgText) {
 
     if (
       anchorId !== "anchor_bg" &&
-      !/^anchor_(read|quiz|chapter_test)_\d+$/.test(anchorId) &&
+      !/^anchor_(read|quiz)_\d+$/.test(anchorId) &&
       !/^anchor_\d+$/.test(anchorId)
     ) {
       continue;
@@ -99,11 +95,10 @@ function extractAnchors(svgText) {
     } else if (ellipseMatch) {
       shapeAttrs = parseAttributes(ellipseMatch[1]);
     } else if (anchorId === "anchor_bg") {
+      // Fallback: om anchor_bg inte har circle/ellipse, använd viewBox-mitten senare
       shapeAttrs = null;
     } else {
-      throw new Error(
-        `Ingen circle/ellipse hittades i gruppen ${rawId || anchorId}`
-      );
+      throw new Error(`Ingen circle/ellipse hittades i gruppen ${rawId || anchorId}`);
     }
 
     let x;
@@ -117,6 +112,7 @@ function extractAnchors(svgText) {
         throw new Error(`Ogiltiga cx/cy i ${rawId || anchorId}`);
       }
     } else {
+      // anchor_bg utan circle/ellipse får sättas senare i convertSvgFile
       x = null;
       y = null;
     }
@@ -150,31 +146,20 @@ function extractAnchors(svgText) {
     seen.add(anchor.id);
   }
 
-  const typeOrder = {
-    read: 0,
-    quiz: 1,
-    chapter_test: 2,
-  };
-
   anchors.sort((a, b) => {
     if (a.id === "anchor_bg") return -1;
     if (b.id === "anchor_bg") return 1;
 
-    const aIndex =
-      typeof a.index === "number" ? a.index : Number.MAX_SAFE_INTEGER;
-    const bIndex =
-      typeof b.index === "number" ? b.index : Number.MAX_SAFE_INTEGER;
+    const aIndex = typeof a.index === "number" ? a.index : Number.MAX_SAFE_INTEGER;
+    const bIndex = typeof b.index === "number" ? b.index : Number.MAX_SAFE_INTEGER;
 
     if (aIndex !== bIndex) return aIndex - bIndex;
 
-    const aTypeOrder =
-      a.type in typeOrder ? typeOrder[a.type] : Number.MAX_SAFE_INTEGER;
-    const bTypeOrder =
-      b.type in typeOrder ? typeOrder[b.type] : Number.MAX_SAFE_INTEGER;
+    if (a.type === b.type) return 0;
+    if (!a.type) return -1;
+    if (!b.type) return 1;
 
-    if (aTypeOrder !== bTypeOrder) return aTypeOrder - bTypeOrder;
-
-    return a.id.localeCompare(b.id, undefined, { numeric: true });
+    return a.type === "read" ? -1 : 1;
   });
 
   return anchors;
@@ -186,10 +171,7 @@ function convertSvgFile(svgPath) {
   const anchors = extractAnchors(svgText);
 
   const bgAnchor = anchors.find((a) => a.id === "anchor_bg");
-  if (
-    bgAnchor &&
-    (typeof bgAnchor.x !== "number" || typeof bgAnchor.y !== "number")
-  ) {
+  if (bgAnchor && (typeof bgAnchor.x !== "number" || typeof bgAnchor.y !== "number")) {
     bgAnchor.x = viewBox.width / 2;
     bgAnchor.y = viewBox.height / 2;
   }
@@ -206,10 +188,7 @@ function convertSvgFile(svgPath) {
     svgPath,
     outPath,
     anchorCount: anchors.length,
-    pairCount: anchors.filter(
-      (a) => a.type === "read" || a.type === "quiz"
-    ).length / 2,
-    chapterTestCount: anchors.filter((a) => a.type === "chapter_test").length,
+    pairCount: anchors.filter((a) => a.type === "read" || a.type === "quiz").length / 2,
     viewBox,
   };
 }
@@ -231,13 +210,7 @@ function run() {
     try {
       const result = convertSvgFile(fullPath);
       console.log(
-        `OK: ${path.basename(result.svgPath)} -> ${path.basename(
-          result.outPath
-        )} | viewBox ${result.viewBox.width}x${result.viewBox.height} | ${
-          result.anchorCount
-        } anchors (${result.pairCount} par, ${
-          result.chapterTestCount
-        } chapter test)`
+        `OK: ${path.basename(result.svgPath)} -> ${path.basename(result.outPath)} | viewBox ${result.viewBox.width}x${result.viewBox.height} | ${result.anchorCount} anchors (${result.pairCount} par)`
       );
     } catch (err) {
       console.error(`FEL i ${file}: ${err.message}`);
