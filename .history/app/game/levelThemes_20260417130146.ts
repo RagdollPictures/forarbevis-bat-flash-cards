@@ -9,6 +9,8 @@ const basePalette = {
 };
 
 const level001Theme: LevelTheme = {
+  bgImageSource: require("../../assets/game/bg.jpg"),
+  platformImageSource: require("../../assets/game/level_001_platform_01.png"),
   palette: { ...basePalette },
   levelLayerId: "level_001",
   decoCount: 5,
@@ -33,6 +35,8 @@ const level001Theme: LevelTheme = {
 };
 
 const defaultTheme: LevelTheme = {
+  bgImageSource: require("../../assets/game/bg.jpg"),
+  platformImageSource: require("../../assets/game/level_001_platform_01.png"),
   palette: { ...basePalette },
   levelLayerId: "level_001",
   decoCount: 3,

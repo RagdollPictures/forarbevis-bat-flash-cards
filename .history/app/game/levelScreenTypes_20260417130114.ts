@@ -12,7 +12,8 @@ export type LevelObjectConfig = {
 };
 
 export type LevelTheme = {
- 
+   bgImageSource: any;
+  platformImageSource: any;
   palette?: {
     sky?: string;
     water?: string;

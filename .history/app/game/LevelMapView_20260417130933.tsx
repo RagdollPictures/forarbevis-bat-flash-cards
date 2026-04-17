@@ -194,7 +194,6 @@ export default function LevelMapView({
                 delay={(node.x + node.y) % 1400}
                 amplitude={4}
                 rotateDeg={2}
-                paused={isPressed || isTransitioning}
               >
                 <NodeTransitionWrap
                   isPressed={isPressed}

@@ -1,7 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 const { transform } = require("@svgr/core");
-const prettier = require("prettier");
 
 const INPUT = path.join(__dirname, "../assets/game/level_001.svg");
 const OUTPUT = path.join(__dirname, "../app/game/SharedLevelSvg.tsx");
@@ -48,7 +47,7 @@ type SharedLevelSvgProps = SvgProps & {
 function isVisible(id: string, visibleLayerIds?: string[]) {
   if (!visibleLayerIds || visibleLayerIds.length === 0) return true;
 
-  if (id.startsWith("deco_") || /^level_\\d{3}$/.test(id)) {
+  if (id.startsWith("deco_") || id.startsWith("level_")) {
     return visibleLayerIds.includes(id);
   }
 
@@ -76,7 +75,7 @@ function addVisibilityToTargetElements(code) {
     if (!idMatch) return full;
 
     const id = idMatch[1];
-    if (!(id.startsWith("deco_") || /^level_\d{3}$/.test(id))) {
+    if (!(id.startsWith("deco_") || id.startsWith("level_"))) {
       return full;
     }
 
@@ -84,22 +83,12 @@ function addVisibilityToTargetElements(code) {
       return full;
     }
 
-    const selfClosing = full.endsWith("/>");
-    if (selfClosing) {
+    const trimmed = full.endsWith("/>");
+    if (trimmed) {
       return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"} />`;
     }
 
     return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"}>`;
-  });
-}
-
-async function formatCode(code) {
-  return prettier.format(code, {
-    parser: "typescript",
-    singleQuote: false,
-    trailingComma: "es5",
-    printWidth: 100,
-    semi: true,
   });
 }
 
@@ -139,7 +128,6 @@ async function main() {
   componentCode = addVisibleLayerHelper(componentCode);
   componentCode = addTypedProps(componentCode);
   componentCode = addVisibilityToTargetElements(componentCode);
-  componentCode = await formatCode(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");
   console.log(`Built ${OUTPUT}`);

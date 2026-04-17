@@ -18,57 +18,36 @@ export default function FloatingNode({
 }) {
   const progress = useRef(new Animated.Value(0)).current;
   const loopRef = useRef<Animated.CompositeAnimation | null>(null);
-  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
-
-    loopRef.current?.stop();
-    progress.stopAnimation();
-
     if (paused) {
+      loopRef.current?.stop();
       return;
     }
 
-    const startLoop = () => {
-      const loop = Animated.loop(
-        Animated.sequence([
-          Animated.timing(progress, {
-            toValue: 1,
-            duration: 1800,
-            easing: Easing.inOut(Easing.sin),
-            useNativeDriver: true,
-          }),
-          Animated.timing(progress, {
-            toValue: 0,
-            duration: 1800,
-            easing: Easing.inOut(Easing.sin),
-            useNativeDriver: true,
-          }),
-        ])
-      );
+    const loop = Animated.loop(
+      Animated.sequence([
+        Animated.timing(progress, {
+          toValue: 1,
+          duration: 1800,
+          delay,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+        Animated.timing(progress, {
+          toValue: 0,
+          duration: 1800,
+          easing: Easing.inOut(Easing.sin),
+          useNativeDriver: true,
+        }),
+      ])
+    );
 
-      loopRef.current = loop;
-      loop.start();
-    };
-
-    if (delay > 0) {
-      timeoutRef.current = setTimeout(startLoop, delay);
-    } else {
-      startLoop();
-    }
+    loopRef.current = loop;
+    loop.start();
 
     return () => {
-      if (timeoutRef.current) {
-        clearTimeout(timeoutRef.current);
-        timeoutRef.current = null;
-      }
-
-      loopRef.current?.stop();
-      progress.stopAnimation();
+      loop.stop();
     };
   }, [delay, paused, progress]);
 

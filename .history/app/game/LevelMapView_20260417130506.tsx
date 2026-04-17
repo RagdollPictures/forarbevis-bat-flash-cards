@@ -53,6 +53,8 @@ export default function LevelMapView({
   LevelSvg,
   visibleSvgLayerIds,
   bgAnchor,
+  bgImageSource,
+  platformImageSource,
   placedNodes,
   objectAnchors,
   objectMap,
@@ -74,6 +76,7 @@ export default function LevelMapView({
     >
       {bgAnchor ? (
         <Image
+          source={bgImageSource}
           contentFit="contain"
           style={{
             position: "absolute",
@@ -138,13 +141,20 @@ export default function LevelMapView({
                 delay={(node.x + node.y) % 1200}
                 amplitude={3}
                 rotateDeg={1.5}
-                paused={isPressed || isTransitioning}
               >
                 <NodeTransitionWrap
                   isPressed={isPressed}
                   isTransitioning={isTransitioning}
                 >
-                
+                  <Image
+                    source={platformImageSource}
+                    contentFit="contain"
+                    style={{
+                      position: "absolute",
+                      width: 256,
+                      height: 256,
+                    }}
+                  />
                   <View style={styles.ringWrap}>
                     <View style={styles.readCircle}>
                       <View style={styles.iconInner}>
@@ -194,13 +204,20 @@ export default function LevelMapView({
                 delay={(node.x + node.y) % 1400}
                 amplitude={4}
                 rotateDeg={2}
-                paused={isPressed || isTransitioning}
               >
                 <NodeTransitionWrap
                   isPressed={isPressed}
                   isTransitioning={isTransitioning}
                 >
-                 
+                  <Image
+                    source={platformImageSource}
+                    contentFit="contain"
+                    style={{
+                      position: "absolute",
+                      width: 256,
+                      height: 256,
+                    }}
+                  />
                   <View style={styles.ringWrap}>
                     <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                       <View style={styles.iconInner}>

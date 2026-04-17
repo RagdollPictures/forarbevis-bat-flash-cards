@@ -23,6 +23,8 @@ export const levelIds = [
 export type LevelId = (typeof levelIds)[number];
 
 const defaultTheme = {
+  bgImageSource: require(""),
+  platformImageSource: require("../../assets/game/level_001_platform_01.png"),
   palette: {
     sky: "#eef8ff",
     water: "#7fc9ff",

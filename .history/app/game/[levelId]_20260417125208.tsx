@@ -257,6 +257,8 @@ export default function QuizMenuScreen() {
           LevelSvg={LevelSvg}
           visibleSvgLayerIds={visibleSvgLayerIds}
           bgAnchor={bgAnchor}
+          bgImageSource={theme.bgImageSource}
+          platformImageSource={theme.platformImageSource}
           placedNodes={placedNodes}
           objectAnchors={objectAnchors}
           objectMap={theme.objects}
