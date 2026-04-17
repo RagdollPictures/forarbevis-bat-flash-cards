@@ -112,10 +112,9 @@ export const styles = StyleSheet.create({
   },
 
   bonusBar: {
-    alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
-  minHeight: 48 ,
+  minHeight: 48,
     marginBottom: 16,
     paddingHorizontal: 12,
     paddingBottom: 10,

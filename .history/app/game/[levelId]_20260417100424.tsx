@@ -181,7 +181,30 @@ export default function QuizMenuScreen() {
         onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
         onUnlockAll={devUnlockAllLevels}
       />
- <Text style={styles.sectionTitle}>Bonus</Text>
+
+      <Pressable
+        onPress={() => setShowLevelMenu((prev) => !prev)}
+        style={styles.levelMenuToggle}
+      >
+        <Text style={styles.levelMenuToggleText}>
+          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+        </Text>
+      </Pressable>
+
+
+      <ScrollView
+        contentContainerStyle={styles.container}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
+        {showLevelMenu ? (
+          <ChapterMenuMap
+            currentLevelId={levelId}
+            unlockedLevelIds={unlockedLevelIds}
+          />
+        ) : null}
+
+        <Text style={styles.sectionTitle}>Bonus</Text>
 
         <ScrollView
           horizontal
@@ -217,32 +240,7 @@ export default function QuizMenuScreen() {
           })}
         </ScrollView>
 
-      <Pressable
-        onPress={() => setShowLevelMenu((prev) => !prev)}
-        style={styles.levelMenuToggle}
-      >
-        <Text style={styles.levelMenuToggleText}>
-          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-        </Text>
-      </Pressable>
-
         <Text style={styles.headerTitle}>{currentLevel.label}</Text>
-      <Text style={styles.levelStickyTitle}>{activeSectionTitle}</Text>
-
-      <ScrollView
-        contentContainerStyle={styles.container}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-      >
-        {showLevelMenu ? (
-          <ChapterMenuMap
-            currentLevelId={levelId}
-            unlockedLevelIds={unlockedLevelIds}
-          />
-        ) : null}
-
-       
-
 
         <LevelMapView
           layout={layout}

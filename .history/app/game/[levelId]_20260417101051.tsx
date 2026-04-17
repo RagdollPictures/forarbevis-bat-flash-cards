@@ -243,6 +243,7 @@ export default function QuizMenuScreen() {
 
        
 
+        <Text style={styles.headerTitle}>{currentLevel.label}</Text>
 
         <LevelMapView
           layout={layout}

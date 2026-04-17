@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
-  minHeight: 48 ,
+  minHeight: 80,
     marginBottom: 16,
     paddingHorizontal: 12,
     paddingBottom: 10,

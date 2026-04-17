@@ -112,20 +112,17 @@ export const styles = StyleSheet.create({
   },
 
   bonusBar: {
-    alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
-  minHeight: 48 ,
+  
     marginBottom: 16,
     paddingHorizontal: 12,
-    paddingBottom: 10,
   },
 
   bonusBtn: {
-    justifyContent: "center",
-   paddingHorizontal: 14,
-  paddingVertical: 10,
+    paddingHorizontal: 12,
     marginRight: 8,
+    paddingVertical: 10,
     borderRadius: 999,
     backgroundColor: colorScheme.darkBlue,
   },

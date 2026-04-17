@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getQuizzesForChapter } from "../../constants/flashcards";
@@ -33,7 +33,6 @@ import { useLevelProgress } from "./useLevelProgress";
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [showLevelMenu, setShowLevelMenu] = useState(false);
-  const [activeSectionTitle, setActiveSectionTitle] = useState("");
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -63,37 +62,6 @@ export default function QuizMenuScreen() {
   const placedNodes = useMemo(() => {
     return getPlacedNodes(layout, quizzes);
   }, [layout, quizzes]);
-
-  const readNodes = useMemo(() => {
-    return placedNodes
-      .filter((node): node is ReadPlacedNode => node.type === "read")
-      .sort((a, b) => a.y - b.y);
-  }, [placedNodes]);
-
-  useEffect(() => {
-    setActiveSectionTitle(readNodes[0]?.title ?? currentLevel.label);
-  }, [readNodes, currentLevel.label]);
-
-  const handleScroll = useCallback(
-    (event: any) => {
-      const scrollY = event.nativeEvent.contentOffset.y;
-
-      const probeY = scrollY / scale + 80;
-
-      let currentTitle = readNodes[0]?.title ?? currentLevel.label;
-
-      for (const node of readNodes) {
-        if (node.y <= probeY) {
-          currentTitle = node.title;
-        } else {
-          break;
-        }
-      }
-
-      setActiveSectionTitle(currentTitle);
-    },
-    [readNodes, scale, currentLevel.label]
-  );
 
   const bgAnchor = useMemo(() => {
     return getBgAnchor(layout);
@@ -181,7 +149,25 @@ export default function QuizMenuScreen() {
         onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
         onUnlockAll={devUnlockAllLevels}
       />
- <Text style={styles.sectionTitle}>Bonus</Text>
+
+      <Pressable
+        onPress={() => setShowLevelMenu((prev) => !prev)}
+        style={styles.levelMenuToggle}
+      >
+        <Text style={styles.levelMenuToggleText}>
+          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+        </Text>
+      </Pressable>
+
+      <ScrollView contentContainerStyle={styles.container}>
+        {showLevelMenu ? (
+          <ChapterMenuMap
+            currentLevelId={levelId}
+            unlockedLevelIds={unlockedLevelIds}
+          />
+        ) : null}
+
+        <Text style={styles.sectionTitle}>Bonus</Text>
 
         <ScrollView
           horizontal
@@ -217,52 +203,27 @@ export default function QuizMenuScreen() {
           })}
         </ScrollView>
 
-      <Pressable
-        onPress={() => setShowLevelMenu((prev) => !prev)}
-        style={styles.levelMenuToggle}
-      >
-        <Text style={styles.levelMenuToggleText}>
-          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
-        </Text>
-      </Pressable>
-
         <Text style={styles.headerTitle}>{currentLevel.label}</Text>
-      <Text style={styles.levelStickyTitle}>{activeSectionTitle}</Text>
-
-      <ScrollView
-        contentContainerStyle={styles.container}
-        onScroll={handleScroll}
-        scrollEventThrottle={16}
-      >
-        {showLevelMenu ? (
-          <ChapterMenuMap
-            currentLevelId={levelId}
-            unlockedLevelIds={unlockedLevelIds}
-          />
-        ) : null}
-
-       
-
 
         <LevelMapView
-          layout={layout}
-          scale={scale}
-          screenWidth={screenWidth}
-          LevelSvg={LevelSvg}
-          bgAnchor={bgAnchor}
-          bgImageSource={theme.bgImageSource}
-          platformImageSource={theme.platformImageSource}
-          placedNodes={placedNodes}
-          objectAnchors={objectAnchors}
-          objectMap={theme.objects}
-          objectAssets={theme.objectAssets}
-          unlockedIds={unlockedIds}
-          progressByQuizId={progressByQuizId}
-          pressedId={pressedId}
-          transitioningId={transitioningId}
-          onPressReadNode={handlePressReadNode}
-          onPressQuizNode={handlePressQuizNode}
-        />
+  layout={layout}
+  scale={scale}
+  screenWidth={screenWidth}
+  LevelSvg={LevelSvg}
+  bgAnchor={bgAnchor}
+  bgImageSource={theme.bgImageSource}
+  platformImageSource={theme.platformImageSource}
+  placedNodes={placedNodes}
+  objectAnchors={objectAnchors}
+  objectMap={theme.objects}
+  objectAssets={theme.objectAssets}
+  unlockedIds={unlockedIds}
+  progressByQuizId={progressByQuizId}
+  pressedId={pressedId}
+  transitioningId={transitioningId}
+  onPressReadNode={handlePressReadNode}
+  onPressQuizNode={handlePressQuizNode}
+/>
       </ScrollView>
     </SafeAreaView>
   );

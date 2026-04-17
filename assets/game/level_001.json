@@ -10,13 +10,6 @@
       "y": 2600
     },
     {
-      "id": "anchor_object_01",
-      "type": "object",
-      "index": 1,
-      "x": 192.3554,
-      "y": 174.0728
-    },
-    {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
@@ -36,13 +29,6 @@
       "index": 1,
       "x": 160.7457,
       "y": 837.8985
-    },
-    {
-      "id": "anchor_object_02",
-      "type": "object",
-      "index": 2,
-      "x": 273.6487,
-      "y": 1026.1877
     },
     {
       "id": "anchor_read_002",
