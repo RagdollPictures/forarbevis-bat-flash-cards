@@ -63,7 +63,6 @@ export default function LevelMapView({
   progressByQuizId,
   pressedId,
   transitioningId,
-  theme,
   onPressReadNode,
   onPressQuizNode,
 }: LevelMapViewProps) {

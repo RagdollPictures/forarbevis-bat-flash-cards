@@ -13,11 +13,10 @@ import LevelObject from "./LevelObject";
 import type {
   ChapterTestPlacedNode,
   LevelObjectConfig,
-  LevelTheme,
   ObjectAnchor,
   PlacedNode,
   QuizPlacedNode,
-  ReadPlacedNode
+  ReadPlacedNode,
 } from "./levelScreenTypes";
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
@@ -43,7 +42,6 @@ type LevelMapViewProps = {
   progressByQuizId: Record<string, SavedQuizProgress>;
   pressedId: string | null;
   transitioningId: string | null;
-  theme: LevelTheme;
   onPressReadNode: (node: ReadPlacedNode) => void;
   onPressQuizNode: (node: QuizPlacedNode | ChapterTestPlacedNode) => void;
 };
@@ -63,7 +61,6 @@ export default function LevelMapView({
   progressByQuizId,
   pressedId,
   transitioningId,
-  theme,
   onPressReadNode,
   onPressQuizNode,
 }: LevelMapViewProps) {

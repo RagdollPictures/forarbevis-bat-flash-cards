@@ -265,7 +265,6 @@ export default function QuizMenuScreen() {
           progressByQuizId={progressByQuizId}
           pressedId={pressedId}
           transitioningId={transitioningId}
-          theme={theme}
           onPressReadNode={handlePressReadNode}
           onPressQuizNode={handlePressQuizNode}
         />
