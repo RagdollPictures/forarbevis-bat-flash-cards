@@ -25,8 +25,8 @@ const level001Theme: LevelTheme = {
     },
   },
   objectAssets: {
-    tree_01: require("../../assets/game/level_001/tree_01.svg"),
-    tree_02: require("../../assets/game/level_001/tree_02.svg"),
+    tree_01: require("../../assets/game/level_001/tree_01.png"),
+    tree_02: require("../../assets/game/level_001/tree_02.png"),
   },
 };
 
@@ -49,7 +49,7 @@ const defaultTheme: LevelTheme = {
     },
   },
   objectAssets: {
-    tree_01: require("../../assets/game/level_001/tree_02.svg"),
+    tree_01: require("../../assets/game/level_001/tree_01.png"),
   },
 };
 

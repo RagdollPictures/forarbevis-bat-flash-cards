@@ -216,7 +216,6 @@ export default function QuizMenuScreen() {
   placedNodes={placedNodes}
   objectAnchors={objectAnchors}
   objectMap={theme.objects}
-  objectAssets={theme.objectAssets}
   unlockedIds={unlockedIds}
   progressByQuizId={progressByQuizId}
   pressedId={pressedId}
