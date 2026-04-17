@@ -64,13 +64,13 @@ function isVisible(id: string, visibleLayerIds?: string[]) {
 
 function addTypedProps(code) {
   return code.replace(
-    /const\s+(\w+)\s*=\s*\(props:\s*SvgProps\)\s*=>/,
-    "const $1 = (props: SharedLevelSvgProps) =>"
+    /const\s+(\w+)\s*=\s*\(([^)]*)\)\s*=>\s*\(/,
+    "const $1 = (props: SharedLevelSvgProps) => ("
   );
 }
 
-function addVisibilityToTargetElements(code) {
-  return code.replace(/<([A-Z][A-Za-z0-9]*)([\s\S]*?)\/?>/g, (full, tagName, attrs) => {
+function addVisibilityToTargetGroups(code) {
+  return code.replace(/<G\b([\s\S]*?)>/g, (full, attrs) => {
     const idMatch = attrs.match(/\bid="([^"]+)"/);
     if (!idMatch) return full;
 
@@ -83,12 +83,7 @@ function addVisibilityToTargetElements(code) {
       return full;
     }
 
-    const trimmed = full.endsWith("/>");
-    if (trimmed) {
-      return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"} />`;
-    }
-
-    return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"}>`;
+    return `<G${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"}>`;
   });
 }
 
@@ -113,8 +108,6 @@ async function main() {
               overrides: {
                 removeViewBox: false,
                 cleanupIds: false,
-                collapseGroups: false,
-                mergePaths: false,
               },
             },
           },
@@ -127,7 +120,7 @@ async function main() {
   componentCode = ensureSvgTagHasProps(componentCode, viewBox);
   componentCode = addVisibleLayerHelper(componentCode);
   componentCode = addTypedProps(componentCode);
-  componentCode = addVisibilityToTargetElements(componentCode);
+  componentCode = addVisibilityToTargetGroups(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");
   console.log(`Built ${OUTPUT}`);
