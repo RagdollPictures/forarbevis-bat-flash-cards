@@ -8,7 +8,6 @@ import { styles } from "../quiz/styles";
 import ChapterMenuMap from "./ChapterMenuMap";
 import DevMenu from "./DevMenu";
 import LevelMapView from "./LevelMapView";
-import { getVisibleSvgLayerIds } from "./getVisibleSvgLayerIds";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
 import {
   getBgAnchor,
@@ -43,12 +42,7 @@ export default function QuizMenuScreen() {
   const currentLevel = levelMap[levelId];
   const layout = currentLevel.layout;
   const LevelSvg = currentLevel.Svg;
- const theme = currentLevel.theme;
-
-
- const visibleSvgLayerIds = useMemo(() => {
-  return getVisibleSvgLayerIds(theme);
-}, [theme]);
+  const theme = currentLevel.theme;
 
   const safeBonusLevels = bonusLevels as BonusLevelItem[];
 
@@ -255,7 +249,6 @@ export default function QuizMenuScreen() {
           scale={scale}
           screenWidth={screenWidth}
           LevelSvg={LevelSvg}
-          visibleSvgLayerIds={visibleSvgLayerIds}
           bgAnchor={bgAnchor}
           bgImageSource={theme.bgImageSource}
           platformImageSource={theme.platformImageSource}

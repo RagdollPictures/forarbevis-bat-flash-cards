@@ -32,7 +32,6 @@ type LevelMapViewProps = {
   scale: number;
   screenWidth: number;
   LevelSvg: any;
-  visibleSvgLayerIds: string[];
   bgAnchor: any;
   bgImageSource: any;
   platformImageSource: any;
@@ -53,7 +52,6 @@ export default function LevelMapView({
   scale,
   screenWidth,
   LevelSvg,
-  visibleSvgLayerIds,
   bgAnchor,
   bgImageSource,
   platformImageSource,
@@ -93,7 +91,7 @@ export default function LevelMapView({
       <LevelSvg
         width={screenWidth}
         height={layout.viewBox.height * scale}
-        visibleLayerIds={visibleSvgLayerIds}
+         visibleLayerIds={visibleSvgLayerIds}
         style={{
           position: "absolute",
           left: 0,
