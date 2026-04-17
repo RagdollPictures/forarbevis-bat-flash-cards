@@ -4,7 +4,7 @@ import type { SvgProps } from "react-native-svg";
 
 type SharedLevelSvgProps = SvgProps & {
   visibleLayerIds?: string[];
-  decoColors?: Partial<Record<string, string>>;
+  layerColors?: Partial<Record<string, string>>;
 };
 
 function isVisible(id: string, visibleLayerIds?: string[]) {
@@ -20,167 +20,323 @@ function isVisible(id: string, visibleLayerIds?: string[]) {
 const SharedLevelSvg = (props: SharedLevelSvgProps) => (
   <Svg viewBox="0 0 375 5200" {...props}>
     <G id="anchor_bg">
-      <Path fill="#0183e1" d="M0 0h375v5200H0z" />
+      <Path fill={props.layerColors?.["anchor_bg"] ?? "#0183e1"} d="M0 0h375v5200H0z" />
     </G>
-    <G id="anchor_read_001">
-      <Circle cx={190.296} cy={359.815} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_001">
-      <Circle cx={254.832} cy={597.496} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_002">
-      <Circle cx={154.632} cy={835.178} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_002">
-      <Circle cx={119.826} cy={1118.238} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_003">
-      <Circle cx={210.89} cy={1355.919} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_003">
-      <Circle cx={283.138} cy={1593.601} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_004">
-      <Circle cx={185.227} cy={1831.282} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_004">
-      <Circle cx={119.957} cy={2068.963} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_005">
-      <Circle cx={210.89} cy={2306.645} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_005">
-      <Circle cx={275.425} cy={2544.326} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_006">
-      <Circle cx={109.273} cy={2782.008} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_006">
-      <Circle cx={176.488} cy={3019.689} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_007">
-      <Circle cx={267.136} cy={3257.371} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_007">
-      <Circle cx={176.488} cy={3495.052} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_008">
-      <Circle cx={109.826} cy={3732.733} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_008">
-      <Circle cx={175.227} cy={3970.415} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_read_009">
-      <Circle cx={304.473} cy={4208.096} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_quiz_009">
-      <Circle cx={119.301} cy={4445.778} r={10} fill="#b0d339" />
-    </G>
-    <G id="anchor_chapter_test_01">
-      <Circle cx={160.746} cy={837.899} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_02">
-      <Circle cx={216.735} cy={1358.237} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_03">
-      <Circle cx={187.239} cy={1834.268} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_04">
-      <Circle cx={216.735} cy={2307.995} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_05">
-      <Circle cx={116.45} cy={2797.622} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_06">
-      <Circle cx={277.169} cy={3258.904} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_07">
-      <Circle cx={113.5} cy={3735.581} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_08">
-      <Circle cx={304.816} cy={4207.51} r={10} fill="#e20caa" />
-    </G>
-    <G id="anchor_chapter_test_09">
-      <Circle cx={188.752} cy={4860.021} r={10} fill="#e20caa" />
+    <G
+      id="deco_bottom_01"
+      display={isVisible("deco_bottom_01", props.visibleLayerIds) ? "flex" : "none"}
+    >
+      <Path
+        fill={props.layerColors?.["deco_bottom_01"] ?? "#fff"}
+        d="M126.198 242.21c11.03-7.546 124.819-28.446 156.75 85.923s-60.378 104.5-49.348 140.493S348.55 519.134 358.42 577.19s-39.478 98.693-109.725 110.885-154.427 1.161-163.135-52.83 96.952-103.339 83.6-149.202S77.43 445.404 66.98 358.902s48.186-109.144 59.217-116.691"
+      />
     </G>
     <G id="deco_01" display={isVisible("deco_01", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_01 ?? "#fff"}
-        d="M324.172 582.15c-4.865-47.677-71.029-62.272-86.11-80.272s-18.973-40.38-9.73-66.163 50.596-33.569 32.109-101.191C241.954 266.9 165.088 284.9 165.088 284.9c-75.894 26.757-51.076 90.177-40.38 113.353 11.676 25.298 38.92 33.082 55.948 40.38 17.027 7.297 38.433 50.109 31.622 69.568-6.811 19.46-34.055 54.488-41.839 74.434-7.784 19.947 2.433 54.001 18 71.029 6.615 7.234 68.529 25.016 77.84 20.919 36.487-16.054 62.758-44.758 57.893-92.434Z"
+        fill={props.layerColors?.["deco_01"] ?? "#fc5508"}
+        d="M306.755 579.828c-4.865-47.677-71.028-62.272-86.11-80.272s-18.973-40.38-9.73-66.164 50.596-33.568 32.11-101.19c-18.488-67.624-95.354-49.623-95.354-49.623-75.893 26.757-55.408 92.72-40.379 113.353 16.584 22.767 38.92 33.082 55.947 40.38 17.027 7.297 38.433 50.108 31.622 69.568-6.81 19.46-34.054 54.488-41.838 74.434s2.432 54.001 18 71.028c6.614 7.235 40.516 26.864 75.93 17.575 38.559-10.114 64.667-41.413 59.802-89.09Z"
       />
     </G>
     <G id="deco_02" display={isVisible("deco_02", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_02 ?? "#fff"}
+        fill={props.layerColors?.["deco_02"] ?? "#fff"}
         d="M69.734 1185.404c25.639 11.366 98.263 14.419 100.127 13.778l.092-1.615c1.946-34.055 37.946-44.758 35.514-90.975-2.433-46.217-38.92-54.001-54.488-79.299s-3.405-99.245 17.027-110.434 49.623-30.65 69.57-55.947c17.557-22.269-21.465-103.868-24.63-104.811-13.484-4.017-53.267-8.673-61.48-7.57-32.596 4.379-47.19 25.784-66.164 41.352s-26.27 50.596-.486 86.597 29.19 53.514 33.081 78.812-10.216 60.812-25.784 74.434-41.838 39.892-58.866 60.812-10.703 73.947 36.487 94.866Z"
       />
     </G>
     <G id="deco_03" display={isVisible("deco_03", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_03 ?? "#fff"}
+        fill={props.layerColors?.["deco_03"] ?? "#fff"}
         d="M166.06 1432.544c20.92 11.676 55.461 34.541 66.164 56.92s-37.947 37.947-55.46 57.893-6.812 67.137 7.783 80.272c9.925 8.932 53.662 41.922 63.744 44.745 15.105-15.554 79.773-14.114 82.691-79.773 2.92-65.677-48.163-72.974-65.676-87.569s-23.352-25.298-18.487-55.947 55.947-68.11 43.784-111.407c-11.297-40.22-100.648-69.95-104.777-67.889-7.426 3.706-14.73 7.651-22.145 11.381-4.828 2.429-38.839 62.235-38.486 87.643.486 35.028 19.946 52.055 40.866 63.731"
       />
     </G>
     <G id="deco_04" display={isVisible("deco_04", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_04 ?? "#fff"}
+        fill={props.layerColors?.["deco_04"] ?? "#fff"}
         d="m114.794 2163.26 41.531-18.878q6.23-3.358 13.098-4.102c7.177-21.566 25.5-19.978 33.125-50.48 8.757-35.028-10.703-64.704-28.217-87.083s-11.19-54.001 16.054-84.164c27.244-30.162 60.326 1.946 82.218-56.433 21.546-57.457-24.294-91.823-33.633-118.403l-.048-.014c-4.555-1.511-9.174-2.81-13.806-4.06-8.19-2.21-16.434-4.285-24.426-7.155a190 190 0 0 1-11.296-4.468c-5.988 4.069-12.668 8.21-19.928 12.963-26.757 17.513-44.271 36.487-55.947 62.271s6.324 68.11 18.973 87.083c12.65 18.973 1.46 52.055-8.757 77.839s-44.27 31.136-66.163 51.082-15.082 54.487-5.838 93.894c9.1 38.798 48.385 39.868 63.06 50.107Z"
       />
     </G>
     <G id="deco_05" display={isVisible("deco_05", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_05 ?? "#fff"}
+        fill={props.layerColors?.["deco_05"] ?? "#fff"}
         d="M183.088 2385.59c21.406 6.324 42.811 37.946 48.65 57.892 5.837 19.946-2.433 42.812-18.487 59.352-16.055 16.541-21.893 53.515-9.73 75.407 11.348 20.427 12.528 36.197 5.917 59.161 3.823 7.88 7.977 15.604 12.758 22.937 20.184-25.875 52.88-27.623 86.408-38.8 36.487-12.162 47.19-62.758 43.298-96.326s-32.595-46.217-55.46-64.704-31.136-34.54-37.46-72.974 34.54-43.785 30.648-97.786-65.677-69.082-94.866-78.812c-2.697-.9-5.163-1.849-7.42-2.858l-41.361 18.801a36.4 36.4 0 0 1-6.124 2.615c-4.966 28.794-18.778 64.587-21.962 91.876-3.405 29.19 43.785 57.893 65.19 64.218Z"
       />
     </G>
     <G id="deco_06" display={isVisible("deco_06", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_06 ?? "#fff"}
+        fill={props.layerColors?.["deco_06"] ?? "#fff"}
         d="M106.708 2881.328c18 22.865 16.055 72.975.487 96.326s-9.244 64.704 3.405 99.732 54.001 27.244 80.272 30.65c4.184.541 7.76 2.223 10.806 4.768a132 132 0 0 1 7.46-4.754c4.048-2.38 8.204-4.573 12.41-6.66 5.576-2.764 11.244-5.33 16.908-7.907.286-.977.642-1.81 1.065-2.475 6.811-10.703 28.217-52.055 12.65-95.84-15.569-43.785-42.326-43.298-70.543-58.38-28.216-15.08-34.54-46.216-35.027-71.514s37.946-19.46 46.217-57.893c8.27-38.433-8.27-44.271-13.622-70.542-1.275-6.26-.879-11.575.707-16.496q-1.282-1.335-2.52-2.713c-4.916-5.478-9.183-11.475-13.51-17.42a149 149 0 0 1-6.992-10.563 180 180 0 0 1-2.578-4.443c-22.285 4.224-41.739-4.05-83.596 21.959-50.109 31.135-39.406 67.623-37.46 102.164s55.46 49.136 73.461 72.001"
       />
     </G>
     <G id="deco_07" display={isVisible("deco_07", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_07 ?? "#fff"}
+        fill={props.layerColors?.["deco_07"] ?? "#fff"}
         d="M121.303 3564.368c4.554 3.996 7.327 8.668 8.55 13.746 15.668 3.102 31.554 5.028 47.235 8.038 3.631-3.807 7.517-7.066 11.351-9.622 20.433-13.622 61.785-16.54 80.272-57.893 18.487-41.352-14.108-57.406-29.19-110.434s45.244-73.46 56.92-75.407 52.055-8.27 57.893-71.028-38.92-78.326-74.92-92.435c-5.82-2.28-10.976-5.596-15.507-9.59-9.508 4.418-18.913 9.122-27.62 14.96-3.1 2.517-6.047 5.216-8.768 8.149-3.687 3.538-7.889 6.138-12.587 7.832-4.534 22.426-15.971 23.382-26.98 55.03-11.675 33.567-4.864 54.487 11.19 72 16.055 17.515 9.244 53.515 2.433 67.624s-28.217 16.054-59.84 20.433c-31.621 4.378-48.649 54.973-54 80.271-5.352 25.298 9.73 57.407 33.568 78.326Z"
       />
     </G>
     <G id="deco_08" display={isVisible("deco_08", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_08 ?? "#fff"}
+        fill={props.layerColors?.["deco_08"] ?? "#fff"}
         d="M84.816 3814.913c11.19 2.433 39.406 45.73 37.946 72.975-1.459 27.243-18.486 56.92-26.27 71.514-7.784 14.595-2.92 48.65 25.784 72.002 20.122 16.37 45.97 27.238 63.322 34.956 4.049-3.079 8.225-5.993 12.421-8.803 11.437-7.658 23.72-13.76 36.233-19.402 5.35-19.86 22.02-35.379 19.864-61.239-2.919-35.027-3.892-53.514-58.866-77.84-54.974-24.324-47.676-47.19-41.838-84.65s37.946-17.027 54.974-65.19c16.323-46.172-13.85-63.73-36.519-91.678q-.049-.013-.097-.028c-5.961-1.483-11.98-2.713-18.025-3.804-21.348-3.851-43.047-6.087-63.9-12.312a37 37 0 0 1-3.552-1.226 126 126 0 0 1-7.802 3.965c-41.838 19.46-54.487 53.515-57.893 100.218s53.028 68.11 64.218 70.542Z"
       />
     </G>
     <G id="deco_09" display={isVisible("deco_09", props.visibleLayerIds) ? "flex" : "none"}>
       <Path
-        fill={props.decoColors?.deco_09 ?? "#fff"}
+        fill={props.layerColors?.["deco_09"] ?? "#fff"}
         d="M364.064 4182.217c-2.919-29.19-47.676-57.893-82.218-65.19-11.846-2.503-20.143-5.865-26.287-10.555-8.565 4.246-16.916 8.893-24.803 14.291a118 118 0 0 0-6.718 5.753c3.445 13.643 5.293 26.222 3.807 32.35-3.892 16.054-20.432 42.811-10.703 77.84 9.73 35.026.487 44.756-7.297 64.703s-42.812 36-65.677 46.703-71.028 30.65-71.028 30.65c-38.433 16.054-60.326 84.163-20.92 133.786 39.407 49.622 108.976 22.865 127.949.973s22.379-74.92 18.973-112.38c-3.405-37.46 27.244-60.812 43.298-86.597s48.65-19.946 90.002-40.38c41.352-20.432 34.541-62.757 31.622-91.947Z"
+      />
+    </G>
+    <G id="anchor_read_001">
+      <Circle
+        cx={172.879}
+        cy={357.493}
+        r={10}
+        fill={props.layerColors?.["anchor_read_001"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_001">
+      <Circle
+        cx={237.415}
+        cy={595.174}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_001"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_002">
+      <Circle
+        cx={154.632}
+        cy={835.178}
+        r={10}
+        fill={props.layerColors?.["anchor_read_002"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_002">
+      <Circle
+        cx={119.826}
+        cy={1118.238}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_002"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_003">
+      <Circle
+        cx={210.89}
+        cy={1355.919}
+        r={10}
+        fill={props.layerColors?.["anchor_read_003"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_003">
+      <Circle
+        cx={283.138}
+        cy={1593.601}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_003"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_004">
+      <Circle
+        cx={185.227}
+        cy={1831.282}
+        r={10}
+        fill={props.layerColors?.["anchor_read_004"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_004">
+      <Circle
+        cx={119.957}
+        cy={2068.963}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_004"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_005">
+      <Circle
+        cx={210.89}
+        cy={2306.645}
+        r={10}
+        fill={props.layerColors?.["anchor_read_005"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_005">
+      <Circle
+        cx={275.425}
+        cy={2544.326}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_005"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_006">
+      <Circle
+        cx={109.273}
+        cy={2782.008}
+        r={10}
+        fill={props.layerColors?.["anchor_read_006"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_006">
+      <Circle
+        cx={176.488}
+        cy={3019.689}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_006"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_007">
+      <Circle
+        cx={267.136}
+        cy={3257.371}
+        r={10}
+        fill={props.layerColors?.["anchor_read_007"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_007">
+      <Circle
+        cx={176.488}
+        cy={3495.052}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_007"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_008">
+      <Circle
+        cx={109.826}
+        cy={3732.733}
+        r={10}
+        fill={props.layerColors?.["anchor_read_008"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_008">
+      <Circle
+        cx={175.227}
+        cy={3970.415}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_008"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_read_009">
+      <Circle
+        cx={304.473}
+        cy={4208.096}
+        r={10}
+        fill={props.layerColors?.["anchor_read_009"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_quiz_009">
+      <Circle
+        cx={119.301}
+        cy={4445.778}
+        r={10}
+        fill={props.layerColors?.["anchor_quiz_009"] ?? "#b0d339"}
+      />
+    </G>
+    <G id="anchor_chapter_test_01">
+      <Circle
+        cx={160.746}
+        cy={837.899}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_01"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_02">
+      <Circle
+        cx={216.735}
+        cy={1358.237}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_02"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_03">
+      <Circle
+        cx={187.239}
+        cy={1834.268}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_03"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_04">
+      <Circle
+        cx={216.735}
+        cy={2307.995}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_04"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_05">
+      <Circle
+        cx={116.45}
+        cy={2797.622}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_05"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_06">
+      <Circle
+        cx={277.169}
+        cy={3258.904}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_06"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_07">
+      <Circle
+        cx={113.5}
+        cy={3735.581}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_07"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_08">
+      <Circle
+        cx={304.816}
+        cy={4207.51}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_08"] ?? "#e20caa"}
+      />
+    </G>
+    <G id="anchor_chapter_test_09">
+      <Circle
+        cx={188.752}
+        cy={4860.021}
+        r={10}
+        fill={props.layerColors?.["anchor_chapter_test_09"] ?? "#e20caa"}
       />
     </G>
     <G id="level_001" display={isVisible("level_001", props.visibleLayerIds) ? "flex" : "none"}>
       <G>
-        <Path fill="#fc5508" d="M262.023 128.389h6.844v13.378h-6.844z" />
         <Path
-          fill="#fc5508"
+          fill={props.layerColors?.["level_001"] ?? "#fc5508"}
+          d="M262.023 128.389h6.844v13.378h-6.844z"
+        />
+        <Path
+          fill={props.layerColors?.["level_001"] ?? "#fc5508"}
           d="m264.135 85.407-20.452 43.507a2 2 0 0 0 1.81 2.85h40.532a2 2 0 0 0 1.816-2.838L267.76 85.42c-.713-1.544-2.903-1.551-3.626-.013"
         />
-        <Path fill="#b0d339" d="M113.129 127.842h6.844v13.378h-6.844z" />
         <Path
-          fill="#b0d339"
+          fill={props.layerColors?.["level_001"] ?? "#b0d339"}
+          d="M113.129 127.842h6.844v13.378h-6.844z"
+        />
+        <Path
+          fill={props.layerColors?.["level_001"] ?? "#b0d339"}
           d="M115.242 84.86 94.79 128.365a2 2 0 0 0 1.81 2.851h40.532a2 2 0 0 0 1.815-2.838l-20.08-43.507c-.712-1.543-2.902-1.55-3.626-.013"
         />
       </G>
     </G>
     <G id="level_002" display={isVisible("level_002", props.visibleLayerIds) ? "flex" : "none"}>
       <G>
-        <Path fill="#fc5508" d="M292.664 1487.351h6.844v13.378h-6.844z" />
         <Path
-          fill="#fc5508"
+          fill={props.layerColors?.["level_002"] ?? "#fc5508"}
+          d="M292.664 1487.351h6.844v13.378h-6.844z"
+        />
+        <Path
+          fill={props.layerColors?.["level_002"] ?? "#fc5508"}
           d="m294.776 1444.368-20.451 43.507a2 2 0 0 0 1.81 2.851h40.532a2 2 0 0 0 1.815-2.838l-20.08-43.507c-.712-1.543-2.903-1.55-3.626-.013"
         />
-        <Path fill="#b0d339" d="M143.771 1486.804h6.844v13.378h-6.844z" />
         <Path
-          fill="#b0d339"
+          fill={props.layerColors?.["level_002"] ?? "#b0d339"}
+          d="M143.771 1486.804h6.844v13.378h-6.844z"
+        />
+        <Path
+          fill={props.layerColors?.["level_002"] ?? "#b0d339"}
           d="m145.883 1443.821-20.452 43.507a2 2 0 0 0 1.81 2.85h40.532a2 2 0 0 0 1.816-2.837l-20.08-43.507c-.712-1.543-2.903-1.551-3.626-.013"
         />
       </G>
