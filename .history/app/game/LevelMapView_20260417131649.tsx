@@ -225,8 +225,8 @@ export default function LevelMapView({
             >
               <FloatingNode
                 delay={0}
-                amplitude={10}
-                rotateDeg={12}
+                amplitude={3}
+                rotateDeg={1.2}
               >
                 <NodeTransitionWrap
                   isPressed={isPressed}

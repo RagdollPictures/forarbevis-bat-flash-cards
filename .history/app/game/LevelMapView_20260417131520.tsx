@@ -134,80 +134,42 @@ export default function LevelMapView({
                 !isUnlocked && styles.tileLocked,
               ]}
             >
-              <NodeTransitionWrap
-                isPressed={isPressed}
-                isTransitioning={isTransitioning}
-              >
-                <View style={styles.ringWrap}>
-                  <View style={styles.readCircle}>
-                    <View style={styles.iconInner}>
-                      <SvgIcon
-                        name="book"
-                        size={30}
-                        color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                      />
+             
+                <NodeTransitionWrap
+                  isPressed={isPressed}
+                  isTransitioning={isTransitioning}
+                >
+                
+                  <View style={styles.ringWrap}>
+                    <View style={styles.readCircle}>
+                      <View style={styles.iconInner}>
+                        <SvgIcon
+                          name="book"
+                          size={30}
+                          color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                        />
+                      </View>
                     </View>
+
+                    {!isUnlocked ? (
+                      <View style={styles.lockBadge}>
+                        <SvgIcon name="lock" size={14} color="#ffffff" />
+                      </View>
+                    ) : null}
                   </View>
-
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
-                </View>
-              </NodeTransitionWrap>
+                </NodeTransitionWrap>
+            
             </Pressable>
           );
         }
 
-        if (node.type === "quiz") {
+        if (node.type === "quiz" || node.type === "chapter_test") {
           const saved = progressByQuizId[node.quizId] ?? null;
           const ringPercent = getFirstTryPercent(saved);
-          const iconName = getIconNameByQuizId(node.quizId);
-
-          return (
-            <Pressable
-              key={node.id}
-              onPress={() => {
-                if (!isUnlocked) return;
-                onPressQuizNode(node);
-              }}
-              disabled={!isUnlocked}
-              style={[
-                styles.absoluteNode,
-                { left, top },
-                !isUnlocked && styles.tileLocked,
-              ]}
-            >
-              <NodeTransitionWrap
-                isPressed={isPressed}
-                isTransitioning={isTransitioning}
-              >
-                <View style={styles.ringWrap}>
-                  <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
-                    <View style={styles.iconInner}>
-                      <SvgIcon
-                        name={iconName}
-                        size={30}
-                        color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                      />
-                    </View>
-                  </ProgressRing>
-
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
-                </View>
-              </NodeTransitionWrap>
-            </Pressable>
-          );
-        }
-
-        if (node.type === "chapter_test") {
-          const saved = progressByQuizId[node.quizId] ?? null;
-          const ringPercent = getFirstTryPercent(saved);
+          const iconName =
+            node.type === "chapter_test"
+              ? "award"
+              : getIconNameByQuizId(node.quizId);
 
           return (
             <Pressable
@@ -224,19 +186,21 @@ export default function LevelMapView({
               ]}
             >
               <FloatingNode
-                delay={0}
-                amplitude={10}
-                rotateDeg={12}
+                delay={(node.x + node.y) % 1400}
+                amplitude={4}
+                rotateDeg={2}
+                paused={isPressed || isTransitioning}
               >
                 <NodeTransitionWrap
                   isPressed={isPressed}
                   isTransitioning={isTransitioning}
                 >
+                 
                   <View style={styles.ringWrap}>
                     <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                       <View style={styles.iconInner}>
                         <SvgIcon
-                          name="boat"
+                          name={iconName}
                           size={30}
                           color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
                         />
