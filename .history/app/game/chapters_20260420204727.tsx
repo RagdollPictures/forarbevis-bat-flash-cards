@@ -1,6 +1,7 @@
-import { router } from "expo-router";
+import { router, Stack, useLocalSearchParams } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, Text, View } from "react-native";
+import { Dimensions, Pressable, ScrollView, Text, View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { SvgProps } from "react-native-svg";
 
 import chaptersMenu from "../../assets/game/chapters_menu.json";
@@ -39,8 +40,8 @@ import VajningsreglerIconOff from "../../assets/menu/vajningsregler_off.svg";
 
 import { getQuizzesForChapter, sources } from "../../constants/flashcards";
 import {
-  getAllQuizProgress,
-  type SavedQuizProgress,
+    getAllQuizProgress,
+    type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
 import { levelIds, levelsById, type LevelId } from "./levelConfig";
 
@@ -57,11 +58,6 @@ type ChaptersMenuLayout = {
     height: number;
   };
   anchors: Anchor[];
-};
-
-type ChapterMenuMapProps = {
-  currentLevelId: LevelId;
-  unlockedLevelIds: Set<string>;
 };
 
 type MenuIconComponent = React.ComponentType<SvgProps>;
@@ -135,13 +131,13 @@ function buildChapterProgressMap(
   return result;
 }
 
-export default function ChapterMenuMap({
-  currentLevelId,
-  unlockedLevelIds,
-}: ChapterMenuMapProps) {
+export default function ChaptersScreen() {
   const layout = chaptersMenu as ChaptersMenuLayout;
   const screenWidth = Dimensions.get("window").width;
   const scale = screenWidth / layout.viewBox.width;
+
+  const params = useLocalSearchParams<{ currentLevelId?: string }>();
+  const currentLevelId = (params.currentLevelId ?? levelIds[0]) as LevelId;
 
   const [chapterProgressMap, setChapterProgressMap] = useState<
     Record<string, number>
@@ -163,124 +159,157 @@ export default function ChapterMenuMap({
     };
   }, []);
 
+  const unlockedLevelIds = new Set(levelIds);
+
   return (
-    <View
-      style={{
-        width: screenWidth,
-        height: layout.viewBox.height * scale,
-        position: "relative",
-      }}
-    >
-      <ChaptersMenuSvg
-        width={screenWidth}
-        height={layout.viewBox.height * scale}
-      />
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#dff4ff" }}>
+      <Stack.Screen options={{ headerShown: false }} />
 
-      {levelIds.map((id) => {
-        const menuLevel = levelsById[id];
-        if (!menuLevel) return null;
-
-        const anchor = getAnchorById(layout, menuLevel.menuAnchorId);
-        if (!anchor) return null;
-
-        const isUnlocked = unlockedLevelIds.has(id);
-        const isCurrent = id === currentLevelId;
-
-        const centerX = anchor.x * scale;
-        const centerY = anchor.y * scale;
-
-        const iconSize = 100;
-        const iconRadius = iconSize / 2;
-
-        const ChapterIcon = isUnlocked
-          ? iconByChapterId[menuLevel.chapterId]
-          : iconOffByChapterId[menuLevel.chapterId];
-
-        const percent = chapterProgressMap[menuLevel.chapterId] ?? 0;
-
-        return (
-          <Pressable
-            key={id}
-            disabled={!isUnlocked}
-            onPress={() => {
-              if (!isUnlocked) return;
-
-              router.push({
-                pathname: "/game/[levelId]",
-                params: {
-                  levelId: id,
-                },
-              });
-            }}
+      <View
+        style={{
+          paddingHorizontal: 16,
+          paddingTop: 8,
+          paddingBottom: 12,
+        }}
+      >
+        <Pressable onPress={() => router.back()}>
+          <Text
             style={{
-              position: "absolute",
-              left: centerX,
-              top: centerY - iconRadius,
-              transform: [{ translateX: -iconRadius }],
-              width: iconSize,
-              alignItems: "center",
-              opacity: isUnlocked ? 1 : 0.65,
+              fontSize: 16,
+              fontWeight: "700",
+              color: "#111",
             }}
           >
-            <View
-              style={{
-                width: iconSize,
-                height: iconSize,
-                borderRadius: iconRadius,
-                alignItems: "center",
-                justifyContent: "center",
-                borderWidth: isCurrent ? 3 : 0,
-                borderColor: "#111",
-              }}
-            >
-              <View
+            Tillbaka
+          </Text>
+        </Pressable>
+      </View>
+
+      <ScrollView
+        contentContainerStyle={{
+          width: screenWidth,
+          minHeight: layout.viewBox.height * scale,
+        }}
+      >
+        <View
+          style={{
+            width: screenWidth,
+            height: layout.viewBox.height * scale,
+            position: "relative",
+          }}
+        >
+          <ChaptersMenuSvg
+            width={screenWidth}
+            height={layout.viewBox.height * scale}
+          />
+
+          {levelIds.map((id) => {
+            const menuLevel = levelsById[id];
+            if (!menuLevel) return null;
+
+            const anchor = getAnchorById(layout, menuLevel.menuAnchorId);
+            if (!anchor) return null;
+
+            const isUnlocked = unlockedLevelIds.has(id);
+            const isCurrent = id === currentLevelId;
+
+            const centerX = anchor.x * scale;
+            const centerY = anchor.y * scale;
+
+            const iconSize = 100;
+            const iconRadius = iconSize / 2;
+
+            const ChapterIcon = isUnlocked
+              ? iconByChapterId[menuLevel.chapterId]
+              : iconOffByChapterId[menuLevel.chapterId];
+
+            const percent = chapterProgressMap[menuLevel.chapterId] ?? 0;
+
+            return (
+              <Pressable
+                key={id}
+                disabled={!isUnlocked}
+                onPress={() => {
+                  if (!isUnlocked) return;
+
+                  router.replace({
+                    pathname: "/game/[levelId]",
+                    params: {
+                      levelId: id,
+                    },
+                  });
+                }}
                 style={{
-                  width: 34,
-                  height: 34,
+                  position: "absolute",
+                  left: centerX,
+                  top: centerY - iconRadius,
+                  transform: [{ translateX: -iconRadius }],
+                  width: iconSize,
                   alignItems: "center",
-                  justifyContent: "center",
+                  opacity: isUnlocked ? 1 : 0.65,
                 }}
               >
-                {ChapterIcon ? <ChapterIcon width={70} height={90} /> : null}
-              </View>
-            </View>
+                <View
+                  style={{
+                    width: iconSize,
+                    height: iconSize,
+                    borderRadius: iconRadius,
+                    alignItems: "center",
+                    justifyContent: "center",
+                    borderWidth: isCurrent ? 3 : 0,
+                    borderColor: "#111",
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 34,
+                      height: 34,
+                      alignItems: "center",
+                      justifyContent: "center",
+                    }}
+                  >
+                    {ChapterIcon ? <ChapterIcon width={70} height={90} /> : null}
+                  </View>
+                </View>
 
-            <View
-              style={{
-                paddingHorizontal: 8,
-                paddingVertical: 5,
-                borderRadius: 16,
-                backgroundColor: "#fff",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{
-                  fontSize: 10,
-                  fontWeight: "800",
-                  color: "#111",
-                  textAlign: "center",
-                }}
-                numberOfLines={1}
-              >
-                {menuLevel.titleShort}
-              </Text>
-            </View>
+                <View
+                  style={{
+                    paddingHorizontal: 8,
+                    paddingVertical: 5,
+                    borderRadius: 16,
+                    backgroundColor: "#fff",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Text
+                    style={{
+                      fontSize: 10,
+                      fontWeight: "800",
+                      color: "#111",
+                      textAlign: "center",
+                    }}
+                    numberOfLines={1}
+                  >
+                    {menuLevel.titleShort}
+                  </Text>
+                </View>
 
-            <Text
-              style={{
-                marginTop: 4,
-                fontSize: 10,
-                fontWeight: "700",
-                color: "#111",
-              }}
-            >
-              {Math.round(percent)}%
-            </Text>
-          </Pressable>
-        );
-      })}
-    </View>
+                <Text
+                  style={{
+                    marginTop: 4,
+                    fontSize: 10,
+                    fontWeight: "700",
+                    color: "#111",
+                  }}
+                >
+                  {Math.round(percent)}%
+                </Text>
+              </Pressable>
+            );
+          })}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }

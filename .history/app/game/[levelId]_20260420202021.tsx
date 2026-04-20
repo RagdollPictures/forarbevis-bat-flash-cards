@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
+import ChapterMenuMap from "./ChapterMenuMap";
 import DevMenu from "./DevMenu";
 import LevelMapView from "./LevelMapView";
 import { getVisibleSvgLayerIds } from "./getVisibleSvgLayerIds";
@@ -33,6 +34,7 @@ import { useLevelProgress } from "./useLevelProgress";
 
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
+  const [showLevelMenu, setShowLevelMenu] = useState(false);
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -195,20 +197,23 @@ export default function QuizMenuScreen() {
       </ScrollView>
 
       <Pressable
-       onPress={() =>
-  router.push({
-    pathname: "/game/chapters",
-    params: { currentLevelId: levelId },
-  })
-}
+        onPress={() => setShowLevelMenu((prev) => !prev)}
+        style={styles.levelMenuToggle}
       >
-       <Text style={styles.levelMenuToggleText}>VISA KAPITEL</Text>
+        <Text style={styles.levelMenuToggleText}>
+          {showLevelMenu ? "DÖLJ KAPITEL" : "VISA KAPITEL"}
+        </Text>
       </Pressable>
 
       <Text style={styles.headerTitle}>{currentLevel.label}</Text>
 
       <ScrollView contentContainerStyle={styles.container}>
-       
+        {showLevelMenu ? (
+          <ChapterMenuMap
+            currentLevelId={levelId}
+            unlockedLevelIds={unlockedLevelIds}
+          />
+        ) : null}
 
         <LevelMapView
           levelId={levelId}
