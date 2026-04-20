@@ -7,34 +7,31 @@ const basePalette = {
   water: "#7fc9ff",
   path: "#ffe7ba",
   platform: "#d8efbf",
-  accent: "#fcfcd8"
+  accent: "#ffb14a",
+  title_level_001: "#fcfcd8",
 };
 
 const level001Theme: LevelTheme = {
-  palette: {
-    ...basePalette,
-    accent: "#fcfcd8",
-  },
+  palette: { ...basePalette },
   levelLayerId: "level_001",
   decoCount: 5,
   layerColors: {
-    anchor_bg: "#000000",
-    deco_01: "#00ff00",
-    deco_bottom_01: "#ff0000",
-    deco_02: "#ffe7ba",
-    deco_03: "#d8efbf",
-    deco_04: "#ffd5c4",
-    deco_05: "#cfe8ff",
-  },
+  anchor_bg: "#000000",
+  deco_01: "#00ff00",
+  deco_bottom_01: "#ff0000",
+  deco_02: "#ffe7ba",
+  deco_03: "#d8efbf",
+  deco_04: "#ffd5c4",
+  deco_05: "#cfe8ff",
+  anchor_title_001: basePalette.title_level_001,
+}
 };
 
 const defaultTheme: LevelTheme = {
-  palette: {
-    ...basePalette,
-    accent: "#4ba3ff",
-  },
+  palette: { ...basePalette },
   levelLayerId: "level_001",
   decoCount: 3,
+ 
 };
 
 export const levelThemesById: Record<string, LevelTheme> = {

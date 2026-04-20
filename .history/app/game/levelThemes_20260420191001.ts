@@ -7,13 +7,14 @@ const basePalette = {
   water: "#7fc9ff",
   path: "#ffe7ba",
   platform: "#d8efbf",
-  accent: "#fcfcd8"
+  accent: "#ffb14a",
+  title_level_001: "#fcfcd8",
 };
 
 const level001Theme: LevelTheme = {
   palette: {
     ...basePalette,
-    accent: "#fcfcd8",
+    accent: "#ffb14a",
   },
   levelLayerId: "level_001",
   decoCount: 5,
@@ -25,6 +26,7 @@ const level001Theme: LevelTheme = {
     deco_03: "#d8efbf",
     deco_04: "#ffd5c4",
     deco_05: "#cfe8ff",
+    anchor_title_01: basePalette.title_level_001
   },
 };
 

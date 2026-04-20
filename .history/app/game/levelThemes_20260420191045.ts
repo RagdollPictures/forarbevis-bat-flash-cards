@@ -7,13 +7,13 @@ const basePalette = {
   water: "#7fc9ff",
   path: "#ffe7ba",
   platform: "#d8efbf",
-  accent: "#fcfcd8"
+  accent: "#ffb14a"
 };
 
 const level001Theme: LevelTheme = {
   palette: {
     ...basePalette,
-    accent: "#fcfcd8",
+    accent: "#ffb14a",
   },
   levelLayerId: "level_001",
   decoCount: 5,

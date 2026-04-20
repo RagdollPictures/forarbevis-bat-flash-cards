@@ -12,8 +12,8 @@ export type LevelObjectConfig = {
 };
 
 export type LevelTheme = {
-  bgImageSource?: any;
-  platformImageSource?: any;
+  bgImageSource: any;
+  platformImageSource: any;
   palette?: {
     sky?: string;
     water?: string;
@@ -33,7 +33,6 @@ export type MenuLevel = {
   id: string;
   chapterId: string;
   label: string;
-  titleShort: string;
   iconName: string;
   menuAnchorId: string;
   layout: any;
