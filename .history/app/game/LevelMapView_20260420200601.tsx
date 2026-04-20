@@ -104,11 +104,9 @@ export default function LevelMapView({
   onPressQuizNode,
 }: LevelMapViewProps) {
   const titleBackgroundColor =
-    theme?.palette?.accent ??
-    theme?.layerColors?.level_001 ??
-    colorScheme.darkBlue;
+    theme?.palette?.accent ?? theme?.layerColors?.level_001 ?? colorScheme.darkBlue;
 
-  const titleTextColor = theme?.palette?.text ?? "#ffffff";
+    const titleTextColor = theme?.palette?.text ?? "#ffffff";
 
   return (
     <View
@@ -143,48 +141,37 @@ export default function LevelMapView({
         }}
       />
 
-      {titleNodes.map((node) => {
-        return (
-          <View
-            key={node.id}
-            style={{
-              position: "absolute",
-              left: node.x * scale,
-              top: node.y * scale,
-              width: node.width * scale,
-              height: node.height * scale,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View
-              style={{
-                maxWidth: "100%",
-                paddingHorizontal: 12,
-                paddingVertical: 6,
-                borderRadius: 14,
-                backgroundColor: titleBackgroundColor,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{
-                  color: titleTextColor,
-                  fontSize: 16,
-                  fontWeight: "800",
-                  textAlign: "center",
-                }}
-                numberOfLines={2}
-                adjustsFontSizeToFit
-              >
-                {node.title}
-              </Text>
-            </View>
-          </View>
-        );
-      })}
-
+  {titleNodes.map((node) => {
+  return (
+    <View
+      key={node.id}
+      style={{
+        position: "absolute",
+        left: node.x * scale,
+        top: node.y * scale,
+        width: node.width * scale,
+        height: node.height * scale,
+        backgroundColor: "red",
+        borderWidth: 2,
+        borderColor: "black",
+        zIndex: 9999,
+        alignItems: "center",
+        justifyContent: "center",
+      }}
+    >
+      <Text
+        style={{
+          color: "white",
+          fontSize: 12,
+          fontWeight: "800",
+          textAlign: "center",
+        }}
+      >
+        {node.title || "INGEN TITEL"}
+      </Text>
+    </View>
+  );
+})}
       {objectAnchors.map((anchor) => {
         const config = objectMap?.[anchor.id];
         if (!config) return null;

@@ -104,11 +104,9 @@ export default function LevelMapView({
   onPressQuizNode,
 }: LevelMapViewProps) {
   const titleBackgroundColor =
-    theme?.palette?.accent ??
-    theme?.layerColors?.level_001 ??
-    colorScheme.darkBlue;
+    theme?.palette?.accent ?? theme?.layerColors?.level_001 ?? colorScheme.darkBlue;
 
-  const titleTextColor = theme?.palette?.text ?? "#ffffff";
+    const titleTextColor = theme?.palette?.text ?? "#ffffff";
 
   return (
     <View
@@ -144,44 +142,39 @@ export default function LevelMapView({
       />
 
       {titleNodes.map((node) => {
+       
+       const left = node.x * scale;
+const top = node.y * scale;
         return (
-          <View
-            key={node.id}
-            style={{
-              position: "absolute",
-              left: node.x * scale,
-              top: node.y * scale,
-              width: node.width * scale,
-              height: node.height * scale,
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <View
-              style={{
-                maxWidth: "100%",
-                paddingHorizontal: 12,
-                paddingVertical: 6,
-                borderRadius: 14,
-                backgroundColor: titleBackgroundColor,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <Text
-                style={{
-                  color: titleTextColor,
-                  fontSize: 16,
-                  fontWeight: "800",
-                  textAlign: "center",
-                }}
-                numberOfLines={2}
-                adjustsFontSizeToFit
-              >
-                {node.title}
-              </Text>
-            </View>
-          </View>
+        <View
+  style={{
+    position: "absolute",
+    left: node.x * scale,
+    top: node.y * scale,
+    transform: [{ translateX: -100 }], // fallback
+  }}
+>
+  <View
+    style={{
+      paddingHorizontal: 16,
+      paddingVertical: 10,
+      borderRadius: 18,
+      backgroundColor: titleBackgroundColor,
+      alignItems: "center",
+    }}
+  >
+    <Text
+      style={{
+        color: titleTextColor,
+        fontSize: 16,
+        fontWeight: "800",
+        textAlign: "center",
+      }}
+    >
+      {node.title}
+    </Text>
+  </View>
+</View>
         );
       })}
 

@@ -88,14 +88,10 @@ export type ObjectAnchor = {
 
 export type TitleAnchor = {
   id: string;
-  type: "title_box";
+  type: "title";
   index: number;
   x: number;
   y: number;
-  width: number;
-  height: number;
-  cx: number;
-  cy: number;
 };
 
 export type TitlePlacedNode = {

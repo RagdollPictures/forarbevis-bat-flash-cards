@@ -118,31 +118,31 @@
   <g id="anchor_chapter_test_09">
     <circle cx="188.7519" cy="6345.0898" r="10" fill="#e20caa"/>
   </g>
-  <g id="anchor_title_01">
-    <circle cx="170.4358" cy="196.9161" r="6.9934" fill="#233f56"/>
+  <g id="title_box_01">
+    <rect x="10" y="174.2155" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_02">
-    <circle cx="204.1686" cy="856.315" r="6.9934" fill="#233f56"/>
+  <g id="title_box_02">
+    <rect x="10" y="819.4209" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_03">
-    <circle cx="178.8616" cy="1544.3369" r="6.9934" fill="#233f56"/>
+  <g id="title_box_03">
+    <rect x="10" y="1531.8253" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_04">
-    <circle cx="200.8272" cy="2138.3063" r="6.9934" fill="#233f56"/>
+  <g id="title_box_04">
+    <rect x="10" y="2125.3391" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_05">
-    <circle cx="152.9335" cy="2826.6388" r="6.9934" fill="#233f56"/>
+  <g id="title_box_05">
+    <rect x="10" y="2811.4278" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_06">
-    <circle cx="166.2992" cy="3530.5645" r="6.9934" fill="#233f56"/>
+  <g id="title_box_06">
+    <rect x="10" y="3525.7119" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_07">
-    <circle cx="205.2824" cy="4224.466" r="6.9934" fill="#233f56"/>
+  <g id="title_box_07">
+    <rect x="10" y="4216.03" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_08">
-    <circle cx="174.4064" cy="4884.6427" r="6.9934" fill="#233f56"/>
+  <g id="title_box_08">
+    <rect x="10" y="4851.8368" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
-  <g id="anchor_title_09">
-    <circle cx="195.5687" cy="5532.8781" r="6.9934" fill="#233f56"/>
+  <g id="title_box_09">
+    <rect x="10" y="5480.1249" width="354.9998" height="48" fill="#fcfcd8" opacity="0"/>
   </g>
 </svg>
