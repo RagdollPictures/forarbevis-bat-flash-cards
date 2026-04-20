@@ -13,15 +13,15 @@
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
-      "x": 190.2955,
-      "y": 359.8147
+      "x": 172.8789,
+      "y": 357.4925
     },
     {
       "id": "anchor_quiz_001",
       "type": "quiz",
       "index": 1,
-      "x": 254.8317,
-      "y": 597.4961
+      "x": 237.4151,
+      "y": 595.1739
     },
     {
       "id": "anchor_chapter_test_01",

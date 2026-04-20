@@ -283,9 +283,9 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
         { id: "manovrering_kasta_loss", title: "Kasta loss", deckId: "manovrering_kasta_loss" },
         { id: "manovrering_segelbat", title: "Segelbåt", deckId: "manovrering_segelbat" },
          {
-      id: "manovrering_quiz",
+      id: "lanternor_quiz",
       title: "Kapitelquiz",
-      quizId: "manovrering_quiz",
+      quizId: "lanternor_quiz",
       type: "quiz",
     },
       ],
