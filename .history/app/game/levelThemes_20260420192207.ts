@@ -8,14 +8,13 @@ const basePalette = {
   path: "#ffe7ba",
   platform: "#d8efbf",
   accent: "#fcfcd8",
-  text: "#ffffff",
+  text: "#1a1a1a",
 };
 
 const level001Theme: LevelTheme = {
   palette: {
     ...basePalette,
     accent: "#fcfcd8",
-     text:  "#233f56",
   },
   levelLayerId: "level_001",
   decoCount: 5,
