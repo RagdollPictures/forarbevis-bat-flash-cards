@@ -8,17 +8,17 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    
+    padding: 24,
     paddingBottom: 120,
   },
 
   title: {
     fontSize: 16,
     fontWeight: "700",
-    color: "#fff",
+    color: "#111",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#fff",
+    borderBottomColor: "#111",
   },
 
   text: {

@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
   },
 
   container: {
-    
+    padding: 24,
     paddingBottom: 120,
   },
 
@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     color: "#fff",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#fff",
+    borderBottomColor: "#111",
   },
 
   text: {
