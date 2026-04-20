@@ -203,7 +203,7 @@ export default function QuizMenuScreen() {
   })
 }
       >
-       <MapIcon width={64} height={64} />
+       <MapIcon width={28} height={28} />
       </Pressable>
 
       <Text style={styles.headerTitle}>{currentLevel.label}</Text>

@@ -1,16 +1,11 @@
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
-
 import { getQuizById } from "../../constants/flashcards";
 import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
-
 import { levelIds, levelsById } from "../game/levelConfig";
-
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
@@ -20,8 +15,6 @@ import { useQuizSession } from "./_quiz/useQuizSession";
 import { validateDeck } from "./_quiz/validateDeck";
 
 export default function QuizScreen() {
-  const navigation = useNavigation();
-
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const id = typeof quizId === "string" ? quizId : "";
   const isChapterQuiz = id.endsWith("_quiz");
@@ -37,9 +30,6 @@ export default function QuizScreen() {
           (levelId) => levelsById[levelId].chapterId === currentChapterId
         );
 
-  const currentLevelId =
-    currentLevelIndex >= 0 ? levelIds[currentLevelIndex] : null;
-
   const nextLevelId =
     currentLevelIndex >= 0 && currentLevelIndex < levelIds.length - 1
       ? levelIds[currentLevelIndex + 1]
@@ -51,37 +41,8 @@ export default function QuizScreen() {
       : resolved.title
     : "Quiz";
 
-  const handleClose = () => {
-    if (navigation.canGoBack()) {
-      router.back();
-      return;
-    }
-
-    if (currentLevelId) {
-      router.replace({
-        pathname: "/game/[levelId]",
-        params: {
-          levelId: currentLevelId,
-        },
-      });
-      return;
-    }
-
-    router.replace("/");
-  };
-
   if (!resolved) {
-    return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
-        <QuizMissing title="Quiz" message="Det här quizet finns inte." />
-      </SafeAreaView>
-    );
+    return <QuizMissing title="Quiz" message="Det här quizet finns inte." />;
   }
 
   const rawDeck = (resolved.deck ?? []) as FlashCard[];
@@ -89,18 +50,10 @@ export default function QuizScreen() {
 
   if (deck.length === 0) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
-        <QuizMissing
-          title={screenTitle}
-          message="Det här quizet är inte klart än."
-        />
-      </SafeAreaView>
+      <QuizMissing
+        title={screenTitle}
+        message="Det här quizet är inte klart än (inga frågor med options + correctOptionIndex)."
+      />
     );
   }
 
@@ -109,12 +62,6 @@ export default function QuizScreen() {
   if (s.shuffledDeck.length === 0 || !s.card) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
           <Text style={styles.text}>Laddar quiz...</Text>
@@ -126,12 +73,6 @@ export default function QuizScreen() {
   if (s.isFinished) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
 
@@ -168,12 +109,6 @@ export default function QuizScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <View style={headerStyle}>
-        <Pressable onPress={handleClose} style={iconWrapStyle}>
-          <CloseIcon width={48} height={48} />
-        </Pressable>
-      </View>
-
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>{screenTitle}</Text>
 
@@ -193,23 +128,9 @@ export default function QuizScreen() {
           isLast={s.masteredCount >= s.total}
           textTitle={s.card.textTitle}
           textInfo={s.card.textInfo}
+          
         />
       </ScrollView>
     </SafeAreaView>
   );
 }
-
-const headerStyle = {
-  height: 72,
-  paddingHorizontal: 16,
-  flexDirection: "row" as const,
-  alignItems: "center" as const,
-  justifyContent: "flex-end" as const,
-};
-
-const iconWrapStyle = {
-  width: 64,
-  height: 64,
-  alignItems: "center" as const,
-  justifyContent: "center" as const,
-};

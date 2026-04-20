@@ -1,16 +1,11 @@
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
-
 import { getQuizById } from "../../constants/flashcards";
 import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
-
 import { levelIds, levelsById } from "../game/levelConfig";
-
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
@@ -20,8 +15,6 @@ import { useQuizSession } from "./_quiz/useQuizSession";
 import { validateDeck } from "./_quiz/validateDeck";
 
 export default function QuizScreen() {
-  const navigation = useNavigation();
-
   const { quizId } = useLocalSearchParams<{ quizId: string }>();
   const id = typeof quizId === "string" ? quizId : "";
   const isChapterQuiz = id.endsWith("_quiz");
@@ -52,11 +45,6 @@ export default function QuizScreen() {
     : "Quiz";
 
   const handleClose = () => {
-    if (navigation.canGoBack()) {
-      router.back();
-      return;
-    }
-
     if (currentLevelId) {
       router.replace({
         pathname: "/game/[levelId]",
@@ -67,18 +55,42 @@ export default function QuizScreen() {
       return;
     }
 
-    router.replace("/");
+    router.replace("/(tabs)");
   };
+
+  const closeButton = (
+    <Pressable
+      onPress={handleClose}
+      style={{
+        position: "absolute",
+        top: 12,
+        right: 16,
+        width: 44,
+        height: 44,
+        borderRadius: 22,
+        alignItems: "center",
+        justifyContent: "center",
+        backgroundColor: "#fff",
+        zIndex: 20,
+      }}
+    >
+      <Text
+        style={{
+          fontSize: 24,
+          fontWeight: "700",
+          color: "#111",
+          lineHeight: 24,
+        }}
+      >
+        ✕
+      </Text>
+    </Pressable>
+  );
 
   if (!resolved) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
+        {closeButton}
         <QuizMissing title="Quiz" message="Det här quizet finns inte." />
       </SafeAreaView>
     );
@@ -90,15 +102,10 @@ export default function QuizScreen() {
   if (deck.length === 0) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
+        {closeButton}
         <QuizMissing
           title={screenTitle}
-          message="Det här quizet är inte klart än."
+          message="Det här quizet är inte klart än (inga frågor med options + correctOptionIndex)."
         />
       </SafeAreaView>
     );
@@ -109,12 +116,7 @@ export default function QuizScreen() {
   if (s.shuffledDeck.length === 0 || !s.card) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
+        {closeButton}
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
           <Text style={styles.text}>Laddar quiz...</Text>
@@ -126,12 +128,7 @@ export default function QuizScreen() {
   if (s.isFinished) {
     return (
       <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
-          </Pressable>
-        </View>
-
+        {closeButton}
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
 
@@ -168,11 +165,7 @@ export default function QuizScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-      <View style={headerStyle}>
-        <Pressable onPress={handleClose} style={iconWrapStyle}>
-          <CloseIcon width={48} height={48} />
-        </Pressable>
-      </View>
+      {closeButton}
 
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>{screenTitle}</Text>
@@ -198,18 +191,3 @@ export default function QuizScreen() {
     </SafeAreaView>
   );
 }
-
-const headerStyle = {
-  height: 72,
-  paddingHorizontal: 16,
-  flexDirection: "row" as const,
-  alignItems: "center" as const,
-  justifyContent: "flex-end" as const,
-};
-
-const iconWrapStyle = {
-  width: 64,
-  height: 64,
-  alignItems: "center" as const,
-  justifyContent: "center" as const,
-};

@@ -29,7 +29,6 @@ import {
   getUnlockedLevelIds,
   getUnlockedQuizIds,
 } from "./levelUnlocks";
-import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
 
 export default function QuizMenuScreen() {
@@ -80,13 +79,7 @@ export default function QuizMenuScreen() {
     return getObjectAnchors(layout);
   }, [layout]);
 
-  const {
-    pressedId,
-    transitioningId,
-    resetNodeStates,
-    runRouteTransition,
-  } = useLevelNavigation();
-
+ 
   useFocusEffect(
     useCallback(() => {
       resetNodeStates();

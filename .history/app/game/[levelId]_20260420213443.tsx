@@ -2,7 +2,6 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import MapIcon from "../../assets/menu/map.svg";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
@@ -203,7 +202,7 @@ export default function QuizMenuScreen() {
   })
 }
       >
-       <MapIcon width={64} height={64} />
+       <Text style={styles.levelMenuToggleText}>VISA KAPITEL</Text>
       </Pressable>
 
       <Text style={styles.headerTitle}>{currentLevel.label}</Text>

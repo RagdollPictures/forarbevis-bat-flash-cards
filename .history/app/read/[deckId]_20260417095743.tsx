@@ -1,14 +1,11 @@
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import { Image, ScrollView, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 import { buildReadSections } from "../../constants/flashcards";
 import { cardImages } from "../../constants/flashcards/cardImages";
 
 export default function ReadScreen() {
-  const navigation = useNavigation();
   const params = useLocalSearchParams<{ deckId?: string; title?: string }>();
 
   const deckId = typeof params.deckId === "string" ? params.deckId : "";
@@ -18,39 +15,8 @@ export default function ReadScreen() {
     return buildReadSections(deckId);
   }, [deckId]);
 
-  const handleClose = () => {
-    if (navigation.canGoBack()) {
-      router.back();
-      return;
-    }
-
-    router.replace("/");
-  };
-
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View
-        style={{
-          height: 72,
-          paddingHorizontal: 16,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-end",
-        }}
-      >
-        <Pressable
-          onPress={handleClose}
-          style={{
-            width: 64,
-            height: 64,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <CloseIcon width={48} height={48} />
-        </Pressable>
-      </View>
-
       <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
         <Text style={{ fontSize: 28, fontWeight: "900", marginBottom: 24 }}>
           {title}

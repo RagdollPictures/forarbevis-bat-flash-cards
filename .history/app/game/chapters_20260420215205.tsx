@@ -27,7 +27,7 @@ export default function ChaptersScreen() {
   }, [clearedIds, levelMap]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#dff4ff" }}>
       <Stack.Screen options={{ headerShown: false }} />
 
       <Pressable
