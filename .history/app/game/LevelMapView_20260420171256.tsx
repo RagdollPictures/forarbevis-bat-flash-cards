@@ -3,10 +3,10 @@ import { Image } from "expo-image";
 import React from "react";
 import { Pressable, View } from "react-native";
 import type { SvgProps } from "react-native-svg";
-import BookIcon from "../../assets/menu/book.svg";
-import BookIconOff from "../../assets/menu/book_off.svg";
-import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionIconOff from "../../assets/menu/question_off.svg";
+import BookIcon from "../../assets/game/book.svg";
+import BookIconOff from "../../assets/game/book_off.svg";
+import QuestionIcon from "../../assets/game/question.svg";
+import QuestionIconOff from "../../assets/game/question_off.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
@@ -164,7 +164,7 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <NodeIllustration width={30} height={30} />
                     </View>
                   </View>
 
@@ -205,7 +205,7 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <NodeIllustration width={30} height={30} />
                     </View>
                   </ProgressRing>
 

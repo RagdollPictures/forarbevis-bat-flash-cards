@@ -2,15 +2,11 @@ import { colorScheme } from "@/constants/colors";
 import { Image } from "expo-image";
 import React from "react";
 import { Pressable, View } from "react-native";
-import type { SvgProps } from "react-native-svg";
-import BookIcon from "../../assets/menu/book.svg";
-import BookIconOff from "../../assets/menu/book_off.svg";
-import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionIconOff from "../../assets/menu/question_off.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
+import { getIconNameByQuizId } from "../quiz/icons/quizIconMap";
 import SvgIcon from "../quiz/icons/svgIcon";
 import { styles } from "../quiz/styles";
 import LevelObject from "./LevelObject";
@@ -21,7 +17,7 @@ import type {
   ObjectAnchor,
   PlacedNode,
   QuizPlacedNode,
-  ReadPlacedNode,
+  ReadPlacedNode
 } from "./levelScreenTypes";
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
@@ -51,19 +47,6 @@ type LevelMapViewProps = {
   onPressReadNode: (node: ReadPlacedNode) => void;
   onPressQuizNode: (node: QuizPlacedNode | ChapterTestPlacedNode) => void;
 };
-
-type NodeSvgComponent = React.ComponentType<SvgProps>;
-
-function getNodeIllustration(
-  nodeType: "read" | "quiz",
-  isUnlocked: boolean
-): NodeSvgComponent {
-  if (nodeType === "read") {
-    return isUnlocked ? BookIcon : BookIconOff;
-  }
-
-  return isUnlocked ? QuestionIcon : QuestionIconOff;
-}
 
 export default function LevelMapView({
   layout,
@@ -109,7 +92,7 @@ export default function LevelMapView({
         width={screenWidth}
         height={layout.viewBox.height * scale}
         visibleLayerIds={visibleSvgLayerIds}
-        layerColors={theme.layerColors}
+       layerColors={theme.layerColors}
         style={{
           position: "absolute",
           left: 0,
@@ -141,8 +124,6 @@ export default function LevelMapView({
         const isTransitioning = transitioningId === node.id;
 
         if (node.type === "read") {
-          const NodeIllustration = getNodeIllustration("read", isUnlocked);
-
           return (
             <Pressable
               key={node.id}
@@ -164,7 +145,11 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <SvgIcon
+                        name="book"
+                        size={30}
+                        color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                      />
                     </View>
                   </View>
 
@@ -182,7 +167,7 @@ export default function LevelMapView({
         if (node.type === "quiz") {
           const saved = progressByQuizId[node.quizId] ?? null;
           const ringPercent = getFirstTryPercent(saved);
-          const NodeIllustration = getNodeIllustration("quiz", isUnlocked);
+          const iconName = getIconNameByQuizId(node.quizId);
 
           return (
             <Pressable
@@ -205,7 +190,11 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <SvgIcon
+                        name={iconName}
+                        size={30}
+                        color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
+                      />
                     </View>
                   </ProgressRing>
 
@@ -238,7 +227,11 @@ export default function LevelMapView({
                 !isUnlocked && styles.tileLocked,
               ]}
             >
-              <FloatingNode delay={0} amplitude={10} rotateDeg={12}>
+              <FloatingNode
+                delay={0}
+                amplitude={10}
+                rotateDeg={12}
+              >
                 <NodeTransitionWrap
                   isPressed={isPressed}
                   isTransitioning={isTransitioning}

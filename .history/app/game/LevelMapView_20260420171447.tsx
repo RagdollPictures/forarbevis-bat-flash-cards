@@ -164,7 +164,7 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <NodeIllustration width={30} height={30} />
                     </View>
                   </View>
 
@@ -205,7 +205,7 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
+                      <NodeIllustration width={30} height={30} />
                     </View>
                   </ProgressRing>
 

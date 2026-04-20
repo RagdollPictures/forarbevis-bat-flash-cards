@@ -67,6 +67,7 @@ export const styles = StyleSheet.create({
     width: 44,
     height: 44,
     borderRadius: 999,
+    backgroundColor: "#ffffff",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -94,12 +95,19 @@ export const styles = StyleSheet.create({
   },
 
   readCircle: {
-     width: 90,
-  height: 90,
-  borderRadius: 45,
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "transparent",
+    width: 90,
+    height: 90,
+    borderRadius: 45,
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 4,
   },
 
   bonusBar: {
