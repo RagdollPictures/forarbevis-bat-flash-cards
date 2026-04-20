@@ -1,5 +1,5 @@
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { Dimensions, Pressable, ScrollView, Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getQuizzesForChapter } from "../../constants/flashcards";
@@ -14,7 +14,6 @@ import {
   getBgAnchor,
   getObjectAnchors,
   getPlacedNodes,
-  getTitleNodes,
 } from "./levelNodeMapper";
 import type {
   BonusLevelItem,
@@ -35,6 +34,7 @@ import { useLevelProgress } from "./useLevelProgress";
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [showLevelMenu, setShowLevelMenu] = useState(false);
+  const [activeSectionTitle, setActiveSectionTitle] = useState("");
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -43,11 +43,12 @@ export default function QuizMenuScreen() {
   const currentLevel = levelMap[levelId];
   const layout = currentLevel.layout;
   const LevelSvg = currentLevel.Svg;
-  const theme = currentLevel.theme;
+ const theme = currentLevel.theme;
 
-  const visibleSvgLayerIds = useMemo(() => {
-    return getVisibleSvgLayerIds(theme);
-  }, [theme]);
+
+ const visibleSvgLayerIds = useMemo(() => {
+  return getVisibleSvgLayerIds(theme);
+}, [theme]);
 
   const safeBonusLevels = bonusLevels as BonusLevelItem[];
 
@@ -69,9 +70,36 @@ export default function QuizMenuScreen() {
     return getPlacedNodes(layout, quizzes);
   }, [layout, quizzes]);
 
-  const titleNodes = useMemo(() => {
-    return getTitleNodes(layout, quizzes);
-  }, [layout, quizzes]);
+  const readNodes = useMemo(() => {
+    return placedNodes
+      .filter((node): node is ReadPlacedNode => node.type === "read")
+      .sort((a, b) => a.y - b.y);
+  }, [placedNodes]);
+
+  useEffect(() => {
+    setActiveSectionTitle(readNodes[0]?.title ?? currentLevel.label);
+  }, [readNodes, currentLevel.label]);
+
+  const handleScroll = useCallback(
+    (event: any) => {
+      const scrollY = event.nativeEvent.contentOffset.y;
+
+      const probeY = scrollY / scale + 80;
+
+      let currentTitle = readNodes[0]?.title ?? currentLevel.label;
+
+      for (const node of readNodes) {
+        if (node.y <= probeY) {
+          currentTitle = node.title;
+        } else {
+          break;
+        }
+      }
+
+      setActiveSectionTitle(currentTitle);
+    },
+    [readNodes, scale, currentLevel.label]
+  );
 
   const bgAnchor = useMemo(() => {
     return getBgAnchor(layout);
@@ -159,42 +187,41 @@ export default function QuizMenuScreen() {
         onUnlockNext={() => devCheatNextLockedTo100(unlockedIds)}
         onUnlockAll={devUnlockAllLevels}
       />
+ <Text style={styles.sectionTitle}>Bonus</Text>
 
-      <Text style={styles.sectionTitle}>Bonus</Text>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.bonusBar}
+        >
+          {bonusQuizzes.map((quiz) => {
+            const bonus =
+              safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
+            const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
 
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.bonusBar}
-      >
-        {bonusQuizzes.map((quiz) => {
-          const bonus =
-            safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
-          const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
+            return (
+              <Pressable
+                key={quiz.id}
+                disabled={!isUnlocked}
+                onPress={() => {
+                  if (!isUnlocked) return;
 
-          return (
-            <Pressable
-              key={quiz.id}
-              disabled={!isUnlocked}
-              onPress={() => {
-                if (!isUnlocked) return;
-
-                runRouteTransition({
-                  delayMs: 240,
-                  go: () => {
-                    router.push(`/quiz/${quiz.id}`);
-                  },
-                });
-              }}
-              style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
-            >
-              <Text style={styles.bonusBtnText}>
-                {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
-              </Text>
-            </Pressable>
-          );
-        })}
-      </ScrollView>
+                  runRouteTransition({
+                    delayMs: 240,
+                    go: () => {
+                      router.push(`/quiz/${quiz.id}`);
+                    },
+                  });
+                }}
+                style={[styles.bonusBtn, !isUnlocked && styles.bonusBtnLocked]}
+              >
+                <Text style={styles.bonusBtnText}>
+                  {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
+                </Text>
+              </Pressable>
+            );
+          })}
+        </ScrollView>
 
       <Pressable
         onPress={() => setShowLevelMenu((prev) => !prev)}
@@ -205,9 +232,14 @@ export default function QuizMenuScreen() {
         </Text>
       </Pressable>
 
-      <Text style={styles.headerTitle}>{currentLevel.label}</Text>
+        <Text style={styles.headerTitle}>{currentLevel.label}</Text>
+      <Text style={styles.levelStickyTitle}>{activeSectionTitle}</Text>
 
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView
+        contentContainerStyle={styles.container}
+        onScroll={handleScroll}
+        scrollEventThrottle={16}
+      >
         {showLevelMenu ? (
           <ChapterMenuMap
             currentLevelId={levelId}
@@ -215,8 +247,11 @@ export default function QuizMenuScreen() {
           />
         ) : null}
 
+       
+
+
         <LevelMapView
-          levelId={levelId}
+        levelId={levelId}
           layout={layout}
           scale={scale}
           screenWidth={screenWidth}
@@ -224,7 +259,6 @@ export default function QuizMenuScreen() {
           visibleSvgLayerIds={visibleSvgLayerIds}
           bgAnchor={bgAnchor}
           placedNodes={placedNodes}
-          titleNodes={titleNodes}
           objectAnchors={objectAnchors}
           objectMap={theme.objects}
           objectAssets={theme.objectAssets}

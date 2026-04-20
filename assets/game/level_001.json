@@ -5,6 +5,13 @@
   },
   "anchors": [
     {
+      "id": "anchor_title_01",
+      "type": "title",
+      "index": 1,
+      "x": 170.4358,
+      "y": 196.9161
+    },
+    {
       "id": "anchor_read_001",
       "type": "read",
       "index": 1,
@@ -24,6 +31,13 @@
       "index": 1,
       "x": 218.7794,
       "y": 1016.5121
+    },
+    {
+      "id": "anchor_title_02",
+      "type": "title",
+      "index": 2,
+      "x": 204.1686,
+      "y": 856.315
     },
     {
       "id": "anchor_read_002",
@@ -47,6 +61,13 @@
       "y": 1738.9482
     },
     {
+      "id": "anchor_title_03",
+      "type": "title",
+      "index": 3,
+      "x": 178.8616,
+      "y": 1544.3369
+    },
+    {
       "id": "anchor_read_003",
       "type": "read",
       "index": 3,
@@ -66,6 +87,13 @@
       "index": 3,
       "x": 218.59,
       "y": 2329.2665
+    },
+    {
+      "id": "anchor_title_04",
+      "type": "title",
+      "index": 4,
+      "x": 200.8272,
+      "y": 2138.3063
     },
     {
       "id": "anchor_read_004",
@@ -89,6 +117,13 @@
       "y": 3047.8276
     },
     {
+      "id": "anchor_title_05",
+      "type": "title",
+      "index": 5,
+      "x": 152.9335,
+      "y": 2826.6388
+    },
+    {
       "id": "anchor_read_005",
       "type": "read",
       "index": 5,
@@ -108,6 +143,13 @@
       "index": 5,
       "x": 159.2362,
       "y": 3772.9162
+    },
+    {
+      "id": "anchor_title_06",
+      "type": "title",
+      "index": 6,
+      "x": 166.2992,
+      "y": 3530.5645
     },
     {
       "id": "anchor_read_006",
@@ -131,6 +173,13 @@
       "y": 4443.8513
     },
     {
+      "id": "anchor_title_07",
+      "type": "title",
+      "index": 7,
+      "x": 205.2824,
+      "y": 4224.466
+    },
+    {
       "id": "anchor_read_007",
       "type": "read",
       "index": 7,
@@ -152,6 +201,13 @@
       "y": 5068.6752
     },
     {
+      "id": "anchor_title_08",
+      "type": "title",
+      "index": 8,
+      "x": 174.4064,
+      "y": 4884.6427
+    },
+    {
       "id": "anchor_read_008",
       "type": "read",
       "index": 8,
@@ -171,6 +227,13 @@
       "index": 8,
       "x": 258.0685,
       "y": 5704.5933
+    },
+    {
+      "id": "anchor_title_09",
+      "type": "title",
+      "index": 9,
+      "x": 195.5687,
+      "y": 5532.8781
     },
     {
       "id": "anchor_read_009",
