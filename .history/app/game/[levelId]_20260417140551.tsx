@@ -251,7 +251,6 @@ export default function QuizMenuScreen() {
 
 
         <LevelMapView
-        levelId={levelId}
           layout={layout}
           scale={scale}
           screenWidth={screenWidth}

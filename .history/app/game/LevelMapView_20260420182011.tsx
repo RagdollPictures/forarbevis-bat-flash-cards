@@ -4,13 +4,13 @@ import React from "react";
 import { Pressable, View } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
+import BookLevel001Icon from "../../assets/game/book_level_001.svg";
+import BookLevel001IconOff from "../../assets/game/book_level_001_off.svg";
+import QuestionLevel001Icon from "../../assets/game/question_level_001.svg";
+import QuestionLevel001IconOff from "../../assets/game/question_level_001_off.svg";
 import BookIcon from "../../assets/menu/book.svg";
-import BookLevel001Icon from "../../assets/menu/book_level_001.svg";
-import BookLevel001IconOff from "../../assets/menu/book_level_001_off.svg";
 import BookIconOff from "../../assets/menu/book_off.svg";
 import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionLevel001Icon from "../../assets/menu/question_level_001.svg";
-import QuestionLevel001IconOff from "../../assets/menu/question_level_001_off.svg";
 import QuestionIconOff from "../../assets/menu/question_off.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
