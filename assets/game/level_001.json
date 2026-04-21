@@ -26,8 +26,8 @@
       "id": "anchor_quiz_001",
       "type": "quiz",
       "index": 1,
-      "x": 222.94,
-      "y": 681.82
+      "x": 219.78,
+      "y": 602.62
     },
     {
       "id": "anchor_chapter_test_01",
@@ -58,8 +58,8 @@
       "id": "anchor_quiz_002",
       "type": "quiz",
       "index": 2,
-      "x": 166.01,
-      "y": 1330.92
+      "x": 177.5,
+      "y": 1287.71
     },
     {
       "id": "anchor_chapter_test_02",
@@ -122,8 +122,8 @@
       "id": "anchor_quiz_004",
       "type": "quiz",
       "index": 4,
-      "x": 168.86,
-      "y": 2643.94
+      "x": 190.91,
+      "y": 2558.72
     },
     {
       "id": "anchor_chapter_test_04",

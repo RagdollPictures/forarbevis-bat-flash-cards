@@ -23,9 +23,9 @@ const level001Theme: LevelTheme = {
    
     deco_01: "#9f9615",
     deco_02: "#487a55",
-    deco_03: "#d8efbf",
-    deco_04: "#ffd5c4",
-    deco_05: "#cfe8ff",
+    deco_03: "#265253",
+    deco_04: "#2f6c7e",
+    deco_05: "#265253",
  
   },
 };
