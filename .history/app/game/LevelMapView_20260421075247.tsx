@@ -114,43 +114,12 @@ export default function LevelMapView({
 
   return (
     <View
-  style={{
-    position: "relative",
-    width: "100%",
-    height: layout.viewBox.height * scale,
-  }}
->
-  <View
-    style={{
-      position: "absolute",
-      top: 24,
-      left: 0,
-      right: 0,
-      zIndex: 20,
-      alignItems: "center",
-    }}
-  >
-    <View
       style={{
-        paddingHorizontal: 16,
-        paddingVertical: 8,
-        borderRadius: 16,
-        backgroundColor: titleBackgroundColor,
+        position: "relative",
+        width: "100%",
+        height: layout.viewBox.height * scale,
       }}
     >
-      <Text
-        style={{
-          color: titleTextColor,
-          fontSize: 24,
-          fontWeight: "900",
-          textAlign: "center",
-        }}
-      >
-        {levelLabel}
-      </Text>
-    </View>
-  </View>
-
       {bgAnchor ? (
         <Image
           contentFit="contain"
@@ -191,7 +160,16 @@ export default function LevelMapView({
               justifyContent: "center",
             }}
           >
-            
+                <Text
+        style={{
+          color: titleTextColor,
+          fontSize: 24,
+          fontWeight: "900",
+          textAlign: "center",
+        }}
+      >
+        {levelLabel}
+      </Text>
             <View
               style={{
                 maxWidth: "100%",

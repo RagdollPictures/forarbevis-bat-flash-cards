@@ -228,8 +228,8 @@ sectionTitle:{
 headerTitle:{
   color: colorSchemeGui.yellow,
   paddingHorizontal: 16,
-},
-levelStickyTitle: {
+},levelStickyTitle: {
+ 
   paddingHorizontal: 16,
   paddingVertical: 10,
   borderRadius: 16,

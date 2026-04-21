@@ -4,12 +4,12 @@ import { StyleSheet } from "react-native";
 export const styles = StyleSheet.create({
   safe: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#000",
     
   },
 
   container: {
-    paddingHorizontal: 16,
+    
     paddingBottom: 120,
   },
 

@@ -200,7 +200,7 @@ export default function QuizScreen() {
 }
 
 const headerStyle = {
-  height: 10,
+ 
   paddingHorizontal: 16,
   flexDirection: "row" as const,
   alignItems: "center" as const,

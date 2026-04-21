@@ -6,7 +6,3 @@ export const colorScheme = {
   orange: "#fc5508",
   gray: "#f2f2f2",
 };
-
-export const colorSchemeGui ={
-   yellow: "#ffcc00",
-}

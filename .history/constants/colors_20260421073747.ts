@@ -8,5 +8,5 @@ export const colorScheme = {
 };
 
 export const colorSchemeGui ={
-   yellow: "#ffcc00",
+   yellow: "#b0d339",
 }

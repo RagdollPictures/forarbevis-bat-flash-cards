@@ -161,20 +161,7 @@ export default function QuizMenuScreen() {
 
       <Text style={styles.sectionTitle}>Bonus</Text>
 
-      
-
-      <Pressable
-       onPress={() =>
-  router.push({
-    pathname: "/game/chapters",
-    params: { currentLevelId: levelId },
-  })
-}
-      >
-       <MapIcon width={64} height={64} />
-      </Pressable>
-
-<ScrollView
+      <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
         contentContainerStyle={styles.bonusBar}
@@ -207,14 +194,25 @@ export default function QuizMenuScreen() {
           );
         })}
       </ScrollView>
-      
+
+      <Pressable
+       onPress={() =>
+  router.push({
+    pathname: "/game/chapters",
+    params: { currentLevelId: levelId },
+  })
+}
+      >
+       <MapIcon width={64} height={64} />
+      </Pressable>
+
+      <Text style={styles.headerTitle}>{currentLevel.label}</Text>
 
       <ScrollView contentContainerStyle={styles.container}>
        
 
         <LevelMapView
           levelId={levelId}
-           levelLabel={currentLevel.label}
           layout={layout}
           scale={scale}
           screenWidth={screenWidth}

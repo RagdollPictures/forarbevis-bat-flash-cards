@@ -58,7 +58,6 @@ export const styles = StyleSheet.create({
   },
 
   card: {
-    marginTop: 16,
     elevation: 10,
     backgroundColor: "#ffffff",
     borderRadius: 14,

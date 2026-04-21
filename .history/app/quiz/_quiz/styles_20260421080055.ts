@@ -5,11 +5,10 @@ export const styles = StyleSheet.create({
   safe: {
     flex: 1,
     backgroundColor: "#fff",
-    
   },
 
   container: {
-    paddingHorizontal: 16,
+    
     paddingBottom: 120,
   },
 

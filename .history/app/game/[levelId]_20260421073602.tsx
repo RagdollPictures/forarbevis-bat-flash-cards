@@ -208,13 +208,13 @@ export default function QuizMenuScreen() {
         })}
       </ScrollView>
       
+      <Text style={styles.headerTitle}>{currentLevel.label}</Text>
 
       <ScrollView contentContainerStyle={styles.container}>
        
 
         <LevelMapView
           levelId={levelId}
-           levelLabel={currentLevel.label}
           layout={layout}
           scale={scale}
           screenWidth={screenWidth}
