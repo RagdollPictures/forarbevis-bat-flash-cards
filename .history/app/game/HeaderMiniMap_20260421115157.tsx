@@ -87,8 +87,9 @@ export default function HeaderMiniMap({
       cx={point.x}
       cy={point.y}
       r={isCurrent ? 10 : 5}
-      fill={isUnlocked ? colorSchemeGui.yellow : colorSchemeGui.darkGray}
-    
+      fill={isUnlocked ? colorSchemeGui.yellow : "#b8bec8"}
+      stroke={isCurrent ? "#1f2a44" : "#ffffff"}
+      strokeWidth={isCurrent ? 2.5 : 2}
     />
   );
 })}

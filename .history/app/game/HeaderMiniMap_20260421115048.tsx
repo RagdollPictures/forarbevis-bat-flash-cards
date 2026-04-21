@@ -77,21 +77,21 @@ export default function HeaderMiniMap({
         />
 
         {levelIds.map((id) => {
-  const point = points[id];
-  const isUnlocked = unlockedLevelIds.has(id);
-  const isCurrent = id === currentLevelId;
-
-  return (
-    <Circle
-      key={id}
-      cx={point.x}
-      cy={point.y}
-      r={isCurrent ? 10 : 5}
-      fill={isUnlocked ? colorSchemeGui.yellow : colorSchemeGui.darkGray}
-    
-    />
-  );
-})}
+          const point = points[id];
+          const isUnlocked = unlockedLevelIds.has(id);
+          const isCurrent = id === currentLevelId;
+const isLast = id === levelIds[levelIds.length - 1];
+          return (
+            <Circle
+              key={id}
+              cx={point.x}
+              cy={point.y}
+              r={isLast ? 10 : isCurrent ? 6 : 5}
+              fill={isUnlocked ? colorSchemeGui.yellow : colorSchemeGui.darkGray}
+             
+            />
+          );
+        })}
       </Svg>
     </View>
   );
