@@ -1,12 +1,6 @@
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import React, { useCallback, useMemo, useRef, useState } from "react";
-import {
-  Animated,
-  Dimensions,
-  Pressable,
-  ScrollView,
-  View,
-} from "react-native";
+import React, { useCallback, useMemo, useState } from "react";
+import { Dimensions, Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import BonusDagersignalerIcon from "../../assets/menu/bonus_dagersignaler.svg";
 import BonusDagersignalerOffIcon from "../../assets/menu/bonus_dagersignaler_off.svg";
@@ -31,7 +25,6 @@ import BonusSjomarkenOffIcon from "../../assets/menu/bonus_sjomarken_off.svg";
 import BonusSymbolerIcon from "../../assets/menu/bonus_symboler.svg";
 import BonusSymbolerOffIcon from "../../assets/menu/bonus_symboler_off.svg";
 import MapIcon from "../../assets/menu/map.svg";
-import { colorSchemeGui } from "../../constants/colors";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
@@ -53,7 +46,11 @@ import type {
   QuizPlacedNode,
   ReadPlacedNode,
 } from "./levelScreenTypes";
-import { getUnlockedBonusIds, getUnlockedQuizIds } from "./levelUnlocks";
+import {
+  getUnlockedBonusIds,
+  getUnlockedLevelIds,
+  getUnlockedQuizIds,
+} from "./levelUnlocks";
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
 
@@ -112,10 +109,6 @@ const bonusIconsById: Record<
 
 export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
-  const [bonusContainerWidth, setBonusContainerWidth] = useState(1);
-  const [bonusContentWidth, setBonusContentWidth] = useState(1);
-
-  const scrollX = useRef(new Animated.Value(0)).current;
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -191,6 +184,10 @@ export default function QuizMenuScreen() {
     return getUnlockedQuizIds(quizzes, clearedIds);
   }, [quizzes, clearedIds]);
 
+  const unlockedLevelIds = useMemo(() => {
+    return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
+  }, [levelIds, clearedIds, levelMap]);
+
   const unlockedBonusIds = useMemo(() => {
     return getUnlockedBonusIds(safeBonusLevels, clearedIds);
   }, [clearedIds, safeBonusLevels]);
@@ -227,117 +224,68 @@ export default function QuizMenuScreen() {
     [runRouteTransition]
   );
 
-  const bonusThumbWidth = useMemo(() => {
-    if (bonusContainerWidth <= 0 || bonusContentWidth <= 0) return 0;
-
-    const rawWidth =
-      (bonusContainerWidth / bonusContentWidth) * bonusContainerWidth;
-
-    return Math.max(28, Math.min(bonusContainerWidth, rawWidth));
-  }, [bonusContainerWidth, bonusContentWidth]);
-
-  const bonusMaxScroll = Math.max(1, bonusContentWidth - bonusContainerWidth);
-  const bonusMaxThumbTravel = Math.max(0, bonusContainerWidth - bonusThumbWidth);
-
-  const bonusThumbTranslateX = scrollX.interpolate({
-    inputRange: [0, bonusMaxScroll],
-    outputRange: [0, bonusMaxThumbTravel],
-    extrapolate: "clamp",
-  });
-
-  const showBonusScrollbar = bonusContentWidth > bonusContainerWidth + 1;
-
   return (
     <SafeAreaView style={styles.safe}>
-      <Pressable
-        onPress={() =>
-          router.push({
-            pathname: "/game/chapters",
-            params: { currentLevelId: levelId },
-          })
-        }
+      
+
+
+      
+
+            <Pressable
+            onPress={() =>
+        router.push({
+          pathname: "/game/chapters",
+          params: { currentLevelId: levelId },
+        })
+      }
       >
-        <MapIcon width={64} height={64} />
+       <MapIcon width={64} height={64} />
       </Pressable>
 
-      <View
-        onLayout={(event) => {
-          setBonusContainerWidth(event.nativeEvent.layout.width);
-        }}
+<ScrollView
+        horizontal
+        showsHorizontalScrollIndicator={false}
+        contentContainerStyle={styles.bonusBar}
+         style={{minHeight: 64 }}
       >
-        <Animated.ScrollView
-          horizontal
-          showsHorizontalScrollIndicator={false}
-          style={{ minHeight: 64 }}
-          contentContainerStyle={styles.bonusBar}
-          onContentSizeChange={(width) => {
-            setBonusContentWidth(width);
-          }}
-          onScroll={Animated.event(
-            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-            { useNativeDriver: false }
-          )}
-          scrollEventThrottle={16}
-        >
-          {bonusQuizzes.map((quiz) => {
-            const bonus =
-              safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
-            const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
+        {bonusQuizzes.map((quiz) => {
+  const bonus =
+    safeBonusLevels.find((entry) => entry.id === quiz.id) ?? null;
+  const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
 
-            const iconSet = bonusIconsById[quiz.id];
-            const BonusIcon = isUnlocked ? iconSet?.on : iconSet?.off ?? iconSet?.on;
+  const iconSet = bonusIconsById[quiz.id];
+  const BonusIcon = isUnlocked ? iconSet?.on : iconSet?.off ?? iconSet?.on;
 
-            return (
-              <Pressable
-                key={quiz.id}
-                disabled={!isUnlocked}
-                onPress={() => {
-                  if (!isUnlocked) return;
+  return (
+    <Pressable
+      key={quiz.id}
+      disabled={!isUnlocked}
+      onPress={() => {
+        if (!isUnlocked) return;
 
-                  runRouteTransition({
-                    delayMs: 240,
-                    go: () => {
-                      router.push(`/quiz/${quiz.id}`);
-                    },
-                  });
-                }}
-                style={styles.bonusBtn}
-              >
-                <BonusIcon width={58} height={62} />
-              </Pressable>
-            );
-          })}
-        </Animated.ScrollView>
-
-        {showBonusScrollbar ? (
-          <View
-            style={{
-              height: 4,
-              marginHorizontal: 12,
-              marginTop: 2,
-              marginBottom: 6,
-              borderRadius: 999,
-              backgroundColor: "rgba(255,255,255,0.18)",
-              overflow: "hidden",
-            }}
-          >
-            <Animated.View
-              style={{
-                height: 4,
-                width: bonusThumbWidth,
-                borderRadius: 999,
-                backgroundColor: colorSchemeGui.yellow,
-                transform: [{ translateX: bonusThumbTranslateX }],
-              }}
-            />
-          </View>
-        ) : null}
-      </View>
+        runRouteTransition({
+          delayMs: 240,
+          go: () => {
+            router.push(`/quiz/${quiz.id}`);
+          },
+        });
+      }}
+      style={styles.bonusBtn}
+    >
+       <BonusIcon width={58} height={62} />
+     
+    </Pressable>
+  );
+})}
+      </ScrollView>
+      
 
       <ScrollView contentContainerStyle={styles.container}>
+       
+
         <LevelMapView
           levelId={levelId}
-          levelLabel={currentLevel.label}
+           levelLabel={currentLevel.label}
           layout={layout}
           scale={scale}
           screenWidth={screenWidth}
