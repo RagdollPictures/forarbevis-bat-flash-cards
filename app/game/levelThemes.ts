@@ -22,6 +22,7 @@ const level001Theme: LevelTheme = {
   layerColors: {
    
     deco_01: "#9f9615",
+    deco_01_shadow: "#003300",
     deco_02: "#487a55",
     deco_03: "#265253",
     deco_04: "#2f6c7e",

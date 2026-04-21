@@ -43,13 +43,28 @@ function addVisibleLayerHelper(code) {
   const helper = `
 type SharedLevelSvgProps = SvgProps & {
   visibleLayerIds?: string[];
+  decoCount?: number;
   layerColors?: Partial<Record<string, string>>;
 };
 
-function isVisible(id: string, visibleLayerIds?: string[]) {
-  if (!visibleLayerIds || visibleLayerIds.length === 0) return true;
+function isVisible(
+  id: string,
+  visibleLayerIds?: string[],
+  decoCount?: number
+) {
+  const decoMatch = id.match(/^deco_(\\d+)(?:_.+)?$/);
 
-  if (id.startsWith("deco_") || /^level_\\d{3}$/.test(id)) {
+  if (decoMatch) {
+    const index = Number(decoMatch[1]);
+
+    if (typeof decoCount === "number") {
+      return index <= decoCount;
+    }
+
+    return true;
+  }
+
+  if (visibleLayerIds && visibleLayerIds.length > 0) {
     return visibleLayerIds.includes(id);
   }
 
@@ -72,29 +87,22 @@ function addTypedProps(code) {
 }
 
 function addVisibilityToTargetElements(code) {
-  return code.replace(
-    /<([A-Z][A-Za-z0-9]*)([\s\S]*?)\/?>/g,
-    (full, tagName, attrs) => {
-      const idMatch = attrs.match(/\bid="([^"]+)"/);
-      if (!idMatch) return full;
+  return code.replace(/<G\b([\s\S]*?)>/g, (full, attrs) => {
+    const idMatch = attrs.match(/\bid="([^"]+)"/);
+    if (!idMatch) return full;
 
-      const id = idMatch[1];
-      if (!(id.startsWith("deco_") || /^level_\d{3}$/.test(id))) {
-        return full;
-      }
+    const id = idMatch[1];
 
-      if (/\bdisplay=\{/.test(full) || /\bopacity=\{/.test(full)) {
-        return full;
-      }
-
-      const selfClosing = full.endsWith("/>");
-      if (selfClosing) {
-        return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"} />`;
-      }
-
-      return `<${tagName}${attrs} display={isVisible("${id}", props.visibleLayerIds) ? "flex" : "none"}>`;
+    if (!id.startsWith("deco_")) {
+      return full;
     }
-  );
+
+    if (/\bdisplay=\{/.test(full)) {
+      return full;
+    }
+
+    return `<G${attrs} display={isVisible("${id}", props.visibleLayerIds, props.decoCount) ? "flex" : "none"}>`;
+  });
 }
 
 function replaceStyleFill(code) {
@@ -192,46 +200,60 @@ function shouldTintFill(fillValue) {
   return true;
 }
 
-function bindLayerColorsForId(code, id) {
-  const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-  const groupRegex = new RegExp(
-    `(<G[^>]*\\bid="${escapedId}"[^>]*>[\\s\\S]*?<\\/G>)`,
-    "g"
-  );
-
-  return code.replace(groupRegex, (groupBlock) => {
-    return groupBlock.replace(/fill="([^"]+)"/g, (full, originalColor) => {
-      if (!shouldTintFill(originalColor)) {
-        return full;
-      }
-
-      if (full.includes("props.layerColors?.[")) {
-        return full;
-      }
-
-      return `fill={props.layerColors?.["${id}"] ?? "${originalColor}"}`;
-    });
-  });
-}
-
 function addLayerColorSupport(code) {
-  const ids = [];
+  const tokenRegex = /<G\b[\s\S]*?>|<\/G>|fill="([^"]+)"/g;
+  const groupStack = [];
 
-  for (let i = 1; i <= 9; i += 1) {
-    ids.push(`deco_${String(i).padStart(2, "0")}`);
+  let result = "";
+  let lastIndex = 0;
+  let match;
+
+  function getCurrentGroupId() {
+    for (let i = groupStack.length - 1; i >= 0; i -= 1) {
+      const id = groupStack[i];
+      if (id) return id;
+    }
+    return null;
   }
 
-  for (let i = 1; i <= 15; i += 1) {
-    ids.push(`level_${String(i).padStart(3, "0")}`);
+  while ((match = tokenRegex.exec(code)) !== null) {
+    const token = match[0];
+
+    result += code.slice(lastIndex, match.index);
+    lastIndex = tokenRegex.lastIndex;
+
+    if (token.startsWith("<G")) {
+      const idMatch = token.match(/\bid="([^"]+)"/);
+      const groupId = idMatch ? idMatch[1] : null;
+      groupStack.push(groupId);
+      result += token;
+      continue;
+    }
+
+    if (token === "</G>") {
+      groupStack.pop();
+      result += token;
+      continue;
+    }
+
+    if (token.startsWith('fill="')) {
+      const originalColor = match[1];
+      const groupId = getCurrentGroupId();
+
+      if (!groupId || !shouldTintFill(originalColor)) {
+        result += token;
+        continue;
+      }
+
+      result += `fill={props.layerColors?.["${groupId}"] ?? "${originalColor}"}`;
+      continue;
+    }
+
+    result += token;
   }
 
-  let updated = code;
-
-  ids.forEach((id) => {
-    updated = bindLayerColorsForId(updated, id);
-  });
-
-  return updated;
+  result += code.slice(lastIndex);
+  return result;
 }
 
 async function formatCode(code) {
