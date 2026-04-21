@@ -168,6 +168,7 @@ export default function LevelMapView({
         width={screenWidth}
         height={layout.viewBox.height * scale}
         visibleLayerIds={visibleSvgLayerIds}
+         decoCount={theme.decoCount}
         layerColors={theme.layerColors}
         style={{
           position: "absolute",
