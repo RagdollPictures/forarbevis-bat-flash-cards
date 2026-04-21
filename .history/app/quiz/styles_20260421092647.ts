@@ -106,9 +106,7 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
-  paddingVertical: 10,
-  borderTopWidth: 1,
-  borderTopColor: colorSchemeGui.yellow,
+ 
   },
 
   bonusBtn: {
@@ -118,7 +116,7 @@ export const styles = StyleSheet.create({
   },
 
   bonusBtnLocked: {
-  
+    opacity: 0.4,
   },
 
   bonusBtnText: {

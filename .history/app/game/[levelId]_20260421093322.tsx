@@ -284,7 +284,7 @@ export default function QuizMenuScreen() {
         <Text style={styles.bonusBtnText}>
           {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
         </Text>
-      )}
+      )}d
     </Pressable>
   );
 })}

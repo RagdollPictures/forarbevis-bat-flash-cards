@@ -106,19 +106,18 @@ export const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row",
     flexWrap: "nowrap",
-  paddingVertical: 10,
-  borderTopWidth: 1,
-  borderTopColor: colorSchemeGui.yellow,
+ 
   },
 
   bonusBtn: {
     justifyContent: "center",
  
     marginRight: 8,
+    borderRadius: 999,
   },
 
   bonusBtnLocked: {
-  
+    opacity: 0.4,
   },
 
   bonusBtnText: {

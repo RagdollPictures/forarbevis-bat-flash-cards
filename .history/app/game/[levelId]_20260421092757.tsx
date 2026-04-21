@@ -11,7 +11,6 @@ import BonusFlaggorOffIcon from "../../assets/menu/bonus_flaggor_off.svg";
 import BonusFortojningslinorIcon from "../../assets/menu/bonus_fortojningslinor.svg";
 import BonusFortojningslinorOffIcon from "../../assets/menu/bonus_fortojningslinor_off.svg";
 import BonusKardinalmarkenIcon from "../../assets/menu/bonus_kardinalmarken.svg";
-import BonusKardinalmarkenOffIcon from "../../assets/menu/bonus_kardinalmarken_off.svg";
 import BonusKursberakingIcon from "../../assets/menu/bonus_kursberaking.svg";
 import BonusKursberakingOffIcon from "../../assets/menu/bonus_kursberaking_off.svg";
 import BonusLanternorIcon from "../../assets/menu/bonus_lanternor.svg";
@@ -103,7 +102,6 @@ const bonusIconsById: Record<
   },
   bonus_kardinal: {
     on: BonusKardinalmarkenIcon,
-    off: BonusKardinalmarkenOffIcon,
   },
 };
 
@@ -284,7 +282,7 @@ export default function QuizMenuScreen() {
         <Text style={styles.bonusBtnText}>
           {isUnlocked ? quiz.title : `🔒 ${quiz.title}`}
         </Text>
-      )}
+      )}d
     </Pressable>
   );
 })}
