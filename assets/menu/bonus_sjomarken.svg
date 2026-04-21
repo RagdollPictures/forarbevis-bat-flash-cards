@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="58" height="62" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 58 62">
+  <defs>
+    <linearGradient id="linear-gradient" x1="29.4818" y1="54.9925" x2="28.31" y2="6.9526" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#fc6e00"/>
+      <stop offset=".5362" stop-color="#fc0" stop-opacity=".8"/>
+      <stop offset=".9114" stop-color="#fc7800"/>
+      <stop offset="1" stop-color="#fc7e00"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="29.18" y1="4.208" x2="28.4769" y2="55.5287" gradientUnits="userSpaceOnUse">
+      <stop offset=".2698" stop-color="#ffea6d"/>
+      <stop offset=".4142" stop-color="#ffcd02"/>
+      <stop offset="1" stop-color="#fc0"/>
+    </linearGradient>
+  </defs>
+  <g>
+    <ellipse cx="29.157" cy="33.1947" rx="28.843" ry="28.8053" fill="#fc6e00"/>
+    <ellipse cx="28.843" cy="28.8053" rx="24.4962" ry="24.4642" fill="url(#linear-gradient)"/>
+    <path d="M29.0403,6.0447C14.601,6.0447,2.8956,17.7348,2.8956,32.1552s11.7055,26.1106,26.1448,26.1106,26.1448-11.6901,26.1448-26.1106S43.4797,6.0447,29.0403,6.0447ZM29.0403,54.3308c-12.2632,0-22.2046-9.9283-22.2046-22.1756S16.7771,9.9797,29.0403,9.9797s22.2046,9.9283,22.2046,22.1756-9.9413,22.1756-22.2046,22.1756Z" fill="#fc6e00"/>
+    <path d="M28.843,0C12.9135,0,0,12.8965,0,28.8053s12.9135,28.8053,28.843,28.8053,28.843-12.8965,28.843-28.8053S44.7726,0,28.843,0Z" fill="url(#linear-gradient-2)"/>
+  </g>
+  <g>
+    <path d="M41.032,32.6585l.2582-21.2726c.0124-1.0259-1.0609-1.7047-1.9825-1.2538l-19.1094,9.35c-.9679.4736-1.0416,1.8251-.1309,2.4011l5.7115,3.6123c.6429.4066.8344,1.2573.4278,1.9002l-8.2686,13.0738c-.4066.6429-.215,1.4936.4278,1.9002l1.875,1.1858c.6429.4066,1.4936.215,1.9002-.4278l8.2686-13.0738c.4066-.6429,1.2573-.8344,1.9002-.4278l6.6088,4.1798c.9107.576,2.1003-.0698,2.1134-1.1473Z" fill="#fc6e00"/>
+    <circle cx="18.636" cy="43.5927" r="5.3011" fill="#fc6e00"/>
+  </g>
+</svg>
