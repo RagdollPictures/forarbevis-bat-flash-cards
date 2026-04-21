@@ -31,7 +31,7 @@ export default function ReadScreen() {
     <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
       <View
         style={{
-         backgroundColor: "#000",
+         
           paddingHorizontal: 16,
           flexDirection: "row",
           alignItems: "center",
@@ -53,7 +53,7 @@ export default function ReadScreen() {
         </Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40, backgroundColor: "#fff" }}>
+      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
         <Text style={{ fontSize: 28, fontWeight: "900", marginBottom: 24 }}>
           {title}
         </Text>

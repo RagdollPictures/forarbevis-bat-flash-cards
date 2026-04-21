@@ -75,7 +75,7 @@ export default function QuizScreen() {
     return (
       <SafeAreaView style={styles.safe}>
         <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}  hitSlop={12} >
+          <Pressable onPress={handleClose} style={iconWrapStyle} hitSlop={12}>
             <CloseIcon width={48} height={48} />
           </Pressable>
         </View>
@@ -207,7 +207,6 @@ export default function QuizScreen() {
 
 const headerStyle = {
   height: 72,
-  backgroundColor: "#000",
   paddingHorizontal: 16,
   flexDirection: "row" as const,
   alignItems: "center" as const,

@@ -10,6 +10,7 @@ export const styles = StyleSheet.create({
   container: {
     alignItems: "stretch",
     
+    backgroundColor: "#fff",
   },
 
   devPanel: {

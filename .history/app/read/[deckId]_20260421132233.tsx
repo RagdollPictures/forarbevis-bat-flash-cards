@@ -28,16 +28,8 @@ export default function ReadScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
-      <View
-        style={{
-         backgroundColor: "#000",
-          paddingHorizontal: 16,
-          flexDirection: "row",
-          alignItems: "center",
-          justifyContent: "flex-end",
-        }}
-      >
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      
         <Pressable
           onPress={handleClose}
           style={{
@@ -51,9 +43,9 @@ export default function ReadScreen() {
         >
           <CloseIcon width={48} height={48} />
         </Pressable>
-      </View>
+     
 
-      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40, backgroundColor: "#fff" }}>
+      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40 }}>
         <Text style={{ fontSize: 28, fontWeight: "900", marginBottom: 24 }}>
           {title}
         </Text>

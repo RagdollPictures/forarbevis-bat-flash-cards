@@ -10,19 +10,18 @@ export const styles = StyleSheet.create({
 
   container: {
     
-    backgroundColor: "#fff",
+    backgroundColor: "#000",
     paddingHorizontal: 16,
-    paddingBottom: 16,
-    borderRadius: 20,
+    paddingBottom: 120,
   },
 
   title: {
     fontSize: 16,
     fontWeight: "700",
-    color: "#000",
+    color: "#fff",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#000",
+    borderBottomColor: "#fff",
   },
 
   text: {

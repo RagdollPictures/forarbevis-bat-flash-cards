@@ -19,10 +19,10 @@ export const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: "700",
-    color: "#000",
+    color: "#fff",
     padding: 10,
     borderBottomWidth: 1,
-    borderBottomColor: "#000",
+    borderBottomColor: "#fff",
   },
 
   text: {
@@ -61,7 +61,6 @@ export const styles = StyleSheet.create({
   },
 
   card: {
-    marginTop: 16,
     elevation: 10,
     backgroundColor: "#ffffff",
     borderRadius: 14,
