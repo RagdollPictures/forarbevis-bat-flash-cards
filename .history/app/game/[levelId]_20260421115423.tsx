@@ -209,7 +209,7 @@ export default function QuizMenuScreen() {
     (node: ReadPlacedNode) => {
       runRouteTransition({
         nodeId: node.id,
-      
+        delayMs: 240,
         go: () => {
           router.push({
             pathname: "/read/[deckId]",
@@ -230,7 +230,7 @@ export default function QuizMenuScreen() {
     (node: QuizPlacedNode | ChapterTestPlacedNode) => {
       runRouteTransition({
         nodeId: node.id,
-       
+        delayMs: 240,
         go: () => {
           router.push(`/quiz/${node.quizId}`);
         },
@@ -342,7 +342,7 @@ export default function QuizMenuScreen() {
                   if (!isUnlocked) return;
 
                   runRouteTransition({
-                  
+                    delayMs: 240,
                     go: () => {
                       router.push(`/quiz/${quiz.id}`);
                     },

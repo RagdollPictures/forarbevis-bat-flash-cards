@@ -1,9 +1,14 @@
 import { useCallback, useRef, useState } from "react";
 import { useScreenTransition } from "../transitions/ScreenTransitionProvider";
 
+function wait(ms: number) {
+  return new Promise<void>((resolve) => setTimeout(resolve, ms));
+}
+
 export function useLevelNavigation() {
   const [pressedId, setPressedId] = useState<string | null>(null);
   const [transitioningId, setTransitioningId] = useState<string | null>(null);
+
   const pressLockRef = useRef(false);
   const { playWaterTransition, isTransitionRunning } = useScreenTransition();
 
@@ -15,9 +20,11 @@ export function useLevelNavigation() {
   const runRouteTransition = useCallback(
     async ({
       nodeId,
+      delayMs = 0,
       go,
     }: {
       nodeId?: string;
+      delayMs?: number;
       go: () => void;
     }) => {
       if (pressLockRef.current || isTransitionRunning) return;
@@ -30,6 +37,10 @@ export function useLevelNavigation() {
       }
 
       try {
+        if (delayMs > 0) {
+          await wait(delayMs);
+        }
+
         await playWaterTransition({
           onCovered: () => {
             go();

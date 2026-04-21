@@ -77,9 +77,14 @@ export default function NodeTransitionWrap({
         mass: 0.7,
         useNativeDriver: true,
       }),
-     
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 120,
+        easing: Easing.out(Easing.quad),
+        useNativeDriver: true,
+      }),
     ]).start();
-  }, [isPressed, isTransitioning, scale, translateY]);
+  }, [isPressed, isTransitioning, opacity, scale, translateY]);
 
   return (
     <Animated.View
@@ -87,7 +92,7 @@ export default function NodeTransitionWrap({
         styles.wrap,
         style,
         {
-         
+          opacity,
           transform: [{ translateY }, { scale }],
         },
       ]}

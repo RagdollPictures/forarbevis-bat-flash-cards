@@ -342,7 +342,7 @@ export default function QuizMenuScreen() {
                   if (!isUnlocked) return;
 
                   runRouteTransition({
-                  
+                    delayMs: 240,
                     go: () => {
                       router.push(`/quiz/${quiz.id}`);
                     },
