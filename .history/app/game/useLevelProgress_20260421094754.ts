@@ -6,12 +6,7 @@ import {
   saveQuizProgress,
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
-import {
-  loadClearedSet,
-  saveClearedSet,
-  UNLOCK_PERCENT,
-} from "../quiz/storage/cleared";
-import { calcPercent } from "../quiz/utils/progress";
+import { loadClearedSet, saveClearedSet } from "../quiz/storage/cleared";
 import type { MenuLevel, QuizItem } from "./levelScreenTypes";
 
 export function useLevelProgress({
@@ -24,9 +19,19 @@ export function useLevelProgress({
   levelMap: Record<string, MenuLevel>;
 }) {
   const [progressByQuizId, setProgressByQuizId] = useState<
-    Record<string, SavedQuizProgress>
+    Record<string, SavedQuizProgress | null>
   >({});
   const [clearedIds, setClearedIds] = useState<Set<string>>(new Set());
+
+  const reloadProgress = useCallback(async () => {
+    const [map, cleared] = await Promise.all([
+      getAllQuizProgress(),
+      loadClearedSet(),
+    ]);
+
+    setProgressByQuizId(map);
+    setClearedIds(cleared);
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -50,39 +55,6 @@ export function useLevelProgress({
     }, [])
   );
 
-  useFocusEffect(
-    useCallback(() => {
-      let alive = true;
-
-      (async () => {
-        const currentCleared = await loadClearedSet();
-        let changed = false;
-
-        for (const q of quizzes) {
-          const saved = progressByQuizId[q.id] ?? null;
-          const unlockPercent = calcPercent(saved);
-
-          if (unlockPercent >= UNLOCK_PERCENT && !currentCleared.has(q.id)) {
-            currentCleared.add(q.id);
-            changed = true;
-          }
-        }
-
-        if (!alive) return;
-
-        if (changed) {
-          await saveClearedSet(currentCleared);
-        }
-
-        setClearedIds(currentCleared);
-      })();
-
-      return () => {
-        alive = false;
-      };
-    }, [progressByQuizId, quizzes])
-  );
-
   const resetAllProgress = useCallback(async () => {
     await AsyncStorage.clear();
     setClearedIds(new Set());
@@ -97,11 +69,8 @@ export function useLevelProgress({
 
       for (let i = 0; i < quizzes.length - 1; i++) {
         const id = quizzes[i].id;
-
         if (!unlockedIds.has(id)) break;
-
         currentId = id;
-
         if (!clearedIds.has(id)) break;
       }
 
@@ -120,7 +89,6 @@ export function useLevelProgress({
 
       const nextCleared = new Set(clearedIds);
       nextCleared.add(currentId);
-
       await saveClearedSet(nextCleared);
       setClearedIds(nextCleared);
     },
@@ -151,7 +119,6 @@ export function useLevelProgress({
     );
 
     const now = Date.now();
-
     const nextProgressByQuizId: Record<string, SavedQuizProgress> = {};
     const nextCleared = new Set(clearedIds);
 
@@ -168,12 +135,10 @@ export function useLevelProgress({
 
       nextProgressByQuizId[quizId] = fake;
       nextCleared.add(quizId);
-
       await saveQuizProgress(fake);
     }
 
     await saveClearedSet(nextCleared);
-
     setProgressByQuizId((prev) => ({
       ...prev,
       ...nextProgressByQuizId,
@@ -187,5 +152,6 @@ export function useLevelProgress({
     resetAllProgress,
     devCheatNextLockedTo100,
     devUnlockAllLevels,
+    reloadProgress,
   };
 }

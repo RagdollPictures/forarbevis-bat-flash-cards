@@ -9,7 +9,6 @@ export default function QuizFinished({
   score,
   total,
   onRestart,
-  onContinue,
   isChapterQuiz = false,
   nextLevelId = null,
 }: {
@@ -17,13 +16,10 @@ export default function QuizFinished({
   score: number;
   total: number;
   onRestart: () => void;
-  onContinue?: () => Promise<void> | void;
   isChapterQuiz?: boolean;
   nextLevelId?: string | null;
 }) {
-  const goNext = async () => {
-    await onContinue?.();
-
+  const goNext = () => {
     if (isChapterQuiz && nextLevelId) {
       router.push({
         pathname: "/game/[levelId]",

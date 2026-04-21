@@ -11,7 +11,7 @@ import type { FlashCard } from "../../constants/flashcards/types";
 
 import { levelIds, levelsById } from "../game/levelConfig";
 
-import { addClearedQuizId } from "../quiz/storage/cleared";
+import { addClearedQuizId } from "../(tabs)/quiz-menu/storage/cleared";
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";

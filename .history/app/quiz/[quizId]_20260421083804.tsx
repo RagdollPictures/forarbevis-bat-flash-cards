@@ -11,7 +11,6 @@ import type { FlashCard } from "../../constants/flashcards/types";
 
 import { levelIds, levelsById } from "../game/levelConfig";
 
-import { addClearedQuizId } from "../quiz/storage/cleared";
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
@@ -139,18 +138,13 @@ export default function QuizScreen() {
           <BoatProgressBar value={s.visualProgress} />
 
           <QuizFinished
-  title={screenTitle}
-  score={s.score}
-  total={s.shuffledDeck.length}
-  onRestart={s.restart}
-  onContinue={async () => {
-    if (isChapterQuiz) {
-      await addClearedQuizId(id);
-    }
-  }}
-  isChapterQuiz={isChapterQuiz}
-  nextLevelId={nextLevelId}
-/>
+            title={screenTitle}
+            score={s.score}
+            total={s.shuffledDeck.length}
+            onRestart={s.restart}
+            isChapterQuiz={isChapterQuiz}
+            nextLevelId={nextLevelId}
+          />
         </ScrollView>
       </SafeAreaView>
     );
