@@ -110,6 +110,102 @@ function addLayerColorSupport(code) {
   );
 }
 
+function replaceStyleFill(code) {
+  return code.replace(/style=\{\{\s*fill:\s*"([^"]+)"\s*\}\}/g, 'fill="$1"');
+}
+
+function replaceStyleObject(code) {
+  return code.replace(/style=\{\{([\s\S]*?)\}\}/g, (full, styleContent) => {
+    const pairs = [];
+
+    const regex = /([a-zA-Z][a-zA-Z0-9]*)\s*:\s*"([^"]+)"/g;
+    let match;
+
+    while ((match = regex.exec(styleContent)) !== null) {
+      const jsKey = match[1];
+      const value = match[2];
+
+      let propName = jsKey;
+
+      if (jsKey === "strokeWidth") propName = "strokeWidth";
+      if (jsKey === "fillOpacity") propName = "fillOpacity";
+      if (jsKey === "strokeOpacity") propName = "strokeOpacity";
+      if (jsKey === "strokeLinecap") propName = "strokeLinecap";
+      if (jsKey === "strokeLinejoin") propName = "strokeLinejoin";
+      if (jsKey === "fillRule") propName = "fillRule";
+      if (jsKey === "clipRule") propName = "clipRule";
+      if (jsKey === "opacity") propName = "opacity";
+      if (jsKey === "fill") propName = "fill";
+      if (jsKey === "stroke") propName = "stroke";
+
+      pairs.push(`${propName}="${value}"`);
+    }
+
+    if (pairs.length === 0) {
+      return "";
+    }
+
+    return pairs.join(" ");
+  });
+}
+
+function extractClassStyles(svgCode) {
+  const styleMatch = svgCode.match(/<style[^>]*>([\s\S]*?)<\/style>/i);
+  if (!styleMatch) return {};
+
+  const css = styleMatch[1];
+  const classMap = {};
+
+  const classRegex = /\.([a-zA-Z0-9_-]+)\s*\{([^}]+)\}/g;
+  let match;
+
+  while ((match = classRegex.exec(css)) !== null) {
+    const className = match[1];
+    const rules = match[2];
+    const props = {};
+
+    rules.split(";").forEach((rule) => {
+      const [rawKey, rawValue] = rule.split(":");
+      if (!rawKey || !rawValue) return;
+
+      const key = rawKey.trim();
+      const value = rawValue.trim().replace(/^['"]|['"]$/g, "");
+
+      if (key === "fill") props.fill = value;
+      if (key === "stroke") props.stroke = value;
+      if (key === "stroke-width") props.strokeWidth = value.replace("px", "");
+      if (key === "opacity") props.opacity = value;
+      if (key === "fill-opacity") props.fillOpacity = value;
+      if (key === "stroke-opacity") props.strokeOpacity = value;
+      if (key === "stroke-linecap") props.strokeLinecap = value;
+      if (key === "stroke-linejoin") props.strokeLinejoin = value;
+      if (key === "fill-rule") props.fillRule = value;
+      if (key === "clip-rule") props.clipRule = value;
+    });
+
+    classMap[className] = props;
+  }
+
+  return classMap;
+}
+
+function applyClassStyles(code, classMap) {
+  return code.replace(/\sclassName="([^"]+)"/g, (full, className) => {
+    const styles = classMap[className];
+    if (!styles) return "";
+
+    const propsString = Object.entries(styles)
+      .map(([key, value]) => ` ${key}="${value}"`)
+      .join("");
+
+    return propsString;
+  });
+}
+
+function removeClassName(code) {
+  return code.replace(/\sclassName="[^"]*"/g, "");
+}
+
 async function formatCode(code) {
   return prettier.format(code, {
     parser: "typescript",
@@ -123,6 +219,7 @@ async function formatCode(code) {
 async function main() {
   const svgCode = fs.readFileSync(INPUT, "utf8");
   const viewBox = extractViewBox(svgCode);
+  const classMap = extractClassStyles(svgCode);
 
   let componentCode = await transform(
     svgCode,
@@ -157,6 +254,10 @@ async function main() {
   componentCode = addTypedProps(componentCode);
   componentCode = addVisibilityToTargetElements(componentCode);
   componentCode = addLayerColorSupport(componentCode);
+  componentCode = replaceStyleFill(componentCode);
+  componentCode = replaceStyleObject(componentCode);
+  componentCode = applyClassStyles(componentCode, classMap);
+  componentCode = removeClassName(componentCode);
   componentCode = await formatCode(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");
