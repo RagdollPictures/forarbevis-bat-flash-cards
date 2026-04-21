@@ -36,7 +36,6 @@ import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
 import { styles } from "../quiz/styles";
 import DevMenu from "./DevMenu";
-import HeaderMiniMap from "./HeaderMiniMap";
 import LevelMapView from "./LevelMapView";
 import { getVisibleSvgLayerIds } from "./getVisibleSvgLayerIds";
 import { getLevelId, levelIds, levelsById } from "./levelConfig";
@@ -56,12 +55,10 @@ import type {
 } from "./levelScreenTypes";
 import {
   getUnlockedBonusIds,
-  getUnlockedLevelIds,
-  getUnlockedQuizIds,
+  getUnlockedQuizIds
 } from "./levelUnlocks";
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
-
 
 const bonusIconsById: Record<
   string,
@@ -201,10 +198,6 @@ export default function QuizMenuScreen() {
     return getUnlockedBonusIds(safeBonusLevels, clearedIds);
   }, [clearedIds, safeBonusLevels]);
 
-  const unlockedLevelIds = useMemo(() => {
-  return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
-}, [levelIds, levelMap, clearedIds]);
-
   const handlePressReadNode = useCallback(
     (node: ReadPlacedNode) => {
       runRouteTransition({
@@ -223,8 +216,6 @@ export default function QuizMenuScreen() {
     },
     [runRouteTransition]
   );
-
-  
 
   const handlePressQuizNode = useCallback(
     (node: QuizPlacedNode | ChapterTestPlacedNode) => {
@@ -261,51 +252,16 @@ export default function QuizMenuScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-    <View
-  style={{
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 12,
-    paddingTop: 4,
-    gap: 10,
-  }}
->
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      width: 64,
-      height: 64,
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-    }}
-  >
-    <MapIcon width={64} height={64} />
-  </Pressable>
-
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      flex: 1,
-      justifyContent: "center",
-    }}
-  >
-    <HeaderMiniMap
-      currentLevelId={levelId}
-      unlockedLevelIds={unlockedLevelIds}
-    />
-  </Pressable>
-</View>
+      <Pressable
+        onPress={() =>
+          router.push({
+            pathname: "/game/chapters",
+            params: { currentLevelId: levelId },
+          })
+        }
+      >
+        <MapIcon width={64} height={64} />
+      </Pressable>
 
       <View
         onLayout={(event) => {

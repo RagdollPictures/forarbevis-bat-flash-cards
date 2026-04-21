@@ -261,7 +261,7 @@ export default function QuizMenuScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-    <View
+      <View
   style={{
     flexDirection: "row",
     alignItems: "center",
@@ -282,29 +282,17 @@ export default function QuizMenuScreen() {
       height: 64,
       alignItems: "center",
       justifyContent: "center",
-      flexShrink: 0,
     }}
   >
     <MapIcon width={64} height={64} />
   </Pressable>
 
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      flex: 1,
-      justifyContent: "center",
-    }}
-  >
+  <View style={{ flex: 1 }}>
     <HeaderMiniMap
       currentLevelId={levelId}
       unlockedLevelIds={unlockedLevelIds}
     />
-  </Pressable>
+  </View>
 </View>
 
       <View

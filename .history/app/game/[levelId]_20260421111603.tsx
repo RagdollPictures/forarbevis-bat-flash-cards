@@ -261,52 +261,20 @@ export default function QuizMenuScreen() {
 
   return (
     <SafeAreaView style={styles.safe}>
-    <View
-  style={{
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 12,
-    paddingTop: 4,
-    gap: 10,
-  }}
->
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      width: 64,
-      height: 64,
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-    }}
-  >
-    <MapIcon width={64} height={64} />
-  </Pressable>
-
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      flex: 1,
-      justifyContent: "center",
-    }}
-  >
-    <HeaderMiniMap
-      currentLevelId={levelId}
-      unlockedLevelIds={unlockedLevelIds}
-    />
-  </Pressable>
-</View>
-
+      <Pressable
+        onPress={() =>
+          router.push({
+            pathname: "/game/chapters",
+            params: { currentLevelId: levelId },
+          })
+        }
+      >
+        <MapIcon width={64} height={64} />
+      </Pressable>
+ <HeaderMiniMap
+    currentLevelId={levelId}
+    unlockedLevelIds={unlockedLevelIds}
+  />
       <View
         onLayout={(event) => {
           setBonusContainerWidth(event.nativeEvent.layout.width);
