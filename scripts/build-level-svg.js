@@ -97,19 +97,6 @@ function addVisibilityToTargetElements(code) {
   );
 }
 
-function addLayerColorSupport(code) {
-  return code.replace(
-    /<([A-Z][A-Za-z0-9]*)([^>]*\bid="([^"]+)"[^>]*)>([\s\S]*?)<\/\1>/g,
-    (full, tagName, attrs, id, inner) => {
-      const updatedInner = inner.replace(/fill="([^"]+)"/g, (fillFull, originalColor) => {
-        return `fill={props.layerColors?.["${id}"] ?? "${originalColor}"}`;
-      });
-
-      return `<${tagName}${attrs}>${updatedInner}</${tagName}>`;
-    }
-  );
-}
-
 function replaceStyleFill(code) {
   return code.replace(/style=\{\{\s*fill:\s*"([^"]+)"\s*\}\}/g, 'fill="$1"');
 }
@@ -117,7 +104,6 @@ function replaceStyleFill(code) {
 function replaceStyleObject(code) {
   return code.replace(/style=\{\{([\s\S]*?)\}\}/g, (full, styleContent) => {
     const pairs = [];
-
     const regex = /([a-zA-Z][a-zA-Z0-9]*)\s*:\s*"([^"]+)"/g;
     let match;
 
@@ -141,11 +127,7 @@ function replaceStyleObject(code) {
       pairs.push(`${propName}="${value}"`);
     }
 
-    if (pairs.length === 0) {
-      return "";
-    }
-
-    return pairs.join(" ");
+    return pairs.length ? pairs.join(" ") : "";
   });
 }
 
@@ -155,7 +137,6 @@ function extractClassStyles(svgCode) {
 
   const css = styleMatch[1];
   const classMap = {};
-
   const classRegex = /\.([a-zA-Z0-9_-]+)\s*\{([^}]+)\}/g;
   let match;
 
@@ -194,16 +175,63 @@ function applyClassStyles(code, classMap) {
     const styles = classMap[className];
     if (!styles) return "";
 
-    const propsString = Object.entries(styles)
+    return Object.entries(styles)
       .map(([key, value]) => ` ${key}="${value}"`)
       .join("");
-
-    return propsString;
   });
 }
 
 function removeClassName(code) {
   return code.replace(/\sclassName="[^"]*"/g, "");
+}
+
+function shouldTintFill(fillValue) {
+  if (!fillValue) return false;
+  if (fillValue === "none") return false;
+  if (fillValue.includes("url(")) return false;
+  return true;
+}
+
+function bindLayerColorsForId(code, id) {
+  const escapedId = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const groupRegex = new RegExp(
+    `(<G[^>]*\\bid="${escapedId}"[^>]*>[\\s\\S]*?<\\/G>)`,
+    "g"
+  );
+
+  return code.replace(groupRegex, (groupBlock) => {
+    return groupBlock.replace(/fill="([^"]+)"/g, (full, originalColor) => {
+      if (!shouldTintFill(originalColor)) {
+        return full;
+      }
+
+      if (full.includes("props.layerColors?.[")) {
+        return full;
+      }
+
+      return `fill={props.layerColors?.["${id}"] ?? "${originalColor}"}`;
+    });
+  });
+}
+
+function addLayerColorSupport(code) {
+  const ids = [];
+
+  for (let i = 1; i <= 9; i += 1) {
+    ids.push(`deco_${String(i).padStart(2, "0")}`);
+  }
+
+  for (let i = 1; i <= 15; i += 1) {
+    ids.push(`level_${String(i).padStart(3, "0")}`);
+  }
+
+  let updated = code;
+
+  ids.forEach((id) => {
+    updated = bindLayerColorsForId(updated, id);
+  });
+
+  return updated;
 }
 
 async function formatCode(code) {
@@ -253,11 +281,11 @@ async function main() {
   componentCode = addVisibleLayerHelper(componentCode);
   componentCode = addTypedProps(componentCode);
   componentCode = addVisibilityToTargetElements(componentCode);
-  componentCode = addLayerColorSupport(componentCode);
   componentCode = replaceStyleFill(componentCode);
   componentCode = replaceStyleObject(componentCode);
   componentCode = applyClassStyles(componentCode, classMap);
   componentCode = removeClassName(componentCode);
+  componentCode = addLayerColorSupport(componentCode);
   componentCode = await formatCode(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");

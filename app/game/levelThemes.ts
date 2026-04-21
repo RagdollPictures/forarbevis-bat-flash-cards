@@ -15,18 +15,18 @@ const level001Theme: LevelTheme = {
   palette: {
     ...basePalette,
     accent: "#fcfcd8",
-     text:  "#233f56",
+    text: "#233f56",
   },
   levelLayerId: "level_001",
   decoCount: 5,
   layerColors: {
-    anchor_bg: "#000000",
-    deco_01: "#00ff00",
-    deco_bottom_01: "#ff0000",
-    deco_02: "#ffe7ba",
+   
+    deco_01: "#9f9615",
+    deco_02: "#487a55",
     deco_03: "#d8efbf",
     deco_04: "#ffd5c4",
     deco_05: "#cfe8ff",
+ 
   },
 };
 
