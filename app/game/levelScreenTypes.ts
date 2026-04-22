@@ -25,7 +25,7 @@ export type LevelTheme = {
   layerColors?: Record<string, string>;
   levelLayerId?: string;
   decoCount?: number;
-  visibleSvgLayerIds?: string[];
+  visibleLayerIds?: string[];
   objects?: Record<string, LevelObjectConfig>;
   objectAssets?: Record<string, any>;
 };

@@ -26,12 +26,12 @@ const level001Theme: LevelTheme = {
     deco_03: "#265253",
     deco_04: "#2f6c7e",
     deco_05: "#265253",
- 
-    deco_01_shadow: "rgba(0, 0, 0, 0.3)",
-    deco_02_shadow: "rgba(0, 0, 0, 0.3)",
-    deco_03_shadow: "rgba(0, 0, 0, 0.3)",
-    deco_04_shadow: "rgba(0, 0, 0, 0.3)",
-    deco_05_shadow: "rgba(0, 0, 0, 0.3)",
+    deco_01_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_02_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_03_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_04_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_05_shadow: "rgba(0, 0, 0, 0.1)",
+     deco_01_highlight: "rgba(255, 255, 255, 0.1)",
   },
 };
 
@@ -43,6 +43,14 @@ const defaultTheme: LevelTheme = {
   },
   levelLayerId: "level_001",
   decoCount: 3,
+  layerColors:{
+        deco_01_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_02_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_03_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_04_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_05_shadow: "rgba(0, 0, 0, 0.1)",
+    deco_01_highlight: "rgba(0, 0, 0, 0.1)",
+  }
 };
 
 export const levelThemesById: Record<string, LevelTheme> = {

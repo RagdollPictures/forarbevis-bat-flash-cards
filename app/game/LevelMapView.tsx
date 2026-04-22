@@ -5,12 +5,8 @@ import { Pressable, Text, View } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
 import BookIcon from "../../assets/menu/book.svg";
-import BookLevel001Icon from "../../assets/menu/book_level_001.svg";
-import BookLevel001IconOff from "../../assets/menu/book_level_001_off.svg";
 import BookIconOff from "../../assets/menu/book_off.svg";
 import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionLevel001Icon from "../../assets/menu/question_level_001.svg";
-import QuestionLevel001IconOff from "../../assets/menu/question_level_001_off.svg";
 import QuestionIconOff from "../../assets/menu/question_off.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
@@ -65,24 +61,14 @@ type NodeSvgComponent = React.ComponentType<SvgProps>;
 
 function getNodeIllustration(
   nodeType: "read" | "quiz",
-  isUnlocked: boolean,
-  levelId: string
+  isUnlocked: boolean
 ): NodeSvgComponent {
-  if (levelId === "level_001") {
-    if (nodeType === "read") {
-      return isUnlocked ? BookLevel001Icon : BookLevel001IconOff;
-    }
-
-    return isUnlocked ? QuestionLevel001Icon : QuestionLevel001IconOff;
-  }
-
   if (nodeType === "read") {
     return isUnlocked ? BookIcon : BookIconOff;
   }
 
   return isUnlocked ? QuestionIcon : QuestionIconOff;
 }
-
 export default function LevelMapView({
   levelId,
    levelLabel,
@@ -246,11 +232,7 @@ export default function LevelMapView({
         const isTransitioning = transitioningId === node.id;
 
         if (node.type === "read") {
-          const NodeIllustration = getNodeIllustration(
-            "read",
-            isUnlocked,
-            levelId
-          );
+         const NodeIllustration = getNodeIllustration("read", isUnlocked);
 
           return (
             <Pressable
@@ -291,11 +273,7 @@ export default function LevelMapView({
         if (node.type === "quiz") {
           const saved = progressByQuizId[node.quizId] ?? null;
           const ringPercent = getFirstTryPercent(saved);
-          const NodeIllustration = getNodeIllustration(
-            "quiz",
-            isUnlocked,
-            levelId
-          );
+        const NodeIllustration = getNodeIllustration("quiz", isUnlocked);
 
           return (
             <Pressable
