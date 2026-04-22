@@ -10,20 +10,22 @@ type SharedLevelSvgProps = SvgProps & {
 };
 
 function isVisible(id: string, visibleLayerIds?: string[], decoCount?: number) {
-  const decoMatch = id.match(/^deco_(\d+)(?:_.+)?$/);
+  if (id.startsWith("deco_")) {
+    const numberMatch = id.match(/^deco_(\d+)/);
 
-  if (decoMatch) {
-    const index = Number(decoMatch[1]);
+    if (numberMatch) {
+      const index = Number(numberMatch[1]);
 
-    if (typeof decoCount === "number") {
-      return index <= decoCount;
+      if (typeof decoCount === "number") {
+        return index <= decoCount;
+      }
     }
 
     return true;
   }
 
   if (visibleLayerIds && visibleLayerIds.length > 0) {
-    return visibleLayerIds.includes(id);
+    return visibleLayerIds.some((visibleId) => id === visibleId || id.startsWith(`${visibleId}_`));
   }
 
   return true;
@@ -45,7 +47,10 @@ const SharedLevelSvg = (props: SharedLevelSvgProps) => (
         <Stop offset={1} stopColor="#fbea90" />
       </LinearGradient>
     </Defs>
-    <G id="level_001_bg">
+    <G
+      id="level_001_bg"
+      display={isVisible("level_001_bg", props.visibleLayerIds, props.decoCount) ? "flex" : "none"}
+    >
       <Path d="M0-.66h375v7000H0z" fill="url(#linear-gradient)" />
       <Path
         d="M0 1099.98s74.88-29.31 187.5 57.67c112.62 86.99 187.5-51.73 187.5-51.73v5893.41H0z"
@@ -181,7 +186,10 @@ const SharedLevelSvg = (props: SharedLevelSvgProps) => (
         fill={props.layerColors?.["deco_09"] ?? "#143e7c"}
       />
     </G>
-    <G id="level_001">
+    <G
+      id="level_001"
+      display={isVisible("level_001", props.visibleLayerIds, props.decoCount) ? "flex" : "none"}
+    >
       <Path
         d="M61.44 124.64h95.7s5.94-12.21-13.2-15.51-1.98-16.17-27.39-16.5-3.63 11.22-27.39 14.52-2.97 5.61-32.34 9.9-26.07 8.58-26.07 8.58z"
         fill={props.layerColors?.["level_001"] ?? "#fcfcd9"}

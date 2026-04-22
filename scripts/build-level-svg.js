@@ -52,20 +52,24 @@ function isVisible(
   visibleLayerIds?: string[],
   decoCount?: number
 ) {
-  const decoMatch = id.match(/^deco_(\\d+)(?:_.+)?$/);
+  if (id.startsWith("deco_")) {
+    const numberMatch = id.match(/^deco_(\\d+)/);
 
-  if (decoMatch) {
-    const index = Number(decoMatch[1]);
+    if (numberMatch) {
+      const index = Number(numberMatch[1]);
 
-    if (typeof decoCount === "number") {
-      return index <= decoCount;
+      if (typeof decoCount === "number") {
+        return index <= decoCount;
+      }
     }
 
     return true;
   }
 
   if (visibleLayerIds && visibleLayerIds.length > 0) {
-    return visibleLayerIds.includes(id);
+    return visibleLayerIds.some(
+      (visibleId) => id === visibleId || id.startsWith(\`\${visibleId}_\`)
+    );
   }
 
   return true;
@@ -93,7 +97,10 @@ function addVisibilityToTargetElements(code) {
 
     const id = idMatch[1];
 
-    if (!id.startsWith("deco_")) {
+    const shouldControl =
+      id.startsWith("level_") || id.startsWith("deco_");
+
+    if (!shouldControl) {
       return full;
     }
 
