@@ -152,6 +152,8 @@ export default function QuizMenuScreen() {
 
   const screenWidth = Dimensions.get("window").width;
   const scale = screenWidth / layout.viewBox.width;
+const contentHeight = (theme.contentHeight ?? layout.viewBox.height) * scale;
+
 
   const placedNodes = useMemo(() => {
     return getPlacedNodes(layout, quizzes);
@@ -254,8 +256,8 @@ export default function QuizMenuScreen() {
     extrapolate: "clamp",
   });
 
-  const foregroundHeight = layout.viewBox.height * scale;
-  const backgroundHeight = foregroundHeight / 2;
+const foregroundHeight = contentHeight;
+const backgroundHeight = foregroundHeight / 2;
 
   const maxForegroundScroll = Math.max(1, foregroundHeight - levelAreaHeight);
   const maxBackgroundTravel = Math.max(0, backgroundHeight - levelAreaHeight);
@@ -448,6 +450,7 @@ export default function QuizMenuScreen() {
             pressedId={pressedId}
             transitioningId={transitioningId}
             theme={theme}
+            contentHeight={contentHeight}
             onPressReadNode={handlePressReadNode}
             onPressQuizNode={handlePressQuizNode}
           />

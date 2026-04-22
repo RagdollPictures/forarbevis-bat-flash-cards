@@ -53,6 +53,7 @@ type LevelMapViewProps = {
   pressedId: string | null;
   transitioningId: string | null;
   theme: LevelTheme;
+  contentHeight: number;
   onPressReadNode: (node: ReadPlacedNode) => void;
   onPressQuizNode: (node: QuizPlacedNode | ChapterTestPlacedNode) => void;
 };
@@ -88,6 +89,7 @@ export default function LevelMapView({
   pressedId,
   transitioningId,
   theme,
+  contentHeight,
   onPressReadNode,
   onPressQuizNode,
 }: LevelMapViewProps) {
@@ -98,14 +100,14 @@ export default function LevelMapView({
 
   const titleTextColor = theme?.palette?.text ?? "#ffffff";
 
-  return (
-    <View
-  style={{
-    position: "relative",
-    width: "100%",
-    height: layout.viewBox.height * scale,
-  }}
->
+ return (
+  <View
+    style={{
+      position: "relative",
+      width: "100%",
+      height: contentHeight,
+    }}
+  >
   <View
     style={{
       position: "absolute",
