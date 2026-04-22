@@ -1,5 +1,5 @@
 import * as React from "react";
-import Svg, { Defs, LinearGradient, Stop, G, Path, Circle, Ellipse } from "react-native-svg";
+import Svg, { G, Path, Circle, Ellipse } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
 
 type SharedLevelSvgProps = SvgProps & {
@@ -32,59 +32,6 @@ function isVisible(id: string, visibleLayerIds?: string[], decoCount?: number) {
 
 const SharedLevelSvg = (props: SharedLevelSvgProps) => (
   <Svg viewBox="0 0 375 7000" {...props}>
-    <Defs>
-      <LinearGradient
-        id="linear-gradient"
-        x1={187.5}
-        x2={187.5}
-        y1={-15.17}
-        y2={1186.01}
-        gradientUnits="userSpaceOnUse"
-      >
-        <Stop offset={0} stopColor="#4db0b5" />
-        <Stop offset={0.65} stopColor="#61b7b1" />
-        <Stop offset={1} stopColor="#fbea90" />
-      </LinearGradient>
-    </Defs>
-    <G
-      id="level_001_bg"
-      display={isVisible("level_001_bg", props.visibleLayerIds, props.decoCount) ? "flex" : "none"}
-    >
-      <Path d="M0 0h375v7000H0z" fill="url(#linear-gradient)" />
-    </G>
-    <G
-      id="level_001_bg_02"
-      display={
-        isVisible("level_001_bg_02", props.visibleLayerIds, props.decoCount) ? "flex" : "none"
-      }
-    >
-      <Path
-        d="m-20.48 1458.77 52.23-75.18 51.64 107.16 25.82-31.97 55.51 109.64 128.3-98.94 106.94 124.51s3.46 5449.88.87 5452.46-444.16-5.38-444.16-5.38z"
-        fill={props.layerColors?.["level_001_bg_02"] ?? "#61b1b9"}
-      />
-    </G>
-    <G
-      id="level_001_bg_03"
-      display={
-        isVisible("level_001_bg_03", props.visibleLayerIds, props.decoCount) ? "flex" : "none"
-      }
-    >
-      <Path
-        d="m391.33 1669.16-52.23-75.18-51.64 107.16-25.82-31.97-55.51 109.64-128.3-98.94-106.94 124.51s-3.46 5449.88-.87 5452.46 444.16-5.38 444.16-5.38l-22.85-5582.29Z"
-        fill={props.layerColors?.["level_001_bg_03"] ?? "#41a2b5"}
-      />
-    </G>
-    <G
-      id="level_001_bg_04"
-      display={
-        isVisible("level_001_bg_04", props.visibleLayerIds, props.decoCount) ? "flex" : "none"
-      }
-    >
-      <Path
-        d="m-34.26 1876.04 52.23-75.18 51.64 107.16 25.82-31.97 55.51 109.64 128.3-98.94 106.94 124.51s3.46 5449.88.87 5452.46-444.16-5.38-444.16-5.38z"
-        fill={props.layerColors?.["level_001_bg_04"] ?? "#2f6d7c"}
-      />
-    </G>
     <G
       id="deco_01"
       display={isVisible("deco_01", props.visibleLayerIds, props.decoCount) ? "flex" : "none"}

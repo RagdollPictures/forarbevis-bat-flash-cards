@@ -4,10 +4,10 @@ import {
   Animated,
   Dimensions,
   Pressable,
-  ScrollView,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import LevelBg from "../../assets/game/level_001/bg_01.svg";
 import BonusDagersignalerIcon from "../../assets/menu/bonus_dagersignaler.svg";
 import BonusDagersignalerOffIcon from "../../assets/menu/bonus_dagersignaler_off.svg";
 import BonusFartDistansTidIcon from "../../assets/menu/bonus_fart_distans_tid.svg";
@@ -61,7 +61,6 @@ import {
 } from "./levelUnlocks";
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
-
 
 const bonusIconsById: Record<
   string,
@@ -120,8 +119,10 @@ export default function QuizMenuScreen() {
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [bonusContainerWidth, setBonusContainerWidth] = useState(1);
   const [bonusContentWidth, setBonusContentWidth] = useState(1);
+  const [levelAreaHeight, setLevelAreaHeight] = useState(0);
 
   const scrollX = useRef(new Animated.Value(0)).current;
+  const scrollY = useRef(new Animated.Value(0)).current;
 
   const params = useLocalSearchParams<{ levelId?: string }>();
   const levelId = getLevelId(params.levelId);
@@ -202,14 +203,13 @@ export default function QuizMenuScreen() {
   }, [clearedIds, safeBonusLevels]);
 
   const unlockedLevelIds = useMemo(() => {
-  return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
-}, [levelIds, levelMap, clearedIds]);
+    return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
+  }, [levelIds, levelMap, clearedIds]);
 
   const handlePressReadNode = useCallback(
     (node: ReadPlacedNode) => {
       runRouteTransition({
         nodeId: node.id,
-      
         go: () => {
           router.push({
             pathname: "/read/[deckId]",
@@ -224,13 +224,10 @@ export default function QuizMenuScreen() {
     [runRouteTransition]
   );
 
-  
-
   const handlePressQuizNode = useCallback(
     (node: QuizPlacedNode | ChapterTestPlacedNode) => {
       runRouteTransition({
         nodeId: node.id,
-       
         go: () => {
           router.push(`/quiz/${node.quizId}`);
         },
@@ -257,55 +254,68 @@ export default function QuizMenuScreen() {
     extrapolate: "clamp",
   });
 
+  const foregroundHeight = layout.viewBox.height * scale;
+  const backgroundHeight = foregroundHeight / 2;
+
+  const maxForegroundScroll = Math.max(1, foregroundHeight - levelAreaHeight);
+  const maxBackgroundTravel = Math.max(0, backgroundHeight - levelAreaHeight);
+
+  const bgTranslateY = scrollY.interpolate({
+    inputRange: [0, maxForegroundScroll],
+    outputRange: [0, -maxBackgroundTravel],
+    extrapolate: "clamp",
+  });
+
   const showBonusScrollbar = bonusContentWidth > bonusContainerWidth + 1;
+  const isLevel001 = levelId === "level_001";
 
   return (
     <SafeAreaView style={styles.safe}>
-    <View
-  style={{
-    flexDirection: "row",
-    alignItems: "center",
-    paddingHorizontal: 12,
-    paddingTop: 4,
-    gap: 10,
-  }}
->
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      width: 64,
-      height: 64,
-      alignItems: "center",
-      justifyContent: "center",
-      flexShrink: 0,
-    }}
-  >
-    <MapIcon width={64} height={64} />
-  </Pressable>
+      <View
+        style={{
+          flexDirection: "row",
+          alignItems: "center",
+          paddingHorizontal: 12,
+          paddingTop: 4,
+          gap: 10,
+        }}
+      >
+        <Pressable
+          onPress={() =>
+            router.push({
+              pathname: "/game/chapters",
+              params: { currentLevelId: levelId },
+            })
+          }
+          style={{
+            width: 64,
+            height: 64,
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}
+        >
+          <MapIcon width={64} height={64} />
+        </Pressable>
 
-  <Pressable
-    onPress={() =>
-      router.push({
-        pathname: "/game/chapters",
-        params: { currentLevelId: levelId },
-      })
-    }
-    style={{
-      flex: 1,
-      justifyContent: "center",
-    }}
-  >
-    <HeaderMiniMap
-      currentLevelId={levelId}
-      unlockedLevelIds={unlockedLevelIds}
-    />
-  </Pressable>
-</View>
+        <Pressable
+          onPress={() =>
+            router.push({
+              pathname: "/game/chapters",
+              params: { currentLevelId: levelId },
+            })
+          }
+          style={{
+            flex: 1,
+            justifyContent: "center",
+          }}
+        >
+          <HeaderMiniMap
+            currentLevelId={levelId}
+            unlockedLevelIds={unlockedLevelIds}
+          />
+        </Pressable>
+      </View>
 
       <View
         onLayout={(event) => {
@@ -332,7 +342,8 @@ export default function QuizMenuScreen() {
             const isUnlocked = bonus ? unlockedBonusIds.has(bonus.id) : false;
 
             const iconSet = bonusIconsById[quiz.id];
-            const BonusIcon = isUnlocked ? iconSet?.on : iconSet?.off ?? iconSet?.on;
+            const BonusIcon =
+              isUnlocked ? iconSet?.on : iconSet?.off ?? iconSet?.on;
 
             return (
               <Pressable
@@ -342,7 +353,6 @@ export default function QuizMenuScreen() {
                   if (!isUnlocked) return;
 
                   runRouteTransition({
-                  
                     go: () => {
                       router.push(`/quiz/${quiz.id}`);
                     },
@@ -381,30 +391,68 @@ export default function QuizMenuScreen() {
         ) : null}
       </View>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        <LevelMapView
-          levelId={levelId}
-          levelLabel={currentLevel.label}
-          layout={layout}
-          scale={scale}
-          screenWidth={screenWidth}
-          LevelSvg={LevelSvg}
-          visibleSvgLayerIds={visibleSvgLayerIds}
-          bgAnchor={bgAnchor}
-          placedNodes={placedNodes}
-          titleNodes={titleNodes}
-          objectAnchors={objectAnchors}
-          objectMap={theme.objects}
-          objectAssets={theme.objectAssets}
-          unlockedIds={unlockedIds}
-          progressByQuizId={progressByQuizId}
-          pressedId={pressedId}
-          transitioningId={transitioningId}
-          theme={theme}
-          onPressReadNode={handlePressReadNode}
-          onPressQuizNode={handlePressQuizNode}
-        />
-      </ScrollView>
+      <View
+        style={{
+          flex: 1,
+          position: "relative",
+          overflow: "hidden",
+        }}
+        onLayout={(event) => {
+          setLevelAreaHeight(event.nativeEvent.layout.height);
+        }}
+      >
+        {isLevel001 ? (
+          <Animated.View
+            pointerEvents="none"
+            style={{
+              position: "absolute",
+              left: 0,
+              top: 0,
+              width: screenWidth,
+              height: backgroundHeight,
+              transform: [{ translateY: bgTranslateY }],
+            }}
+          >
+            <LevelBg
+              width={screenWidth}
+              height={backgroundHeight}
+              preserveAspectRatio="xMidYMin slice"
+            />
+          </Animated.View>
+        ) : null}
+
+        <Animated.ScrollView
+          contentContainerStyle={styles.container}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+            { useNativeDriver: true }
+          )}
+          scrollEventThrottle={16}
+        >
+          <LevelMapView
+            levelId={levelId}
+            levelLabel={currentLevel.label}
+            layout={layout}
+            scale={scale}
+            screenWidth={screenWidth}
+            LevelSvg={LevelSvg}
+            visibleSvgLayerIds={visibleSvgLayerIds}
+            bgAnchor={bgAnchor}
+            placedNodes={placedNodes}
+            titleNodes={titleNodes}
+            objectAnchors={objectAnchors}
+            objectMap={theme.objects}
+            objectAssets={theme.objectAssets}
+            unlockedIds={unlockedIds}
+            progressByQuizId={progressByQuizId}
+            pressedId={pressedId}
+            transitioningId={transitioningId}
+            theme={theme}
+            onPressReadNode={handlePressReadNode}
+            onPressQuizNode={handlePressQuizNode}
+          />
+        </Animated.ScrollView>
+      </View>
 
       <DevMenu
         showDevMenu={showDevMenu}
