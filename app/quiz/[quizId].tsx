@@ -136,7 +136,9 @@ export default function QuizScreen() {
         <ScrollView contentContainerStyle={styles.container}>
           <Text style={styles.title}>{screenTitle}</Text>
 
-          <BoatProgressBar value={s.visualProgress} />
+          <View style={styles.progressWrap}>
+  <BoatProgressBar value={s.visualProgress} />
+</View>
 
           <QuizFinished
   title={screenTitle}

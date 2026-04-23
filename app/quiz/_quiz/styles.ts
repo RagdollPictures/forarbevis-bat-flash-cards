@@ -14,6 +14,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 16,
     borderRadius: 20,
+     
   },
 
   title: {
@@ -23,6 +24,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     borderBottomWidth: 1,
     borderBottomColor: "#000",
+    
   },
 
   text: {
@@ -31,9 +33,10 @@ export const styles = StyleSheet.create({
     color: "#111",
   },
 
-  progressWrap: {
-    marginTop: 12,
-  },
+ progressWrap: {
+  marginTop: 12,
+  marginBottom: 16,
+},
 
   progressRow: {
     flexDirection: "row",
@@ -99,6 +102,17 @@ export const styles = StyleSheet.create({
     backgroundColor: "#f2f2f2",
   },
 
+  optionsGrid: {
+  flexDirection: "row",
+  flexWrap: "wrap",
+  justifyContent: "space-between",
+},
+
+optionGrid: {
+  width: "48%",
+  marginBottom: 12,
+},
+
   optionCorrect: {
     backgroundColor: colorScheme.blue,
   },
@@ -129,12 +143,14 @@ export const styles = StyleSheet.create({
     fontWeight: "700",
   },
 optionImageWrapper: {
-  borderRadius: 6,
+  width: "100%",
+  aspectRatio: 1,
+  borderRadius: 12,
   overflow: "hidden",
 },
   optionImage: {
     width: "100%",
-    height: 110,
+    height: "100%",
   },
 
   actions: {
@@ -167,7 +183,6 @@ optionImageWrapper: {
     marginTop: 24,
     padding: 24,
     borderRadius: 16,
-    backgroundColor: "#f9fafb",
     alignItems: "center",
   },
 

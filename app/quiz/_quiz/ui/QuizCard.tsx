@@ -31,6 +31,8 @@ export default function QuizCard({
   textTitle?: string;
   textInfo?: string;
 }) {
+  const hasOptionImages = optionImageSources?.some(Boolean);
+
   return (
     <View style={styles.card}>
       <Text style={styles.question}>{questionText}</Text>
@@ -45,10 +47,11 @@ export default function QuizCard({
         </View>
       ) : null}
 
-      <View style={styles.options}>
+      <View style={[styles.options, hasOptionImages && styles.optionsGrid]}>
         {options.map((opt, i) => {
           const isCorrect = isChecked && i === correctOptionIndex;
-          const isWrong = isChecked && selectedIndex === i && i !== correctOptionIndex;
+          const isWrong =
+            isChecked && selectedIndex === i && i !== correctOptionIndex;
           const optionImageSource = optionImageSources?.[i];
 
           return (
@@ -58,44 +61,48 @@ export default function QuizCard({
               disabled={isChecked}
               style={[
                 styles.option,
+                hasOptionImages && styles.optionGrid,
                 isCorrect && styles.optionCorrect,
                 isWrong && styles.optionWrong,
               ]}
             >
-             {optionImageSource ? (
-               <View style={styles.optionImageWrapper}>
-  <Image
-    source={optionImageSource}
-    style={styles.optionImage}
-    resizeMode="cover"
-  />
-  </View>
-) : (
-  <Text
-    style={[
-      styles.optionText,
-      isChecked && selectedIndex === i && styles.optionTextChecked,
-      isCorrect && styles.optionTextCorrect,
-      isWrong && styles.optionTextWrong,
-    ]}
-  >
-    {opt}
-  </Text>
-)}
+              {optionImageSource ? (
+                <View style={styles.optionImageWrapper}>
+                  <Image
+                    source={optionImageSource}
+                    style={styles.optionImage}
+                    resizeMode="cover"
+                  />
+                </View>
+              ) : (
+                <Text
+                  style={[
+                    styles.optionText,
+                    isChecked &&
+                      selectedIndex === i &&
+                      styles.optionTextChecked,
+                    isCorrect && styles.optionTextCorrect,
+                    isWrong && styles.optionTextWrong,
+                  ]}
+                >
+                  {opt}
+                </Text>
+              )}
             </Pressable>
           );
         })}
       </View>
 
-    {showNextButton ? (
-  <View style={styles.actions}>
-    <Pressable style={[styles.button, styles.buttonSecondary]} onPress={onNext}>
-      <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
-        {isLast ? "Resultat" : "Nästa"}
-      </Text>
-    </Pressable>
-  </View>
-) : null}
+      {showNextButton ? (
+        <View style={styles.actions}>
+          <Pressable style={[styles.button, styles.buttonSecondary]} onPress={onNext}>
+            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
+              {isLast ? "Resultat" : "Nästa"}
+            </Text>
+          </Pressable>
+        </View>
+      ) : null}
+
       {isChecked && (textTitle || textInfo) ? (
         <View style={styles.infoBox}>
           {textTitle ? <Text style={styles.infoTitle}>{textTitle}</Text> : null}
