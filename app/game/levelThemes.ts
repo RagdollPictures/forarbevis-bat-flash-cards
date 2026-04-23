@@ -1,5 +1,5 @@
+import Level001Bg from "../../assets/game/level_001/bg_01.svg";
 import type { LevelTheme } from "./levelScreenTypes";
-
 
 
 const basePalette = {
@@ -20,6 +20,9 @@ const level001Theme: LevelTheme = {
   levelLayerId: "level_001",
   decoCount: 5,
    contentHeight: 4000,
+   
+   backgroundSvg: Level001Bg,
+   backgroundParallaxFactor: 0.5,
   layerColors: {
    
     deco_01: "#9f9615",
@@ -56,11 +59,14 @@ const level001Theme: LevelTheme = {
 const defaultTheme: LevelTheme = {
   palette: {
     ...basePalette,
-    accent: "#4ba3ff",
-    text:  "#233f56",
+    accent: "#fcfcd8",
+    text: "#233f56",
   },
   levelLayerId: "level_001",
   decoCount: 3,
+  contentHeight: 7000,
+   backgroundSvg: Level001Bg,
+   backgroundParallaxFactor: 0.5,
   layerColors:{
           deco_01: "#9f9615",
     deco_02: "#487a55",

@@ -7,7 +7,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import LevelBg from "../../assets/game/level_001/bg_01.svg";
+
 import BonusDagersignalerIcon from "../../assets/menu/bonus_dagersignaler.svg";
 import BonusDagersignalerOffIcon from "../../assets/menu/bonus_dagersignaler_off.svg";
 import BonusFartDistansTidIcon from "../../assets/menu/bonus_fart_distans_tid.svg";
@@ -256,8 +256,9 @@ const contentHeight = (theme.contentHeight ?? layout.viewBox.height) * scale;
     extrapolate: "clamp",
   });
 
+const backgroundParallaxFactor = theme.backgroundParallaxFactor ?? 0.5;
 const foregroundHeight = contentHeight;
-const backgroundHeight = foregroundHeight / 2;
+const backgroundHeight = foregroundHeight * backgroundParallaxFactor;
 
   const maxForegroundScroll = Math.max(1, foregroundHeight - levelAreaHeight);
   const maxBackgroundTravel = Math.max(0, backgroundHeight - levelAreaHeight);
@@ -269,7 +270,7 @@ const backgroundHeight = foregroundHeight / 2;
   });
 
   const showBonusScrollbar = bonusContentWidth > bonusContainerWidth + 1;
-  const isLevel001 = levelId === "level_001";
+  const BackgroundSvg = theme.backgroundSvg;
 
   return (
     <SafeAreaView style={styles.safe}>
@@ -403,25 +404,25 @@ const backgroundHeight = foregroundHeight / 2;
           setLevelAreaHeight(event.nativeEvent.layout.height);
         }}
       >
-        {isLevel001 ? (
-          <Animated.View
-            pointerEvents="none"
-            style={{
-              position: "absolute",
-              left: 0,
-              top: 0,
-              width: screenWidth,
-              height: backgroundHeight,
-              transform: [{ translateY: bgTranslateY }],
-            }}
-          >
-            <LevelBg
-              width={screenWidth}
-              height={backgroundHeight}
-              preserveAspectRatio="xMidYMin slice"
-            />
-          </Animated.View>
-        ) : null}
+       {BackgroundSvg ? (
+  <Animated.View
+    pointerEvents="none"
+    style={{
+      position: "absolute",
+      left: 0,
+      top: 0,
+      width: screenWidth,
+      height: backgroundHeight,
+      transform: [{ translateY: bgTranslateY }],
+    }}
+  >
+    <BackgroundSvg
+      width={screenWidth}
+      height={backgroundHeight}
+      preserveAspectRatio="xMidYMin slice"
+    />
+  </Animated.View>
+) : null}
 
         <Animated.ScrollView
           contentContainerStyle={styles.container}

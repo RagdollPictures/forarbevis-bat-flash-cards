@@ -1,3 +1,6 @@
+import type { ComponentType } from "react";
+import type { SvgProps } from "react-native-svg";
+
 export type QuizItem = {
   id: string;
   title: string;
@@ -26,6 +29,10 @@ export type LevelTheme = {
   levelLayerId?: string;
   decoCount?: number;
   contentHeight?: number;
+
+  backgroundSvg?: ComponentType<SvgProps>;
+   backgroundParallaxFactor?: number;
+
   visibleLayerIds?: string[];
   objects?: Record<string, LevelObjectConfig>;
   objectAssets?: Record<string, any>;
