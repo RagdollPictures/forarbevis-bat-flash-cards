@@ -3,8 +3,8 @@ import { colorScheme } from "@/constants/colors";
 import type { SavedQuizProgress } from "../../../constants/flashcards/quizProgress";
 
 export function getProgressColor(percent: number) {
-  if (percent <= 30) return colorScheme.orange;
-  if (percent >= 100) return colorScheme.green;
+  if (percent <= 30) return colorScheme.blue;
+  if (percent >= 100) return colorScheme.blue;
   return colorScheme.blue;
 }
 

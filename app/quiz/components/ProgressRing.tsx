@@ -29,7 +29,7 @@ export default function ProgressRing({
       <Svg width={size} height={size}>
         <Circle
           stroke="rgba(17,17,17,0.18)"
-          fill="none"
+          fill="rgba(17,17,17,0.18)"
           cx={size / 2}
           cy={size / 2}
           r={radius}
