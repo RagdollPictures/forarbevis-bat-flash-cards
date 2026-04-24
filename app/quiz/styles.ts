@@ -64,13 +64,12 @@ export const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  iconInner: {
-    width: 44,
-    height: 44,
-    borderRadius: 999,
-    alignItems: "center",
-    justifyContent: "center",
-  },
+ iconInner: {
+  width: 104,
+  height: 104,
+  alignItems: "center",
+  justifyContent: "center",
+},
 
   title: {
     width: "100%",

@@ -14,8 +14,8 @@ const basePalette = {
 const level001Theme: LevelTheme = {
   palette: {
     ...basePalette,
-    accent: "#fcfcd8",
-    text: "#233f56",
+    accent: "#00b3fd",
+    text: "#ffffff",
   },
   levelLayerId: "level_001",
   decoCount: 5,
@@ -59,8 +59,8 @@ const level001Theme: LevelTheme = {
 const defaultTheme: LevelTheme = {
   palette: {
     ...basePalette,
-    accent: "#fcfcd8",
-    text: "#233f56",
+   accent: "#00b3fd",
+    text: "#ffffff",
   },
   levelLayerId: "level_001",
   decoCount: 3,

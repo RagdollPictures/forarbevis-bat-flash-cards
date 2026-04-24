@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect x="15.61" y="48.27" width="33.49" height="8.08" style="fill: #2c434d;"/>
+  <rect x="15.61" y="25.83" width="33.49" height="7" style="fill: #243f4a;"/>
+  <rect x="15.61" y="44.75" width="33.49" height="4.63" style="fill: #243f4a;"/>
+  <rect x="15.61" y="9.42" width="33.49" height="16.66" style="fill: #334750;"/>
+  <path d="M3.2,23.76h12.4v33.33c0,.55-.45,1-1,1H4.2c-.55,0-1-.45-1-1V23.76h0Z" style="fill: #496573;"/>
+  <path d="M1,18.41h2.2v17.62H0v-16.62c0-.55.45-1,1-1Z" style="fill: #58798a;"/>
+  <path d="M.22,36.03h30.78v8.71H1.22c-.55,0-1-.45-1-1v-7.71H.22Z" style="fill: #496573;"/>
+  <rect x="15.61" y="32.83" width="6.89" height="3.2" style="fill: #678c9f;"/>
+  <path d="M23.5,28.84h2.39c.55,0,1,.45,1,1v6.2h-4.39v-6.2c0-.55.45-1,1-1Z" style="fill: #678c9f;"/>
+  <path d="M24.69,28.84h14.91c.55,0,1,.45,1,1v6.2h-15.91v-7.2h0Z" style="fill: #58798a;"/>
+  <rect x="3.2" y="44.75" width="12.4" height="3.5" style="fill: #2f5263;"/>
+  <path d="M49.38,23.76h10.4c.55,0,1,.45,1,1v33.33h-12.4V24.76c0-.55.45-1,1-1Z" transform="translate(109.17 81.84) rotate(-180)" style="fill: #496573;"/>
+  <path d="M60.79,18.41h3.2v17.62h-2.2c-.55,0-1-.45-1-1v-16.62h0Z" transform="translate(124.78 54.44) rotate(-180)" style="fill: #58798a;"/>
+  <path d="M40.86,36.03h23.13v8.71h-24.13v-7.71c0-.55.45-1,1-1Z" transform="translate(103.85 80.78) rotate(-180)" style="fill: #496573;"/>
+  <rect x="40.49" y="32.83" width="7.89" height="3.2" transform="translate(88.87 68.86) rotate(-180)" style="fill: #58798a;"/>
+  <rect x="48.38" y="44.75" width="12.4" height="3.5" transform="translate(109.17 92.99) rotate(-180)" style="fill: #2f5263;"/>
+  <rect x="15.61" y="16.78" width="32.78" height="1.94" style="fill: #27404b;"/>
+  <rect x="15.61" y="51.34" width="32.78" height="1.94" style="fill: #233e4a;"/>
+  <rect x="22.5" y="32.83" width="18.1" height="15.44" rx="1" ry="1" style="fill: #496573;"/>
+  <path d="M35.24,38.83c0-1.79-1.45-3.24-3.24-3.24s-3.24,1.45-3.24,3.24c0,1.37.85,2.53,2.05,3.01l-1.25,2.91h4.9l-1.25-2.91c1.19-.48,2.04-1.64,2.04-3.01Z" style="fill: #243f4b;"/>
+  <path d="M4.2,6.33h10.4c.55,0,1,.45,1,1v16.42H3.2V7.33c0-.55.45-1,1-1Z" style="fill: #58798a;"/>
+  <path d="M48.38,6.33h12.4v16.42c0,.55-.45,1-1,1h-10.4c-.55,0-1-.45-1-1V6.33h0Z" transform="translate(109.17 30.09) rotate(-180)" style="fill: #58798a;"/>
+  <g>
+    <polygon points="15.61 14.29 3.2 16.03 3.2 23.76 15.61 23.76 15.61 14.29" style="fill: #678c9f;"/>
+    <polygon points="48.38 9.67 48.38 17.69 60.79 15.87 60.79 7.92 48.38 9.67" style="fill: #678c9f;"/>
+  </g>
+</svg>
