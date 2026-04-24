@@ -4,10 +4,10 @@ import React from "react";
 import { Pressable, Text, View } from "react-native";
 import type { SvgProps } from "react-native-svg";
 
-import BookIcon from "../../assets/menu/book.svg";
-import BookIconOff from "../../assets/menu/book_off.svg";
-import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionIconOff from "../../assets/menu/question_off.svg";
+import QuestionIcon from "../../assets/menu/question_active.svg";
+import QuestionIconLocked from "../../assets/menu/question_locked.svg";
+import ReadIcon from "../../assets/menu/read_100.svg";
+import ReadIconLocked from "../../assets/menu/read_locked.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import FloatingNode from "../quiz/components/FloatingNode";
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
@@ -65,10 +65,10 @@ function getNodeIllustration(
   isUnlocked: boolean
 ): NodeSvgComponent {
   if (nodeType === "read") {
-    return isUnlocked ? BookIcon : BookIconOff;
+    return isUnlocked ? ReadIcon : ReadIconLocked;
   }
 
-  return isUnlocked ? QuestionIcon : QuestionIconOff;
+  return isUnlocked ? QuestionIcon : QuestionIconLocked;
 }
 export default function LevelMapView({
   levelId,
@@ -257,15 +257,11 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={64} height={64} />
+                      <NodeIllustration width={84} height={84} />
                     </View>
                   </View>
 
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
+                 
                 </View>
               </NodeTransitionWrap>
             </Pressable>
@@ -296,17 +292,13 @@ export default function LevelMapView({
                 isTransitioning={isTransitioning}
               >
                 <View style={styles.ringWrap}>
-                  <ProgressRing percent={ringPercent} size={84} strokeWidth={5}>
+                  <ProgressRing percent={ringPercent} size={104} strokeWidth={5}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={64} height={64} />
+                      <NodeIllustration width={84} height={84} />
                     </View>
                   </ProgressRing>
 
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
+                
                 </View>
               </NodeTransitionWrap>
             </Pressable>
