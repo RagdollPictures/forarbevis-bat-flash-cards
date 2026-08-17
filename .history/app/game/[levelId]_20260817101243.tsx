@@ -150,20 +150,14 @@ export default function QuizMenuScreen() {
     []
   );
 
-const screenWidth = Dimensions.get("window").width;
-const scale = screenWidth / layout.viewBox.width;
+  const screenWidth = Dimensions.get("window").width;
+  const scale = screenWidth / layout.viewBox.width;
+const contentHeight = (theme.contentHeight ?? layout.viewBox.height) * scale;
 
-const placedNodes = useMemo(() => {
-  return getPlacedNodes(layout, quizzes);
-}, [layout, quizzes]);
 
-const lastNodeY =
-  placedNodes.length > 0
-    ? Math.max(...placedNodes.map((node) => node.y))
-    : layout.viewBox.height;
-
-const contentHeight = (lastNodeY + 250) * scale;
-
+  const placedNodes = useMemo(() => {
+    return getPlacedNodes(layout, quizzes);
+  }, [layout, quizzes]);
 
   const titleNodes = useMemo(() => {
     return getTitleNodes(layout, quizzes);

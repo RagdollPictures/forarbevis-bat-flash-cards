@@ -117,21 +117,4 @@ export const cardImages: Record<string, any> = {
 "bonus_sjomarken_20": require("../../assets/cards/bonus/bonus_sjomarken_20.jpg"),
 "bonus_sjomarken_21": require("../../assets/cards/bonus/bonus_sjomarken_21.jpg"),
 "bonus_sjomarken_22": require("../../assets/cards/bonus/bonus_sjomarken_22.jpg"),
-
-
-"bonus_symboler_01": require("../../assets/cards/bonus/bonus_symboler_01.jpg"),
-"bonus_symboler_02": require("../../assets/cards/bonus/bonus_symboler_02.jpg"),
-"bonus_symboler_03": require("../../assets/cards/bonus/bonus_symboler_03.jpg"),
-"bonus_symboler_04": require("../../assets/cards/bonus/bonus_symboler_04.jpg"),
-"bonus_symboler_05": require("../../assets/cards/bonus/bonus_symboler_05.jpg"),
-"bonus_symboler_06": require("../../assets/cards/bonus/bonus_symboler_06.jpg"),
-"bonus_symboler_07": require("../../assets/cards/bonus/bonus_symboler_07.jpg"),
-"bonus_symboler_08": require("../../assets/cards/bonus/bonus_symboler_08.jpg"),
-"bonus_symboler_09": require("../../assets/cards/bonus/bonus_symboler_09.jpg"),
-"bonus_symboler_10": require("../../assets/cards/bonus/bonus_symboler_10.jpg"),
-"bonus_symboler_11": require("../../assets/cards/bonus/bonus_symboler_11.jpg"),
-"bonus_symboler_12": require("../../assets/cards/bonus/bonus_symboler_12.jpg"),
-"bonus_symboler_13": require("../../assets/cards/bonus/bonus_symboler_13.jpg"),
-"bonus_symboler_14": require("../../assets/cards/bonus/bonus_symboler_14.jpg"),
-"bonus_symboler_15": require("../../assets/cards/bonus/bonus_symboler_15.jpg"),
 };

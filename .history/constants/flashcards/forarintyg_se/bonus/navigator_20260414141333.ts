@@ -193,10 +193,10 @@ export const bonusNavigator: FlashCard[] = [
     id: "bonus_navigator-12",
     question: "",
     questionQuiz:
-      "Om XTE visar att du ligger babord om rutten, vad ska du göra?",
+      "Om XTE visar att du ligger babord om rutten, åt vilket håll ska du styra?",
     answer:
       "Styrbord.",
-    options: ["styr babord", "Styr Styrbord", "Vänd om", "Öka farten"],
+    options: ["Babord", "Styrbord", "Stanna", "Öka farten"],
     correctOptionIndex: 1,
     textTitle: "Styr tillbaka",
     textInfo:

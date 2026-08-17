@@ -6,7 +6,7 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Bränning", "Undervattenssten", "Synlig sten", "Fyr"],
+    options: ["Bränning", "Djupsiffra", "Fyr", "Hamn"],
     correctOptionIndex: 0,
     imageKey: "bonus_symboler_01",
     textTitle: "Bränning/Grund",
@@ -91,7 +91,7 @@ export const bonusSymboler: FlashCard[] = [
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
     options: ["Djupkurva", "Förbudsmärke", "Enslinje", "Radarreflektor"],
-    correctOptionIndex: 3,
+    correctOptionIndex: 2,
     imageKey: "bonus_symboler_08",
     textTitle: "Radarreflektor",
     textInfo:

@@ -6,7 +6,7 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Bränning", "Undervattenssten", "Synlig sten", "Fyr"],
+    options: ["Bränning", "Djupsiffra", "Fyr", "Hamn"],
     correctOptionIndex: 0,
     imageKey: "bonus_symboler_01",
     textTitle: "Bränning/Grund",
@@ -18,7 +18,7 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Höjd", "Djup", "Bredd", "Avstånd"],
+    options: ["Vrak", "Djupsiffra", "Ankringsområde", "Kabel"],
     correctOptionIndex: 1,
     imageKey: "bonus_symboler_02",
     textTitle: "Djupsiffra",
@@ -66,9 +66,8 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Fyr", "Kyrka", "Undervattenssten", "Grund"],
+    options: ["Fyr", "Kabel", "Djupsiffra", "Grund"],
     correctOptionIndex: 0,
-    imageKey: "bonus_symboler_06",
     textTitle: "Fyr",
     textInfo:
       "Markerar en fyr eller ljuspunkt som används för navigation."
@@ -80,7 +79,6 @@ export const bonusSymboler: FlashCard[] = [
     answer: "",
     options: ["Enslinje", "Fyrsektor", "Strandlinje", "Specialmärke"],
     correctOptionIndex: 1,
-    imageKey: "bonus_symboler_07",
     textTitle: "Fyrsektor",
     textInfo:
       "Visar fyrens färgsektorer, ofta röd, grön och vit. Hjälper dig avgöra om du ligger rätt i farleden."
@@ -91,8 +89,7 @@ export const bonusSymboler: FlashCard[] = [
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
     options: ["Djupkurva", "Förbudsmärke", "Enslinje", "Radarreflektor"],
-    correctOptionIndex: 3,
-    imageKey: "bonus_symboler_08",
+    correctOptionIndex: 2,
     textTitle: "Radarreflektor",
     textInfo:
       "En anordning som reflekterar radarsignaler så att ett föremål syns tydligare på fartygens radar."
@@ -104,7 +101,6 @@ export const bonusSymboler: FlashCard[] = [
     answer: "",
     options: ["Kabel", "Akterända", "Hamn", "Djupsiffra"],
     correctOptionIndex: 0,
-    imageKey: "bonus_symboler_09",
     textTitle: "Kabel",
     textInfo:
       "Markerar en undervattenskabel. Här bör man inte ankra."
@@ -116,7 +112,6 @@ export const bonusSymboler: FlashCard[] = [
     answer: "",
     options: ["Ankringsområde", "Lera", "Ankring förbjuden", "Vrak"],
     correctOptionIndex: 0,
-    imageKey: "bonus_symboler_10",
     textTitle: "Ankringsområde",
     textInfo:
       "Visar ett område där det är lämpligt eller tillåtet att ankra."
@@ -126,45 +121,41 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Förbudsområde", "Rörledning", "Fågelskydd", "Färja"],
-    correctOptionIndex: 0,
-    imageKey: "bonus_symboler_11",
-    textTitle: "Förbudsområde",
+    options: ["Synlig sten", "Undervattenssten", "Grund", "Bränning"],
+    correctOptionIndex: 1,
+    textTitle: "Alltid synlig sten",
     textInfo:
-      "Markerar ett område som det är förbjudet att köra in i."
+      "Markerar en sten som alltid är sylig över vattenytan."
   },
   {
     id: "bonus_symboler-12",
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Synlig sten", "Undervattenssten", "Grund", "Bränning"],
-    correctOptionIndex: 1,
-    imageKey: "bonus_symboler_12",
-    textTitle: "Alltid synlig sten",
+    options: ["Varningsmärke", "Hamn", "Fyr", "Djupkurva"],
+    correctOptionIndex: 0,
+    textTitle: "Varningsmärke",
     textInfo:
-      "Markerar en sten som alltid är sylig över vattenytan."
+      "Visar att du ska vara extra uppmärksam. Kan till exempel markera grund eller annat hinder."
   },
   {
     id: "bonus_symboler-13",
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Stockar under vattenytan", "Fiskeodling", "Ankringsområde", "Synligt vrak"],
-    correctOptionIndex: 0,
-    imageKey: "bonus_symboler_13",
-    textTitle: "Stockar",
+    options: ["Förända", "Påbudsmärke", "Ankringsområde", "Vrak"],
+    correctOptionIndex: 1,
+    textTitle: "Påbudsmärke",
     textInfo:
-      "Visar att det finns pålar eller stockar under vattenytan. "
+      "Visar vad du måste göra, till exempel följa en viss färdriktning eller regel."
   },
   {
     id: "bonus_symboler-14",
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Djupkurva", "Strandlinje", "Kabel", "Farled"],
+    options: ["Djupsiffra", "Strandlinje", "Kabel", "Nordkardinal"],
     correctOptionIndex: 1,
-    imageKey: "bonus_symboler_14",
     textTitle: "Strandlinje",
     textInfo:
       "Visar gränsen mellan land och vatten."
@@ -174,11 +165,10 @@ export const bonusSymboler: FlashCard[] = [
     question: "",
     questionQuiz: "Vad betyder denna symbol i sjökortet?",
     answer: "",
-    options: ["Farled", "Enkelriktat", "Omkörningsförbud", "Säkert att köra om"],
+    options: ["Hamn", "Fiskefartyg", "Fyrsektor", "Isolerad fara"],
     correctOptionIndex: 0,
-    imageKey: "bonus_symboler_15",
-    textTitle: "Farled",
+    textTitle: "Hamn",
     textInfo:
-      "Pilen visar farledens riktning."
+      "Markerar en hamn eller marina där båtar kan lägga till."
   }
 ];

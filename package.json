@@ -11,7 +11,9 @@
     "web": "expo start --web",
     "lint": "expo lint",
     "build:transition": "node scripts/build-transition-svgs.cjs",
-    "build:level": "node scripts/build-level-svg.js"
+    "build:level": "node scripts/build-level.js",
+    "build:level-json": "node scripts/build-level-json.js assets/game"
+
   },
   "dependencies": {
     "@expo/vector-icons": "^15.0.3",
