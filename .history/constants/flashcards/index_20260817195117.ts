@@ -13,7 +13,7 @@ export const sources: Source[] = [
 ];
 
 export const chaptersBySourceId: Record<string, Chapter[]> = {
-  [course.sourceId]: forarintygChapters,
+  forarintyg: forarintygChapters,
 };
 
 export const decksById: Record<string, FlashCard[]> = {
