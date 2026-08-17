@@ -265,14 +265,14 @@ export default function LevelMapView({
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
   <NodeBackground
-    width={104}
-    height={104}
+    width={64}
+    height={64}
     style={{
       position: "absolute",
     }}
   />
 
-  <NodeIllustration width={54} height={54} />
+  <NodeIllustration width={32} height={32} />
 </View>
                   </View>
 
@@ -307,17 +307,17 @@ export default function LevelMapView({
                 isTransitioning={isTransitioning}
               >
                 <View style={styles.ringWrap}>
-                  <ProgressRing percent={ringPercent} size={124} strokeWidth={5}>
+                  <ProgressRing percent={ringPercent} size={80} strokeWidth={5}>
                     <View style={styles.iconInner}>
   <NodeBackground
-    width={104}
-    height={104}
+    width={64}
+    height={64}
     style={{
       position: "absolute",
     }}
   />
 
-  <NodeIllustration width={54} height={54} />
+  <NodeIllustration width={32} height={32} />
 </View>
                   </ProgressRing>
 

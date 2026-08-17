@@ -1,22 +1,19 @@
 import { colorScheme } from "@/constants/colors";
 import { Image } from "expo-image";
 import React from "react";
-import { Pressable, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import type { SvgProps } from "react-native-svg";
-
-import BookIcon from "../../assets/menu/book.svg";
-import BookLevel001Icon from "../../assets/menu/book_level_001.svg";
-import BookLevel001IconOff from "../../assets/menu/book_level_001_off.svg";
-import BookIconOff from "../../assets/menu/book_off.svg";
-import QuestionIcon from "../../assets/menu/question.svg";
-import QuestionLevel001Icon from "../../assets/menu/question_level_001.svg";
-import QuestionLevel001IconOff from "../../assets/menu/question_level_001_off.svg";
-import QuestionIconOff from "../../assets/menu/question_off.svg";
+import ButtonBgActive from "../../assets/menu/btn_active_blue.svg";
+import ButtonBgLocked from "../../assets/menu/btn_locked.svg";
+import ChapterQuizIcon from "../../assets/menu/chapterquiz.svg";
+import ChapterQuizIconLocked from "../../assets/menu/chapterquiz_locked.svg";
+import QuestionIcon from "../../assets/menu/question_active.svg";
+import QuestionIconLocked from "../../assets/menu/question_locked.svg";
+import ReadIcon from "../../assets/menu/read_active.svg";
+import ReadIconLocked from "../../assets/menu/read_locked.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
-import FloatingNode from "../quiz/components/FloatingNode";
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
-import SvgIcon from "../quiz/icons/svgIcon";
 import { styles } from "../quiz/styles";
 import LevelObject from "./LevelObject";
 import type {
@@ -27,6 +24,7 @@ import type {
   PlacedNode,
   QuizPlacedNode,
   ReadPlacedNode,
+  TitlePlacedNode,
 } from "./levelScreenTypes";
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
@@ -39,6 +37,7 @@ function getFirstTryPercent(saved: SavedQuizProgress | null) {
 
 type LevelMapViewProps = {
   levelId: string;
+   levelLabel: string;
   layout: any;
   scale: number;
   screenWidth: number;
@@ -46,6 +45,7 @@ type LevelMapViewProps = {
   visibleSvgLayerIds: string[];
   bgAnchor: any;
   placedNodes: PlacedNode[];
+  titleNodes: TitlePlacedNode[];
   objectAnchors: ObjectAnchor[];
   objectMap?: Record<string, LevelObjectConfig>;
   objectAssets?: Record<string, any>;
@@ -54,6 +54,7 @@ type LevelMapViewProps = {
   pressedId: string | null;
   transitioningId: string | null;
   theme: LevelTheme;
+  contentHeight: number;
   onPressReadNode: (node: ReadPlacedNode) => void;
   onPressQuizNode: (node: QuizPlacedNode | ChapterTestPlacedNode) => void;
 };
@@ -62,26 +63,23 @@ type NodeSvgComponent = React.ComponentType<SvgProps>;
 
 function getNodeIllustration(
   nodeType: "read" | "quiz",
-  isUnlocked: boolean,
-  levelId: string
+  isUnlocked: boolean
 ): NodeSvgComponent {
-  if (levelId === "level_001") {
-    if (nodeType === "read") {
-      return isUnlocked ? BookLevel001Icon : BookLevel001IconOff;
-    }
-
-    return isUnlocked ? QuestionLevel001Icon : QuestionLevel001IconOff;
-  }
-
   if (nodeType === "read") {
-    return isUnlocked ? BookIcon : BookIconOff;
+    return isUnlocked ? ReadIcon : ReadIconLocked;
   }
 
-  return isUnlocked ? QuestionIcon : QuestionIconOff;
+  return isUnlocked ? QuestionIcon : QuestionIconLocked;
+}
+
+
+function getNodeBackground(isUnlocked: boolean): NodeSvgComponent {
+  return isUnlocked ? ButtonBgActive : ButtonBgLocked;
 }
 
 export default function LevelMapView({
   levelId,
+   levelLabel,
   layout,
   scale,
   screenWidth,
@@ -89,6 +87,7 @@ export default function LevelMapView({
   visibleSvgLayerIds,
   bgAnchor,
   placedNodes,
+  titleNodes,
   objectAnchors,
   objectMap,
   objectAssets,
@@ -97,17 +96,56 @@ export default function LevelMapView({
   pressedId,
   transitioningId,
   theme,
+  contentHeight,
   onPressReadNode,
   onPressQuizNode,
 }: LevelMapViewProps) {
-  return (
+  const titleBackgroundColor =
+    theme?.palette?.accent ??
+    theme?.layerColors?.level_001 ??
+    colorScheme.darkBlue;
+
+  const titleTextColor = theme?.palette?.text ?? "#ffffff";
+
+ return (
+  <View
+    style={{
+      position: "relative",
+      width: "100%",
+      height: contentHeight,
+    }}
+  >
+  <View
+    style={{
+      position: "absolute",
+      top: 24,
+      left: 0,
+      right: 0,
+      zIndex: 20,
+      alignItems: "center",
+    }}
+  >
     <View
       style={{
-        position: "relative",
-        width: "100%",
-        height: layout.viewBox.height * scale,
+        paddingHorizontal: 16,
+        paddingVertical: 8,
+        borderRadius: 10,
+        backgroundColor: titleBackgroundColor,
       }}
     >
+      <Text
+        style={{
+          color: titleTextColor,
+          fontSize: 16,
+          fontWeight: "900",
+          textAlign: "center",
+        }}
+      >
+        {levelLabel}
+      </Text>
+    </View>
+  </View>
+
       {bgAnchor ? (
         <Image
           contentFit="contain"
@@ -125,6 +163,7 @@ export default function LevelMapView({
         width={screenWidth}
         height={layout.viewBox.height * scale}
         visibleLayerIds={visibleSvgLayerIds}
+         decoCount={theme.decoCount}
         layerColors={theme.layerColors}
         style={{
           position: "absolute",
@@ -132,6 +171,51 @@ export default function LevelMapView({
           top: 0,
         }}
       />
+
+      {titleNodes.map((node) => {
+        return (
+          
+          <View
+            key={node.id}
+            style={{
+              position: "absolute",
+              left: node.x * scale,
+              top: node.y * scale,
+              width: node.width * scale,
+              height: node.height * scale,
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            
+            <View
+              style={{
+                maxWidth: "100%",
+                paddingHorizontal: 12,
+                paddingVertical: 6,
+                borderRadius: 14,
+                backgroundColor: titleBackgroundColor,
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              
+              <Text
+                style={{
+                  color: titleTextColor,
+                  fontSize: 16,
+                  fontWeight: "800",
+                  textAlign: "center",
+                }}
+                numberOfLines={2}
+                adjustsFontSizeToFit
+              >
+                {node.title}
+              </Text>
+            </View>
+          </View>
+        );
+      })}
 
       {objectAnchors.map((anchor) => {
         const config = objectMap?.[anchor.id];
@@ -157,12 +241,8 @@ export default function LevelMapView({
         const isTransitioning = transitioningId === node.id;
 
         if (node.type === "read") {
-          const NodeIllustration = getNodeIllustration(
-            "read",
-            isUnlocked,
-            levelId
-          );
-
+         const NodeIllustration = getNodeIllustration("read", isUnlocked);
+        const NodeBackground = getNodeBackground(isUnlocked);
           return (
             <Pressable
               key={node.id}
@@ -184,15 +264,19 @@ export default function LevelMapView({
                 <View style={styles.ringWrap}>
                   <View style={styles.readCircle}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
-                    </View>
+  <NodeBackground
+    width={64}
+    height={64}
+    style={{
+      position: "absolute",
+    }}
+  />
+
+  <NodeIllustration width={32} height={32} />
+</View>
                   </View>
 
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
+                 
                 </View>
               </NodeTransitionWrap>
             </Pressable>
@@ -202,12 +286,8 @@ export default function LevelMapView({
         if (node.type === "quiz") {
           const saved = progressByQuizId[node.quizId] ?? null;
           const ringPercent = getFirstTryPercent(saved);
-          const NodeIllustration = getNodeIllustration(
-            "quiz",
-            isUnlocked,
-            levelId
-          );
-
+        const NodeIllustration = getNodeIllustration("quiz", isUnlocked);
+        const NodeBackground = getNodeBackground(isUnlocked);
           return (
             <Pressable
               key={node.id}
@@ -227,68 +307,57 @@ export default function LevelMapView({
                 isTransitioning={isTransitioning}
               >
                 <View style={styles.ringWrap}>
-                  <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
+                  <ProgressRing percent={ringPercent} size={124} strokeWidth={5}>
                     <View style={styles.iconInner}>
-                      <NodeIllustration width={80} height={80} />
-                    </View>
+  <NodeBackground
+    width={104}
+    height={104}
+    style={{
+      position: "absolute",
+    }}
+  />
+
+  <NodeIllustration width={54} height={54} />
+</View>
                   </ProgressRing>
 
-                  {!isUnlocked ? (
-                    <View style={styles.lockBadge}>
-                      <SvgIcon name="lock" size={14} color="#ffffff" />
-                    </View>
-                  ) : null}
+                
                 </View>
               </NodeTransitionWrap>
             </Pressable>
           );
         }
 
-        if (node.type === "chapter_test") {
-          const saved = progressByQuizId[node.quizId] ?? null;
-          const ringPercent = getFirstTryPercent(saved);
+       if (node.type === "chapter_test") {
+  const NodeIllustration = isUnlocked
+    ? ChapterQuizIcon
+    : ChapterQuizIconLocked;
 
-          return (
-            <Pressable
-              key={node.id}
-              onPress={() => {
-                if (!isUnlocked) return;
-                onPressQuizNode(node);
-              }}
-              disabled={!isUnlocked}
-              style={[
-                styles.absoluteNode,
-                { left, top },
-                !isUnlocked && styles.tileLocked,
-              ]}
-            >
-              <FloatingNode delay={0} amplitude={10} rotateDeg={12}>
-                <NodeTransitionWrap
-                  isPressed={isPressed}
-                  isTransitioning={isTransitioning}
-                >
-                  <View style={styles.ringWrap}>
-                    <ProgressRing percent={ringPercent} size={90} strokeWidth={7}>
-                      <View style={styles.iconInner}>
-                        <SvgIcon
-                          name="boat"
-                          size={30}
-                          color={isUnlocked ? colorScheme.darkBlue : "#bbb"}
-                        />
-                      </View>
-                    </ProgressRing>
-
-                    {!isUnlocked ? (
-                      <View style={styles.lockBadge}>
-                        <SvgIcon name="lock" size={14} color="#ffffff" />
-                      </View>
-                    ) : null}
-                  </View>
-                </NodeTransitionWrap>
-              </FloatingNode>
-            </Pressable>
-          );
-        }
+  return (
+    <Pressable
+      key={node.id}
+      onPress={() => {
+        if (!isUnlocked) return;
+        onPressQuizNode(node);
+      }}
+      disabled={!isUnlocked}
+      style={[
+        styles.absoluteNode,
+        { left, top },
+        !isUnlocked && styles.tileLocked,
+      ]}
+    >
+      <NodeTransitionWrap
+        isPressed={isPressed}
+        isTransitioning={isTransitioning}
+      >
+        <View style={styles.iconInner}>
+          <NodeIllustration width={84} height={84} />
+        </View>
+      </NodeTransitionWrap>
+    </Pressable>
+  );
+}
 
         return null;
       })}
