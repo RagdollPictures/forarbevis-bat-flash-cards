@@ -80,10 +80,10 @@ export const papperssjokort: FlashCard[] = [
     questionQuiz:
       "Var kontrollerar du på ett sjökort när det senast rättades?",
     answer:
-      "I kanten på sjökortet där datumet för senaste rättning är tryckt.",
+      "I marginalen på sjökortet där datumet för senaste rättning är tryckt.",
     options: [
       "Mitt i sjökortet.",
-      "I kanten/marginalen där rättningsdatum står.",
+      "I Marginalen.",
       "Vid kompassrosen.",
       "I djupangivelserna.",
     ],
