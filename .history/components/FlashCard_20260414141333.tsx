@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
+import { cardImages } from "../constants/flashcards/cardImages";
 import type { FlashCard as FlashCardType } from "../constants/flashcards/types";
-import { questionImages } from "../content/assets/questionImages";
 
 type Props = {
   card: FlashCardType;
@@ -16,11 +16,11 @@ export default function FlashCard({ card, resetKey }: Props) {
   }, [resetKey]);
 
   const questionImage = card.imageKey
-    ? questionImages[card.imageKey]
+    ? cardImages[card.imageKey]
     : null;
 
   const answerImage = card.answerImageKey
-    ? questionImages[card.answerImageKey]
+    ? cardImages[card.answerImageKey]
     : null;
 
   return (

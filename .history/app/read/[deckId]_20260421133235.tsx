@@ -5,7 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 import { buildReadSections } from "../../constants/flashcards";
-import { questionImages } from "../../content/assets/questionImages";
+import { cardImages } from "../../constants/flashcards/cardImages";
 
 export default function ReadScreen() {
   const navigation = useNavigation();
@@ -60,7 +60,7 @@ export default function ReadScreen() {
 
         {sections.map((section) => {
           const imageSource = section.imageKey
-            ? questionImages[section.imageKey]
+            ? cardImages[section.imageKey]
             : undefined;
 
           return (

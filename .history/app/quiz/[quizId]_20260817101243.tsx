@@ -6,8 +6,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 
 import { getQuizById } from "../../constants/flashcards";
+import { cardImages } from "../../constants/flashcards/cardImages";
 import type { FlashCard } from "../../constants/flashcards/types";
-import { questionImages } from "../../content/assets/questionImages";
 
 import { levelIds, levelsById } from "../game/levelConfig";
 
@@ -162,16 +162,16 @@ export default function QuizScreen() {
 
   const hasQuestionImage =
     !!s.card.imageKey &&
-    Object.prototype.hasOwnProperty.call(questionImages, s.card.imageKey);
+    Object.prototype.hasOwnProperty.call(cardImages, s.card.imageKey);
 
   const imageSource = hasQuestionImage
-    ? questionImages[s.card.imageKey!]
+    ? cardImages[s.card.imageKey!]
     : undefined;
 
   const optionImageSources = s.quiz.optionImageKeys.map((key) => {
     if (!key) return undefined;
-    if (!Object.prototype.hasOwnProperty.call(questionImages, key)) return undefined;
-    return questionImages[key];
+    if (!Object.prototype.hasOwnProperty.call(cardImages, key)) return undefined;
+    return cardImages[key];
   });
 
   return (
