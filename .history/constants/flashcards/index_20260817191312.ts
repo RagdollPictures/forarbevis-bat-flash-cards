@@ -1,108 +1,102 @@
-import {
-  avdriftStrom,
-  berakningar,
-  bonusDagersignaler,
-  bonusFartDistansTid,
-  bonusFlaggor,
-  bonusFortojningslinor,
-  bonusKardinal,
-  bonusKursberakning,
-  bonusLanternor,
-  bonusLjudsignaler,
-  bonusNavigator,
-  bonusSjomarken,
-  bonusSymboler,
-  deviationMissvisning,
-  distans,
-  elektroniskaSjokort,
-  farledsnavigation,
-  fastaSjomarken,
-  flytandeSjomarken,
-  instrumentnavigation,
-  knoparOchLinor,
-  krysspejling,
-  kursBaringRiktning,
-  laggaUtKurs,
-  lanternorFartyg,
-  lanternorInledning,
-  lanternorMotorbatar,
-  lanternorSarskildaFartyg,
-  lanternorSegelbatar,
-  lanternorSmabatar,
-  longitudLatitud,
-  manovreringBatMedRoder,
-  manovreringBatUtanRoder,
-  manovreringFortoja,
-  manovreringHogFart,
-  manovreringInledning,
-  manovreringKastaLoss,
-  manovreringSegelbat,
-  markeraPosition,
-  mataKortDistans,
-  mataLangreDistans,
-  mataUppKurs,
-  miljoAllemansratten,
-  miljoBottenfarg,
-  miljoEcoDriving,
-  miljoMiljovett,
-  miljoSkyddsomraden,
-  miljoToaletter,
-  navigationsbestick,
-  navigationsinstrumentEkolod,
-  navigationsinstrumentInstrumentkontroll,
-  navigationsinstrumentKompass,
-  navigationsinstrumentLogg,
-  navigationsinstrumentNavigator,
-  navigationsinstrumentSatellit,
-  navigatornavigation,
-  optiskNavigation,
-  papperssjokort,
-  planering,
-  position,
-  rattaSattaKurs,
-  sakerhetAnsvarSkyldigheter,
-  sakerhetBransle,
-  sakerhetElsakerhet,
-  sakerhetFlytvast,
-  sakerhetNodsituationer,
-  sakerhetNodutrustning,
-  sakerhetSakerhetsutrustning,
-  sakerhetSjoraddning,
-
-  signaleringDagersignaler,
-  signaleringLjudsignaler,
-  signaleringNodsignaler,
-  signaleringSignalflaggor,
-  sjokortstyper,
-  sjomanskapAnkring,
-  sjomanskapFlaggor,
-  sjomanskapHansynHjalpsamhet,
-  sjomanskapKladsel,
-  sjomanskapKontrollerUnderhall,
-  sjomanskapSjofylleri,
-  sjomanskapSjovardighet,
-  sjomanskapStabilitet,
-
-  sjukvardBrannskador,
-  sjukvardGrundlaggande,
-  sjukvardNedkylning,
-  sjukvardSjosjuka,
-  symboler,
-  taFramPosition,
-  tillforlitlighet,
-  vaderMeteorologi,
-  vaderRisker,
-  vaderstreck,
-  vaderVaderprognoser,
-  vaderVindOchVagor,
-
-  vajningsreglerFartyg,
-  vajningsreglerInledning,
-  vajningsreglerMotorbatar,
-  vajningsreglerSegelbatar,
-  vajningsreglerSmabatar,
-} from "../../content/questions";
-
+import { bonusDagersignaler } from "../../content/questions/forarintyg_se/bonus/dagersignaler";
+import { bonusFartDistansTid } from "../../content/questions/forarintyg_se/bonus/fart_distans_tid";
+import { bonusFlaggor } from "../../content/questions/forarintyg_se/bonus/flaggor";
+import { bonusFortojningslinor } from "../../content/questions/forarintyg_se/bonus/fortojningslinor";
+import { bonusKardinal } from "../../content/questions/forarintyg_se/bonus/kardinal";
+import { bonusKursberakning } from "../../content/questions/forarintyg_se/bonus/kursberakning";
+import { bonusLanternor } from "../../content/questions/forarintyg_se/bonus/lanternor";
+import { bonusLjudsignaler } from "../../content/questions/forarintyg_se/bonus/ljudsignaler";
+import { bonusNavigator } from "../../content/questions/forarintyg_se/bonus/navigator";
+import { bonusSjomarken } from "../../content/questions/forarintyg_se/bonus/sjomarken";
+import { bonusSymboler } from "../../content/questions/forarintyg_se/bonus/symboler";
+import { lanternorFartyg } from "../../content/questions/forarintyg_se/lanternor/fartyg";
+import { lanternorInledning } from "../../content/questions/forarintyg_se/lanternor/inledning";
+import { lanternorMotorbatar } from "../../content/questions/forarintyg_se/lanternor/motorbatar";
+import { lanternorSarskildaFartyg } from "../../content/questions/forarintyg_se/lanternor/sarskilda_fartyg";
+import { lanternorSegelbatar } from "../../content/questions/forarintyg_se/lanternor/segelbatar";
+import { lanternorSmabatar } from "../../content/questions/forarintyg_se/lanternor/smabatar";
+import { manovreringBatMedRoder } from "../../content/questions/forarintyg_se/manovrering/bat_med_roder";
+import { manovreringBatUtanRoder } from "../../content/questions/forarintyg_se/manovrering/bat_utan_roder";
+import { manovreringFortoja } from "../../content/questions/forarintyg_se/manovrering/fortoja";
+import { manovreringHogFart } from "../../content/questions/forarintyg_se/manovrering/hog_fart";
+import { manovreringInledning } from "../../content/questions/forarintyg_se/manovrering/inledning";
+import { manovreringKastaLoss } from "../../content/questions/forarintyg_se/manovrering/kasta_loss";
+import { manovreringSegelbat } from "../../content/questions/forarintyg_se/manovrering/segelbat";
+import { miljoAllemansratten } from "../../content/questions/forarintyg_se/miljo/allemansratten";
+import { miljoBottenfarg } from "../../content/questions/forarintyg_se/miljo/bottenfarg";
+import { miljoEcoDriving } from "../../content/questions/forarintyg_se/miljo/eco_driving";
+import { miljoMiljovett } from "../../content/questions/forarintyg_se/miljo/miljovett";
+import { miljoSkyddsomraden } from "../../content/questions/forarintyg_se/miljo/skyddsomraden";
+import { miljoToaletter } from "../../content/questions/forarintyg_se/miljo/toaletter";
+import { navigationsinstrumentEkolod } from "../../content/questions/forarintyg_se/navigationsinstrument/ekolod";
+import { navigationsinstrumentInstrumentkontroll } from "../../content/questions/forarintyg_se/navigationsinstrument/instrumentkontroll";
+import { navigationsinstrumentKompass } from "../../content/questions/forarintyg_se/navigationsinstrument/kompass";
+import { navigationsinstrumentLogg } from "../../content/questions/forarintyg_se/navigationsinstrument/logg";
+import { navigationsinstrumentNavigator } from "../../content/questions/forarintyg_se/navigationsinstrument/navigator";
+import { navigationsinstrumentSatellit } from "../../content/questions/forarintyg_se/navigationsinstrument/satellit";
+import { avdriftStrom } from "../../content/questions/forarintyg_se/navigationsteori/avdrift_strom";
+import { berakningar } from "../../content/questions/forarintyg_se/navigationsteori/berakningar";
+import { deviationMissvisning } from "../../content/questions/forarintyg_se/navigationsteori/deviation_missvisning";
+import { distans } from "../../content/questions/forarintyg_se/navigationsteori/distans";
+import { kursBaringRiktning } from "../../content/questions/forarintyg_se/navigationsteori/kurs_baring_riktning";
+import { navigationsbestick } from "../../content/questions/forarintyg_se/navigationsteori/navigationsbestick";
+import { position } from "../../content/questions/forarintyg_se/navigationsteori/position";
+import { rattaSattaKurs } from "../../content/questions/forarintyg_se/navigationsteori/ratta_satta_kurs";
+import { vaderstreck } from "../../content/questions/forarintyg_se/navigationsteori/vaderstreck";
+import { farledsnavigation } from "../../content/questions/forarintyg_se/praktisk_navigation/farledsnavigation";
+import { instrumentnavigation } from "../../content/questions/forarintyg_se/praktisk_navigation/instrumentnavigation";
+import { navigatornavigation } from "../../content/questions/forarintyg_se/praktisk_navigation/navigatornavigation";
+import { optiskNavigation } from "../../content/questions/forarintyg_se/praktisk_navigation/optisk_navigation";
+import { planering } from "../../content/questions/forarintyg_se/praktisk_navigation/planering";
+import { sakerhetAnsvarSkyldigheter } from "../../content/questions/forarintyg_se/sakerhet/ansvar_skyldigheter";
+import { sakerhetBransle } from "../../content/questions/forarintyg_se/sakerhet/bransle";
+import { sakerhetElsakerhet } from "../../content/questions/forarintyg_se/sakerhet/elsakerhet";
+import { sakerhetFlytvast } from "../../content/questions/forarintyg_se/sakerhet/flytvast";
+import { sakerhetNodsituationer } from "../../content/questions/forarintyg_se/sakerhet/nodsituationer";
+import { sakerhetNodutrustning } from "../../content/questions/forarintyg_se/sakerhet/nodutrustning";
+import { sakerhetSakerhetsutrustning } from "../../content/questions/forarintyg_se/sakerhet/sakerhetsutrustning";
+import { sakerhetSjoraddning } from "../../content/questions/forarintyg_se/sakerhet/sjoraddning";
+import { signaleringDagersignaler } from "../../content/questions/forarintyg_se/signalering/dagersignaler";
+import { signaleringLjudsignaler } from "../../content/questions/forarintyg_se/signalering/ljudsignaler";
+import { signaleringNodsignaler } from "../../content/questions/forarintyg_se/signalering/nodsignaler";
+import { signaleringSignalflaggor } from "../../content/questions/forarintyg_se/signalering/signalflaggor";
+import { elektroniskaSjokort } from "../../content/questions/forarintyg_se/sjokortet/elektroniska_sjokort";
+import { longitudLatitud } from "../../content/questions/forarintyg_se/sjokortet/longitud_latitud";
+import { papperssjokort } from "../../content/questions/forarintyg_se/sjokortet/papperssjokort";
+import { sjokortstyper } from "../../content/questions/forarintyg_se/sjokortet/sjokortstyper";
+import { tillforlitlighet } from "../../content/questions/forarintyg_se/sjokortet/tillforlitlighet";
+import { fastaSjomarken } from "../../content/questions/forarintyg_se/sjokortet_sjomarken/fasta_sjomarken";
+import { flytandeSjomarken } from "../../content/questions/forarintyg_se/sjokortet_sjomarken/flytande_sjomarken";
+import { symboler } from "../../content/questions/forarintyg_se/sjokortet_sjomarken/symboler";
+import { krysspejling } from "../../content/questions/forarintyg_se/sjokortsarbete/krysspejling";
+import { laggaUtKurs } from "../../content/questions/forarintyg_se/sjokortsarbete/lagga_ut_kurs";
+import { markeraPosition } from "../../content/questions/forarintyg_se/sjokortsarbete/markera_position";
+import { mataKortDistans } from "../../content/questions/forarintyg_se/sjokortsarbete/mata_kort_distans";
+import { mataLangreDistans } from "../../content/questions/forarintyg_se/sjokortsarbete/mata_langre_distans";
+import { mataUppKurs } from "../../content/questions/forarintyg_se/sjokortsarbete/mata_upp_kurs";
+import { taFramPosition } from "../../content/questions/forarintyg_se/sjokortsarbete/ta_fram_position";
+import { sjomanskapAnkring } from "../../content/questions/forarintyg_se/sjomanskap/ankring";
+import { sjomanskapFlaggor } from "../../content/questions/forarintyg_se/sjomanskap/flaggor";
+import { sjomanskapHansynHjalpsamhet } from "../../content/questions/forarintyg_se/sjomanskap/hansyn_hjalpsamhet";
+import { sjomanskapKladsel } from "../../content/questions/forarintyg_se/sjomanskap/kladsel";
+import { knoparOchLinor } from "../../content/questions/forarintyg_se/sjomanskap/knopar_och_linor";
+import { sjomanskapKontrollerUnderhall } from "../../content/questions/forarintyg_se/sjomanskap/kontroller_undehall";
+import { sjomanskapSjofylleri } from "../../content/questions/forarintyg_se/sjomanskap/sjofylleri";
+import { sjomanskapSjovardighet } from "../../content/questions/forarintyg_se/sjomanskap/sjovardighet";
+import { sjomanskapStabilitet } from "../../content/questions/forarintyg_se/sjomanskap/stabilitet";
+import { sjukvardBrannskador } from "../../content/questions/forarintyg_se/sjukvard/brannskador";
+import { sjukvardGrundlaggande } from "../../content/questions/forarintyg_se/sjukvard/grundlaggande";
+import { sjukvardNedkylning } from "../../content/questions/forarintyg_se/sjukvard/nedkylning";
+import { sjukvardSjosjuka } from "../../content/questions/forarintyg_se/sjukvard/sjosjuka";
+import { vaderMeteorologi } from "../../content/questions/forarintyg_se/vader/meteorologi";
+import { vaderRisker } from "../../content/questions/forarintyg_se/vader/risker";
+import { vaderVaderprognoser } from "../../content/questions/forarintyg_se/vader/vaderprognoser";
+import { vaderVindOchVagor } from "../../content/questions/forarintyg_se/vader/vind_och_vagor";
+import { vajningsreglerFartyg } from "../../content/questions/forarintyg_se/vajningsregler/fartyg";
+import { vajningsreglerInledning } from "../../content/questions/forarintyg_se/vajningsregler/inledning";
+import { vajningsreglerMotorbatar } from "../../content/questions/forarintyg_se/vajningsregler/motorbatar";
+import { vajningsreglerSegelbatar } from "../../content/questions/forarintyg_se/vajningsregler/segelbatar";
+import { vajningsreglerSmabatar } from "../../content/questions/forarintyg_se/vajningsregler/smabatar";
 import { batlivet } from "./fritidsskepparen/batlivet";
 import { kompassen } from "./fritidsskepparen/kompassen";
 import { positionFartTidDistans } from "./fritidsskepparen/position_fart_tid_distans";
