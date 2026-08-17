@@ -5,8 +5,8 @@ function decoId(index: number) {
 }
 
 export function getVisibleSvgLayerIds(theme: LevelTheme) {
-  if (theme.visibleSvgLayerIds?.length) {
-    return theme.visibleSvgLayerIds;
+  if (theme.visibleLayerIds?.length) {
+    return theme.visibleLayerIds;
   }
 
   const ids: string[] = [];
