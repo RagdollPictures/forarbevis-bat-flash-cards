@@ -1,5 +1,5 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import { course } from "../../content/course";
+
 export type QuizProgressState = "correct" | "wrong" | null;
 
 export type SavedQuizProgress = {
@@ -12,7 +12,7 @@ export type SavedQuizProgress = {
 firstTryTotal?: number;
 };
 
-const KEY = `${course.id}_quiz_progress_v1`;
+const KEY = "quiz_progress_v1";
 
 type ProgressMap = Record<string, SavedQuizProgress>;
 
