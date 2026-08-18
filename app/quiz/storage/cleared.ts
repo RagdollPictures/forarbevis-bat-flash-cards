@@ -1,7 +1,7 @@
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { course } from "../../../content/course";
 export const UNLOCK_PERCENT = 100;
-export const CLEARED_KEY = "forarintyg_cleared_quiz_ids_v1";
+export const CLEARED_KEY = `${course.id}_cleared_quiz_ids_v1`;
 
 export async function loadClearedSet(): Promise<Set<string>> {
   const raw = await AsyncStorage.getItem(CLEARED_KEY);
