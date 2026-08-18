@@ -9,7 +9,9 @@ const level001Theme: LevelTheme = {
   },
   levelLayerId: "level_001",
   decoCount: 5,
-  backgroundSvg: Level001Bg
+  contentHeight: 4000,
+  backgroundSvg: Level001Bg,
+  backgroundParallaxFactor: 0.5,
 };
 
 const defaultTheme: LevelTheme = {
@@ -19,7 +21,9 @@ const defaultTheme: LevelTheme = {
   },
   levelLayerId: "level_001",
   decoCount: 3,
-  backgroundSvg: Level001Bg
+  contentHeight: 7000,
+  backgroundSvg: Level001Bg,
+  backgroundParallaxFactor: 0.5,
 };
 
 export const levelThemesById: Record<string, LevelTheme> = {

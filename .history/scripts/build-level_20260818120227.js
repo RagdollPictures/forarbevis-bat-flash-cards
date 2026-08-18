@@ -202,9 +202,68 @@ function removeClassName(code) {
   return code.replace(/\sclassName="[^"]*"/g, "");
 }
 
+function shouldTintFill(fillValue) {
+  if (!fillValue) return false;
+  if (fillValue === "none") return false;
+  if (fillValue.includes("url(")) return false;
+  return true;
+}
 
+function addLayerColorSupport(code) {
+  const tokenRegex = /<G\b[\s\S]*?>|<\/G>|fill="([^"]+)"/g;
+  const groupStack = [];
 
+  let result = "";
+  let lastIndex = 0;
+  let match;
 
+  function getCurrentGroupId() {
+    for (let i = groupStack.length - 1; i >= 0; i -= 1) {
+      const id = groupStack[i];
+      if (id) return id;
+    }
+    return null;
+  }
+
+  while ((match = tokenRegex.exec(code)) !== null) {
+    const token = match[0];
+
+    result += code.slice(lastIndex, match.index);
+    lastIndex = tokenRegex.lastIndex;
+
+    if (token.startsWith("<G")) {
+      const idMatch = token.match(/\bid="([^"]+)"/);
+      const groupId = idMatch ? idMatch[1] : null;
+      groupStack.push(groupId);
+      result += token;
+      continue;
+    }
+
+    if (token === "</G>") {
+      groupStack.pop();
+      result += token;
+      continue;
+    }
+
+    if (token.startsWith('fill="')) {
+      const originalColor = match[1];
+      const groupId = getCurrentGroupId();
+
+      if (!groupId || !shouldTintFill(originalColor)) {
+        result += token;
+        continue;
+      }
+
+      result += `fill={props.layerColors?.["${groupId}"] ?? "${originalColor}"}`;
+      continue;
+    }
+
+    result += token;
+  }
+
+  result += code.slice(lastIndex);
+  return result;
+}
 
 async function formatCode(code) {
   return prettier.format(code, {
@@ -257,7 +316,7 @@ async function main() {
   componentCode = replaceStyleObject(componentCode);
   componentCode = applyClassStyles(componentCode, classMap);
   componentCode = removeClassName(componentCode);
-  
+  componentCode = addLayerColorSupport(componentCode);
   componentCode = await formatCode(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");

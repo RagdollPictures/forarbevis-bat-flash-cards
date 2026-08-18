@@ -1,3 +1,6 @@
+import type { ComponentType } from "react";
+import type { SvgProps } from "react-native-svg";
+
 export type QuizItem = {
   id: string;
   title: string;
@@ -12,19 +15,24 @@ export type LevelObjectConfig = {
 };
 
 export type LevelTheme = {
-  bgImageSource: any;
-  platformImageSource: any;
+  bgImageSource?: any;
+  platformImageSource?: any;
   palette?: {
     sky?: string;
     water?: string;
     path?: string;
     platform?: string;
     accent?: string;
+    text?: string;
   };
-  layerColors?: Record<string, string>;
   levelLayerId?: string;
   decoCount?: number;
-  visibleSvgLayerIds?: string[];
+  contentHeight?: number;
+
+  backgroundSvg?: ComponentType<SvgProps>;
+   backgroundParallaxFactor?: number;
+
+  visibleLayerIds?: string[];
   objects?: Record<string, LevelObjectConfig>;
   objectAssets?: Record<string, any>;
 };
@@ -87,19 +95,25 @@ export type ObjectAnchor = {
 
 export type TitleAnchor = {
   id: string;
-  type: "title";
+  type: "title_box";
   index: number;
   x: number;
   y: number;
+  width: number;
+  height: number;
+  cx: number;
+  cy: number;
 };
 
 export type TitlePlacedNode = {
   id: string;
-  type: "title";
+  type: "title_box";
   index: number;
   title: string;
   x: number;
   y: number;
+  width: number;
+  height: number;
 };
 
 export type PlacedNode =

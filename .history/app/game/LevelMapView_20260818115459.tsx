@@ -158,17 +158,18 @@ const titleBackgroundColor =
         />
       ) : null}
 
-     <LevelSvg
-  width={screenWidth}
-  height={layout.viewBox.height * scale}
-  visibleLayerIds={visibleSvgLayerIds}
-  decoCount={theme.decoCount}
-  style={{
-    position: "absolute",
-    left: 0,
-    top: 0,
-  }}
-/>
+      <LevelSvg
+        width={screenWidth}
+        height={layout.viewBox.height * scale}
+        visibleLayerIds={visibleSvgLayerIds}
+         decoCount={theme.decoCount}
+        layerColors={theme.layerColors}
+        style={{
+          position: "absolute",
+          left: 0,
+          top: 0,
+        }}
+      />
 
       {titleNodes.map((node) => {
         return (

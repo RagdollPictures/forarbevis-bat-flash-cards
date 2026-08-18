@@ -257,7 +257,7 @@ async function main() {
   componentCode = replaceStyleObject(componentCode);
   componentCode = applyClassStyles(componentCode, classMap);
   componentCode = removeClassName(componentCode);
-  
+  componentCode = addLayerColorSupport(componentCode);
   componentCode = await formatCode(componentCode);
 
   fs.writeFileSync(OUTPUT, componentCode, "utf8");

@@ -9,6 +9,7 @@ const level001Theme: LevelTheme = {
   },
   levelLayerId: "level_001",
   decoCount: 5,
+  contentHeight: 4000,
   backgroundSvg: Level001Bg
 };
 
@@ -19,6 +20,7 @@ const defaultTheme: LevelTheme = {
   },
   levelLayerId: "level_001",
   decoCount: 3,
+  contentHeight: 7000,
   backgroundSvg: Level001Bg
 };
 

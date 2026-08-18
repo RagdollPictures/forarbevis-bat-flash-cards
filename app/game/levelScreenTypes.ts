@@ -25,10 +25,8 @@ export type LevelTheme = {
     accent?: string;
     text?: string;
   };
-  layerColors?: Record<string, string>;
   levelLayerId?: string;
   decoCount?: number;
-  contentHeight?: number;
 
   backgroundSvg?: ComponentType<SvgProps>;
    backgroundParallaxFactor?: number;
