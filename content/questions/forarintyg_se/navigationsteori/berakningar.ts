@@ -6,11 +6,11 @@ export const berakningar: FlashCard[] = [
     question:
       "Hur ser formeln ut för att räkna med tid, fart och distans?",
     questionQuiz:
-      "Vilket samband gäller mellan distans, fart och tid vid navigationsberäkningar?",
+      "Hur räknar du ut tiden om du känner till distans och fart?",
     answer:
       "Distans = fart × tid.",
     options: [
-      "Distans = fart × tid.",
+      "Tid = distans ÷ fart.",
       "Fart = tid × distans.",
       "Tid = fart × distans.",
       "Distans = fart ÷ tid.",
@@ -39,7 +39,7 @@ export const berakningar: FlashCard[] = [
   {
     id: "berakningar-3",
     question:
-      "Du ska färdas 24 M i farten 6 knop. Hur lång tid kommer färden att ta?",
+      "Du ska färdas 24 M i farten 6 knop. Hur lång tid kommer färden att ta?",   
     questionQuiz:
       "Hur lång tid tar det att köra 24 nautiska mil i 6 knop?",
     answer: "4 timmar.",
