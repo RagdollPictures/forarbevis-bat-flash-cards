@@ -3,10 +3,7 @@ const path = require("path");
 const { transform } = require("@svgr/core");
 const prettier = require("prettier");
 
-const INPUT = path.join(
-  __dirname,
-  "../content/assets/game/level_001.svg"
-);
+const INPUT = path.join(__dirname, "../assets/game/level_001.svg");
 const OUTPUT = path.join(__dirname, "../app/game/SharedLevelSvg.tsx");
 
 function extractViewBox(svgCode) {

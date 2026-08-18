@@ -9,189 +9,189 @@
       "type": "read",
       "index": 1,
       "x": 125,
-      "y": 162.34
+      "y": 162.3354
     },
     {
       "id": "anchor_quiz_001",
       "type": "quiz",
       "index": 1,
       "x": 189,
-      "y": 290.34
+      "y": 290.3354
     },
     {
       "id": "anchor_chapter_test_01",
       "type": "chapter_test",
       "index": 1,
       "x": 253,
-      "y": 418.34
+      "y": 418.3354
     },
     {
       "id": "anchor_read_002",
       "type": "read",
       "index": 2,
       "x": 253,
-      "y": 418.34
+      "y": 418.3354
     },
     {
       "id": "anchor_quiz_002",
       "type": "quiz",
       "index": 2,
       "x": 189,
-      "y": 546.34
+      "y": 546.3354
     },
     {
       "id": "anchor_chapter_test_02",
       "type": "chapter_test",
       "index": 2,
       "x": 125,
-      "y": 674.34
+      "y": 674.3354
     },
     {
       "id": "anchor_read_003",
       "type": "read",
       "index": 3,
       "x": 125,
-      "y": 674.34
+      "y": 674.3354
     },
     {
       "id": "anchor_quiz_003",
       "type": "quiz",
       "index": 3,
-      "x": 189.31,
-      "y": 802.34
+      "x": 189.3056,
+      "y": 802.3354
     },
     {
       "id": "anchor_chapter_test_03",
       "type": "chapter_test",
       "index": 3,
       "x": 253,
-      "y": 930.34
+      "y": 930.3354
     },
     {
       "id": "anchor_read_004",
       "type": "read",
       "index": 4,
       "x": 253,
-      "y": 930.34
+      "y": 930.3354
     },
     {
       "id": "anchor_quiz_004",
       "type": "quiz",
       "index": 4,
-      "x": 189.08,
-      "y": 1058.34
+      "x": 189.0803,
+      "y": 1058.3354
     },
     {
       "id": "anchor_chapter_test_04",
       "type": "chapter_test",
       "index": 4,
       "x": 125,
-      "y": 1186.34
+      "y": 1186.3354
     },
     {
       "id": "anchor_read_005",
       "type": "read",
       "index": 5,
       "x": 125,
-      "y": 1186.34
+      "y": 1186.3354
     },
     {
       "id": "anchor_quiz_005",
       "type": "quiz",
       "index": 5,
-      "x": 188.91,
-      "y": 1314.34
+      "x": 188.9082,
+      "y": 1314.3354
     },
     {
       "id": "anchor_chapter_test_05",
       "type": "chapter_test",
       "index": 5,
       "x": 253,
-      "y": 1442.34
+      "y": 1442.3354
     },
     {
       "id": "anchor_read_006",
       "type": "read",
       "index": 6,
       "x": 253,
-      "y": 1442.34
+      "y": 1442.3354
     },
     {
       "id": "anchor_quiz_006",
       "type": "quiz",
       "index": 6,
-      "x": 189.35,
-      "y": 1570.34
+      "x": 189.353,
+      "y": 1570.3354
     },
     {
       "id": "anchor_chapter_test_06",
       "type": "chapter_test",
       "index": 6,
       "x": 125,
-      "y": 1698.34
+      "y": 1698.3354
     },
     {
       "id": "anchor_read_007",
       "type": "read",
       "index": 7,
       "x": 125,
-      "y": 1698.34
+      "y": 1698.3354
     },
     {
       "id": "anchor_quiz_007",
       "type": "quiz",
       "index": 7,
-      "x": 188.85,
-      "y": 1826.34
+      "x": 188.8472,
+      "y": 1826.3354
     },
     {
       "id": "anchor_chapter_test_07",
       "type": "chapter_test",
       "index": 7,
       "x": 253,
-      "y": 1954.34
+      "y": 1954.3354
     },
     {
       "id": "anchor_read_008",
       "type": "read",
       "index": 8,
       "x": 253,
-      "y": 1954.34
+      "y": 1954.3354
     },
     {
       "id": "anchor_quiz_008",
       "type": "quiz",
       "index": 8,
-      "x": 189.06,
-      "y": 2083.34
+      "x": 189.0625,
+      "y": 2083.3354
     },
     {
       "id": "anchor_chapter_test_08",
       "type": "chapter_test",
       "index": 8,
       "x": 125,
-      "y": 2210.34
+      "y": 2210.3354
     },
     {
       "id": "anchor_read_009",
       "type": "read",
       "index": 9,
       "x": 125,
-      "y": 2210.34
+      "y": 2210.3354
     },
     {
       "id": "anchor_quiz_009",
       "type": "quiz",
       "index": 9,
       "x": 189,
-      "y": 2338.37
+      "y": 2338.3673
     },
     {
       "id": "anchor_chapter_test_09",
       "type": "chapter_test",
       "index": 9,
       "x": 253,
-      "y": 2466.34
+      "y": 2466.3354
     }
   ]
 }
