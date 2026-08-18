@@ -6,6 +6,7 @@ import {
   saveQuizProgress,
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
+import { course } from "../../content/course";
 import {
   loadClearedSet,
   saveClearedSet,
@@ -134,7 +135,7 @@ export function useLevelProgress({
 
       return quizzes.constructor === Array
         ? ((require("../../constants/flashcards").getQuizzesForChapter(
-            "forarintyg",
+            course.sourceId,
             level.chapterId
           ) as QuizItem[]) ?? [])
         : [];
@@ -142,7 +143,7 @@ export function useLevelProgress({
 
     const bonusEntries =
       (require("../../constants/flashcards").getQuizzesForChapter(
-        "forarintyg",
+        course.sourceId,
         "bonus"
       ) as QuizItem[]) ?? [];
 

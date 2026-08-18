@@ -1,5 +1,6 @@
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { isBonusUnlocked } from "../../constants/flashcards/bonusLevels";
+import { course } from "../../content/course";
 import type {
   BonusLevelItem,
   MenuLevel,
@@ -45,7 +46,7 @@ export function getUnlockedLevelIds(
     if (!prevLevel) break;
 
     const prevQuizzes = getQuizzesForChapter(
-      "forarintyg",
+      course.sourceId,
       prevLevel.chapterId
     ) as QuizItem[];
 

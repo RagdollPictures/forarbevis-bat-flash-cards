@@ -9,11 +9,11 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { bonusIconsById } from "../../content/assets/bonusIcons";
 
+
 import MapIcon from "../../assets/menu/map.svg";
 import { colorSchemeGui } from "../../constants/colors";
 import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusLevels } from "../../constants/flashcards/bonusLevels";
-import { course } from "../../content/course";
 import { styles } from "../quiz/styles";
 import DevMenu from "./DevMenu";
 import HeaderMiniMap from "./HeaderMiniMap";
@@ -70,12 +70,12 @@ export default function QuizMenuScreen() {
 
   const quizzes = useMemo(
     () =>
-      getQuizzesForChapter(course.sourceId, currentLevel.chapterId),
+      getQuizzesForChapter("forarintyg", currentLevel.chapterId) as QuizItem[],
     [currentLevel.chapterId]
   );
 
   const bonusQuizzes = useMemo(
-    () => getQuizzesForChapter(course.sourceId, "bonus") as QuizItem[],
+    () => getQuizzesForChapter("forarintyg", "bonus") as QuizItem[],
     []
   );
 
