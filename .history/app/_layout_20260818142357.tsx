@@ -30,8 +30,7 @@ export default function RootLayout() {
             name="game/chapters"
             options={{
               headerShown: false,
-              animation: "slide_from_bottom",
-             
+              animation: "none",
             }}
           />
         </Stack>

@@ -4,7 +4,6 @@
     "slug": "forarbevis-bat-traning",
     "version": "1.0.0",
     "orientation": "portrait",
-    "backgroundColor": "#000000",
     "icon": "./assets/images/icon.png",
     "scheme": "forarbevisbat",
     "userInterfaceStyle": "automatic",

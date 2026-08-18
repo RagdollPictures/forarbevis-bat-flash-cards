@@ -334,7 +334,6 @@ const backgroundHeight = foregroundHeight * backgroundParallaxFactor;
           flex: 1,
           position: "relative",
           overflow: "hidden",
-          backgroundColor: "#000",
         }}
         onLayout={(event) => {
           setLevelAreaHeight(event.nativeEvent.layout.height);

@@ -31,7 +31,6 @@ export default function RootLayout() {
             options={{
               headerShown: false,
               animation: "slide_from_bottom",
-             
             }}
           />
         </Stack>
