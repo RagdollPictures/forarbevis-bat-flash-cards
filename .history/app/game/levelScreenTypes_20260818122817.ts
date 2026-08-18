@@ -15,10 +15,16 @@ export type LevelObjectConfig = {
 };
 
 export type LevelTheme = {
+  bgImageSource?: any;
+  platformImageSource?: any;
   palette?: {
-  accent?: string;
-  text?: string;
-};
+    sky?: string;
+    water?: string;
+    path?: string;
+    platform?: string;
+    accent?: string;
+    text?: string;
+  };
   levelLayerId?: string;
   decoCount?: number;
 
