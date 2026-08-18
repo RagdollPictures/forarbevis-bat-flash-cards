@@ -1,12 +1,11 @@
 import { Redirect } from "expo-router";
-import { levelIds } from "../game/levelConfig";
 
-export default function GameTabScreen() {
+export default function IndexScreen() {
   return (
     <Redirect
       href={{
         pathname: "/game/[levelId]",
-        params: { levelId: levelIds[0] },
+        params: { levelId: "level_001" },
       }}
     />
   );

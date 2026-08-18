@@ -1,5 +1,5 @@
-import Level001Bg from "../../content/assets/game/level_001/bg_01.svg";
-import type { LevelTheme } from "./levelScreenTypes";
+import type { LevelTheme } from "../../app/game/levelScreenTypes";
+import Level001Bg from "../assets/game/level_001/bg_01.svg";
 
 
 const basePalette = {
