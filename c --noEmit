@@ -1,0 +1,116 @@
+[1mdiff --git a/app/game/[levelId].tsx b/app/game/[levelId].tsx[m
+[1mindex 9950a76..501e2bc 100644[m
+[1m--- a/app/game/[levelId].tsx[m
+[1m+++ b/app/game/[levelId].tsx[m
+[36m@@ -7,33 +7,13 @@[m [mimport {[m
+   View,[m
+ } from "react-native";[m
+ import { SafeAreaView } from "react-native-safe-area-context";[m
+[32m+[m[32mimport { bonusIconsById } from "../../content/assets/bonusIcons";[m
+ [m
+[31m-import BonusDagersignalerIcon from "../../assets/menu/bonus_dagersignaler.svg";[m
+[31m-import BonusDagersignalerOffIcon from "../../assets/menu/bonus_dagersignaler_off.svg";[m
+[31m-import BonusFartDistansTidIcon from "../../assets/menu/bonus_fart_distans_tid.svg";[m
+[31m-import BonusFartDistansTidOffIcon from "../../assets/menu/bonus_fart_distans_tid_off.svg";[m
+[31m-import BonusFlaggorIcon from "../../assets/menu/bonus_flaggor.svg";[m
+[31m-import BonusFlaggorOffIcon from "../../assets/menu/bonus_flaggor_off.svg";[m
+[31m-import BonusFortojningslinorIcon from "../../assets/menu/bonus_fortojningslinor.svg";[m
+[31m-import BonusFortojningslinorOffIcon from "../../assets/menu/bonus_fortojningslinor_off.svg";[m
+[31m-import BonusKardinalmarkenIcon from "../../assets/menu/bonus_kardinalmarken.svg";[m
+[31m-import BonusKardinalmarkenOffIcon from "../../assets/menu/bonus_kardinalmarken_off.svg";[m
+[31m-import BonusKursberakingIcon from "../../assets/menu/bonus_kursberaking.svg";[m
+[31m-import BonusKursberakingOffIcon from "../../assets/menu/bonus_kursberaking_off.svg";[m
+[31m-import BonusLanternorIcon from "../../assets/menu/bonus_lanternor.svg";[m
+[31m-import BonusLanternorOffIcon from "../../assets/menu/bonus_lanternor_off.svg";[m
+[31m-import BonusLjudsignalerIcon from "../../assets/menu/bonus_ljudsignaler.svg";[m
+[31m-import BonusLjudsignalerOffIcon from "../../assets/menu/bonus_ljudsignaler_off.svg";[m
+[31m-import BonusNavigatorIcon from "../../assets/menu/bonus_navigator.svg";[m
+[31m-import BonusNavigatorOffIcon from "../../assets/menu/bonus_navigator_off.svg";[m
+[31m-import BonusSjomarkenIcon from "../../assets/menu/bonus_sjomarken.svg";[m
+[31m-import BonusSjomarkenOffIcon from "../../assets/menu/bonus_sjomarken_off.svg";[m
+[31m-import BonusSymbolerIcon from "../../assets/menu/bonus_symboler.svg";[m
+[31m-import BonusSymbolerOffIcon from "../../assets/menu/bonus_symboler_off.svg";[m
+ import MapIcon from "../../assets/menu/map.svg";[m
+ import { colorSchemeGui } from "../../constants/colors";[m
+ import { getQuizzesForChapter } from "../../constants/flashcards";[m
+[31m-import { bonusLevels } from "../../constants/flashcards/bonusLevels";[m
+[32m+[m[32mimport { course } from "../../content/course";[m
+[32m+[m[32mimport { bonusLevels } from "../../content/questions/bonusLevels";[m
+ import { styles } from "../quiz/styles";[m
+ import DevMenu from "./DevMenu";[m
+ import HeaderMiniMap from "./HeaderMiniMap";[m
+[36m@@ -62,58 +42,7 @@[m [mimport {[m
+ import { useLevelNavigation } from "./useLevelNavigation";[m
+ import { useLevelProgress } from "./useLevelProgress";[m
+ [m
+[31m-const bonusIconsById: Record<[m
+[31m-  string,[m
+[31m-  {[m
+[31m-    on: React.ComponentType<any>;[m
+[31m-    off?: React.ComponentType<any>;[m
+[31m-  }[m
+[31m-> = {[m
+[31m-  bonus_dagersignaler: {[m
+[31m-    on: BonusDagersignalerIcon,[m
+[31m-    off: BonusDagersignalerOffIcon,[m
+[31m-  },[m
+[31m-  bonus_fart_distans_tid: {[m
+[31m-    on: BonusFartDistansTidIcon,[m
+[31m-    off: BonusFartDistansTidOffIcon,[m
+[31m-  },[m
+[31m-  bonus_flaggor: {[m
+[31m-    on: BonusFlaggorIcon,[m
+[31m-    off: BonusFlaggorOffIcon,[m
+[31m-  },[m
+[31m-  bonus_fortojningslinor: {[m
+[31m-    on: BonusFortojningslinorIcon,[m
+[31m-    off: BonusFortojningslinorOffIcon,[m
+[31m-  },[m
+[31m-  bonus_kursberakning: {[m
+[31m-    on: BonusKursberakingIcon,[m
+[31m-    off: BonusKursberakingOffIcon,[m
+[31m-  },[m
+[31m-  bonus_lanternor: {[m
+[31m-    on: BonusLanternorIcon,[m
+[31m-    off: BonusLanternorOffIcon,[m
+[31m-  },[m
+[31m-  bonus_ljudsignaler: {[m
+[31m-    on: BonusLjudsignalerIcon,[m
+[31m-    off: BonusLjudsignalerOffIcon,[m
+[31m-  },[m
+[31m-  bonus_navigator: {[m
+[31m-    on: BonusNavigatorIcon,[m
+[31m-    off: BonusNavigatorOffIcon,[m
+[31m-  },[m
+[31m-  bonus_sjomarken: {[m
+[31m-    on: BonusSjomarkenIcon,[m
+[31m-    off: BonusSjomarkenOffIcon,[m
+[31m-  },[m
+[31m-  bonus_symboler: {[m
+[31m-    on: BonusSymbolerIcon,[m
+[31m-    off: BonusSymbolerOffIcon,[m
+[31m-  },[m
+[31m-  bonus_kardinal: {[m
+[31m-    on: BonusKardinalmarkenIcon,[m
+[31m-    off: BonusKardinalmarkenOffIcon,[m
+[31m-  },[m
+[31m-};[m
+[32m+[m
+ [m
+ export default function QuizMenuScreen() {[m
+   const [showDevMenu, setShowDevMenu] = useState(false);[m
+[36m@@ -141,12 +70,12 @@[m [mexport default function QuizMenuScreen() {[m
+ [m
+   const quizzes = useMemo([m
+     () =>[m
+[31m-      getQuizzesForChapter("forarintyg", currentLevel.chapterId) as QuizItem[],[m
+[32m+[m[32m      getQuizzesForChapter(course.sourceId, currentLevel.chapterId),[m
+     [currentLevel.chapterId][m
+   );[m
+ [m
+   const bonusQuizzes = useMemo([m
+[31m-    () => getQuizzesForChapter("forarintyg", "bonus") as QuizItem[],[m
+[32m+[m[32m    () => getQuizzesForChapter(course.sourceId, "bonus") as QuizItem[],[m
+     [][m
+   );[m
+ [m
