@@ -13,11 +13,7 @@ import ChapterQuizIcon from "../../assets/menu/chapterquiz.svg";
 import ChapterQuizIconLocked from "../../assets/menu/chapterquiz_locked.svg";
 import QuestionIcon from "../../assets/menu/question_active.svg";
 import QuestionIconLocked from "../../assets/menu/question_locked.svg";
-import ReadIconBlue from "../../assets/menu/read_active_blue.svg";
-import ReadIconGreen from "../../assets/menu/read_active_green.svg";
-import ReadIconPink from "../../assets/menu/read_active_pink.svg";
-import ReadIconPurple from "../../assets/menu/read_active_purple.svg";
-import ReadIconYellow from "../../assets/menu/read_active_yellow.svg";
+import ReadIcon from "../../assets/menu/read_active.svg";
 import ReadIconLocked from "../../assets/menu/read_locked.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
 import { levelChapterIcons } from "../../content/assets/chapterIcons";
@@ -73,19 +69,10 @@ type NodeSvgComponent = React.ComponentType<SvgProps>;
 
 function getNodeIllustration(
   nodeType: "read" | "quiz",
-  isUnlocked: boolean,
-  levelId: string
+  isUnlocked: boolean
 ): NodeSvgComponent {
   if (nodeType === "read") {
-    if (!isUnlocked) {
-      return ReadIconLocked;
-    }
-
-    const match = levelId.match(/(\d+)$/);
-    const levelNumber = match ? Number(match[1]) : 1;
-    const colorIndex = (levelNumber - 1) % activeReadIcons.length;
-
-    return activeReadIcons[colorIndex];
+    return isUnlocked ? ReadIcon : ReadIconLocked;
   }
 
   return isUnlocked ? QuestionIcon : QuestionIconLocked;
@@ -98,14 +85,6 @@ const activeButtonBackgrounds: NodeSvgComponent[] = [
   ButtonBgActiveGreen,
   ButtonBgActiveBlue,
   ButtonBgActivePurple,
-];
-
-const activeReadIcons: NodeSvgComponent[] = [
-  ReadIconPink,
-  ReadIconYellow,
-  ReadIconGreen,
-  ReadIconBlue,
-  ReadIconPurple,
 ];
 
 function getNodeBackground(
@@ -287,12 +266,7 @@ const ChapterIcon = levelChapterIcons[chapterId];
         const isTransitioning = transitioningId === node.id;
 
         if (node.type === "read") {
-       const NodeIllustration = getNodeIllustration(
-  "read",
-  isUnlocked,
-  levelId
-);
-
+         const NodeIllustration = getNodeIllustration("read", isUnlocked);
        const NodeBackground = getNodeBackground(isUnlocked, levelId);
           return (
             <Pressable
@@ -337,11 +311,7 @@ const ChapterIcon = levelChapterIcons[chapterId];
         if (node.type === "quiz") {
           const saved = progressByQuizId[node.quizId] ?? null;
           const ringPercent = getFirstTryPercent(saved);
-        const NodeIllustration = getNodeIllustration(
-  "quiz",
-  isUnlocked,
-  levelId
-);
+        const NodeIllustration = getNodeIllustration("quiz", isUnlocked);
         const NodeBackground = getNodeBackground(isUnlocked, levelId);
           return (
             <Pressable

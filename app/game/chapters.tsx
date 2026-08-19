@@ -2,8 +2,8 @@ import { router, Stack, useLocalSearchParams } from "expo-router";
 import React, { useMemo } from "react";
 import { Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
+import { colorSchemeGui } from "../../constants/colors";
 import ChapterMenuMap from "./ChapterMenuMap";
 import { levelIds, levelsById, type LevelId } from "./levelConfig";
 import type { MenuLevel } from "./levelScreenTypes";
@@ -27,7 +27,7 @@ export default function ChaptersScreen() {
   }, [clearedIds, levelMap]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colorSchemeGui.slate_900 }}>
       <Stack.Screen options={{ headerShown: false }} />
 
       <Pressable

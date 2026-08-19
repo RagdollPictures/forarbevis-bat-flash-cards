@@ -16,8 +16,7 @@ function parseAttributes(tag) {
 }
 
 function normalizeAnchorId(rawId, dataName) {
- 
-  const base = rawId || dataName || "";
+  const base = dataName || rawId || "";
   return base.replace(/-\d+$/, "");
 }
 

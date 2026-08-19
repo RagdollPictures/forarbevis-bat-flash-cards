@@ -15,7 +15,8 @@ import ChapterBgYellow from "../../assets/menu/btn_active_yellow.svg";
 import ChapterBgOff from "../../assets/menu/btn_locked.svg";
 
 import {
-  chapterIcons
+  chapterIcons,
+  chapterIconsOff,
 } from "../../content/assets/chapterIcons";
 
 import { getQuizzesForChapter, sources } from "../../constants/flashcards";
@@ -146,7 +147,9 @@ export default function ChapterMenuMap({
         const iconSize = 80;
         const iconRadius = iconSize / 2;
 
-       const ChapterIcon = chapterIcons[menuLevel.chapterId];
+        const ChapterIcon = isUnlocked
+  ? chapterIcons[menuLevel.chapterId]
+  : chapterIconsOff[menuLevel.chapterId];
 
   const match = id.match(/(\d+)$/);
 const levelNumber = match ? Number(match[1]) : 1;

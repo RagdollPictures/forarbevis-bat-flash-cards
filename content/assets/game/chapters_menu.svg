@@ -1,58 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="375" height="2280" viewBox="0 0 375 2280">
-  <g id="bg">
-    <polygon points="384.2007 2335.9405 -9.2007 2335.1676 -9.2007 -55.9405 384.2007 -55.1676 384.2007 2335.9405"/>
-  </g>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="132.2917mm" height="804.3333mm" viewBox="0 0 375 2280">
   <g id="path">
     <g>
-      <line x1="105.2899" y1="2157.2769" x2="105.2899" y2="2156.7769" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
-      <path d="M105.2899,2146.7744v-87.3657c0-27.6143,22.3858-50.0001,50-50.0001h64.814c27.6142,0,50-22.3857,50-50v-42.2177c0-27.6143-22.3858-50-50-50h-64.814c-27.6142,0-50-22.3857-50-50v-44.2123c0-27.6141,22.3858-50,50-50h60.4943c27.6142,0,50-22.3857,50-50v-44.7971c0-27.6143-22.3857-50-50-50h-59.1651c-27.6142,0-50-22.3859-50-50v-43.295c0-27.6143,22.3858-50,50-50h57.5037c27.6142,0,50-22.3857,50-50v-38.5634c0-27.6143-22.3858-50-50-50h-58.8328c-27.6142,0-50-22.3857-50-50v-44.2123c0-27.6143,22.3858-50,50-50h59.1651c27.6142,0,50-22.3857,50-50v-48.8643c0-27.6143-22.3858-50-50-50h-58.1683c-27.6142,0-50-22.3858-50-50v-42.5508c0-27.6143,22.3858-50,50-50h57.1714c27.6142,0,50-22.3857,50-50v-42.5508c0-27.6142-22.3858-50-50-50h-56.5069c-27.6142,0-50-22.3857-50-50v-42.2185c0-27.6143,22.3858-50,50-50h58.5006c27.6142,0,50-22.3857,50-50v-43.0251c0-27.6143-22.3858-50-50-50h-51.8153c-27.6142,0-50-22.3858-50-50v-41.1101c0-27.6142,22.3858-50,50-50h53.3114c27.6142,0,50-22.3858,50-50v-56.0953c0-27.6142-22.3858-50-50-50h-106.5515" fill="none" stroke="#fff" stroke-dasharray="1.0003 10.0025" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
-      <line x1="105.3953" y1="135.6959" x2="104.8953" y2="135.6959" fill="none" stroke="#fff" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+      <line x1="105.2899" y1="2157.2769" x2="105.2899" y2="2156.7769" fill="none" stroke="#e2e8f0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+      <path d="M105.2899,2146.7744v-87.3657c0-27.6143,22.3858-50.0001,50-50.0001h64.814c27.6142,0,50-22.3857,50-50v-42.2177c0-27.6143-22.3858-50-50-50h-64.814c-27.6142,0-50-22.3857-50-50v-44.2123c0-27.6141,22.3858-50,50-50h60.4943c27.6142,0,50-22.3857,50-50v-44.7971c0-27.6143-22.3857-50-50-50h-59.1651c-27.6142,0-50-22.3859-50-50v-43.295c0-27.6143,22.3858-50,50-50h57.5037c27.6142,0,50-22.3857,50-50v-38.5634c0-27.6143-22.3858-50-50-50h-58.8328c-27.6142,0-50-22.3857-50-50v-44.2123c0-27.6143,22.3858-50,50-50h59.1651c27.6142,0,50-22.3857,50-50v-48.8643c0-27.6143-22.3858-50-50-50h-58.1683c-27.6142,0-50-22.3858-50-50v-42.5508c0-27.6143,22.3858-50,50-50h57.1714c27.6142,0,50-22.3857,50-50v-42.5508c0-27.6142-22.3858-50-50-50h-56.5069c-27.6142,0-50-22.3857-50-50v-42.2185c0-27.6143,22.3858-50,50-50h58.5006c27.6142,0,50-22.3857,50-50v-43.0251c0-27.6143-22.3858-50-50-50h-51.8153c-27.6142,0-50-22.3858-50-50v-41.1101c0-27.6142,22.3858-50,50-50h53.3114c27.6142,0,50-22.3858,50-50v-56.0953c0-27.6142-22.3858-50-50-50h-106.5515" fill="none" stroke="#e2e8f0" stroke-dasharray="1.0003 10.0025" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
+      <line x1="105.3953" y1="135.6959" x2="104.8953" y2="135.6959" fill="none" stroke="#e2e8f0" stroke-linecap="round" stroke-miterlimit="10" stroke-width="3"/>
     </g>
   </g>
-  <g id="anchor_001">
-    <circle cx="107.8987" cy="140.7576" r="10" fill="#fff"/>
+  <g id="anchor_001" data-name="anchor 001">
+    <circle cx="107.8987" cy="140.7576" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_002">
-    <circle cx="256.3254" cy="266.9497" r="10" fill="#fff"/>
+  <g id="anchor_002" data-name="anchor 002">
+    <circle cx="256.3254" cy="266.9497" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_003">
-    <circle cx="128.8535" cy="417.8992" r="10" fill="#fff"/>
+  <g id="anchor_003" data-name="anchor 003">
+    <circle cx="128.8535" cy="417.8992" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_004">
-    <circle cx="252.6306" cy="557.6674" r="10" fill="#fff"/>
+  <g id="anchor_004" data-name="anchor 004">
+    <circle cx="252.6306" cy="557.6674" r="10" transform="translate(-338.3028 717.7075) rotate(-80.7825)" fill="#0f172b"/>
   </g>
-  <g id="anchor_005">
-    <circle cx="124.9872" cy="704.1809" r="10" fill="#fff"/>
+  <g id="anchor_005" data-name="anchor 005">
+    <circle cx="124.9872" cy="704.1809" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_006">
-    <circle cx="255.4017" cy="840.9955" r="10" fill="#fff"/>
+  <g id="anchor_006" data-name="anchor 006">
+    <circle cx="255.4017" cy="840.9955" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_007">
-    <circle cx="124.0634" cy="990.2801" r="10" fill="#fff"/>
+  <g id="anchor_007" data-name="anchor 007">
+    <circle cx="124.0634" cy="990.2801" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_008">
-    <circle cx="252.6306" cy="1136.3317" r="10" fill="#fff"/>
+  <g id="anchor_008" data-name="anchor 008">
+    <circle cx="252.6306" cy="1136.3317" r="10" transform="translate(-909.4951 1203.6801) rotate(-80.7825)" fill="#0f172b"/>
   </g>
-  <g id="anchor_009">
-    <circle cx="118.9831" cy="1282.3834" r="10" fill="#fff"/>
+  <g id="anchor_009" data-name="anchor 009">
+    <circle cx="118.9831" cy="1282.3834" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_010">
-    <circle cx="250.3214" cy="1419.6599" r="10" fill="#fff"/>
+  <g id="anchor_010" data-name="anchor 010">
+    <circle cx="250.3214" cy="1419.6599" r="10" transform="translate(-1191.1041 1439.3448) rotate(-80.7825)" fill="#0f172b"/>
   </g>
-  <g id="anchor_011">
-    <circle cx="127.2964" cy="1567.097" r="10" fill="#fff"/>
+  <g id="anchor_011" data-name="anchor 011">
+    <circle cx="127.2964" cy="1567.097" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_012">
-    <circle cx="251.2451" cy="1709.9157" r="10" fill="#fff"/>
+  <g id="anchor_012" data-name="anchor 012">
+    <circle cx="251.2451" cy="1709.9156" r="10" transform="translate(-1476.8362 1684.0185) rotate(-80.7825)" fill="#0f172b"/>
   </g>
-  <g id="anchor_013">
-    <circle cx="123.1397" cy="1856.4292" r="10" fill="#fff"/>
+  <g id="anchor_013" data-name="anchor 013">
+    <circle cx="123.1397" cy="1856.4292" r="10" fill="#0f172b"/>
   </g>
-  <g id="anchor_014">
-    <circle cx="255.8636" cy="1996.9386" r="10" fill="#fff"/>
+  <g id="anchor_014" data-name="anchor 014">
+    <circle cx="255.8636" cy="1996.9386" r="10" transform="translate(-1756.2742 1929.6241) rotate(-80.7825)" fill="#0f172b"/>
   </g>
-  <g id="anchor_015">
-    <circle cx="107.8987" cy="2153.151" r="10" fill="#fff"/>
+  <g id="anchor_015" data-name="anchor 015">
+    <circle cx="107.8987" cy="2153.1509" r="10" fill="#0f172b"/>
   </g>
 </svg>
