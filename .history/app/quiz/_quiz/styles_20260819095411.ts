@@ -65,8 +65,8 @@ export const styles = StyleSheet.create({
 
   card: {
     marginTop: 16,
-    elevation: 5,
-    backgroundColor: colorSchemeGui.slate_900,
+    elevation: 10,
+    backgroundColor: colorSchemeQuiz.darkGray,
     borderRadius: 14,
     padding: 16,
   },
@@ -99,11 +99,11 @@ export const styles = StyleSheet.create({
     borderRadius: 12,
     paddingVertical: 14,
     paddingHorizontal: 12,
-    backgroundColor: colorSchemeGui.slate_900,
+    backgroundColor: colorSchemeQuiz.darkGray,
      borderWidth: 2,
       borderBottomWidth: 4,
-     color: colorSchemeGui.slate_200,
-    borderColor: colorSchemeGui.slate_700,
+     color: colorSchemeQuiz.text,
+    borderColor: colorSchemeQuiz.border,
    
   },
 
@@ -119,37 +119,39 @@ optionGrid: {
 },
 
   optionCorrect: {
-    backgroundColor: colorSchemeGui.lime_700,
+    backgroundColor: colorSchemeQuiz.correctBg,
      borderBottomWidth: 4,
-    borderColor: colorSchemeGui.lime_500,
+    borderColor: colorSchemeQuiz.correctBorder,
     
   },
 
   optionWrong: {
-    backgroundColor: colorSchemeGui.sky_900,
+    backgroundColor: colorSchemeQuiz.wrongBg,
      borderBottomWidth: 4,
-    borderColor: colorSchemeGui.sky_600,
+    borderColor: colorSchemeQuiz.wrongBorder,
   },
 
   optionText: {
     fontSize: 16,
-    color: colorSchemeGui.slate_200,
+    color: colorSchemeQuiz.text,
   },
 
   optionTextCorrect: {
-   fontSize: 16,
+    fontSize: 16,
+    color: colorSchemeQuiz.text,
    fontWeight: "800",
   },
 
   optionTextWrong: {
     fontSize: 16,
+    
+    color: colorSchemeQuiz.text,
   },
 
   optionTextChecked: {
+    color: "#111",
     fontWeight: "700",
   },
-
-
 optionImageWrapper: {
   width: "100%",
   aspectRatio: 1,
@@ -170,23 +172,21 @@ optionImageWrapper: {
     borderRadius: 12,
     paddingVertical: 12,
     alignItems: "center",
+    backgroundColor: "#111",
   },
 
   buttonSecondary: {
-    color: colorSchemeGui.lime_900,
-     borderBottomWidth: 4,
-     borderColor: colorSchemeGui.lime_600,
-    backgroundColor: colorSchemeGui.lime_500,
+    backgroundColor: colorSchemeQuiz.green,
   },
 
   buttonText: {
-    color: colorSchemeGui.slate_200,
+    color: "#fff",
     fontWeight: "700",
     fontSize: 16,
   },
 
   buttonTextSecondary: {
-    color: colorSchemeGui.lime_900,
+    color: "#111",
   },
 
   resultCard: {
@@ -212,19 +212,19 @@ optionImageWrapper: {
     marginTop: 16,
     padding: 14,
     borderRadius: 12,
-    backgroundColor: colorSchemeGui.slate_200,
+    backgroundColor: "#f3f4f6",
   },
 
   infoTitle: {
     fontSize: 16,
     fontWeight: "700",
     marginBottom: 6,
-    color: colorSchemeGui.slate_900,
+    color: "#111",
   },
 
   infoText: {
     fontSize: 15,
     lineHeight: 22,
-    color: colorSchemeGui.slate_900,
+    color: "#333",
   },
 });

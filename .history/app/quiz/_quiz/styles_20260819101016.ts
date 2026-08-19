@@ -212,19 +212,19 @@ optionImageWrapper: {
     marginTop: 16,
     padding: 14,
     borderRadius: 12,
-    backgroundColor: colorSchemeGui.slate_200,
+    backgroundColor: "#f3f4f6",
   },
 
   infoTitle: {
     fontSize: 16,
     fontWeight: "700",
     marginBottom: 6,
-    color: colorSchemeGui.slate_900,
+    color: "#111",
   },
 
   infoText: {
     fontSize: 15,
     lineHeight: 22,
-    color: colorSchemeGui.slate_900,
+    color: "#333",
   },
 });

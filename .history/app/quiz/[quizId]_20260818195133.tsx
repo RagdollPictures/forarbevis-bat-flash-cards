@@ -1,4 +1,4 @@
-import { colorSchemeGui } from "@/constants/colors";
+import { colorSchemeQuiz } from "@/constants/colors";
 import { router, useLocalSearchParams, useNavigation } from "expo-router";
 import React, { useMemo } from "react";
 import { Pressable, ScrollView, Text, View } from "react-native";
@@ -209,7 +209,7 @@ export default function QuizScreen() {
 
 const headerStyle = {
   height: 72,
-  backgroundColor: colorSchemeGui.slate_900,
+  backgroundColor: colorSchemeQuiz.darkGray,
   paddingHorizontal: 16,
   flexDirection: "row" as const,
   alignItems: "center" as const,

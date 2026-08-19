@@ -43,7 +43,4 @@ export const colorSchemeGui ={
    lime_700: "#497d00",
    lime_600: "#5ea500",
    lime_500: "#7ccf00",
-
-   yellow_600: "#fdc700",
-   Fuchsia_500: "#e12afb",
 };
