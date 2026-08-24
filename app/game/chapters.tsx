@@ -28,10 +28,8 @@ export default function ChaptersScreen() {
   const levelMap = levelsById as Record<string, MenuLevel>;
 
   const { clearedIds } = useLevelProgress({
-    quizzes: [],
-    levelIds,
-    levelMap,
-  });
+  quizzes: [],
+});
 
     const unlockedLevelIds = useMemo(() => {
     return getUnlockedLevelIds(

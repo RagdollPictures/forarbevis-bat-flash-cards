@@ -245,12 +245,9 @@ const safeBonusLevels =
     resetAllProgress,
     devCheatNextLockedTo100,
     devUnlockAllLevels,
-  } = useLevelProgress({
-    quizzes,
-    levelIds,
-    levelMap,
-  });
-
+} = useLevelProgress({
+  quizzes,
+});
   const unlockedIds =
     useMemo(() => {
       return getUnlockedQuizIds(

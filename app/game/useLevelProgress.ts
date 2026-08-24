@@ -18,19 +18,12 @@ import {
 
 import { calcPercent } from "../quiz/utils/progress";
 
-import type {
-  MenuLevel,
-  QuizItem,
-} from "./levelScreenTypes";
+import type { QuizItem } from "./levelScreenTypes";
 
 export function useLevelProgress({
   quizzes,
-  levelIds,
-  levelMap,
 }: {
   quizzes: QuizItem[];
-  levelIds: readonly string[];
-  levelMap: Record<string, MenuLevel>;
 }) {
   const { structure } = useContent();
 
