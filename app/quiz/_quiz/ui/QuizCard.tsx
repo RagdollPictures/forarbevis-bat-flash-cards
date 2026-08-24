@@ -1,5 +1,11 @@
 import React from "react";
-import { Image, Pressable, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
+
 import { styles } from "../styles";
 
 export default function QuizCard({
@@ -14,6 +20,7 @@ export default function QuizCard({
   onNext,
   showNextButton,
   isLast,
+  answerText,
   textTitle,
   textInfo,
 }: {
@@ -28,14 +35,18 @@ export default function QuizCard({
   onNext: () => void;
   showNextButton: boolean;
   isLast: boolean;
+  answerText?: string;
   textTitle?: string;
   textInfo?: string;
 }) {
-  const hasOptionImages = optionImageSources?.some(Boolean);
+  const hasOptionImages =
+    optionImageSources?.some(Boolean);
 
   return (
     <View style={styles.card}>
-      <Text style={styles.question}>{questionText}</Text>
+      <Text style={styles.question}>
+        {questionText}
+      </Text>
 
       {imageSource ? (
         <View style={styles.imageWrapper}>
@@ -47,12 +58,25 @@ export default function QuizCard({
         </View>
       ) : null}
 
-      <View style={[styles.options, hasOptionImages && styles.optionsGrid]}>
+      <View
+        style={[
+          styles.options,
+          hasOptionImages &&
+            styles.optionsGrid,
+        ]}
+      >
         {options.map((opt, i) => {
-          const isCorrect = isChecked && i === correctOptionIndex;
+          const isCorrect =
+            isChecked &&
+            i === correctOptionIndex;
+
           const isWrong =
-            isChecked && selectedIndex === i && i !== correctOptionIndex;
-          const optionImageSource = optionImageSources?.[i];
+            isChecked &&
+            selectedIndex === i &&
+            i !== correctOptionIndex;
+
+          const optionImageSource =
+            optionImageSources?.[i];
 
           return (
             <Pressable
@@ -61,16 +85,27 @@ export default function QuizCard({
               disabled={isChecked}
               style={[
                 styles.option,
-                hasOptionImages && styles.optionGrid,
-                isCorrect && styles.optionCorrect,
-                isWrong && styles.optionWrong,
+                hasOptionImages &&
+                  styles.optionGrid,
+                isCorrect &&
+                  styles.optionCorrect,
+                isWrong &&
+                  styles.optionWrong,
               ]}
             >
               {optionImageSource ? (
-                <View style={styles.optionImageWrapper}>
+                <View
+                  style={
+                    styles.optionImageWrapper
+                  }
+                >
                   <Image
-                    source={optionImageSource}
-                    style={styles.optionImage}
+                    source={
+                      optionImageSource
+                    }
+                    style={
+                      styles.optionImage
+                    }
                     resizeMode="cover"
                   />
                 </View>
@@ -78,11 +113,16 @@ export default function QuizCard({
                 <Text
                   style={[
                     styles.optionText,
+
                     isChecked &&
                       selectedIndex === i &&
                       styles.optionTextChecked,
-                    isCorrect && styles.optionTextCorrect,
-                    isWrong && styles.optionTextWrong,
+
+                    isCorrect &&
+                      styles.optionTextCorrect,
+
+                    isWrong &&
+                      styles.optionTextWrong,
                   ]}
                 >
                   {opt}
@@ -95,18 +135,49 @@ export default function QuizCard({
 
       {showNextButton ? (
         <View style={styles.actions}>
-          <Pressable style={[styles.button, styles.buttonSecondary]} onPress={onNext}>
-            <Text style={[styles.buttonText, styles.buttonTextSecondary]}>
-              {isLast ? "Resultat" : "Nästa"}
+          <Pressable
+            style={[
+              styles.button,
+              styles.buttonSecondary,
+            ]}
+            onPress={onNext}
+          >
+            <Text
+              style={[
+                styles.buttonText,
+                styles.buttonTextSecondary,
+              ]}
+            >
+              {isLast
+                ? "Resultat"
+                : "Nästa"}
             </Text>
           </Pressable>
         </View>
       ) : null}
 
-      {isChecked && (textTitle || textInfo) ? (
+      {isChecked &&
+      (answerText ||
+        textTitle ||
+        textInfo) ? (
         <View style={styles.infoBox}>
-          {textTitle ? <Text style={styles.infoTitle}>{textTitle}</Text> : null}
-          {textInfo ? <Text style={styles.infoText}>{textInfo}</Text> : null}
+          {answerText ? (
+            <Text style={styles.infoTitle}>
+              {answerText}
+            </Text>
+          ) : null}
+
+          {textTitle ? (
+            <Text style={styles.infoTitle}>
+              {textTitle}
+            </Text>
+          ) : null}
+
+          {textInfo ? (
+            <Text style={styles.infoText}>
+              {textInfo}
+            </Text>
+          ) : null}
         </View>
       ) : null}
     </View>

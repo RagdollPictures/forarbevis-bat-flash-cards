@@ -1,7 +1,11 @@
 import { router } from "expo-router";
 import React, { useEffect, useState } from "react";
-import { Dimensions, Pressable, Text, View } from "react-native";
-
+import {
+  Dimensions,
+  Pressable,
+  Text,
+  View,
+} from "react-native";
 
 import chaptersMenu from "../../content/assets/game/chapters_menu.json";
 import ChaptersMenuSvg from "../../content/assets/game/chapters_menu.svg";
@@ -14,16 +18,27 @@ import ChapterBgYellow from "../../assets/menu/btn_active_yellow.svg";
 
 import ChapterBgOff from "../../assets/menu/btn_locked.svg";
 
-import {
-  chapterIcons
-} from "../../content/assets/chapterIcons";
+import { chapterIcons } from "../../content/assets/chapterIcons";
 
-import { getQuizzesForChapter, sources } from "../../constants/flashcards";
+import {
+  getDeckIdsForChapter,
+  getQuizzesForChapter,
+  sources,
+} from "../../constants/flashcards";
+
 import {
   getAllQuizProgress,
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
-import { levelIds, levelsById, type LevelId } from "./levelConfig";
+
+import { useContent } from "../../lib/content/ContentProvider";
+import type { CourseDecks } from "../../lib/content/loadCourseFromSupabase";
+
+import {
+  levelIds,
+  levelsById,
+  type LevelId,
+} from "./levelConfig";
 
 const activeChapterBackgrounds = [
   ChapterBgPink,
@@ -53,37 +68,93 @@ type ChapterMenuMapProps = {
   unlockedLevelIds: Set<string>;
 };
 
-
-
-
-function getAnchorById(layout: ChaptersMenuLayout, id: string) {
-  return layout.anchors.find((anchor) => anchor.id === id) ?? null;
+function getAnchorById(
+  layout: ChaptersMenuLayout,
+  id: string
+) {
+  return (
+    layout.anchors.find(
+      (anchor) => anchor.id === id
+    ) ?? null
+  );
 }
 
 function buildChapterProgressMap(
-  progressMap: Record<string, SavedQuizProgress>
+  progressMap: Record<
+    string,
+    SavedQuizProgress
+  >,
+  decks: CourseDecks
 ): Record<string, number> {
-  const result: Record<string, number> = {};
+  const result: Record<
+    string,
+    number
+  > = {};
 
   for (const id of levelIds) {
     const level = levelsById[id];
-    if (!level) continue;
+
+    if (!level) {
+      continue;
+    }
 
     let totalScore = 0;
     let totalQuestions = 0;
 
     for (const source of sources) {
-      const quizzes = getQuizzesForChapter(source.id, level.chapterId);
+      const quizzes =
+        getQuizzesForChapter(
+          source.id,
+          level.chapterId
+        );
 
       for (const quiz of quizzes) {
-        const saved = progressMap[quiz.id];
-        totalScore += saved?.score ?? 0;
-        totalQuestions += saved?.total ?? quiz.deck.length;
+        const saved =
+          progressMap[quiz.id];
+
+        let defaultTotal = 0;
+
+        if (quiz.deckId) {
+          defaultTotal =
+            decks[quiz.deckId]
+              ?.length ?? 0;
+        } else if (
+          quiz.chapterId
+        ) {
+          const deckIds =
+            getDeckIdsForChapter(
+              quiz.chapterId
+            );
+
+          defaultTotal =
+            deckIds.reduce(
+              (
+                sum,
+                deckId
+              ) =>
+                sum +
+                (decks[
+                  deckId
+                ]?.length ?? 0),
+              0
+            );
+        }
+
+        totalScore +=
+          saved?.score ?? 0;
+
+        totalQuestions +=
+          saved?.total ??
+          defaultTotal;
       }
     }
 
     result[level.chapterId] =
-      totalQuestions > 0 ? (totalScore / totalQuestions) * 100 : 0;
+      totalQuestions > 0
+        ? (totalScore /
+            totalQuestions) *
+          100
+        : 0;
   }
 
   return result;
@@ -93,11 +164,22 @@ export default function ChapterMenuMap({
   currentLevelId,
   unlockedLevelIds,
 }: ChapterMenuMapProps) {
-  const layout = chaptersMenu as ChaptersMenuLayout;
-  const screenWidth = Dimensions.get("window").width;
-  const scale = screenWidth / layout.viewBox.width;
+  const { decks } = useContent();
 
-  const [chapterProgressMap, setChapterProgressMap] = useState<
+  const layout =
+    chaptersMenu as ChaptersMenuLayout;
+
+  const screenWidth =
+    Dimensions.get("window").width;
+
+  const scale =
+    screenWidth /
+    layout.viewBox.width;
+
+  const [
+    chapterProgressMap,
+    setChapterProgressMap,
+  ] = useState<
     Record<string, number>
   >({});
 
@@ -105,9 +187,19 @@ export default function ChapterMenuMap({
     let mounted = true;
 
     async function loadProgress() {
-      const allProgress = await getAllQuizProgress();
-      if (!mounted) return;
-      setChapterProgressMap(buildChapterProgressMap(allProgress));
+      const allProgress =
+        await getAllQuizProgress();
+
+      if (!mounted) {
+        return;
+      }
+
+      setChapterProgressMap(
+        buildChapterProgressMap(
+          allProgress,
+          decks
+        )
+      );
     }
 
     loadProgress();
@@ -115,123 +207,200 @@ export default function ChapterMenuMap({
     return () => {
       mounted = false;
     };
-  }, []);
+  }, [decks]);
 
   return (
     <View
       style={{
         width: screenWidth,
-        height: layout.viewBox.height * scale,
+        height:
+          layout.viewBox.height *
+          scale,
         position: "relative",
       }}
     >
       <ChaptersMenuSvg
         width={screenWidth}
-        height={layout.viewBox.height * scale}
+        height={
+          layout.viewBox.height *
+          scale
+        }
       />
 
       {levelIds.map((id) => {
-        const menuLevel = levelsById[id];
-        if (!menuLevel) return null;
+        const menuLevel =
+          levelsById[id];
 
-        const anchor = getAnchorById(layout, menuLevel.menuAnchorId);
-        if (!anchor) return null;
+        if (!menuLevel) {
+          return null;
+        }
 
-        const isUnlocked = unlockedLevelIds.has(id);
-        const isCurrent = id === currentLevelId;
+        const anchor =
+          getAnchorById(
+            layout,
+            menuLevel.menuAnchorId
+          );
 
-        const centerX = anchor.x * scale;
-        const centerY = anchor.y * scale;
+        if (!anchor) {
+          return null;
+        }
+
+        const isUnlocked =
+          unlockedLevelIds.has(id);
+
+        const isCurrent =
+          id === currentLevelId;
+
+        const centerX =
+          anchor.x * scale;
+
+        const centerY =
+          anchor.y * scale;
 
         const iconSize = 80;
-        const iconRadius = iconSize / 2;
+        const iconRadius =
+          iconSize / 2;
 
-       const ChapterIcon = chapterIcons[menuLevel.chapterId];
+        const ChapterIcon =
+          chapterIcons[
+            menuLevel.chapterId
+          ];
 
-  const match = id.match(/(\d+)$/);
-const levelNumber = match ? Number(match[1]) : 1;
-const colorIndex =
-  (levelNumber - 1) % activeChapterBackgrounds.length;
+        const match =
+          id.match(/(\d+)$/);
 
-const ChapterBackground = isUnlocked
-  ? activeChapterBackgrounds[colorIndex]
-  : ChapterBgOff;
+        const levelNumber =
+          match
+            ? Number(match[1])
+            : 1;
 
-        const percent = chapterProgressMap[menuLevel.chapterId] ?? 0;
+        const colorIndex =
+          (levelNumber - 1) %
+          activeChapterBackgrounds.length;
+
+        const ChapterBackground =
+          isUnlocked
+            ? activeChapterBackgrounds[
+                colorIndex
+              ]
+            : ChapterBgOff;
+
+        const percent =
+          chapterProgressMap[
+            menuLevel.chapterId
+          ] ?? 0;
 
         return (
           <Pressable
             key={id}
             disabled={!isUnlocked}
             onPress={() => {
-              if (!isUnlocked) return;
+              if (!isUnlocked) {
+                return;
+              }
 
               router.push({
-                pathname: "/game/[levelId]",
+                pathname:
+                  "/game/[levelId]",
                 params: {
                   levelId: id,
                 },
               });
             }}
             style={{
-              position: "absolute",
+              position:
+                "absolute",
               left: centerX,
-              top: centerY - iconRadius,
-              transform: [{ translateX: -iconRadius }],
+              top:
+                centerY -
+                iconRadius,
+              transform: [
+                {
+                  translateX:
+                    -iconRadius,
+                },
+              ],
               width: iconSize,
-              alignItems: "center",
+              alignItems:
+                "center",
             }}
           >
             <View
-  style={{
-    width: iconSize,
-    height: iconSize,
-    borderRadius: iconRadius,
-    alignItems: "center",
-    justifyContent: "center",
-    borderWidth: isCurrent ? 3 : 0,
-    borderColor: "#111",
-  }}
->
-  <ChapterBackground
-    width={iconSize}
-    height={iconSize}
-    style={{
-      position: "absolute",
-    }}
-  />
+              style={{
+                width:
+                  iconSize,
+                height:
+                  iconSize,
+                borderRadius:
+                  iconRadius,
+                alignItems:
+                  "center",
+                justifyContent:
+                  "center",
+                borderWidth:
+                  isCurrent
+                    ? 3
+                    : 0,
+                borderColor:
+                  "#111",
+              }}
+            >
+              <ChapterBackground
+                width={
+                  iconSize
+                }
+                height={
+                  iconSize
+                }
+                style={{
+                  position:
+                    "absolute",
+                }}
+              />
 
-  {ChapterIcon ? (
-    <ChapterIcon
-      width={70}
-      height={70}
-       style={{
-      transform: [{ translateY: -4 }],
-    }}
-    />
-  ) : null}
-</View>
+              {ChapterIcon ? (
+                <ChapterIcon
+                  width={70}
+                  height={70}
+                  style={{
+                    transform: [
+                      {
+                        translateY:
+                          -4,
+                      },
+                    ],
+                  }}
+                />
+              ) : null}
+            </View>
 
             <View
               style={{
                 paddingHorizontal: 8,
                 paddingVertical: 5,
                 borderRadius: 16,
-                backgroundColor: "#fff",
-                alignItems: "center",
-                justifyContent: "center",
+                backgroundColor:
+                  "#fff",
+                alignItems:
+                  "center",
+                justifyContent:
+                  "center",
               }}
             >
               <Text
                 style={{
                   fontSize: 10,
-                  fontWeight: "800",
+                  fontWeight:
+                    "800",
                   color: "#111",
-                  textAlign: "center",
+                  textAlign:
+                    "center",
                 }}
                 numberOfLines={1}
               >
-                {menuLevel.label}
+                {
+                  menuLevel.label
+                }
               </Text>
             </View>
 
@@ -239,11 +408,15 @@ const ChapterBackground = isUnlocked
               style={{
                 marginTop: 4,
                 fontSize: 10,
-                fontWeight: "700",
+                fontWeight:
+                  "700",
                 color: "#111",
               }}
             >
-              {Math.round(percent)}%
+              {Math.round(
+                percent
+              )}
+              %
             </Text>
           </Pressable>
         );

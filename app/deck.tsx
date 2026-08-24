@@ -2,15 +2,19 @@ import { Stack, useLocalSearchParams } from "expo-router";
 import { useMemo, useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import FlashCard from "../components/FlashCard";
-import { getDeck } from "../constants/flashcards";
+import { useContent } from "../lib/content/ContentProvider";
 
 export default function Deck() {
+  const { decks } = useContent();
   const { deckId, title } = useLocalSearchParams<{ deckId?: string; title?: string }>();
 
   const decodedDeckId = useMemo(() => (deckId ? decodeURIComponent(deckId) : ""), [deckId]);
   const decodedTitle = useMemo(() => (title ? decodeURIComponent(title) : ""), [title]);
 
-  const deck = getDeck(decodedDeckId);
+  const deck = useMemo(
+  () => decks[decodedDeckId] ?? [],
+  [decks, decodedDeckId]
+);
   const [index, setIndex] = useState(0);
 
   const card = deck[index];

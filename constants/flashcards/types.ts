@@ -1,13 +1,19 @@
 export type FlashCard = {
   id: string;
+
   question?: string;
   questionQuiz?: string;
   answer?: string;
+
   options?: string[];
   correctOptionIndex?: number;
-  imageKey?: string;
-  answerImageKey?: string;
-  optionImageKeys?: string[];
+
+
+
+  imageUrl?: string;
+  answerImageUrl?: string;
+  optionImageUrls?: (string | undefined)[];
+
   textTitle?: string;
   textInfo?: string;
 };

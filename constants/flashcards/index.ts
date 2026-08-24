@@ -1,6 +1,6 @@
 import { course } from "../../content/course";
 import { courseChapters } from "../../content/questions/courseStructure";
-import { courseDecks } from "../../content/questions/decks";
+
 
 import type { Chapter, FlashCard, Source } from "./types";
 
@@ -15,68 +15,29 @@ export const chaptersBySourceId: Record<string, Chapter[]> = {
   [course.sourceId]: courseChapters,
 };
 
-export const decksById: Record<string, FlashCard[]> = {
 
-  ...courseDecks,
-};
 
 export function getChapters(sourceId: string): Chapter[] {
   return chaptersBySourceId[sourceId] ?? [];
 }
 
-export function getDeck(deckId: string): FlashCard[] {
-  return decksById[deckId] ?? [];
-}
 
-export type MultipleChoiceCard = FlashCard & {
-  options: string[];
-  correctOptionIndex: number;
-  questionQuiz?: string;
-};
+
 
 export type Quiz = {
   id: string;
   title: string;
   subtitle?: string;
   sourceId: string;
-  deck: MultipleChoiceCard[];
+  courseId: string;
+  deckId?: string;
   chapterId?: string;
 };
 
-export type ReadSection = {
-  id: string;
-  title: string;
-  body: string;
-  imageKey?: string;
-};
 
-export function buildReadSections(deckId: string): ReadSection[] {
-  const cards = getDeck(deckId);
 
-  return cards
-    .map((card, index) => {
-      if (!card.textTitle && !card.textInfo) return null;
 
-      return {
-        id: `${deckId}-${index}`,
-        title: card.textTitle ?? `Avsnitt ${index + 1}`,
-        body: card.textInfo ?? "",
-        ...(card.imageKey ? { imageKey: card.imageKey } : {}),
-      };
-    })
-    .filter((s): s is ReadSection => s !== null);
-}
 
-function isMultipleChoiceCard(c: FlashCard): c is MultipleChoiceCard {
-  const anyC: any = c;
-  return (
-    Array.isArray(anyC.options) &&
-    anyC.options.length >= 2 &&
-    typeof anyC.correctOptionIndex === "number" &&
-    anyC.correctOptionIndex >= 0 &&
-    anyC.correctOptionIndex < anyC.options.length
-  );
-}
 
 function collectQuizChapters(
   chapters: Chapter[],
@@ -99,27 +60,8 @@ function collectQuizChapters(
   return out;
 }
 
-function buildQuizDeckFromDeckId(deckId: string): MultipleChoiceCard[] {
-  return getDeck(deckId).filter(isMultipleChoiceCard);
-}
 
-export function getQuizzes(sourceId: string): Quiz[] {
-  const chapters = getChapters(sourceId);
-  const quizChapters = collectQuizChapters(chapters);
 
-  return quizChapters
-    .map(({ ch, parents }) => {
-      const subtitle = parents.map((p) => p.title).join(" • ");
-      return {
-        id: ch.id,
-        title: ch.title,
-        subtitle: subtitle.length > 0 ? subtitle : undefined,
-        sourceId,
-        deck: buildQuizDeckFromDeckId(ch.deckId!),
-      };
-    })
-    .filter((q) => q.deck.length > 0);
-}
 
 function findChapterById(chapters: Chapter[], chapterId: string): Chapter | null {
   for (const ch of chapters) {
@@ -134,44 +76,52 @@ function findChapterById(chapters: Chapter[], chapterId: string): Chapter | null
   return null;
 }
 
-export function getQuizzesForChapter(sourceId: string, chapterId: string): Quiz[] {
+export function getQuizzesForChapter(
+  sourceId: string,
+  chapterId: string
+): Quiz[] {
   const chapters = getChapters(sourceId);
-  const chapter = findChapterById(chapters, chapterId);
+  const chapter = findChapterById(
+    chapters,
+    chapterId
+  );
 
-  if (!chapter) return [];
+  if (!chapter) {
+    return [];
+  }
 
   const result: Quiz[] = [];
 
   for (const child of chapter.children ?? []) {
-    if (child.type === "quiz" && child.quizId) {
-      const deck = buildQuizDeckFromChapter(chapter);
+    // Kapitelquiz
+    if (
+      child.type === "quiz" &&
+      child.quizId
+    ) {
+      result.push({
+        id: child.quizId,
+        title: child.title,
+        subtitle: chapter.title,
+        sourceId,
+        courseId: course.id,
 
-      if (deck.length > 0) {
-        result.push({
-  id: child.quizId,
-  title: child.title,
-  subtitle: chapter.title,
-  sourceId,
-  deck,
-  chapterId: chapter.id,
-});
-      }
+        chapterId: chapter.id,
+      });
 
       continue;
     }
 
+    // Vanligt quiz kopplat till en deck
     if (child.deckId) {
-      const deck = buildQuizDeckFromDeckId(child.deckId);
+      result.push({
+        id: child.id,
+        title: child.title,
+        subtitle: chapter.title,
+        sourceId,
+        courseId: course.id,
 
-      if (deck.length > 0) {
-        result.push({
-          id: child.id,
-          title: child.title,
-          subtitle: chapter.title,
-          sourceId,
-          deck,
-        });
-      }
+        deckId: child.deckId,
+      });
     }
   }
 
@@ -193,13 +143,24 @@ function getAllDeckIdsFromChapter(chapter: Chapter): string[] {
   return ids;
 }
 
-function buildQuizDeckFromChapter(chapter: Chapter): MultipleChoiceCard[] {
-  const deckIds = getAllDeckIdsFromChapter(chapter);
+export function getDeckIdsForChapter(
+  chapterId: string
+): string[] {
+  for (const source of sources) {
+    const chapter = findChapterById(
+      getChapters(source.id),
+      chapterId
+    );
 
-  return deckIds.flatMap((deckId) =>
-    getDeck(deckId).filter(isMultipleChoiceCard)
-  );
+    if (chapter) {
+      return getAllDeckIdsFromChapter(chapter);
+    }
+  }
+
+  return [];
 }
+
+
 
 function findChapterByQuizId(chapters: Chapter[], quizId: string): Chapter | null {
   for (const ch of chapters) {
@@ -218,32 +179,71 @@ function findChapterByQuizId(chapters: Chapter[], quizId: string): Chapter | nul
   return null;
 }
 
-export function getQuizById(quizId: string): Quiz | null {
+export function getQuizById(
+  quizId: string
+): Quiz | null {
   for (const source of sources) {
     const chapters = getChapters(source.id);
 
-    const chapter = findChapterByQuizId(chapters, quizId);
+    // Kapitelquiz
+    const chapter = findChapterByQuizId(
+      chapters,
+      quizId
+    );
+
     if (chapter) {
-      const quizNode = (chapter.children ?? []).find(
-        (child) => child.quizId === quizId
+      const quizNode = (
+        chapter.children ?? []
+      ).find(
+        (child) =>
+          child.quizId === quizId
       );
 
-      const deck = buildQuizDeckFromChapter(chapter);
-
-      if (deck.length === 0) return null;
-
       return {
-  id: quizId,
-  title: quizNode?.title ?? "Kapitelquiz",
-  subtitle: chapter.title,
-  sourceId: source.id,
-  deck,
-  chapterId: chapter.id,
-};
+        id: quizId,
+        title:
+          quizNode?.title ??
+          "Kapitelquiz",
+        subtitle: chapter.title,
+        sourceId: source.id,
+        courseId: course.id,
+
+        chapterId: chapter.id,
+      };
     }
 
-    const directQuiz = getQuizzes(source.id).find((q) => q.id === quizId);
-    if (directQuiz) return directQuiz;
+    // Vanligt quiz / vanlig deck
+    const directQuiz =
+      collectQuizChapters(
+        chapters
+      ).find(
+        ({ ch }) =>
+          ch.id === quizId
+      );
+
+    if (
+      directQuiz &&
+      directQuiz.ch.deckId
+    ) {
+      const subtitle =
+        directQuiz.parents
+          .map((parent) => parent.title)
+          .join(" • ");
+
+      return {
+        id: directQuiz.ch.id,
+        title: directQuiz.ch.title,
+        subtitle:
+          subtitle.length > 0
+            ? subtitle
+            : undefined,
+        sourceId: source.id,
+        courseId: course.id,
+
+        deckId:
+          directQuiz.ch.deckId,
+      };
+    }
   }
 
   return null;

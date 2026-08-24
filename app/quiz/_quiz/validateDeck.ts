@@ -5,12 +5,35 @@ export function validateDeck(rawDeck: FlashCard[]) {
     if (!c) return false;
     if (!Array.isArray(c.options)) return false;
     if (c.options.length < 2) return false;
-    if (!Number.isInteger(c.correctOptionIndex)) return false;
-    if ((c.correctOptionIndex ?? -1) < 0) return false;
-    if ((c.correctOptionIndex ?? 999) >= c.options.length) return false;
-     if (c.optionImageKeys) {
-      if (!Array.isArray(c.optionImageKeys)) return false;
-      if (c.optionImageKeys.length !== c.options.length) return false;
+
+    if (!Number.isInteger(c.correctOptionIndex)) {
+      return false;
+    }
+
+    if ((c.correctOptionIndex ?? -1) < 0) {
+      return false;
+    }
+
+    if (
+      (c.correctOptionIndex ?? 999) >=
+      c.options.length
+    ) {
+      return false;
+    }
+
+
+
+    if (c.optionImageUrls) {
+      if (!Array.isArray(c.optionImageUrls)) {
+        return false;
+      }
+
+      if (
+        c.optionImageUrls.length !==
+        c.options.length
+      ) {
+        return false;
+      }
     }
 
     return true;

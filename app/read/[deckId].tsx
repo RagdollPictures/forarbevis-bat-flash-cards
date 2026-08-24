@@ -1,22 +1,90 @@
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import {
+  router,
+  useLocalSearchParams,
+  useNavigation,
+} from "expo-router";
 import React, { useMemo } from "react";
-import { Image, Pressable, ScrollView, Text, View } from "react-native";
+import {
+  Image,
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
-import { buildReadSections } from "../../constants/flashcards";
-import { questionImages } from "../../content/assets/questionImages";
+
+import { useContent } from "../../lib/content/ContentProvider";
+
+type ReadSection = {
+  id: string;
+  title: string;
+  body: string;
+  imageUrl?: string;
+};
 
 export default function ReadScreen() {
   const navigation = useNavigation();
-  const params = useLocalSearchParams<{ deckId?: string; title?: string }>();
+  const { decks } = useContent();
 
-  const deckId = typeof params.deckId === "string" ? params.deckId : "";
-  const title = typeof params.title === "string" ? params.title : "";
+  const params =
+    useLocalSearchParams<{
+      deckId?: string;
+      title?: string;
+    }>();
 
-  const sections = useMemo(() => {
-    return buildReadSections(deckId);
-  }, [deckId]);
+  const deckId =
+    typeof params.deckId === "string"
+      ? params.deckId
+      : "";
+
+  const title =
+    typeof params.title === "string"
+      ? params.title
+      : "";
+
+  const deck = useMemo(
+    () => decks[deckId] ?? [],
+    [decks, deckId]
+  );
+
+  const sections =
+    useMemo<ReadSection[]>(() => {
+      return deck.reduce<ReadSection[]>(
+        (result, card, index) => {
+          if (
+            !card.textTitle &&
+            !card.textInfo
+          ) {
+            return result;
+          }
+
+          result.push({
+            id:
+              card.id ||
+              `${deckId}-${index}`,
+
+            title:
+              card.textTitle ??
+              `Avsnitt ${index + 1}`,
+
+            body:
+              card.textInfo ?? "",
+
+            ...(card.imageUrl
+              ? {
+                  imageUrl:
+                    card.imageUrl,
+                }
+              : {}),
+          });
+
+          return result;
+        },
+        []
+      );
+    }, [deck, deckId]);
 
   const handleClose = () => {
     if (navigation.canGoBack()) {
@@ -28,10 +96,15 @@ export default function ReadScreen() {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "#000" }}>
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor: "#000",
+      }}
+    >
       <View
         style={{
-         backgroundColor: "#000",
+          backgroundColor: "#000",
           paddingHorizontal: 16,
           flexDirection: "row",
           alignItems: "center",
@@ -45,46 +118,92 @@ export default function ReadScreen() {
             height: 64,
             alignItems: "center",
             justifyContent: "center",
-            
           }}
-           hitSlop={12}
+          hitSlop={12}
         >
-          <CloseIcon width={48} height={48} />
+          <CloseIcon
+            width={48}
+            height={48}
+          />
         </Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={{ padding: 24, paddingBottom: 40, backgroundColor: "#fff" }}>
-        <Text style={{ fontSize: 28, fontWeight: "900", marginBottom: 24 }}>
+      <ScrollView
+        contentContainerStyle={{
+          padding: 24,
+          paddingBottom: 40,
+          backgroundColor: "#fff",
+        }}
+      >
+        <Text
+          style={{
+            fontSize: 28,
+            fontWeight: "900",
+            marginBottom: 24,
+          }}
+        >
           {title}
         </Text>
 
-        {sections.map((section) => {
-          const imageSource = section.imageKey
-            ? questionImages[section.imageKey]
-            : undefined;
+        {sections.map(
+          (section) => {
+            const imageSource =
+              section.imageUrl
+                ? {
+                    uri:
+                      section.imageUrl,
+                  }
+                : undefined;
 
-          return (
-            <View key={section.id} style={{ marginBottom: 28 }}>
-              <Text style={{ fontSize: 20, fontWeight: "800", marginBottom: 10 }}>
-                {section.title}
-              </Text>
+            return (
+              <View
+                key={section.id}
+                style={{
+                  marginBottom: 28,
+                }}
+              >
+                <Text
+                  style={{
+                    fontSize: 20,
+                    fontWeight:
+                      "800",
+                    marginBottom: 10,
+                  }}
+                >
+                  {section.title}
+                </Text>
 
-              <Text style={{ fontSize: 16, lineHeight: 24 }}>
-                {section.body}
-              </Text>
+                <Text
+                  style={{
+                    fontSize: 16,
+                    lineHeight: 24,
+                  }}
+                >
+                  {section.body}
+                </Text>
 
-              {imageSource ? (
-                <View style={{ marginTop: 14 }}>
-                  <Image
-                    source={imageSource}
-                    style={{ width: "100%", height: 180 }}
-                    resizeMode="contain"
-                  />
-                </View>
-              ) : null}
-            </View>
-          );
-        })}
+                {imageSource ? (
+                  <View
+                    style={{
+                      marginTop: 14,
+                    }}
+                  >
+                    <Image
+                      source={
+                        imageSource
+                      }
+                      style={{
+                        width: "100%",
+                        height: 180,
+                      }}
+                      resizeMode="contain"
+                    />
+                  </View>
+                ) : null}
+              </View>
+            );
+          }
+        )}
       </ScrollView>
     </SafeAreaView>
   );

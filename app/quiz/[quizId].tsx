@@ -1,17 +1,34 @@
 import { colorSchemeGui } from "@/constants/colors";
-import { router, useLocalSearchParams, useNavigation } from "expo-router";
+import {
+  router,
+  useLocalSearchParams,
+  useNavigation,
+} from "expo-router";
 import React, { useMemo } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import {
+  Pressable,
+  ScrollView,
+  Text,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 
-import { getQuizById } from "../../constants/flashcards";
-import type { FlashCard } from "../../constants/flashcards/types";
-import { questionImages } from "../../content/assets/questionImages";
+import {
+  getDeckIdsForChapter,
+  getQuizById,
+} from "../../constants/flashcards";
 
-import { levelIds, levelsById } from "../game/levelConfig";
+import { useContent } from "../../lib/content/ContentProvider";
+
+import {
+  levelIds,
+  levelsById,
+} from "../game/levelConfig";
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
+
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
@@ -22,49 +39,123 @@ import { validateDeck } from "./_quiz/validateDeck";
 
 export default function QuizScreen() {
   const navigation = useNavigation();
+  const { decks } = useContent();
 
-  const { quizId } = useLocalSearchParams<{ quizId: string }>();
-  const id = typeof quizId === "string" ? quizId : "";
-  const isChapterQuiz = id.endsWith("_quiz");
+  const { quizId } =
+    useLocalSearchParams<{
+      quizId: string;
+    }>();
 
-  const resolved = getQuizById(id);
+  const id =
+    typeof quizId === "string"
+      ? quizId
+      : "";
 
-  const currentChapterId = resolved?.chapterId ?? null;
+  const isChapterQuiz =
+    id.endsWith("_quiz");
+
+  const resolved = useMemo(
+    () => getQuizById(id),
+    [id]
+  );
+
+  const deckIds = useMemo(() => {
+    if (!resolved) {
+      return [];
+    }
+
+    if (resolved.chapterId) {
+      return getDeckIdsForChapter(
+        resolved.chapterId
+      );
+    }
+
+    if (resolved.deckId) {
+      return [
+        resolved.deckId,
+      ];
+    }
+
+    return [];
+  }, [resolved]);
+
+  const rawDeck = useMemo(
+    () =>
+      deckIds.flatMap(
+        (deckId) =>
+          decks[deckId] ?? []
+      ),
+    [deckIds, decks]
+  );
+
+  const deck = useMemo(
+    () =>
+      validateDeck(rawDeck),
+    [rawDeck]
+  );
+
+  const s = useQuizSession({
+    quizId: id,
+    deck,
+  });
+
+  const currentChapterId =
+    resolved?.chapterId ??
+    null;
 
   const currentLevelIndex =
     currentChapterId == null
       ? -1
       : levelIds.findIndex(
-          (levelId) => levelsById[levelId].chapterId === currentChapterId
+          (levelId) =>
+            levelsById[
+              levelId
+            ].chapterId ===
+            currentChapterId
         );
 
   const currentLevelId =
-    currentLevelIndex >= 0 ? levelIds[currentLevelIndex] : null;
-
-  const nextLevelId =
-    currentLevelIndex >= 0 && currentLevelIndex < levelIds.length - 1
-      ? levelIds[currentLevelIndex + 1]
+    currentLevelIndex >= 0
+      ? levelIds[
+          currentLevelIndex
+        ]
       : null;
 
-  const screenTitle = resolved
-    ? resolved.subtitle
-      ? `${resolved.title} – ${resolved.subtitle}`
-      : resolved.title
-    : "Quiz";
+  const nextLevelId =
+    currentLevelIndex >= 0 &&
+    currentLevelIndex <
+      levelIds.length - 1
+      ? levelIds[
+          currentLevelIndex +
+            1
+        ]
+      : null;
+
+  const screenTitle =
+    resolved
+      ? resolved.subtitle
+        ? `${resolved.title} – ${resolved.subtitle}`
+        : resolved.title
+      : "Quiz";
 
   const handleClose = () => {
-    if (navigation.canGoBack()) {
+    if (
+      navigation.canGoBack()
+    ) {
       router.back();
       return;
     }
 
     if (currentLevelId) {
       router.replace({
-        pathname: "/game/[levelId]",
+        pathname:
+          "/game/[levelId]",
         params: {
-          levelId: currentLevelId,
+          levelId:
+            currentLevelId,
         },
       });
+
       return;
     }
 
@@ -73,27 +164,58 @@ export default function QuizScreen() {
 
   if (!resolved) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}  hitSlop={12} >
-            <CloseIcon width={48} height={48} />
+      <SafeAreaView
+        style={styles.safe}
+      >
+        <View
+          style={headerStyle}
+        >
+          <Pressable
+            onPress={
+              handleClose
+            }
+            style={
+              iconWrapStyle
+            }
+            hitSlop={12}
+          >
+            <CloseIcon
+              width={48}
+              height={48}
+            />
           </Pressable>
         </View>
 
-        <QuizMissing title="Quiz" message="Det här quizet finns inte." />
+        <QuizMissing
+          title="Quiz"
+          message="Det här quizet finns inte."
+        />
       </SafeAreaView>
     );
   }
 
-  const rawDeck = (resolved.deck ?? []) as FlashCard[];
-  const deck = useMemo(() => validateDeck(rawDeck), [rawDeck]);
-
-  if (deck.length === 0) {
+  if (
+    deck.length === 0
+  ) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
+      <SafeAreaView
+        style={styles.safe}
+      >
+        <View
+          style={headerStyle}
+        >
+          <Pressable
+            onPress={
+              handleClose
+            }
+            style={
+              iconWrapStyle
+            }
+          >
+            <CloseIcon
+              width={48}
+              height={48}
+            />
           </Pressable>
         </View>
 
@@ -105,20 +227,53 @@ export default function QuizScreen() {
     );
   }
 
-  const s = useQuizSession({ quizId: id, deck });
-
-  if (s.shuffledDeck.length === 0 || !s.card) {
+  if (
+    s.shuffledDeck
+      .length === 0 ||
+    !s.card
+  ) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
+      <SafeAreaView
+        style={styles.safe}
+      >
+        <View
+          style={headerStyle}
+        >
+          <Pressable
+            onPress={
+              handleClose
+            }
+            style={
+              iconWrapStyle
+            }
+          >
+            <CloseIcon
+              width={48}
+              height={48}
+            />
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}>{screenTitle}</Text>
-          <Text style={styles.text}>Laddar quiz...</Text>
+        <ScrollView
+          contentContainerStyle={
+            styles.container
+          }
+        >
+          <Text
+            style={
+              styles.title
+            }
+          >
+            {screenTitle}
+          </Text>
+
+          <Text
+            style={
+              styles.text
+            }
+          >
+            Laddar quiz...
+          </Text>
         </ScrollView>
       </SafeAreaView>
     );
@@ -126,81 +281,203 @@ export default function QuizScreen() {
 
   if (s.isFinished) {
     return (
-      <SafeAreaView style={styles.safe}>
-        <View style={headerStyle}>
-          <Pressable onPress={handleClose} style={iconWrapStyle}>
-            <CloseIcon width={48} height={48} />
+      <SafeAreaView
+        style={styles.safe}
+      >
+        <View
+          style={headerStyle}
+        >
+          <Pressable
+            onPress={
+              handleClose
+            }
+            style={
+              iconWrapStyle
+            }
+          >
+            <CloseIcon
+              width={48}
+              height={48}
+            />
           </Pressable>
         </View>
 
-        <ScrollView contentContainerStyle={styles.container}>
-          <Text style={styles.title}>{screenTitle}</Text>
+        <ScrollView
+          contentContainerStyle={
+            styles.container
+          }
+        >
+          <Text
+            style={
+              styles.title
+            }
+          >
+            {screenTitle}
+          </Text>
 
-          <View style={styles.progressWrap}>
-  <BoatProgressBar value={s.visualProgress} />
-</View>
+          <View
+            style={
+              styles.progressWrap
+            }
+          >
+            <BoatProgressBar
+              value={
+                s.visualProgress
+              }
+            />
+          </View>
 
           <QuizFinished
-  title={screenTitle}
-  score={s.score}
-  total={s.shuffledDeck.length}
-  onRestart={s.restart}
-  onContinue={async () => {
-    if (isChapterQuiz) {
-      await addClearedQuizId(id);
-    }
-  }}
-  isChapterQuiz={isChapterQuiz}
-  nextLevelId={nextLevelId}
-/>
+            title={
+              screenTitle
+            }
+            score={s.score}
+            total={
+              s.shuffledDeck
+                .length
+            }
+            onRestart={
+              s.restart
+            }
+            onContinue={
+              async () => {
+                if (
+                  isChapterQuiz
+                ) {
+                  await addClearedQuizId(
+                    id
+                  );
+                }
+              }
+            }
+            isChapterQuiz={
+              isChapterQuiz
+            }
+            nextLevelId={
+              nextLevelId
+            }
+          />
         </ScrollView>
       </SafeAreaView>
     );
   }
 
-  const questionText = s.card.questionQuiz ?? s.card.question ?? "";
+  const questionText =
+    s.card.questionQuiz ??
+    s.card.question ??
+    "";
 
-  const hasQuestionImage =
-    !!s.card.imageKey &&
-    Object.prototype.hasOwnProperty.call(questionImages, s.card.imageKey);
+  const imageSource =
+    s.card.imageUrl
+      ? {
+          uri:
+            s.card.imageUrl,
+        }
+      : undefined;
 
-  const imageSource = hasQuestionImage
-    ? questionImages[s.card.imageKey!]
-    : undefined;
+  const optionImageSources =
+    s.quiz.options.map(
+      (_, index) => {
+        const imageUrl =
+          s.quiz
+            .optionImageUrls[
+            index
+          ];
 
-  const optionImageSources = s.quiz.optionImageKeys.map((key) => {
-    if (!key) return undefined;
-    if (!Object.prototype.hasOwnProperty.call(questionImages, key)) return undefined;
-    return questionImages[key];
-  });
+        return imageUrl
+          ? {
+              uri: imageUrl,
+            }
+          : undefined;
+      }
+    );
 
   return (
-    <SafeAreaView style={styles.safe}>
-      <View style={headerStyle}>
-        <Pressable onPress={handleClose} style={iconWrapStyle}>
-          <CloseIcon width={48} height={48} />
+    <SafeAreaView
+      style={styles.safe}
+    >
+      <View
+        style={headerStyle}
+      >
+        <Pressable
+          onPress={
+            handleClose
+          }
+          style={
+            iconWrapStyle
+          }
+        >
+          <CloseIcon
+            width={48}
+            height={48}
+          />
         </Pressable>
       </View>
 
-      <ScrollView contentContainerStyle={styles.container}>
-        <Text style={styles.title}>{screenTitle}</Text>
+      <ScrollView
+        contentContainerStyle={
+          styles.container
+        }
+      >
+        <Text
+          style={
+            styles.title
+          }
+        >
+          {screenTitle}
+        </Text>
 
-        <BoatProgressBar value={s.visualProgress} />
+        <BoatProgressBar
+          value={
+            s.visualProgress
+          }
+        />
 
         <QuizCard
-          questionText={questionText}
-          imageSource={imageSource}
-          options={s.quiz.options}
-          optionImageSources={optionImageSources}
-          correctOptionIndex={s.quiz.correctOptionIndex}
-          selectedIndex={s.selectedIndex}
-          isChecked={s.isChecked}
-          onSelect={s.onSelect}
-          onNext={s.onNext}
-          showNextButton={s.isChecked}
-          isLast={s.masteredCount >= s.total}
-          textTitle={s.card.textTitle}
-          textInfo={s.card.textInfo}
+          questionText={
+            questionText
+          }
+          imageSource={
+            imageSource
+          }
+          options={
+            s.quiz.options
+          }
+          optionImageSources={
+            optionImageSources
+          }
+          correctOptionIndex={
+            s.quiz
+              .correctOptionIndex
+          }
+          selectedIndex={
+            s.selectedIndex
+          }
+          isChecked={
+            s.isChecked
+          }
+          onSelect={
+            s.onSelect
+          }
+          onNext={
+            s.onNext
+          }
+          showNextButton={
+            s.isChecked
+          }
+          isLast={
+            s.masteredCount >=
+            s.total
+          }
+          answerText={
+            s.card.answer
+          }
+          textTitle={
+            s.card.textTitle
+          }
+          textInfo={
+            s.card.textInfo
+          }
         />
       </ScrollView>
     </SafeAreaView>
@@ -209,16 +486,22 @@ export default function QuizScreen() {
 
 const headerStyle = {
   height: 72,
-  backgroundColor: colorSchemeGui.slate_900,
+  backgroundColor:
+    colorSchemeGui.slate_900,
   paddingHorizontal: 16,
-  flexDirection: "row" as const,
-  alignItems: "center" as const,
-  justifyContent: "flex-end" as const,
+  flexDirection:
+    "row" as const,
+  alignItems:
+    "center" as const,
+  justifyContent:
+    "flex-end" as const,
 };
 
 const iconWrapStyle = {
   width: 64,
   height: 64,
-  alignItems: "center" as const,
-  justifyContent: "center" as const,
+  alignItems:
+    "center" as const,
+  justifyContent:
+    "center" as const,
 };
