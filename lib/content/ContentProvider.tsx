@@ -5,7 +5,6 @@ import React, {
     useState,
 } from "react";
 
-import { loadCourseCache } from "./courseCache";
 import type { CourseContent } from "./courseContent";
 import { loadCourseContentCache } from "./courseContentCache";
 import type { CourseDecks } from "./loadCourseFromSupabase";
@@ -35,52 +34,54 @@ export function ContentProvider({
   courseId: string;
   children: React.ReactNode;
 }) {
-  const [decks, setDecks] = useState<CourseDecks>({});
-  const [structure, setStructure] =
-    useState<CourseStructure>(emptyStructure);
+  const [decks, setDecks] =
+    useState<CourseDecks>({});
 
-  const [isReady, setIsReady] = useState(false);
-  const [isSyncing, setIsSyncing] = useState(false);
+  const [structure, setStructure] =
+    useState<CourseStructure>(
+      emptyStructure
+    );
+
+  const [isReady, setIsReady] =
+    useState(false);
+
+  const [isSyncing, setIsSyncing] =
+    useState(false);
 
   useEffect(() => {
     let cancelled = false;
 
     async function startContent() {
       const cached =
-        await loadCourseContentCache(courseId);
+        await loadCourseContentCache(
+          courseId
+        );
 
       if (cancelled) return;
 
       if (cached) {
         setDecks(cached.decks);
-        setStructure(cached.structure);
+        setStructure(
+          cached.structure
+        );
         setIsReady(true);
-      } else {
-        // Tillfällig fallback till den gamla cachen
-        // under migreringen.
-        const oldCached =
-          await loadCourseCache(courseId);
-
-        if (cancelled) return;
-
-        if (oldCached) {
-          setDecks(oldCached);
-          setIsReady(true);
-        }
       }
 
       setIsSyncing(true);
 
       try {
         const synced: CourseContent =
-          await syncFullCourseContent(courseId);
+          await syncFullCourseContent(
+            courseId
+          );
 
         if (cancelled) return;
 
         setDecks(synced.decks);
-        setStructure(synced.structure);
+        setStructure(
+          synced.structure
+        );
 
-        
         setIsReady(true);
       } catch (error) {
         console.warn(
@@ -120,7 +121,8 @@ export function ContentProvider({
 }
 
 export function useContent() {
-  const context = useContext(ContentContext);
+  const context =
+    useContext(ContentContext);
 
   if (!context) {
     throw new Error(
