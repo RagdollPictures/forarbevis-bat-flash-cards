@@ -44,7 +44,7 @@ export type MenuLevel = {
 export type BonusLevelItem = {
   id: string;
   title: string;
-  unlockWhenClearedQuizId: string;
+ unlockWhenClearedQuizId?: string;
 };
 
 export type ReadPlacedNode = {

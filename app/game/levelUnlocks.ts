@@ -60,9 +60,12 @@ export function getUnlockedBonusIds(
   const s = new Set<string>();
 
   for (const bonus of safeBonusLevels) {
-   if (clearedIds.has(bonus.unlockWhenClearedQuizId)) {
-  s.add(bonus.id);
-}
+    if (
+      !bonus.unlockWhenClearedQuizId ||
+      clearedIds.has(bonus.unlockWhenClearedQuizId)
+    ) {
+      s.add(bonus.id);
+    }
   }
 
   return s;

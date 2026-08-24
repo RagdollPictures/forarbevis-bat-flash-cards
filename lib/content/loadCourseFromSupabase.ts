@@ -9,31 +9,77 @@ type CourseQuestionRow = QuestionRow & {
   deck_id: string;
 };
 
-export type CourseDecks = Record<string, FlashCard[]>;
+export type CourseDecks = Record<
+  string,
+  FlashCard[]
+>;
+
+const PAGE_SIZE = 500;
 
 export async function loadCourseFromSupabase(
   courseId: string
 ): Promise<CourseDecks> {
-  const { data, error } = await supabase
-    .from("questions")
-    .select("*")
-    .eq("course_id", courseId)
-    .eq("active", true)
-    .order("deck_id", { ascending: true })
-    .order("sort_order", { ascending: true });
+  const rows: CourseQuestionRow[] =
+    [];
 
-  if (error) {
-    throw error;
-  }
+  let from = 0;
 
-  const decks: CourseDecks = {};
+  while (true) {
+    const to =
+      from + PAGE_SIZE - 1;
 
-  for (const row of data as CourseQuestionRow[]) {
-    if (!decks[row.deck_id]) {
-      decks[row.deck_id] = [];
+    const { data, error } =
+      await supabase
+        .from("questions")
+        .select("*")
+        .eq(
+          "course_id",
+          courseId
+        )
+        .eq("active", true)
+        .order("deck_id", {
+          ascending: true,
+        })
+        .order("sort_order", {
+          ascending: true,
+        })
+        .order("id", {
+        ascending: true,
+        })
+        .range(from, to);
+
+    if (error) {
+      throw error;
     }
 
-    decks[row.deck_id].push(rowToFlashCard(row));
+    const page =
+      (data ??
+        []) as CourseQuestionRow[];
+
+    rows.push(...page);
+
+    if (
+      page.length <
+      PAGE_SIZE
+    ) {
+      break;
+    }
+
+    from += PAGE_SIZE;
+  }
+
+  const decks: CourseDecks =
+    {};
+
+  for (const row of rows) {
+    if (!decks[row.deck_id]) {
+      decks[row.deck_id] =
+        [];
+    }
+
+    decks[row.deck_id].push(
+      rowToFlashCard(row)
+    );
   }
 
   return decks;

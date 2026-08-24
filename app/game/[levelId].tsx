@@ -41,7 +41,6 @@ import {
 } from "./levelNodeMapper";
 
 import type {
-  BonusLevelItem,
   ChapterTestPlacedNode,
   MenuLevel,
   QuizItem,
@@ -138,8 +137,8 @@ function QuizMenuScreenContent() {
       );
     }, [theme]);
 
-  const safeBonusLevels =
-    structure.bonusLevels as BonusLevelItem[];
+const safeBonusLevels =
+  structure.bonusLevels;
 
   const quizzes = useMemo(
     () =>
@@ -608,10 +607,9 @@ function QuizMenuScreenContent() {
                     styles.bonusBtn
                   }
                 >
-                  <BonusIcon
-                    width={58}
-                    height={62}
-                  />
+                 {BonusIcon ? (
+                    <BonusIcon width={58} height={62} />
+                  ) : null}
                 </Pressable>
               );
             }
