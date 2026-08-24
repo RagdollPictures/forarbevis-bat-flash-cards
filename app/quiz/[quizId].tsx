@@ -68,8 +68,8 @@ const resolved = useMemo(
 );
 
 
-  const isChapterQuiz =
-    id.endsWith("_quiz");
+ const isChapterQuiz =
+  Boolean(resolved?.chapterId);
 
   const deckIds = useMemo(() => {
     if (!resolved) {
