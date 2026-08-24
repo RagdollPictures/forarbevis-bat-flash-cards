@@ -6,15 +6,24 @@ import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 import { colorSchemeGui } from "../../constants/colors";
 import { useContent } from "../../lib/content/ContentProvider";
 import ChapterMenuMap from "./ChapterMenuMap";
-import { levelIds, levelsById, type LevelId } from "./levelConfig";
+
 import type { MenuLevel } from "./levelScreenTypes";
 import { getUnlockedLevelIds } from "./levelUnlocks";
+import { useCourseLevelConfig } from "./useCourseLevelConfig";
 import { useLevelProgress } from "./useLevelProgress";
+
+
 
 export default function ChaptersScreen() {
   const { structure } = useContent();
+  const {
+  levelIds,
+  levelsById,
+  isReady,
+} = useCourseLevelConfig();
   const params = useLocalSearchParams<{ currentLevelId?: string }>();
-  const currentLevelId = (params.currentLevelId ?? levelIds[0]) as LevelId;
+ const currentLevelId =
+  params.currentLevelId ?? levelIds[0] ?? "";
 
   const levelMap = levelsById as Record<string, MenuLevel>;
 
@@ -31,6 +40,10 @@ export default function ChaptersScreen() {
       structure
     );
   }, [clearedIds, structure]);
+
+  if (!isReady) {
+  return null;
+}
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colorSchemeGui.slate_900 }}>

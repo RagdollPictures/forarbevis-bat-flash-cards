@@ -24,10 +24,9 @@ import {
 
 import { useContent } from "../../lib/content/ContentProvider";
 
-import {
-  levelIds,
-  levelsById,
-} from "../game/levelConfig";
+import { useCourseLevelConfig } from "../game/useCourseLevelConfig";
+
+
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
 
@@ -42,7 +41,10 @@ import { validateDeck } from "./_quiz/validateDeck";
 export default function QuizScreen() {
   const navigation = useNavigation();
  const { decks, structure } = useContent();
-
+const {
+  levelIds,
+  levelsById,
+} = useCourseLevelConfig();
   const { quizId } =
     useLocalSearchParams<{
       quizId: string;

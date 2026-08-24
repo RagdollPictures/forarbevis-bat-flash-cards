@@ -4,10 +4,10 @@ import Svg, { Circle, Path } from "react-native-svg";
 
 import { colorSchemeGui } from "../../constants/colors";
 import { headerMiniMap } from "../../content/assets/headerMiniMap";
-import { levelIds, type LevelId } from "./levelConfig";
+import { useCourseLevelConfig } from "./useCourseLevelConfig";
 
 type HeaderMiniMapProps = {
-  currentLevelId: LevelId;
+  currentLevelId: string;
   unlockedLevelIds: Set<string>;
   style?: StyleProp<ViewStyle>;
 };
@@ -17,6 +17,8 @@ export default function HeaderMiniMap({
   unlockedLevelIds,
   style,
 }: HeaderMiniMapProps) {
+   const { levelIds } = useCourseLevelConfig();
+
   return (
     <View
       style={[
