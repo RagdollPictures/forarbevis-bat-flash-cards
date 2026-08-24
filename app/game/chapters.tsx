@@ -4,6 +4,7 @@ import { Pressable, ScrollView } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 import { colorSchemeGui } from "../../constants/colors";
+import { useContent } from "../../lib/content/ContentProvider";
 import ChapterMenuMap from "./ChapterMenuMap";
 import { levelIds, levelsById, type LevelId } from "./levelConfig";
 import type { MenuLevel } from "./levelScreenTypes";
@@ -11,6 +12,7 @@ import { getUnlockedLevelIds } from "./levelUnlocks";
 import { useLevelProgress } from "./useLevelProgress";
 
 export default function ChaptersScreen() {
+  const { structure } = useContent();
   const params = useLocalSearchParams<{ currentLevelId?: string }>();
   const currentLevelId = (params.currentLevelId ?? levelIds[0]) as LevelId;
 
@@ -22,9 +24,13 @@ export default function ChaptersScreen() {
     levelMap,
   });
 
-  const unlockedLevelIds = useMemo(() => {
-    return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
-  }, [clearedIds, levelMap]);
+    const unlockedLevelIds = useMemo(() => {
+    return getUnlockedLevelIds(
+      levelIds,
+      clearedIds,
+      structure
+    );
+  }, [clearedIds, structure]);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: colorSchemeGui.slate_900 }}>

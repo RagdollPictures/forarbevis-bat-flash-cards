@@ -1,10 +1,8 @@
-import { getQuizzesForChapter } from "../../constants/flashcards";
-import { course } from "../../content/course";
-import { isBonusUnlocked } from "../../content/questions/bonusLevels";
+import type { CourseStructure } from "../../lib/content/loadCourseStructureFromSupabase";
+
 import type {
   BonusLevelItem,
-  MenuLevel,
-  QuizItem,
+  QuizItem
 } from "./levelScreenTypes";
 
 export function getUnlockedQuizIds(
@@ -30,8 +28,8 @@ export function getUnlockedQuizIds(
 
 export function getUnlockedLevelIds(
   levelIds: readonly string[],
-  levelMap: Record<string, MenuLevel>,
-  clearedIds: Set<string>
+  clearedIds: Set<string>,
+  structure: CourseStructure
 ) {
   const s = new Set<string>();
 
@@ -41,19 +39,13 @@ export function getUnlockedLevelIds(
 
   for (let i = 1; i < levelIds.length; i++) {
     const prevLevelId = levelIds[i - 1];
-    const prevLevel = levelMap[prevLevelId];
 
-    if (!prevLevel) break;
+    const prevLevel = structure.levels.find(
+      (level) => level.id === prevLevelId
+    );
 
-    const prevQuizzes = getQuizzesForChapter(
-      course.sourceId,
-      prevLevel.chapterId
-    ) as QuizItem[];
-
-    const finalQuiz = prevQuizzes[prevQuizzes.length - 1];
-
-    if (!finalQuiz) break;
-    if (!clearedIds.has(finalQuiz.id)) break;
+    if (!prevLevel?.chapterQuizId) break;
+    if (!clearedIds.has(prevLevel.chapterQuizId)) break;
 
     s.add(levelIds[i]);
   }
@@ -68,9 +60,9 @@ export function getUnlockedBonusIds(
   const s = new Set<string>();
 
   for (const bonus of safeBonusLevels) {
-    if (isBonusUnlocked(bonus.unlockWhenClearedQuizId, clearedIds)) {
-      s.add(bonus.id);
-    }
+   if (clearedIds.has(bonus.unlockWhenClearedQuizId)) {
+  s.add(bonus.id);
+}
   }
 
   return s;

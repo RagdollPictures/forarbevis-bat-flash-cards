@@ -9,10 +9,10 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import MapIcon from "../../assets/menu/map.svg";
 import { colorSchemeGui } from "../../constants/colors";
-import { getQuizzesForChapter } from "../../constants/flashcards";
 import { bonusIconsById } from "../../content/assets/bonusIcons";
 import { course } from "../../content/course";
-import { bonusLevels } from "../../content/questions/bonusLevels";
+import { useContent } from "../../lib/content/ContentProvider";
+import { getQuizzesForChapterFromStructure } from "../../lib/content/courseStructureSelectors";
 import { styles } from "../quiz/styles";
 import DevMenu from "./DevMenu";
 import HeaderMiniMap from "./HeaderMiniMap";
@@ -41,8 +41,8 @@ import {
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
 
-
 export default function QuizMenuScreen() {
+  const { structure } = useContent();
   const [showDevMenu, setShowDevMenu] = useState(false);
   const [bonusContainerWidth, setBonusContainerWidth] = useState(1);
   const [bonusContentWidth, setBonusContentWidth] = useState(1);
@@ -64,18 +64,30 @@ export default function QuizMenuScreen() {
     return getVisibleSvgLayerIds(theme);
   }, [theme]);
 
-  const safeBonusLevels = bonusLevels as BonusLevelItem[];
+  const safeBonusLevels =
+  structure.bonusLevels as BonusLevelItem[];
 
-  const quizzes = useMemo(
-    () =>
-      getQuizzesForChapter(course.sourceId, currentLevel.chapterId),
-    [currentLevel.chapterId]
-  );
+ const quizzes = useMemo(
+  () =>
+    getQuizzesForChapterFromStructure({
+      structure,
+      chapterId: currentLevel.chapterId,
+      sourceId: course.sourceId,
+      courseId: course.id,
+    }),
+  [structure, currentLevel.chapterId]
+);
 
-  const bonusQuizzes = useMemo(
-    () => getQuizzesForChapter(course.sourceId, "bonus") as QuizItem[],
-    []
-  );
+ const bonusQuizzes = useMemo(
+  () =>
+    getQuizzesForChapterFromStructure({
+      structure,
+      chapterId: "bonus",
+      sourceId: course.sourceId,
+      courseId: course.id,
+    }) as QuizItem[],
+  [structure]
+);
 
 const screenWidth = Dimensions.get("window").width;
 const scale = screenWidth / layout.viewBox.width;
@@ -138,8 +150,12 @@ const contentHeight = (lastNodeY + 250) * scale;
   }, [clearedIds, safeBonusLevels]);
 
   const unlockedLevelIds = useMemo(() => {
-    return getUnlockedLevelIds(levelIds, levelMap, clearedIds);
-  }, [levelIds, levelMap, clearedIds]);
+  return getUnlockedLevelIds(
+    levelIds,
+    clearedIds,
+    structure
+  );
+}, [clearedIds, structure]);
 
   const handlePressReadNode = useCallback(
     (node: ReadPlacedNode) => {

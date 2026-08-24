@@ -15,10 +15,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 
+import { course } from "../../content/course";
+
 import {
-  getDeckIdsForChapter,
-  getQuizById,
-} from "../../constants/flashcards";
+  getDeckIdsForChapterFromStructure,
+  getQuizByIdFromStructure,
+} from "../../lib/content/courseStructureSelectors";
 
 import { useContent } from "../../lib/content/ContentProvider";
 
@@ -39,7 +41,7 @@ import { validateDeck } from "./_quiz/validateDeck";
 
 export default function QuizScreen() {
   const navigation = useNavigation();
-  const { decks } = useContent();
+ const { decks, structure } = useContent();
 
   const { quizId } =
     useLocalSearchParams<{
@@ -54,10 +56,16 @@ export default function QuizScreen() {
   const isChapterQuiz =
     id.endsWith("_quiz");
 
-  const resolved = useMemo(
-    () => getQuizById(id),
-    [id]
-  );
+const resolved = useMemo(
+  () =>
+    getQuizByIdFromStructure({
+      structure,
+      quizId: id,
+      sourceId: course.sourceId,
+      courseId: course.id,
+    }),
+  [id, structure]
+);
 
   const deckIds = useMemo(() => {
     if (!resolved) {
@@ -65,9 +73,10 @@ export default function QuizScreen() {
     }
 
     if (resolved.chapterId) {
-      return getDeckIdsForChapter(
-        resolved.chapterId
-      );
+      return getDeckIdsForChapterFromStructure({
+  structure,
+  chapterId: resolved.chapterId,
+});
     }
 
     if (resolved.deckId) {
@@ -77,7 +86,7 @@ export default function QuizScreen() {
     }
 
     return [];
-  }, [resolved]);
+  }, [resolved, structure]);
 
   const rawDeck = useMemo(
     () =>

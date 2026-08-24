@@ -15,16 +15,10 @@ import ChapterBgGreen from "../../assets/menu/btn_active_green.svg";
 import ChapterBgPink from "../../assets/menu/btn_active_pink.svg";
 import ChapterBgPurple from "../../assets/menu/btn_active_purple.svg";
 import ChapterBgYellow from "../../assets/menu/btn_active_yellow.svg";
-
 import ChapterBgOff from "../../assets/menu/btn_locked.svg";
 
 import { chapterIcons } from "../../content/assets/chapterIcons";
-
-import {
-  getDeckIdsForChapter,
-  getQuizzesForChapter,
-  sources,
-} from "../../constants/flashcards";
+import { course } from "../../content/course";
 
 import {
   getAllQuizProgress,
@@ -32,7 +26,12 @@ import {
 } from "../../constants/flashcards/quizProgress";
 
 import { useContent } from "../../lib/content/ContentProvider";
+import {
+  getDeckIdsForChapterFromStructure,
+  getQuizzesForChapterFromStructure,
+} from "../../lib/content/courseStructureSelectors";
 import type { CourseDecks } from "../../lib/content/loadCourseFromSupabase";
+import type { CourseStructure } from "../../lib/content/loadCourseStructureFromSupabase";
 
 import {
   levelIds,
@@ -84,12 +83,10 @@ function buildChapterProgressMap(
     string,
     SavedQuizProgress
   >,
-  decks: CourseDecks
+  decks: CourseDecks,
+  structure: CourseStructure
 ): Record<string, number> {
-  const result: Record<
-    string,
-    number
-  > = {};
+  const result: Record<string, number> = {};
 
   for (const id of levelIds) {
     const level = levelsById[id];
@@ -101,59 +98,46 @@ function buildChapterProgressMap(
     let totalScore = 0;
     let totalQuestions = 0;
 
-    for (const source of sources) {
-      const quizzes =
-        getQuizzesForChapter(
-          source.id,
-          level.chapterId
+    const quizzes =
+      getQuizzesForChapterFromStructure({
+        structure,
+        chapterId: level.chapterId,
+        sourceId: course.sourceId,
+        courseId: course.id,
+      });
+
+    for (const quiz of quizzes) {
+      const saved = progressMap[quiz.id];
+
+      let defaultTotal = 0;
+
+      if (quiz.deckId) {
+        defaultTotal =
+          decks[quiz.deckId]?.length ?? 0;
+      } else if (quiz.chapterId) {
+        const deckIds =
+          getDeckIdsForChapterFromStructure({
+            structure,
+            chapterId: quiz.chapterId,
+          });
+
+        defaultTotal = deckIds.reduce(
+          (sum, deckId) =>
+            sum +
+            (decks[deckId]?.length ?? 0),
+          0
         );
-
-      for (const quiz of quizzes) {
-        const saved =
-          progressMap[quiz.id];
-
-        let defaultTotal = 0;
-
-        if (quiz.deckId) {
-          defaultTotal =
-            decks[quiz.deckId]
-              ?.length ?? 0;
-        } else if (
-          quiz.chapterId
-        ) {
-          const deckIds =
-            getDeckIdsForChapter(
-              quiz.chapterId
-            );
-
-          defaultTotal =
-            deckIds.reduce(
-              (
-                sum,
-                deckId
-              ) =>
-                sum +
-                (decks[
-                  deckId
-                ]?.length ?? 0),
-              0
-            );
-        }
-
-        totalScore +=
-          saved?.score ?? 0;
-
-        totalQuestions +=
-          saved?.total ??
-          defaultTotal;
       }
+
+      totalScore += saved?.score ?? 0;
+
+      totalQuestions +=
+        saved?.total ?? defaultTotal;
     }
 
     result[level.chapterId] =
       totalQuestions > 0
-        ? (totalScore /
-            totalQuestions) *
-          100
+        ? (totalScore / totalQuestions) * 100
         : 0;
   }
 
@@ -164,7 +148,7 @@ export default function ChapterMenuMap({
   currentLevelId,
   unlockedLevelIds,
 }: ChapterMenuMapProps) {
-  const { decks } = useContent();
+  const { decks, structure } = useContent();
 
   const layout =
     chaptersMenu as ChaptersMenuLayout;
@@ -173,15 +157,12 @@ export default function ChapterMenuMap({
     Dimensions.get("window").width;
 
   const scale =
-    screenWidth /
-    layout.viewBox.width;
+    screenWidth / layout.viewBox.width;
 
   const [
     chapterProgressMap,
     setChapterProgressMap,
-  ] = useState<
-    Record<string, number>
-  >({});
+  ] = useState<Record<string, number>>({});
 
   useEffect(() => {
     let mounted = true;
@@ -197,7 +178,8 @@ export default function ChapterMenuMap({
       setChapterProgressMap(
         buildChapterProgressMap(
           allProgress,
-          decks
+          decks,
+          structure
         )
       );
     }
@@ -207,23 +189,21 @@ export default function ChapterMenuMap({
     return () => {
       mounted = false;
     };
-  }, [decks]);
+  }, [decks, structure]);
 
   return (
     <View
       style={{
         width: screenWidth,
         height:
-          layout.viewBox.height *
-          scale,
+          layout.viewBox.height * scale,
         position: "relative",
       }}
     >
       <ChaptersMenuSvg
         width={screenWidth}
         height={
-          layout.viewBox.height *
-          scale
+          layout.viewBox.height * scale
         }
       />
 
@@ -308,8 +288,7 @@ export default function ChapterMenuMap({
               });
             }}
             style={{
-              position:
-                "absolute",
+              position: "absolute",
               left: centerX,
               top:
                 centerY -
@@ -321,16 +300,13 @@ export default function ChapterMenuMap({
                 },
               ],
               width: iconSize,
-              alignItems:
-                "center",
+              alignItems: "center",
             }}
           >
             <View
               style={{
-                width:
-                  iconSize,
-                height:
-                  iconSize,
+                width: iconSize,
+                height: iconSize,
                 borderRadius:
                   iconRadius,
                 alignItems:
@@ -346,12 +322,8 @@ export default function ChapterMenuMap({
               }}
             >
               <ChapterBackground
-                width={
-                  iconSize
-                }
-                height={
-                  iconSize
-                }
+                width={iconSize}
+                height={iconSize}
                 style={{
                   position:
                     "absolute",
@@ -398,9 +370,7 @@ export default function ChapterMenuMap({
                 }}
                 numberOfLines={1}
               >
-                {
-                  menuLevel.label
-                }
+                {menuLevel.label}
               </Text>
             </View>
 
@@ -413,10 +383,7 @@ export default function ChapterMenuMap({
                 color: "#111",
               }}
             >
-              {Math.round(
-                percent
-              )}
-              %
+              {Math.round(percent)}%
             </Text>
           </Pressable>
         );
