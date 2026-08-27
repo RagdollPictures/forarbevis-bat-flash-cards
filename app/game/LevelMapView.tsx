@@ -20,7 +20,7 @@ import ReadIconPurple from "../../assets/menu/read_active_purple.svg";
 import ReadIconYellow from "../../assets/menu/read_active_yellow.svg";
 import ReadIconLocked from "../../assets/menu/read_locked.svg";
 import type { SavedQuizProgress } from "../../constants/flashcards/quizProgress";
-import { levelChapterIcons } from "../../content/assets/chapterIcons";
+
 import NodeTransitionWrap from "../quiz/components/NodeTransitionWrap";
 import ProgressRing from "../quiz/components/ProgressRing";
 import { styles } from "../quiz/styles";
@@ -35,6 +35,9 @@ import type {
   ReadPlacedNode,
   TitlePlacedNode,
 } from "./levelScreenTypes";
+
+import { SvgXml } from "react-native-svg";
+import { useContent } from "../../lib/content/ContentProvider";
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
   const total = saved?.firstTryTotal ?? 0;
@@ -149,8 +152,20 @@ export default function LevelMapView({
   onPressQuizNode,
 }: LevelMapViewProps) {
 
+  const { structure } = useContent();
+
+const structureLevel =
+  structure.levels.find(
+    (level) => level.id === levelId
+  );
+
+const remoteLevelIconSvg =
+  structureLevel?.levelIconSvg;
+
+
+
   const titleTextColor = colorSchemeGui.slate_200;
-const ChapterIcon = levelChapterIcons[chapterId];
+
  return (
   <View
     style={{
@@ -179,9 +194,13 @@ const ChapterIcon = levelChapterIcons[chapterId];
     gap: 8,
   }}
 >
-  {ChapterIcon ? (
-    <ChapterIcon width={64} height={64} />
-  ) : null}
+ {remoteLevelIconSvg ? (
+  <SvgXml
+    xml={remoteLevelIconSvg}
+    width={64}
+    height={64}
+  />
+) : null}
 
   <Text
     style={{

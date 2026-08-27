@@ -17,7 +17,8 @@ import ChapterBgPurple from "../../assets/menu/btn_active_purple.svg";
 import ChapterBgYellow from "../../assets/menu/btn_active_yellow.svg";
 import ChapterBgOff from "../../assets/menu/btn_locked.svg";
 
-import { chapterIcons } from "../../content/assets/chapterIcons";
+import { SvgXml } from "react-native-svg";
+
 import { course } from "../../content/course";
 
 import {
@@ -288,10 +289,17 @@ export default function ChapterMenuMap({
         const iconRadius =
           iconSize / 2;
 
-        const ChapterIcon =
-          chapterIcons[
-            menuLevel.chapterId
-          ];
+        const structureLevel =
+  structure.levels.find(
+    (level) => level.id === id
+  );
+
+const remoteIconSvg =
+  isUnlocked
+    ? structureLevel?.iconSvg
+    : structureLevel?.iconOffSvg;
+
+
 
         const match =
           id.match(/(\d+)$/);
@@ -387,20 +395,23 @@ export default function ChapterMenuMap({
                 }}
               />
 
-              {ChapterIcon ? (
-                <ChapterIcon
-                  width={70}
-                  height={70}
-                  style={{
-                    transform: [
-                      {
-                        translateY:
-                          -4,
-                      },
-                    ],
-                  }}
-                />
-              ) : null}
+             {remoteIconSvg ? (
+  <View
+    style={{
+      transform: [
+        {
+          translateY: -4,
+        },
+      ],
+    }}
+  >
+    <SvgXml
+      xml={remoteIconSvg}
+      width={70}
+      height={70}
+    />
+  </View>
+) : null}
             </View>
 
             <View

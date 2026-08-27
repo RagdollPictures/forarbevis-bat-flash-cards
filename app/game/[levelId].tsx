@@ -19,7 +19,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import MapIcon from "../../assets/menu/map.svg";
 import { colorSchemeGui } from "../../constants/colors";
-import { bonusIconsById } from "../../content/assets/bonusIcons";
+
 import { course } from "../../content/course";
 
 import { useContent } from "../../lib/content/ContentProvider";
@@ -56,6 +56,8 @@ import {
 
 import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
+
+import { SvgXml } from "react-native-svg";
 
 export default function QuizMenuScreen() {
   const { isReady } = useCourseLevelConfig();
@@ -564,16 +566,11 @@ const safeBonusLevels =
                     )
                   : false;
 
-              const iconSet =
-                bonusIconsById[
-                  quiz.id
-                ];
-
-              const BonusIcon =
-                isUnlocked
-                  ? iconSet?.on
-                  : iconSet?.off ??
-                    iconSet?.on;
+             const remoteBonusSvg =
+  isUnlocked
+    ? bonus?.iconSvg
+    : bonus?.iconOffSvg ??
+      bonus?.iconSvg;
 
               return (
                 <Pressable
@@ -604,9 +601,13 @@ const safeBonusLevels =
                     styles.bonusBtn
                   }
                 >
-                 {BonusIcon ? (
-                    <BonusIcon width={58} height={62} />
-                  ) : null}
+               {remoteBonusSvg ? (
+  <SvgXml
+    xml={remoteBonusSvg}
+    width={58}
+    height={62}
+  />
+) : null}
                 </Pressable>
               );
             }
