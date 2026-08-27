@@ -9,21 +9,47 @@ export function getUnlockedQuizIds(
   quizzes: QuizItem[],
   clearedIds: Set<string>
 ) {
-  const s = new Set<string>();
+  const unlocked =
+    new Set<string>();
 
-  if (quizzes.length === 0) return s;
-
-  s.add(quizzes[0].id);
-
-  for (let i = 0; i < quizzes.length - 1; i++) {
-    const currentId = quizzes[i].id;
-    const nextId = quizzes[i + 1].id;
-
-    if (!clearedIds.has(currentId)) break;
-    s.add(nextId);
+  if (quizzes.length === 0) {
+    return unlocked;
   }
 
-  return s;
+  // Första banan är alltid upplåst.
+  unlocked.add(quizzes[0].id);
+
+  for (
+    let i = 0;
+    i < quizzes.length;
+    i++
+  ) {
+    const currentId =
+      quizzes[i].id;
+
+    if (
+      !clearedIds.has(
+        currentId
+      )
+    ) {
+      continue;
+    }
+
+    // En redan klarad bana
+    // ska aldrig låsas igen.
+    unlocked.add(currentId);
+
+    // Om denna bana är klar
+    // ska nästa vara upplåst.
+    const next =
+      quizzes[i + 1];
+
+    if (next) {
+      unlocked.add(next.id);
+    }
+  }
+
+  return unlocked;
 }
 
 export function getUnlockedLevelIds(
