@@ -1,0 +1,450 @@
+import "jsr:@supabase/functions-js/edge-runtime.d.ts";
+import { withSupabase } from "jsr:@supabase/server@^1";
+
+const TABLE_NAMES = [
+  "levels",
+  "units",
+  "bonus_levels",
+  "questions",
+] as const;
+
+const DELETE_ORDER = [
+  "questions",
+  "bonus_levels",
+  "units",
+  "levels",
+] as const;
+
+const BATCH_SIZE = 200;
+
+export default {
+  fetch: withSupabase(
+    { auth: "none" },
+    async (req, ctx) => {
+      if (req.method !== "POST") {
+        return Response.json(
+          { error: "Method not allowed" },
+          { status: 405 }
+        );
+      }
+
+      const expectedSecret =
+        Deno.env.get(
+          "QUIZ_ENGINE_SYNC_SECRET"
+        );
+
+      const providedSecret =
+        req.headers.get(
+          "x-quiz-engine-secret"
+        );
+
+      if (
+        !expectedSecret ||
+        providedSecret !== expectedSecret
+      ) {
+        return Response.json(
+          { error: "Unauthorized" },
+          { status: 401 }
+        );
+      }
+
+      let payload;
+
+      try {
+        payload = await req.json();
+      } catch {
+        return Response.json(
+          { error: "Invalid JSON" },
+          { status: 400 }
+        );
+      }
+
+      const {
+        courseId,
+        tables,
+        apply = false,
+        expectedDeleteCounts,
+      } = payload;
+
+      if (
+        typeof courseId !== "string" ||
+        !courseId
+      ) {
+        return Response.json(
+          { error: "Invalid courseId" },
+          { status: 400 }
+        );
+      }
+
+      if (
+        !tables ||
+        typeof tables !== "object"
+      ) {
+        return Response.json(
+          { error: "Invalid tables" },
+          { status: 400 }
+        );
+      }
+
+      const result: Record<
+        string,
+        {
+          sheet: number;
+          database: number;
+          new: number;
+          existing: number;
+          wouldDelete: number;
+        }
+      > = {};
+
+      const deleteIds: Record<
+        string,
+        string[]
+      > = {};
+
+      /*
+       * 1. VALIDERING + JÄMFÖRELSE
+       */
+      for (
+        const tableName of TABLE_NAMES
+      ) {
+        const rows =
+          tables[tableName];
+
+        if (!Array.isArray(rows)) {
+          return Response.json(
+            {
+              error:
+                `Missing or invalid table: ${tableName}`,
+            },
+            { status: 400 }
+          );
+        }
+
+        // Skydd mot att en tom flik
+        // tömmer hela tabellen.
+        if (rows.length === 0) {
+          return Response.json(
+            {
+              error:
+                `Table ${tableName} is empty`,
+            },
+            { status: 400 }
+          );
+        }
+
+        const sheetIds =
+          new Set<string>();
+
+        for (const row of rows) {
+          if (
+            row.course_id !==
+            courseId
+          ) {
+            return Response.json(
+              {
+                error:
+                  `Wrong course_id in ${tableName}`,
+              },
+              { status: 400 }
+            );
+          }
+
+          if (
+            typeof row.id !==
+              "string" ||
+            !row.id.trim()
+          ) {
+            return Response.json(
+              {
+                error:
+                  `Missing id in ${tableName}`,
+              },
+              { status: 400 }
+            );
+          }
+
+          if (
+            sheetIds.has(row.id)
+          ) {
+            return Response.json(
+              {
+                error:
+                  `Duplicate id "${row.id}" in ${tableName}`,
+              },
+              { status: 400 }
+            );
+          }
+
+          sheetIds.add(
+            row.id
+          );
+        }
+
+        const {
+          data,
+          error,
+        } =
+          await ctx.supabaseAdmin
+            .from(tableName)
+            .select("id")
+            .eq(
+              "course_id",
+              courseId
+            );
+
+        if (error) {
+          console.error(error);
+
+          return Response.json(
+            {
+              error:
+                `Could not read ${tableName}`,
+              details:
+                error.message,
+            },
+            { status: 500 }
+          );
+        }
+
+        const databaseIds =
+          new Set<string>(
+            (data ?? []).map(
+              (row) => row.id
+            )
+          );
+
+        let newCount = 0;
+        let existingCount = 0;
+
+        for (
+          const id of sheetIds
+        ) {
+          if (
+            databaseIds.has(id)
+          ) {
+            existingCount++;
+          } else {
+            newCount++;
+          }
+        }
+
+        const idsToDelete:
+          string[] = [];
+
+        for (
+          const id of databaseIds
+        ) {
+          if (
+            !sheetIds.has(id)
+          ) {
+            idsToDelete.push(
+              id
+            );
+          }
+        }
+
+        deleteIds[tableName] =
+          idsToDelete;
+
+        result[tableName] = {
+          sheet:
+            rows.length,
+
+          database:
+            databaseIds.size,
+
+          new:
+            newCount,
+
+          existing:
+            existingCount,
+
+          wouldDelete:
+            idsToDelete.length,
+        };
+      }
+
+      /*
+       * 2. DRY RUN
+       */
+      if (apply !== true) {
+        return Response.json({
+          ok: true,
+          dryRun: true,
+          courseId,
+          tables: result,
+        });
+      }
+
+      /*
+       * 3. RADERINGSSKYDD
+       *
+       * Om något ska raderas måste
+       * Apps Script skicka tillbaka
+       * exakt de antal som dry-run visade.
+       */
+      const totalDeletes =
+        TABLE_NAMES.reduce(
+          (sum, tableName) =>
+            sum +
+            result[tableName]
+              .wouldDelete,
+          0
+        );
+
+      if (totalDeletes > 0) {
+        if (
+          !expectedDeleteCounts ||
+          typeof expectedDeleteCounts !==
+            "object"
+        ) {
+          return Response.json(
+            {
+              error:
+                "Delete confirmation required",
+              tables: result,
+            },
+            { status: 409 }
+          );
+        }
+
+        for (
+          const tableName of TABLE_NAMES
+        ) {
+          const expected =
+            expectedDeleteCounts[
+              tableName
+            ];
+
+          const actual =
+            result[tableName]
+              .wouldDelete;
+
+          if (expected !== actual) {
+            return Response.json(
+              {
+                error:
+                  "Delete counts changed",
+                table:
+                  tableName,
+                expected,
+                actual,
+              },
+              { status: 409 }
+            );
+          }
+        }
+      }
+
+      /*
+       * 4. UPSERT
+       */
+      for (
+        const tableName of TABLE_NAMES
+      ) {
+        const rows =
+          tables[tableName];
+
+        for (
+          let start = 0;
+          start < rows.length;
+          start += BATCH_SIZE
+        ) {
+          const batch =
+            rows.slice(
+              start,
+              start + BATCH_SIZE
+            );
+
+          const { error } =
+            await ctx.supabaseAdmin
+              .from(tableName)
+              .upsert(
+                batch,
+                {
+                  onConflict:
+                    "course_id,id",
+                }
+              );
+
+          if (error) {
+            console.error(error);
+
+            return Response.json(
+              {
+                error:
+                  `Upsert failed for ${tableName}`,
+                details:
+                  error.message,
+                batchStart:
+                  start,
+              },
+              { status: 500 }
+            );
+          }
+        }
+      }
+
+      /*
+       * 5. DELETE MISSING
+       */
+      for (
+        const tableName of DELETE_ORDER
+      ) {
+        const ids =
+          deleteIds[tableName] ?? [];
+
+        for (
+          let start = 0;
+          start < ids.length;
+          start += BATCH_SIZE
+        ) {
+          const batch =
+            ids.slice(
+              start,
+              start + BATCH_SIZE
+            );
+
+          const { error } =
+            await ctx.supabaseAdmin
+              .from(tableName)
+              .delete()
+              .eq(
+                "course_id",
+                courseId
+              )
+              .in(
+                "id",
+                batch
+              );
+
+          if (error) {
+            console.error(error);
+
+            return Response.json(
+              {
+                error:
+                  `Delete failed for ${tableName}`,
+                details:
+                  error.message,
+                batchStart:
+                  start,
+              },
+              { status: 500 }
+            );
+          }
+        }
+      }
+
+      return Response.json({
+        ok: true,
+        dryRun: false,
+        courseId,
+        tables: result,
+        message:
+          "Full sync completed.",
+      });
+    }
+  ),
+};
