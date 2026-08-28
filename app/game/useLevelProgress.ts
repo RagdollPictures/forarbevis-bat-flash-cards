@@ -136,32 +136,19 @@ export function useLevelProgress({
           return;
         }
 
-        let currentId =
-          quizzes[0].id;
+       const nextQuiz =
+  quizzes.find(
+    (quiz) =>
+      unlockedIds.has(quiz.id) &&
+      !clearedIds.has(quiz.id)
+  );
 
-        for (
-          let i = 0;
-          i <
-          quizzes.length - 1;
-          i++
-        ) {
-          const id =
-            quizzes[i].id;
+if (!nextQuiz) {
+  return;
+}
 
-          if (
-            !unlockedIds.has(id)
-          ) {
-            break;
-          }
-
-          currentId = id;
-
-          if (
-            !clearedIds.has(id)
-          ) {
-            break;
-          }
-        }
+const currentId =
+  nextQuiz.id;
 
         const fake: SavedQuizProgress =
           {

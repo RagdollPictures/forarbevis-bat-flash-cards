@@ -81,18 +81,37 @@ export function getUnlockedLevelIds(
 
 export function getUnlockedBonusIds(
   safeBonusLevels: BonusLevelItem[],
-  clearedIds: Set<string>
+  clearedIds: Set<string>,
+  structure: CourseStructure
 ) {
-  const s = new Set<string>();
+  const unlocked =
+    new Set<string>();
 
-  for (const bonus of safeBonusLevels) {
-    if (
-      !bonus.unlockWhenClearedQuizId ||
-      clearedIds.has(bonus.unlockWhenClearedQuizId)
-    ) {
-      s.add(bonus.id);
+  const completedLevelCount =
+    structure.levels.filter(
+      (level) =>
+        level.chapterQuizId &&
+        clearedIds.has(
+          level.chapterQuizId
+        )
+    ).length;
+
+  for (
+    let i = 0;
+    i < completedLevelCount;
+    i++
+  ) {
+    const bonus =
+      safeBonusLevels[i];
+
+    if (!bonus) {
+      break;
     }
+
+    unlocked.add(
+      bonus.id
+    );
   }
 
-  return s;
+  return unlocked;
 }

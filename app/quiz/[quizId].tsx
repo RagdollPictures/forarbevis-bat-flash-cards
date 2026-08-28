@@ -26,7 +26,9 @@ import { useContent } from "../../lib/content/ContentProvider";
 
 import { useCourseLevelConfig } from "../game/useCourseLevelConfig";
 
-
+import {
+  saveQuizProgress,
+} from "../../constants/flashcards/quizProgress";
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
 
@@ -354,6 +356,32 @@ const resolved = useMemo(
             }
             onContinue={
               async () => {
+                const total =
+                  s.shuffledDeck.length;
+
+                if (total > 0) {
+                  await saveQuizProgress({
+                    quizId: id,
+
+                    progress:
+                      Array(total).fill(
+                        "correct"
+                      ),
+
+                    score: total,
+                    total,
+
+                    updatedAt:
+                      Date.now(),
+
+                    firstTryCorrect:
+                      s.firstTryCorrectCount,
+
+                    firstTryTotal:
+                      total,
+                  });
+                }
+
                 if (
                   isChapterQuiz
                 ) {

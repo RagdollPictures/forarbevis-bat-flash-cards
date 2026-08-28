@@ -261,16 +261,18 @@ const safeBonusLevels =
       clearedIds,
     ]);
 
-  const unlockedBonusIds =
-    useMemo(() => {
-      return getUnlockedBonusIds(
-        safeBonusLevels,
-        clearedIds
-      );
-    }, [
-      clearedIds,
+ const unlockedBonusIds =
+  useMemo(() => {
+    return getUnlockedBonusIds(
       safeBonusLevels,
-    ]);
+      clearedIds,
+      structure
+    );
+  }, [
+    clearedIds,
+    safeBonusLevels,
+    structure,
+  ]);
 
   const unlockedLevelIds =
     useMemo(() => {
