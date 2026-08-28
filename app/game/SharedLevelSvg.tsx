@@ -1,5 +1,5 @@
 import * as React from "react";
-import Svg, { G, Path, Circle } from "react-native-svg";
+import Svg, { G, Circle } from "react-native-svg";
 import type { SvgProps } from "react-native-svg";
 
 type SharedLevelSvgProps = SvgProps & {
@@ -30,95 +30,222 @@ function isVisible(id: string, visibleLayerIds?: string[], decoCount?: number) {
 }
 
 const SharedLevelSvg = (props: SharedLevelSvgProps) => (
-  <Svg viewBox="0 0 375 4608" {...props}>
-    <G id="path">
-      <Path
-        fill="none"
-        stroke="#0f172b"
-        strokeWidth={8}
-        d="M125 162.335c0 93.238 128 162.762 128 256s-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256 128 162.762 128 256-128 162.762-128 256"
+  <Svg id="Layer_1" data-name="Layer 1" viewBox="0 0 375.0001 5859.2812" {...props}>
+    <G id="anchor_read_001" data-name="anchor read 001">
+      <Circle cx={113.899} cy={140.758} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_001" data-name="anchor quiz 001">
+      <Circle cx={250.321} cy={265.688} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_002" data-name="anchor read 002">
+      <Circle cx={113.899} cy={415.128} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_001" data-name="anchor chapter test 001">
+      <Circle cx={113.899} cy={415.128} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_002" data-name="anchor quiz 002">
+      <Circle cx={250.321} cy={553.498} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_003" data-name="anchor read 003">
+      <Circle cx={113.899} cy={698.547} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_002" data-name="anchor chapter test 002">
+      <Circle cx={113.899} cy={698.547} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_003" data-name="anchor quiz 003">
+      <Circle cx={250.321} cy={833.993} r={9.078} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_004" data-name="anchor read 004">
+      <Circle cx={113.899} cy={981.785} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_003" data-name="anchor chapter test 003">
+      <Circle cx={113.899} cy={981.785} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_004" data-name="anchor quiz 004">
+      <Circle cx={250.321} cy={1126.376} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_005" data-name="anchor read 005">
+      <Circle cx={113.899} cy={1270.967} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_004" data-name="anchor chapter test 004">
+      <Circle cx={113.899} cy={1270.967} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_005" data-name="anchor quiz 005">
+      <Circle cx={250.321} cy={1406.871} r={9.359} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_006" data-name="anchor read 006">
+      <Circle cx={113.899} cy={1552.834} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_005" data-name="anchor chapter test 005">
+      <Circle cx={113.899} cy={1552.834} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_006" data-name="anchor quiz 006">
+      <Circle
+        cx={250.321}
+        cy={1694.224}
+        r={8.757}
+        fill="#0f172b"
+        transform="rotate(-2.199 250.317 1694.192)"
       />
     </G>
-    <G id="anchor_read_001">
-      <Circle cx={125} cy={162.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_007" data-name="anchor read 007">
+      <Circle cx={113.899} cy={1839.273} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_001">
-      <Circle cx={189} cy={290.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_chapter_test_006" data-name="anchor chapter test 006">
+      <Circle cx={113.899} cy={1839.273} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_002">
-      <Circle cx={253} cy={418.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_007" data-name="anchor quiz 007">
+      <Circle cx={250.321} cy={1978.377} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_01">
-      <Circle cx={253} cy={418.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_008" data-name="anchor read 008">
+      <Circle cx={113.899} cy={2133.027} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_002">
-      <Circle cx={189} cy={546.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_chapter_test_007" data-name="anchor chapter test 007">
+      <Circle cx={113.899} cy={2133.027} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_003">
-      <Circle cx={125} cy={674.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_008" data-name="anchor quiz 008">
+      <Circle
+        cx={250.321}
+        cy={2268.931}
+        r={8.529}
+        fill="#0f172b"
+        transform="rotate(-88.494 250.321 2268.93)"
+      />
     </G>
-    <G id="anchor_chapter_test_02">
-      <Circle cx={125} cy={674.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_009" data-name="anchor read 009">
+      <Circle cx={113.899} cy={2414.893} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_003">
-      <Circle cx={189.306} cy={802.335} r={9.078} fill="#0f172b" />
+    <G id="anchor_chapter_test_008" data-name="anchor chapter test 008">
+      <Circle cx={113.899} cy={2414.893} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_004">
-      <Circle cx={253} cy={930.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_009" data-name="anchor quiz 009">
+      <Circle cx={250.321} cy={2556.284} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_03">
-      <Circle cx={253} cy={930.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_010" data-name="anchor read 010">
+      <Circle cx={113.899} cy={2701.332} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_004">
-      <Circle cx={189.08} cy={1058.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_chapter_test_009" data-name="anchor chapter test 009">
+      <Circle cx={113.899} cy={2701.332} r={10} fill="#0f172b" />
     </G>
-    <G id="anchor_read_005">
-      <Circle cx={125} cy={1186.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_010" data-name="anchor quiz 010">
+      <Circle cx={250.321} cy={2840.436} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_04">
-      <Circle cx={125} cy={1186.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_011" data-name="anchor read 011">
+      <Circle cx={113.899} cy={2965.367} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_005">
-      <Circle cx={188.908} cy={1314.335} r={9.359} fill="#0f172b" />
+    <G id="anchor_chapter_test_010" data-name="anchor chapter test 010">
+      <Circle cx={113.899} cy={2965.367} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_006">
-      <Circle cx={253} cy={1442.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_011" data-name="anchor quiz 011">
+      <Circle cx={250.321} cy={3114.807} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_05">
-      <Circle cx={253} cy={1442.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_012" data-name="anchor read 012">
+      <Circle cx={113.899} cy={3253.177} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_006">
-      <Circle cx={189.353} cy={1570.335} r={8.757} fill="#0f172b" />
+    <G id="anchor_chapter_test_011" data-name="anchor chapter test 011">
+      <Circle cx={113.899} cy={3253.177} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_007">
-      <Circle cx={125} cy={1698.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_012" data-name="anchor quiz 012">
+      <Circle cx={250.321} cy={3398.226} r={9.078} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_06">
-      <Circle cx={125} cy={1698.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_013" data-name="anchor read 013">
+      <Circle cx={113.899} cy={3533.672} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_007">
-      <Circle cx={188.847} cy={1826.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_chapter_test_012" data-name="anchor chapter test 012">
+      <Circle cx={113.899} cy={3533.672} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_008">
-      <Circle cx={253} cy={1954.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_013" data-name="anchor quiz 013">
+      <Circle cx={250.321} cy={3681.464} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_07">
-      <Circle cx={253} cy={1954.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_014" data-name="anchor read 014">
+      <Circle cx={113.899} cy={3826.055} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_008">
-      <Circle cx={189.063} cy={2083.335} r={8.528} fill="#0f172b" />
+    <G id="anchor_chapter_test_013" data-name="anchor chapter test 013">
+      <Circle cx={113.899} cy={3826.055} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_read_009">
-      <Circle cx={125} cy={2210.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_quiz_014" data-name="anchor quiz 014">
+      <Circle cx={250.321} cy={3970.646} r={9.359} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_08">
-      <Circle cx={125} cy={2210.335} r={8.064} fill="#0f172b" />
+    <G id="anchor_read_015" data-name="anchor read 015">
+      <Circle cx={113.899} cy={4106.55} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_quiz_009">
-      <Circle cx={189} cy={2338.367} r={8.064} fill="#0f172b" />
+    <G id="anchor_chapter_test_014" data-name="anchor chapter test 014">
+      <Circle cx={113.899} cy={4106.55} r={8.064} fill="#0f172b" />
     </G>
-    <G id="anchor_chapter_test_09">
-      <Circle cx={253} cy={2466.335} r={10} fill="#0f172b" />
+    <G id="anchor_quiz_015" data-name="anchor quiz 015">
+      <Circle
+        cx={250.321}
+        cy={4252.513}
+        r={8.757}
+        fill="#0f172b"
+        transform="rotate(-88.494 250.322 4252.513)"
+      />
+    </G>
+    <G id="anchor_read_016" data-name="anchor read 016">
+      <Circle cx={113.899} cy={4393.903} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_015" data-name="anchor chapter test 015">
+      <Circle cx={113.899} cy={4393.903} r={8.064} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_016" data-name="anchor quiz 016">
+      <Circle
+        cx={250.321}
+        cy={4538.952}
+        r={8.063}
+        fill="#0f172b"
+        transform="rotate(-89.182 250.322 4538.952)"
+      />
+    </G>
+    <G id="anchor_read_017" data-name="anchor read 017">
+      <Circle cx={113.899} cy={4678.056} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_016" data-name="anchor chapter test 016">
+      <Circle cx={113.899} cy={4678.056} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_017" data-name="anchor quiz 017">
+      <Circle cx={250.321} cy={4832.706} r={8.528} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_018" data-name="anchor read 018">
+      <Circle cx={113.899} cy={4968.61} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_017" data-name="anchor chapter test 017">
+      <Circle cx={113.899} cy={4968.61} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_018" data-name="anchor quiz 018">
+      <Circle
+        cx={250.321}
+        cy={5114.572}
+        r={8.063}
+        fill="#0f172b"
+        transform="rotate(-89.182 250.322 5114.573)"
+      />
+    </G>
+    <G id="anchor_read_019" data-name="anchor read 019">
+      <Circle cx={113.899} cy={5255.963} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_018" data-name="anchor chapter test 018">
+      <Circle cx={113.899} cy={5255.963} r={10} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_019" data-name="anchor quiz 019">
+      <Circle cx={250.321} cy={5401.011} r={8.528} fill="#0f172b" />
+    </G>
+    <G id="anchor_read_020" data-name="anchor read 020">
+      <Circle cx={113.899} cy={5540.116} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_chapter_test_019" data-name="anchor chapter test 019">
+      <Circle cx={113.899} cy={5540.116} r={8.063} fill="#0f172b" />
+    </G>
+    <G id="anchor_quiz_020" data-name="anchor quiz 020">
+      <Circle
+        cx={250.321}
+        cy={5665.046}
+        r={8.063}
+        fill="#0f172b"
+        transform="rotate(-89.182 250.322 5665.047)"
+      />
+    </G>
+    <G id="anchor_chapter_test_020" data-name="anchor chapter test 020">
+      <Circle cx={113.899} cy={5814.486} r={10} fill="#0f172b" />
     </G>
   </Svg>
 );

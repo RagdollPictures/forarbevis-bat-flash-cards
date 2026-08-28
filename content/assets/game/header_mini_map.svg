@@ -1,87 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 375 64">
-  <!-- Generator: Adobe Illustrator 30.7.0, SVG Export Plug-In . SVG Version: 2.1.4 Build 114)  -->
-  <defs>
-    <style>
-      .st0 {
-        fill: #d16615;
-      }
-
-      .st1, .st2, .st3, .st4 {
-        fill: none;
-        stroke: #d16615;
-        stroke-linecap: round;
-        stroke-miterlimit: 10;
-        stroke-width: 2px;
-      }
-
-      .st2 {
-        stroke-dasharray: 1 4.9;
-      }
-
-      .st3 {
-        stroke-dasharray: 1 5;
-      }
-
-      .st4 {
-        stroke-dasharray: 1.1 5.5;
-      }
-    </style>
-  </defs>
-  <g id="level_x5F_path">
-    <g>
-      <line class="st1" x1="24.5" y1="18.6" x2="25" y2="18.6"/>
-      <line class="st3" x1="30" y1="18.6" x2="339.4" y2="18.6"/>
-      <polyline class="st1" points="341.9 18.6 342.4 18.6 342.4 19.1"/>
-      <line class="st4" x1="342.4" y1="24.6" x2="342.4" y2="48.1"/>
-      <polyline class="st1" points="342.4 50.9 342.4 51.4 341.9 51.4"/>
-      <line class="st2" x1="336.9" y1="51.4" x2="203.5" y2="51.4"/>
-      <line class="st1" x1="201.1" y1="51.4" x2="200.6" y2="51.4"/>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="375" height="64" viewBox="0 0 375 64">
+  <g id="anchor_minimap_001">
+    <circle cx="27.8504" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_001">
-    <circle class="st0" cx="27.9" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_002">
+    <circle cx="62.6809" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_002">
-    <circle class="st0" cx="62.7" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_003">
+    <circle cx="97.5115" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_003">
-    <circle class="st0" cx="97.5" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_004">
+    <circle cx="132.342" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_004">
-    <circle class="st0" cx="132.3" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_005">
+    <circle cx="167.1726" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_005">
-    <circle class="st0" cx="167.2" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_006">
+    <circle cx="202.0032" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_006">
-    <circle class="st0" cx="202" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_007">
+    <circle cx="236.8337" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_007">
-    <circle class="st0" cx="236.8" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_008">
+    <circle cx="271.6643" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_008">
-    <circle class="st0" cx="271.7" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_009">
+    <circle cx="306.4948" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_009">
-    <circle class="st0" cx="306.5" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_010">
+    <circle cx="341.3254" cy="18.5741" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_010">
-    <circle class="st0" cx="341.3" cy="18.6" r="6.2"/>
+  <g id="anchor_minimap_011">
+    <circle cx="341.3254" cy="50.3118" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_011">
-    <circle class="st0" cx="341.3" cy="50.3" r="6.2"/>
+  <g id="anchor_minimap_012">
+    <circle cx="307.2464" cy="50.3118" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_012">
-    <circle class="st0" cx="307.2" cy="50.3" r="6.2"/>
+  <g id="anchor_minimap_013">
+    <circle cx="271.6065" cy="50.3118" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_013">
-    <circle class="st0" cx="271.6" cy="50.3" r="6.2"/>
+  <g id="anchor_minimap_014">
+    <circle cx="237.0071" cy="50.3118" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_014">
-    <circle class="st0" cx="237" cy="50.3" r="6.2"/>
+  <g id="anchor_minimap_015">
+    <circle cx="202.0032" cy="51.3524" r="6.2435" fill="#d16615"/>
   </g>
-  <g id="level_x5F_015">
-    <circle class="st0" cx="200.8" cy="50.3" r="10.2"/>
+  <g id="anchor_minimap_016">
+    <circle cx="167.1726" cy="51.3524" r="6.2435" fill="#d16615"/>
+  </g>
+  <g id="anchor_minimap_017">
+    <circle cx="132.342" cy="51.3524" r="6.2435" fill="#d16615"/>
+  </g>
+  <g id="anchor_minimap_018">
+    <circle cx="97.5115" cy="51.3524" r="6.2435" fill="#d16615"/>
+  </g>
+  <g id="anchor_minimap_019">
+    <circle cx="62.6809" cy="51.3524" r="6.2435" fill="#d16615"/>
+  </g>
+  <g id="anchor_minimap_020">
+    <circle cx="27.8504" cy="51.3524" r="6.2435" fill="#d16615"/>
   </g>
 </svg>

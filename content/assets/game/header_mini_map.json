@@ -3,5 +3,146 @@
     "width": 375,
     "height": 64
   },
-  "anchors": []
+  "anchors": [
+    {
+      "id": "anchor_minimap_001",
+      "type": "minimap",
+      "index": 1,
+      "x": 27.8504,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_002",
+      "type": "minimap",
+      "index": 2,
+      "x": 62.6809,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_003",
+      "type": "minimap",
+      "index": 3,
+      "x": 97.5115,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_004",
+      "type": "minimap",
+      "index": 4,
+      "x": 132.342,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_005",
+      "type": "minimap",
+      "index": 5,
+      "x": 167.1726,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_006",
+      "type": "minimap",
+      "index": 6,
+      "x": 202.0032,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_007",
+      "type": "minimap",
+      "index": 7,
+      "x": 236.8337,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_008",
+      "type": "minimap",
+      "index": 8,
+      "x": 271.6643,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_009",
+      "type": "minimap",
+      "index": 9,
+      "x": 306.4948,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_010",
+      "type": "minimap",
+      "index": 10,
+      "x": 341.3254,
+      "y": 18.5741
+    },
+    {
+      "id": "anchor_minimap_011",
+      "type": "minimap",
+      "index": 11,
+      "x": 341.3254,
+      "y": 50.3118
+    },
+    {
+      "id": "anchor_minimap_012",
+      "type": "minimap",
+      "index": 12,
+      "x": 307.2464,
+      "y": 50.3118
+    },
+    {
+      "id": "anchor_minimap_013",
+      "type": "minimap",
+      "index": 13,
+      "x": 271.6065,
+      "y": 50.3118
+    },
+    {
+      "id": "anchor_minimap_014",
+      "type": "minimap",
+      "index": 14,
+      "x": 237.0071,
+      "y": 50.3118
+    },
+    {
+      "id": "anchor_minimap_015",
+      "type": "minimap",
+      "index": 15,
+      "x": 202.0032,
+      "y": 51.3524
+    },
+    {
+      "id": "anchor_minimap_016",
+      "type": "minimap",
+      "index": 16,
+      "x": 167.1726,
+      "y": 51.3524
+    },
+    {
+      "id": "anchor_minimap_017",
+      "type": "minimap",
+      "index": 17,
+      "x": 132.342,
+      "y": 51.3524
+    },
+    {
+      "id": "anchor_minimap_018",
+      "type": "minimap",
+      "index": 18,
+      "x": 97.5115,
+      "y": 51.3524
+    },
+    {
+      "id": "anchor_minimap_019",
+      "type": "minimap",
+      "index": 19,
+      "x": 62.6809,
+      "y": 51.3524
+    },
+    {
+      "id": "anchor_minimap_020",
+      "type": "minimap",
+      "index": 20,
+      "x": 27.8504,
+      "y": 51.3524
+    }
+  ]
 }

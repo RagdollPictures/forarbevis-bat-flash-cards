@@ -2,7 +2,12 @@ import { colorSchemeGui } from "@/constants/colors";
 import { Image } from "expo-image";
 import React from "react";
 import { Pressable, Text, View } from "react-native";
-import type { SvgProps } from "react-native-svg";
+import {
+  Path,
+  Svg,
+  SvgXml,
+  type SvgProps,
+} from "react-native-svg";
 import ButtonBgActiveBlue from "../../assets/menu/btn_active_blue.svg";
 import ButtonBgActiveGreen from "../../assets/menu/btn_active_green.svg";
 import ButtonBgActivePink from "../../assets/menu/btn_active_pink.svg";
@@ -36,7 +41,6 @@ import type {
   TitlePlacedNode,
 } from "./levelScreenTypes";
 
-import { SvgXml } from "react-native-svg";
 import { useContent } from "../../lib/content/ContentProvider";
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
@@ -127,6 +131,78 @@ function getNodeBackground(
   return activeButtonBackgrounds[colorIndex];
 }
 
+function buildLevelPath(
+  nodes: PlacedNode[]
+) {
+  if (nodes.length === 0) {
+    return "";
+  }
+
+  const anchors = [...nodes].sort(
+    (a, b) => a.y - b.y
+  );
+
+  const cornerRadius = 45;
+
+  let path =
+    `M ${anchors[0].x} ${anchors[0].y}`;
+
+  for (
+    let i = 1;
+    i < anchors.length;
+    i++
+  ) {
+    const from = anchors[i - 1];
+    const to = anchors[i];
+
+    const middleY =
+      (from.y + to.y) / 2;
+
+    const xDirection =
+      to.x > from.x ? 1 : -1;
+
+    const yDirection =
+      to.y > from.y ? 1 : -1;
+
+    const radius = Math.min(
+      cornerRadius,
+      Math.abs(to.x - from.x) / 2,
+      Math.abs(to.y - from.y) / 2
+    );
+
+    path +=
+      ` L ${from.x} ${
+        middleY -
+        radius * yDirection
+      }`;
+
+    path +=
+      ` Q ${from.x} ${middleY}` +
+      ` ${
+        from.x +
+        radius * xDirection
+      } ${middleY}`;
+
+    path +=
+      ` L ${
+        to.x -
+        radius * xDirection
+      } ${middleY}`;
+
+    path +=
+      ` Q ${to.x} ${middleY}` +
+      ` ${to.x} ${
+        middleY +
+        radius * yDirection
+      }`;
+
+    path +=
+      ` L ${to.x} ${to.y}`;
+  }
+
+  return path;
+}
+
 export default function LevelMapView({
   levelId,
    levelLabel,
@@ -165,6 +241,10 @@ const remoteLevelIconSvg =
 
 
   const titleTextColor = colorSchemeGui.slate_200;
+
+
+const levelPath =
+  buildLevelPath(placedNodes);
 
  return (
   <View
@@ -238,6 +318,30 @@ const remoteLevelIconSvg =
     top: 0,
   }}
 />
+
+<Svg
+  width={screenWidth}
+  height={layout.viewBox.height * scale}
+  viewBox={`0 0 ${layout.viewBox.width} ${layout.viewBox.height}`}
+  style={{
+    position: "absolute",
+    left: 0,
+    top: 0,
+  }}
+  pointerEvents="none"
+>
+  {levelPath ? (
+    <Path
+      d={levelPath}
+      fill="none"
+      stroke="#e2e8f0"
+      strokeWidth={3}
+      strokeDasharray="1 10"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  ) : null}
+</Svg>
 
       {titleNodes.map((node) => {
         return (
