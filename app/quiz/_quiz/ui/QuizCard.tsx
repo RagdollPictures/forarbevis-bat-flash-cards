@@ -157,15 +157,11 @@ export default function QuizCard({
       ) : null}
 
       {isChecked &&
-      (answerText ||
+      (
         textTitle ||
         textInfo) ? (
         <View style={styles.infoBox}>
-          {answerText ? (
-            <Text style={styles.infoTitle}>
-              {answerText}
-            </Text>
-          ) : null}
+         
 
           {textTitle ? (
             <Text style={styles.infoTitle}>
