@@ -29,6 +29,8 @@ export type QuestionRow = {
 
   text_title: string | null;
   text_info: string | null;
+  content_variant: string | null;
+  content_variant_prompt: string | null;
 };
 
 function getImageUrl(
@@ -138,6 +140,12 @@ export function rowToFlashCard(
 
     textInfo:
       row.text_info ?? undefined,
+
+      contentVariant:
+  row.content_variant ?? undefined,
+
+  contentVariantPrompt:
+  row.content_variant_prompt ?? undefined,
   };
 }
 

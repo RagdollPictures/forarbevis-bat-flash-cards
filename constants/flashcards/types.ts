@@ -16,6 +16,9 @@ export type FlashCard = {
 
   textTitle?: string;
   textInfo?: string;
+
+  contentVariant?: string;
+  contentVariantPrompt?: string;
 };
 
 export type Source = {

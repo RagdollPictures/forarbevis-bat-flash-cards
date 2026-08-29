@@ -4,7 +4,7 @@ import {
   useLocalSearchParams,
   useNavigation,
 } from "expo-router";
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import {
   Pressable,
   ScrollView,
@@ -94,20 +94,101 @@ const resolved = useMemo(
     return [];
   }, [resolved, structure]);
 
-  const rawDeck = useMemo(
-    () =>
-      deckIds.flatMap(
-        (deckId) =>
-          decks[deckId] ?? []
-      ),
-    [deckIds, decks]
+  const contentVariants = useMemo(
+  () =>
+    Array.from(
+      new Set(
+        deckIds.flatMap((deckId) =>
+          (decks[deckId] ?? [])
+            .map((card) =>
+              card.contentVariant?.trim()
+            )
+            .filter(
+              (variant): variant is string =>
+                Boolean(variant)
+            )
+        )
+      )
+    ),
+  [deckIds, decks]
+
   );
 
-  const deck = useMemo(
-    () =>
-      validateDeck(rawDeck),
-    [rawDeck]
-  );
+
+  const contentVariantPrompt = useMemo(() => {
+  for (const deckId of deckIds) {
+    const cards =
+      decks[deckId] ?? [];
+
+    const prompt = cards
+      .find(
+        (card) =>
+          Boolean(
+            card.contentVariant
+          ) &&
+          Boolean(
+            card.contentVariantPrompt?.trim()
+          )
+      )
+      ?.contentVariantPrompt?.trim();
+
+    if (prompt) {
+      return prompt;
+    }
+  }
+
+  return "Välj variant";
+}, [deckIds, decks]);
+
+const [
+  selectedVariant,
+  setSelectedVariant,
+] = useState<string | null>(null);
+
+const filteredRawDeck = useMemo(
+  () =>
+    deckIds.flatMap((deckId) => {
+      const cards =
+        decks[deckId] ?? [];
+
+      const deckHasVariants =
+        cards.some((card) =>
+          Boolean(
+            card.contentVariant?.trim()
+          )
+        );
+
+      // Vanligt deck:
+      // behåll alla frågor.
+      if (!deckHasVariants) {
+        return cards;
+      }
+
+      // Variantdeck:
+      // vänta tills användaren valt.
+      if (!selectedVariant) {
+        return [];
+      }
+
+      // Ta bara vald variant.
+      return cards.filter(
+        (card) =>
+          card.contentVariant?.trim() ===
+          selectedVariant
+      );
+    }),
+  [
+    deckIds,
+    decks,
+    selectedVariant,
+  ]
+);
+
+const deck = useMemo(
+  () =>
+    validateDeck(filteredRawDeck),
+  [filteredRawDeck]
+);
 
   const s = useQuizSession({
     quizId: id,
@@ -209,6 +290,88 @@ const resolved = useMemo(
     );
   }
 
+ if (
+  contentVariants.length > 0 &&
+  !selectedVariant
+) {
+  return (
+    <SafeAreaView
+      style={styles.safe}
+    >
+      <View
+        style={headerStyle}
+      >
+        <Pressable
+          onPress={
+            handleClose
+          }
+          style={
+            iconWrapStyle
+          }
+        >
+          <CloseIcon
+            width={48}
+            height={48}
+          />
+        </Pressable>
+      </View>
+
+      <ScrollView
+        contentContainerStyle={
+          styles.container
+        }
+      >
+        <Text
+          style={styles.title}
+        >
+          {screenTitle}
+        </Text>
+
+        <Text
+  style={styles.text}
+>
+  {contentVariantPrompt}
+</Text>
+
+        <View
+          style={{
+            marginTop: 16,
+            gap: 12,
+          }}
+        >
+          {contentVariants.map(
+            (variant) => (
+              <Pressable
+                key={variant}
+                onPress={() =>
+                  setSelectedVariant(
+                    variant
+                  )
+                }
+                style={[
+                  styles.option,
+                  {
+                    alignItems:
+                      "center",
+                  },
+                ]}
+              >
+                <Text
+                  style={
+                    styles.optionText
+                  }
+                >
+                  {variant}
+                </Text>
+              </Pressable>
+            )
+          )}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
+  );
+}
+  
   if (
     deck.length === 0
   ) {
