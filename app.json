@@ -13,7 +13,6 @@
       "supportsTablet": true
     },
     "android": {
-      "label": "Förarbevis Båt",
       "backgroundColor": "#000000",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",

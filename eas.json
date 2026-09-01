@@ -3,19 +3,55 @@
     "version": ">= 16.32.0",
     "appVersionSource": "remote"
   },
+
   "build": {
-    "development": {
+    "development-forarbevis": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "forarbevis"
+      }
     },
-    "preview": {
-      "distribution": "internal"
+
+    "development-jagarexamen": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "jagarexamen"
+      }
     },
-    "production": {
-      "autoIncrement": true
+
+    "preview-forarbevis": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "forarbevis"
+      }
+    },
+
+    "preview-jagarexamen": {
+      "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "jagarexamen"
+      }
+    },
+
+    "production-forarbevis": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "forarbevis"
+      }
+    },
+
+    "production-jagarexamen": {
+      "autoIncrement": true,
+      "env": {
+        "EXPO_PUBLIC_APP_VARIANT": "jagarexamen"
+      }
     }
   },
+
   "submit": {
-    "production": {}
+    "production-forarbevis": {},
+    "production-jagarexamen": {}
   }
 }
