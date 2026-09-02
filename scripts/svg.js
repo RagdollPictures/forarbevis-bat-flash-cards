@@ -93,6 +93,23 @@ function parseAnchorMeta(anchorId) {
     };
   }
 
+    // Grafik / animationer:
+  // anchor_graphics_001
+  const graphicsMatch =
+    anchorId.match(
+      /^anchor_graphics_(\d+)$/
+    );
+
+  if (graphicsMatch) {
+    return {
+      mode: "graphics",
+      type: "graphics",
+      index: Number(
+        graphicsMatch[1]
+      ),
+    };
+  }
+
   // Minimap:
   // anchor_minimap_001
   const miniMapMatch =
@@ -393,15 +410,16 @@ function extractAnchors(svgText) {
   }
 
   const typeOrder = {
-    menu: 0,
-    minimap: 1,
-    title_box: 2,
-    title: 3,
-    object: 4,
-    read: 5,
-    quiz: 6,
-    chapter_test: 7,
-  };
+  menu: 0,
+  minimap: 1,
+  title_box: 2,
+  title: 3,
+  object: 4,
+  graphics: 5,
+  read: 6,
+  quiz: 7,
+  chapter_test: 8,
+};
 
   anchors.sort(
     (a, b) => {
@@ -585,6 +603,13 @@ function convertSvgFile(
           "object"
       ).length,
 
+      graphicsCount:
+  anchors.filter(
+    (anchor) =>
+      anchor.type ===
+      "graphics"
+  ).length,
+
     menuCount:
       anchors.filter(
         (anchor) =>
@@ -651,27 +676,35 @@ function run() {
           fullPath
         );
 
-      console.log(
-        `OK: ${path.basename(
-          result.svgPath
-        )} -> ${path.basename(
-          result.outPath
-        )} | viewBox ${
-          result.viewBox.width
-        }x${
-          result.viewBox.height
-        } | ${
-          result.anchorCount
-        } anchors | ${
-          result.pairCount
-        } read/quiz-par | ${
-          result.chapterTestCount
-        } chapter test | ${
-          result.menuCount
-        } menu | ${
-          result.miniMapCount
-        } minimap`
-      );
+     console.log(
+  `OK: ${path.basename(
+    result.svgPath
+  )} -> ${path.basename(
+    result.outPath
+  )} | viewBox ${
+    result.viewBox.width
+  }x${
+    result.viewBox.height
+  } | ${
+    result.anchorCount
+  } anchors | ${
+    result.pairCount
+  } read/quiz-par | ${
+    result.chapterTestCount
+  } chapter test | ${
+    result.titleCount
+  } title | ${
+    result.titleBoxCount
+  } title box | ${
+    result.objectCount
+  } object | ${
+    result.graphicsCount
+  } graphics | ${
+    result.menuCount
+  } menu | ${
+    result.miniMapCount
+  } minimap`
+);
     } catch (err) {
       console.error(
         `FEL i ${file}: ${

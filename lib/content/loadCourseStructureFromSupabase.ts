@@ -27,6 +27,15 @@ export type CourseUnit = {
   sortOrder: number;
 };
 
+export type CourseLevelGraphic = {
+  id: string;
+  courseId: string;
+  levelId: string;
+  graphicsIndex: number;
+  animationPath: string;
+  active: boolean;
+};
+
 export type CourseBonusLevel = {
   id: string;
   title: string;
@@ -45,6 +54,7 @@ export type CourseStructure = {
   levels: CourseLevel[];
   units: CourseUnit[];
   bonusLevels: CourseBonusLevel[];
+  levelGraphics: CourseLevelGraphic[];
 };
 
 export async function loadCourseStructureFromSupabase(
@@ -54,6 +64,7 @@ export async function loadCourseStructureFromSupabase(
     levelsResult,
     unitsResult,
     bonusResult,
+    levelGraphicsResult,
   ] = await Promise.all([
     supabase
       .from("levels")
@@ -75,6 +86,14 @@ export async function loadCourseStructureFromSupabase(
       .eq("course_id", courseId)
       .eq("active", true)
       .order("sort_order"),
+
+    supabase
+      .from("level_graphics")
+      .select("*")
+      .eq("course_id", courseId)
+      .eq("active", true)
+      .order("level_id")
+      .order("graphics_index"),
   ]);
 
   if (levelsResult.error) {
@@ -87,6 +106,10 @@ export async function loadCourseStructureFromSupabase(
 
   if (bonusResult.error) {
     throw bonusResult.error;
+  }
+
+  if (levelGraphicsResult.error) {
+    throw levelGraphicsResult.error;
   }
 
   const levels: CourseLevel[] =
@@ -168,9 +191,30 @@ export async function loadCourseStructureFromSupabase(
         undefined,
     }));
 
+  const levelGraphics: CourseLevelGraphic[] =
+    levelGraphicsResult.data.map((row) => ({
+      id: row.id,
+
+      courseId:
+        row.course_id,
+
+      levelId:
+        row.level_id,
+
+      graphicsIndex:
+        row.graphics_index,
+
+      animationPath:
+        row.animation_path,
+
+      active:
+        row.active,
+    }));
+
   return {
     levels,
     units,
     bonusLevels,
+    levelGraphics,
   };
 }

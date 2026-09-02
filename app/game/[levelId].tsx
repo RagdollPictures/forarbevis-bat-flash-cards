@@ -35,6 +35,7 @@ import { useCourseLevelConfig } from "./useCourseLevelConfig";
 
 import {
   getBgAnchor,
+  getGraphicsAnchors,
   getObjectAnchors,
   getPlacedNodes,
   getTitleNodes,
@@ -228,6 +229,30 @@ const safeBonusLevels =
       );
     }, [layout]);
 
+    const levelGraphics =
+  useMemo(() => {
+    return structure.levelGraphics
+      .filter(
+        (graphic) =>
+          graphic.levelId === levelId
+      )
+      .sort(
+        (a, b) =>
+          a.graphicsIndex -
+          b.graphicsIndex
+      );
+  }, [
+    structure.levelGraphics,
+    levelId,
+  ]);
+
+    const graphicsAnchors =
+  useMemo(() => {
+    return getGraphicsAnchors(
+      layout
+    );
+  }, [layout]);
+
   const {
     pressedId,
     transitioningId,
@@ -260,6 +285,55 @@ const safeBonusLevels =
       quizzes,
       clearedIds,
     ]);
+
+  const currentGraphicsIndex =
+  useMemo(() => {
+    const regularQuizzes =
+      quizzes.slice(0, -1);
+
+    const chapterTest =
+      quizzes[
+        quizzes.length - 1
+      ];
+
+    const currentRegularIndex =
+      regularQuizzes.findIndex(
+        (quiz) =>
+          unlockedIds.has(quiz.id) &&
+          !clearedIds.has(quiz.id)
+      );
+
+    if (currentRegularIndex >= 0) {
+      return currentRegularIndex + 1;
+    }
+
+    if (
+      chapterTest &&
+      !clearedIds.has(chapterTest.id)
+    ) {
+      return regularQuizzes.length;
+    }
+
+    const isLastLevel =
+      levelId ===
+      levelIds[levelIds.length - 1];
+
+    if (
+      isLastLevel &&
+      chapterTest &&
+      clearedIds.has(chapterTest.id)
+    ) {
+      return regularQuizzes.length + 1;
+    }
+
+    return null;
+  }, [
+    quizzes,
+    unlockedIds,
+    clearedIds,
+    levelId,
+    levelIds,
+  ]);
 
  const unlockedBonusIds =
   useMemo(() => {
@@ -731,6 +805,7 @@ const safeBonusLevels =
             levelId={
               levelId
             }
+            
             levelLabel={
               currentLevel.label
             }
@@ -759,6 +834,16 @@ const safeBonusLevels =
             }
             objectAnchors={
               objectAnchors
+            }
+            graphicsAnchors=
+            {
+              graphicsAnchors
+            }
+            levelGraphics={
+              levelGraphics
+            }
+            currentGraphicsIndex={
+              currentGraphicsIndex
             }
             objectMap={
               theme.objects

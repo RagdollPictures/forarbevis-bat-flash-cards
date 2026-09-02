@@ -1,4 +1,5 @@
 import type {
+  GraphicsAnchor,
   ObjectAnchor,
   PlacedNode,
   QuizItem,
@@ -129,6 +130,23 @@ export function getObjectAnchors(layout: any): ObjectAnchor[] {
   return layout.anchors.filter(
     (anchor: any) =>
       anchor.type === "object" &&
+      typeof anchor.id === "string" &&
+      typeof anchor.index === "number" &&
+      typeof anchor.x === "number" &&
+      typeof anchor.y === "number"
+  );
+}
+
+export function getGraphicsAnchors(
+  layout: any
+): GraphicsAnchor[] {
+  if (!layout?.anchors?.length) {
+    return [];
+  }
+
+  return layout.anchors.filter(
+    (anchor: any) =>
+      anchor.type === "graphics" &&
       typeof anchor.id === "string" &&
       typeof anchor.index === "number" &&
       typeof anchor.x === "number" &&

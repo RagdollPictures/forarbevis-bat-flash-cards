@@ -108,6 +108,14 @@ export type TitlePlacedNode = {
   height: number;
 };
 
+export type GraphicsAnchor = {
+  id: string;
+  type: "graphics";
+  index: number;
+  x: number;
+  y: number;
+};
+
 export type PlacedNode =
   | ReadPlacedNode
   | QuizPlacedNode

@@ -32,6 +32,7 @@ import { styles } from "../quiz/styles";
 import LevelObject from "./LevelObject";
 import type {
   ChapterTestPlacedNode,
+  GraphicsAnchor,
   LevelObjectConfig,
   LevelTheme,
   ObjectAnchor,
@@ -42,6 +43,13 @@ import type {
 } from "./levelScreenTypes";
 
 import { useContent } from "../../lib/content/ContentProvider";
+
+import LottieView from "lottie-react-native";
+import { getCourseAssetUrl } from "../../lib/content/courseAssetUrl";
+import type {
+  CourseLevelGraphic,
+} from "../../lib/content/loadCourseStructureFromSupabase";
+
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
   const total = saved?.firstTryTotal ?? 0;
@@ -64,6 +72,9 @@ type LevelMapViewProps = {
   placedNodes: PlacedNode[];
   titleNodes: TitlePlacedNode[];
   objectAnchors: ObjectAnchor[];
+  graphicsAnchors: GraphicsAnchor[];
+  levelGraphics: CourseLevelGraphic[];
+  currentGraphicsIndex: number | null;
   objectMap?: Record<string, LevelObjectConfig>;
   objectAssets?: Record<string, any>;
   unlockedIds: Set<string>;
@@ -216,6 +227,9 @@ export default function LevelMapView({
   placedNodes,
   titleNodes,
   objectAnchors,
+  graphicsAnchors,
+  levelGraphics,
+  currentGraphicsIndex,
   objectMap,
   objectAssets,
   unlockedIds,
@@ -238,9 +252,57 @@ const structureLevel =
 const remoteLevelIconSvg =
   structureLevel?.levelIconSvg;
 
+const placedGraphics =
+  levelGraphics
+    .map((graphic) => {
+      const anchor =
+        graphicsAnchors.find(
+          (candidate) =>
+            candidate.index ===
+            graphic.graphicsIndex
+        );
+
+      if (!anchor) {
+        return null;
+      }
+
+      const animationUrl =
+        getCourseAssetUrl(
+          graphic.animationPath
+        );
+
+      if (!animationUrl) {
+        return null;
+      }
+
+      return {
+        id: graphic.id,
+        index:
+          graphic.graphicsIndex,
+        x: anchor.x,
+        y: anchor.y,
+        animationUrl,
+      };
+    })
+    .filter(
+      (
+        graphic
+      ): graphic is NonNullable<
+        typeof graphic
+      > => graphic !== null
+    );
 
 
-  const titleTextColor = colorSchemeGui.slate_200;
+const activeGraphic =
+  currentGraphicsIndex == null
+    ? null
+    : placedGraphics.find(
+        (graphic) =>
+          graphic.index ===
+          currentGraphicsIndex
+      ) ?? null;
+
+    const titleTextColor = colorSchemeGui.slate_200;
 
 
 const levelPath =
@@ -401,6 +463,36 @@ const visibleViewBoxHeight = contentHeight / scale;
           />
         );
       })}
+
+{activeGraphic ? (
+  <View
+    pointerEvents="none"
+    style={{
+      position: "absolute",
+      left:
+        activeGraphic.x * scale -
+        100,
+      top:
+        activeGraphic.y * scale -
+        100,
+      width: 180,
+      height: 180,
+    }}
+  >
+    <LottieView
+      source={{
+        uri: activeGraphic.animationUrl,
+      }}
+      autoPlay
+      loop
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  </View>
+) : null}
+
 
       {placedNodes.map((node) => {
         const left = node.x * scale - 45;

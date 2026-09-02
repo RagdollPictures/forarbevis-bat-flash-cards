@@ -1,8 +1,8 @@
 import React, {
-    createContext,
-    useContext,
-    useEffect,
-    useState,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
 } from "react";
 
 import type { CourseContent } from "./courseContent";
@@ -15,6 +15,7 @@ const emptyStructure: CourseStructure = {
   levels: [],
   units: [],
   bonusLevels: [],
+   levelGraphics: [],
 };
 
 type ContentContextValue = {
