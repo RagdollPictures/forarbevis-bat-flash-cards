@@ -249,107 +249,107 @@ const SharedLevelSvg = (props: SharedLevelSvgProps) => (
     </G>
     <G id="anchor_graphics_001" data-name="anchor graphics 001">
       <G id="anchor_read_001-2" data-name="anchor read 001">
-        <Circle cx={113.899} cy={265.688} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={265.688} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_002" data-name="anchor graphics 002">
       <G id="anchor_read_001-3" data-name="anchor read 001">
-        <Circle cx={113.899} cy={553.498} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={553.498} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_003" data-name="anchor graphics 003">
       <G id="anchor_read_001-4" data-name="anchor read 001">
-        <Circle cx={113.899} cy={833.993} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={833.993} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_004" data-name="anchor graphics 004">
       <G id="anchor_read_001-5" data-name="anchor read 001">
-        <Circle cx={113.899} cy={1126.376} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={1126.376} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_005" data-name="anchor graphics 005">
       <G id="anchor_read_001-6" data-name="anchor read 001">
-        <Circle cx={113.899} cy={1406.871} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={1406.871} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_006" data-name="anchor graphics 006">
       <G id="anchor_read_001-7" data-name="anchor read 001">
-        <Circle cx={113.899} cy={1699.463} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={1699.463} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_007" data-name="anchor graphics 007">
       <G id="anchor_read_001-8" data-name="anchor read 001">
-        <Circle cx={113.899} cy={1978.377} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={1978.377} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_008" data-name="anchor graphics 008">
       <G id="anchor_read_001-9" data-name="anchor read 001">
-        <Circle cx={113.899} cy={2268.931} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={2268.931} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_009" data-name="anchor graphics 009">
       <G id="anchor_read_001-10" data-name="anchor read 001">
-        <Circle cx={113.899} cy={2556.284} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={2556.284} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_010" data-name="anchor graphics 010">
       <G id="anchor_read_001-11" data-name="anchor read 001">
-        <Circle cx={113.899} cy={2840.436} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={2840.436} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_011" data-name="anchor graphics 011">
       <G id="anchor_read_001-12" data-name="anchor read 001">
-        <Circle cx={113.899} cy={3114.807} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={3114.807} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_012" data-name="anchor graphics 012">
       <G id="anchor_read_001-13" data-name="anchor read 001">
-        <Circle cx={113.899} cy={3399.24} r={8.064} fill="#e21a1a" />
+        <Circle cx={113.899} cy={3399.24} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_013" data-name="anchor graphics 013">
       <G id="anchor_read_001-14" data-name="anchor read 001">
-        <Circle cx={115.917} cy={3681.881} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={3681.881} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_014" data-name="anchor graphics 014">
       <G id="anchor_read_001-15" data-name="anchor read 001">
-        <Circle cx={115.917} cy={3978.71} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={3978.71} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_015" data-name="anchor graphics 015">
       <G id="anchor_read_001-16" data-name="anchor read 001">
-        <Circle cx={115.917} cy={4252.513} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={4252.513} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_016" data-name="anchor graphics 016">
       <G id="anchor_read_001-17" data-name="anchor read 001">
-        <Circle cx={115.917} cy={4538.952} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={4538.952} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_017" data-name="anchor graphics 017">
       <G id="anchor_read_001-18" data-name="anchor read 001">
-        <Circle cx={115.917} cy={4832.706} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={4832.706} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_018" data-name="anchor graphics 018">
       <G id="anchor_read_001-19" data-name="anchor read 001">
-        <Circle cx={115.917} cy={5114.572} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={5114.572} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_019" data-name="anchor graphics 019">
       <G id="anchor_read_001-20" data-name="anchor read 001">
-        <Circle cx={115.917} cy={5401.011} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={5401.011} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_020" data-name="anchor graphics 020">
       <G id="anchor_read_001-21" data-name="anchor read 001">
-        <Circle cx={115.917} cy={5665.046} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={5665.046} r={8.064} fill="#0f172b" />
       </G>
     </G>
     <G id="anchor_graphics_021" data-name="anchor graphics 021">
       <G id="anchor_read_001-22" data-name="anchor read 001">
-        <Circle cx={115.917} cy={5992.574} r={8.064} fill="#e21a1a" />
+        <Circle cx={115.917} cy={5992.574} r={8.064} fill="#0f172b" />
       </G>
     </G>
   </Svg>
