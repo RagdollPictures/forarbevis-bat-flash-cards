@@ -4,9 +4,9 @@ import React, {
   useState,
 } from "react";
 import {
-  Dimensions,
   Pressable,
   Text,
+  useWindowDimensions,
   View,
 } from "react-native";
 import {
@@ -293,6 +293,8 @@ export default function ChapterMenuMap({
   currentLevelId,
   unlockedLevelIds,
 }: ChapterMenuMapProps) {
+
+  const { width: windowWidth } = useWindowDimensions();
   const {
     decks,
     structure,
@@ -307,10 +309,7 @@ export default function ChapterMenuMap({
   const layout =
     chaptersMenu as ChaptersMenuLayout;
 
-  const screenWidth =
-    Dimensions.get(
-      "window"
-    ).width;
+ const screenWidth = Math.min(windowWidth, 600);
 
   const scale =
     screenWidth /

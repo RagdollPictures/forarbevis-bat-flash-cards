@@ -11,8 +11,8 @@ import React, {
 } from "react";
 import {
   Animated,
-  Dimensions,
   Pressable,
+  useWindowDimensions,
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -70,6 +70,9 @@ export default function QuizMenuScreen() {
 }
 
 function QuizMenuScreenContent() {
+
+  const { width: windowWidth } = useWindowDimensions();
+
   const { structure } = useContent();
 
   const {
@@ -176,10 +179,7 @@ const safeBonusLevels =
     [structure]
   );
 
-  const screenWidth =
-    Dimensions.get(
-      "window"
-    ).width;
+  const screenWidth = Math.min(windowWidth, 600);
 
   const scale =
     screenWidth /

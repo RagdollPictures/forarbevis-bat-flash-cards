@@ -245,7 +245,7 @@ const remoteLevelIconSvg =
 
 const levelPath =
   buildLevelPath(placedNodes);
-
+const visibleViewBoxHeight = contentHeight / scale;
  return (
   <View
     style={{
@@ -308,8 +308,9 @@ const levelPath =
       ) : null}
 
      <LevelSvg
-  width={screenWidth}
-  height={layout.viewBox.height * scale}
+   width={screenWidth}
+  height={contentHeight}
+  viewBox={`0 0 ${layout.viewBox.width} ${visibleViewBoxHeight}`}
   visibleLayerIds={visibleSvgLayerIds}
   decoCount={theme.decoCount}
   style={{
@@ -320,9 +321,9 @@ const levelPath =
 />
 
 <Svg
-  width={screenWidth}
-  height={layout.viewBox.height * scale}
-  viewBox={`0 0 ${layout.viewBox.width} ${layout.viewBox.height}`}
+   width={screenWidth}
+  height={contentHeight}
+  viewBox={`0 0 ${layout.viewBox.width} ${visibleViewBoxHeight}`}
   style={{
     position: "absolute",
     left: 0,
@@ -359,15 +360,14 @@ const levelPath =
             }}
           >
             
-            <View
-              style={{
-                maxWidth: "100%",
-                paddingHorizontal: 12,
-                paddingVertical: 6,
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
+           <View
+  style={{
+    position: "relative",
+    width: screenWidth,
+    height: contentHeight,
+    alignSelf: "center",
+  }}
+>
               
               <Text
                 style={{

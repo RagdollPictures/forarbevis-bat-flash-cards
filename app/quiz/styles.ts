@@ -7,10 +7,9 @@ export const styles = StyleSheet.create({
     backgroundColor: "#000",
   },
 
-  container: {
-    alignItems: "stretch",
-    
-  },
+ container: {
+  alignItems: "center",
+},
 
   devPanel: {
     gap: 10,

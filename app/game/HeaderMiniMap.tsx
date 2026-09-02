@@ -118,16 +118,18 @@ export default function HeaderMiniMap({
 
   return (
     <View
-      style={[
-        {
-          width: "100%",
-          aspectRatio:
-            viewBoxWidth /
-            viewBoxHeight,
-        },
-        style,
-      ]}
-    >
+  style={[
+    {
+      width: "100%",
+      maxWidth: 600,
+      alignSelf: "center",
+      aspectRatio:
+        viewBoxWidth /
+        viewBoxHeight,
+    },
+    style,
+  ]}
+>
       <Svg
         width="100%"
         height="100%"
