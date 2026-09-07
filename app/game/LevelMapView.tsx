@@ -1,7 +1,7 @@
 import { colorSchemeGui } from "@/constants/colors";
 import { Image } from "expo-image";
 import React from "react";
-import { Pressable, Text, View } from "react-native";
+import { Animated, Pressable, Text, View } from "react-native";
 import {
   Path,
   Svg,
@@ -83,6 +83,8 @@ type LevelMapViewProps = {
   transitioningId: string | null;
   theme: LevelTheme;
   contentHeight: number;
+  scrollY: Animated.Value;
+  maxScrollY: number;
   onPressReadNode: (node: ReadPlacedNode) => void;
   onPressQuizNode: (node: QuizPlacedNode | ChapterTestPlacedNode) => void;
 };
@@ -218,6 +220,8 @@ export default function LevelMapView({
   levelId,
    levelLabel,
    chapterId,
+    scrollY,
+    maxScrollY,
   layout,
   scale,
   screenWidth,
@@ -244,9 +248,111 @@ export default function LevelMapView({
 
   const { structure } = useContent();
 
+const buoyTilt =
+  React.useRef(
+    new Animated.Value(0)
+  ).current;
+
+const lastScrollY =
+  React.useRef(0);
+
+const settleTimer =
+  React.useRef<
+    ReturnType<typeof setTimeout> | null
+  >(null);
+
+React.useEffect(() => {
+  const listenerId =
+    scrollY.addListener(({ value }) => {
+      const delta =
+        value - lastScrollY.current;
+
+      lastScrollY.current = value;
+
+      if (Math.abs(delta) < 0.5) {
+        return;
+      }
+
+      const tilt = Math.max(
+        -1,
+        Math.min(1, delta / 12)
+      );
+
+      buoyTilt.setValue(tilt);
+
+      if (settleTimer.current) {
+        clearTimeout(
+          settleTimer.current
+        );
+      }
+
+      settleTimer.current =
+        setTimeout(() => {
+          Animated.spring(
+            buoyTilt,
+            {
+              toValue: 0,
+              damping: 7,
+              stiffness: 55,
+              mass: 1.2,
+              useNativeDriver: true,
+            }
+          ).start();
+        }, 40);
+    });
+
+  return () => {
+    scrollY.removeListener(
+      listenerId
+    );
+
+    if (settleTimer.current) {
+      clearTimeout(
+        settleTimer.current
+      );
+    }
+  };
+}, [scrollY, buoyTilt]);
+
+const buoyRotate =
+  buoyTilt.interpolate({
+    inputRange: [
+      -1,
+      -0.75,
+      -0.5,
+      -0.25,
+      0,
+      0.25,
+      0.5,
+      0.75,
+      1,
+    ],
+    outputRange: [
+      "-8deg",
+      "5deg",
+      "-3deg",
+      "1deg",
+      "0deg",
+      "-1deg",
+      "3deg",
+      "-5deg",
+      "8deg",
+    ],
+  });
+
 const structureLevel =
   structure.levels.find(
     (level) => level.id === levelId
+  );
+
+  const scrollRopeUrl =
+  getCourseAssetUrl(
+    structureLevel?.scrollRopePath
+  );
+
+const scrollPropUrl =
+  getCourseAssetUrl(
+    structureLevel?.scrollPropPath
   );
 
 const remoteLevelIconSvg =
@@ -308,6 +414,20 @@ const activeGraphic =
 const levelPath =
   buildLevelPath(placedNodes);
 const visibleViewBoxHeight = contentHeight / scale;
+
+const clampedScrollY =
+  scrollY.interpolate({
+    inputRange: [
+      0,
+      maxScrollY,
+    ],
+    outputRange: [
+      0,
+      maxScrollY,
+    ],
+    extrapolate: "clamp",
+  });
+
  return (
   <View
     style={{
@@ -493,6 +613,51 @@ const visibleViewBoxHeight = contentHeight / scale;
   </View>
 ) : null}
 
+{scrollRopeUrl ? (
+  <Image
+    source={{ uri: scrollRopeUrl }}
+    contentFit="contain"
+    style={{
+      position: "absolute",
+      right: 20,
+      top: 80,
+      width: 100,
+      height: 300,
+      zIndex: 29,
+    }}
+  />
+) : null}
+
+{scrollPropUrl ? (
+  <Animated.View
+    pointerEvents="none"
+    style={{
+      position: "absolute",
+      right: 20,
+      top: 200,
+      width: 100,
+      height: 100,
+      zIndex: 30,
+      transform: [
+  {
+    translateY: clampedScrollY,
+  },
+  {
+    rotate: buoyRotate,
+  },
+],
+    }}
+  >
+    <Image
+      source={{ uri: scrollPropUrl }}
+      contentFit="contain"
+      style={{
+        width: "100%",
+        height: "100%",
+      }}
+    />
+  </Animated.View>
+) : null}
 
       {placedNodes.map((node) => {
         const left = node.x * scale - 45;

@@ -590,6 +590,8 @@ const safeBonusLevels =
         }}
       >
         <Animated.ScrollView
+         overScrollMode="never"
+  bounces={false}
           horizontal
           showsHorizontalScrollIndicator={
             false
@@ -867,6 +869,8 @@ const safeBonusLevels =
             contentHeight={
               contentHeight
             }
+            scrollY={scrollY}
+            maxScrollY={maxForegroundScroll}
             onPressReadNode={
               handlePressReadNode
             }
