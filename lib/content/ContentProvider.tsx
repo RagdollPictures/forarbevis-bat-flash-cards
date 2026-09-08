@@ -9,18 +9,20 @@ import type { CourseContent } from "./courseContent";
 import { loadCourseContentCache } from "./courseContentCache";
 import type { CourseDecks } from "./loadCourseFromSupabase";
 import type { CourseStructure } from "./loadCourseStructureFromSupabase";
+import type { SharedUiText } from "./loadSharedUiTextFromSupabase";
 import { syncFullCourseContent } from "./syncCourseContent";
 
 const emptyStructure: CourseStructure = {
   levels: [],
   units: [],
   bonusLevels: [],
-   levelGraphics: [],
+  levelGraphics: [],
 };
 
 type ContentContextValue = {
   decks: CourseDecks;
   structure: CourseStructure;
+  sharedUiText: SharedUiText;
   isReady: boolean;
   isSyncing: boolean;
 };
@@ -43,6 +45,12 @@ export function ContentProvider({
       emptyStructure
     );
 
+  const [
+    sharedUiText,
+    setSharedUiText,
+  ] =
+    useState<SharedUiText>({});
+
   const [isReady, setIsReady] =
     useState(false);
 
@@ -62,9 +70,15 @@ export function ContentProvider({
 
       if (cached) {
         setDecks(cached.decks);
+
         setStructure(
           cached.structure
         );
+
+        setSharedUiText(
+          cached.sharedUiText ?? {}
+        );
+
         setIsReady(true);
       }
 
@@ -79,8 +93,13 @@ export function ContentProvider({
         if (cancelled) return;
 
         setDecks(synced.decks);
+
         setStructure(
           synced.structure
+        );
+
+        setSharedUiText(
+          synced.sharedUiText
         );
 
         setIsReady(true);
@@ -112,6 +131,7 @@ export function ContentProvider({
       value={{
         decks,
         structure,
+        sharedUiText,
         isReady,
         isSyncing,
       }}

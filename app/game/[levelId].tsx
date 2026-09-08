@@ -59,6 +59,7 @@ import { useLevelNavigation } from "./useLevelNavigation";
 import { useLevelProgress } from "./useLevelProgress";
 
 import { SvgXml } from "react-native-svg";
+import { useStudyMode } from "../../lib/StudyModeProvider";
 
 export default function QuizMenuScreen() {
   const { isReady } = useCourseLevelConfig();
@@ -75,6 +76,9 @@ function QuizMenuScreenContent() {
   const { width: windowWidth } = useWindowDimensions();
 
   const { structure } = useContent();
+  
+const { studyMode } =
+  useStudyMode();
 
   const {
     levelIds,
@@ -275,16 +279,25 @@ const safeBonusLevels =
 } = useLevelProgress({
   quizzes,
 });
-  const unlockedIds =
-    useMemo(() => {
-      return getUnlockedQuizIds(
-        quizzes,
-        clearedIds
+ const unlockedIds =
+  useMemo(() => {
+    if (studyMode === "free") {
+      return new Set(
+        quizzes.map(
+          (quiz) => quiz.id
+        )
       );
-    }, [
+    }
+
+    return getUnlockedQuizIds(
       quizzes,
-      clearedIds,
-    ]);
+      clearedIds
+    );
+  }, [
+    studyMode,
+    quizzes,
+    clearedIds,
+  ]);
 
   const currentGraphicsIndex =
   useMemo(() => {
@@ -335,31 +348,45 @@ const safeBonusLevels =
     levelIds,
   ]);
 
- const unlockedBonusIds =
+const unlockedBonusIds =
   useMemo(() => {
+    if (studyMode === "free") {
+      return new Set(
+        safeBonusLevels.map(
+          (bonus) => bonus.id
+        )
+      );
+    }
+
     return getUnlockedBonusIds(
       safeBonusLevels,
       clearedIds,
       structure
     );
   }, [
+    studyMode,
     clearedIds,
     safeBonusLevels,
     structure,
   ]);
 
   const unlockedLevelIds =
-    useMemo(() => {
-      return getUnlockedLevelIds(
-        levelIds,
-        clearedIds,
-        structure
-      );
-    }, [
+  useMemo(() => {
+    if (studyMode === "free") {
+      return new Set(levelIds);
+    }
+
+    return getUnlockedLevelIds(
       levelIds,
       clearedIds,
-      structure,
-    ]);
+      structure
+    );
+  }, [
+    studyMode,
+    levelIds,
+    clearedIds,
+    structure,
+  ]);
 
   const handlePressReadNode =
     useCallback(

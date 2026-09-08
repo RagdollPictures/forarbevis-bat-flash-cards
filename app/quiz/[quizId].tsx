@@ -32,6 +32,7 @@ import {
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
 
+import { useStudyMode } from "../../lib/StudyModeProvider";
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
 import QuizCard from "./_quiz/ui/QuizCard";
@@ -42,6 +43,8 @@ import { validateDeck } from "./_quiz/validateDeck";
 
 export default function QuizScreen() {
   const navigation = useNavigation();
+  const { studyMode } =
+  useStudyMode();
  const { decks, structure } = useContent();
 const {
   levelIds,
@@ -190,10 +193,11 @@ const deck = useMemo(
   [filteredRawDeck]
 );
 
-  const s = useQuizSession({
-    quizId: id,
-    deck,
-  });
+ const s = useQuizSession({
+  quizId: id,
+  deck,
+  studyMode,
+});
 
   const currentChapterId =
     resolved?.chapterId ??
@@ -523,35 +527,39 @@ const deck = useMemo(
                   s.shuffledDeck.length;
 
                 if (total > 0) {
-                  await saveQuizProgress({
-                    quizId: id,
+                  await saveQuizProgress(
+                {
+                  quizId: id,
 
-                    progress:
-                      Array(total).fill(
-                        "correct"
-                      ),
+                  progress:
+                    Array(total).fill(
+                      "correct"
+                    ),
 
-                    score: total,
+                  score: total,
+                  total,
+
+                  updatedAt:
+                    Date.now(),
+
+                  firstTryCorrect:
+                    s.firstTryCorrectCount,
+
+                  firstTryTotal:
                     total,
-
-                    updatedAt:
-                      Date.now(),
-
-                    firstTryCorrect:
-                      s.firstTryCorrectCount,
-
-                    firstTryTotal:
-                      total,
-                  });
+                },
+                studyMode
+              );
                 }
 
                 if (
-                  isChapterQuiz
-                ) {
-                  await addClearedQuizId(
-                    id
-                  );
-                }
+  studyMode === "guided" &&
+  isChapterQuiz
+) {
+  await addClearedQuizId(
+    id
+  );
+}
               }
             }
             isChapterQuiz={

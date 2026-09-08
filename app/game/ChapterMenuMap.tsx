@@ -42,6 +42,7 @@ import type { CourseDecks } from "../../lib/content/loadCourseFromSupabase";
 import type { CourseStructure } from "../../lib/content/loadCourseStructureFromSupabase";
 
 import { colorSchemeGui } from "@/constants/colors";
+import { useStudyMode } from "../../lib/StudyModeProvider";
 import type { MenuLevel } from "./levelScreenTypes";
 import { useCourseLevelConfig } from "./useCourseLevelConfig";
 
@@ -300,6 +301,9 @@ export default function ChapterMenuMap({
     structure,
   } = useContent();
 
+  const { studyMode } =
+  useStudyMode();
+
   const {
     levelIds,
     levelsById,
@@ -389,7 +393,9 @@ export default function ChapterMenuMap({
 
     async function loadProgress() {
       const allProgress =
-        await getAllQuizProgress();
+  await getAllQuizProgress(
+    studyMode
+  );
 
       if (!mounted) {
         return;
@@ -416,6 +422,7 @@ export default function ChapterMenuMap({
     structure,
     levelIds,
     levelsById,
+    studyMode,
   ]);
 
   return (

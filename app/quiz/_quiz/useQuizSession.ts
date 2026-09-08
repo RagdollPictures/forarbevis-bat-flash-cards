@@ -6,6 +6,7 @@ import {
 
 import { saveQuizProgress } from "../../../constants/flashcards/quizProgress";
 import type { FlashCard } from "../../../constants/flashcards/types";
+import type { StudyMode } from "../../../lib/studyMode";
 import { shuffle } from "./shuffle";
 
 const QUIZ_LENGTH = 10;
@@ -131,9 +132,11 @@ function buildFrozenQuiz(
 export function useQuizSession({
   quizId,
   deck,
+  studyMode,
 }: {
   quizId: string;
   deck: FlashCard[];
+  studyMode: StudyMode;
 }) {
   const [
     queue,
@@ -390,31 +393,33 @@ export function useQuizSession({
         | null
       )[];
 
-    saveQuizProgress({
-      quizId:
-        String(quizId),
+   saveQuizProgress(
+  {
+    quizId: String(quizId),
 
-      progress:
-        allCorrect,
+    progress: allCorrect,
 
-      score: total,
+    score: total,
 
+    total,
+
+    updatedAt:
+      Date.now(),
+
+    firstTryCorrect:
+      firstTryCorrectCount,
+
+    firstTryTotal:
       total,
-
-      updatedAt:
-        Date.now(),
-
-      firstTryCorrect:
-        firstTryCorrectCount,
-
-      firstTryTotal:
-        total,
-    });
+  },
+  studyMode
+);
   }, [
     quizId,
     isFinished,
     total,
     firstTryCorrectCount,
+    studyMode,
   ]);
 
   const finishIfComplete = (

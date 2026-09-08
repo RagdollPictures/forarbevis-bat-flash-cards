@@ -18,6 +18,7 @@ import {
 
 import { calcPercent } from "../quiz/utils/progress";
 
+import { useStudyMode } from "../../lib/StudyModeProvider";
 import type { QuizItem } from "./levelScreenTypes";
 
 export function useLevelProgress({
@@ -26,6 +27,9 @@ export function useLevelProgress({
   quizzes: QuizItem[];
 }) {
   const { structure } = useContent();
+
+  const { studyMode } =
+  useStudyMode();
 
   const [
     progressByQuizId,
@@ -42,77 +46,74 @@ export function useLevelProgress({
   );
 
   useFocusEffect(
-    useCallback(() => {
-      let alive = true;
+  useCallback(() => {
+    let alive = true;
 
-      (async () => {
-        const [map, cleared] =
-          await Promise.all([
-            getAllQuizProgress(),
-            loadClearedSet(),
-          ]);
+    (async () => {
+      const [
+        map,
+        currentCleared,
+      ] = await Promise.all([
+        getAllQuizProgress(
+  studyMode
+),
+        loadClearedSet(),
+      ]);
 
-        if (!alive) return;
+      let changed = false;
 
-        setProgressByQuizId(map);
-        setClearedIds(cleared);
-      })();
+     if (studyMode === "guided") {
+  for (const q of quizzes) {
+    const saved =
+      map[q.id] ?? null;
 
-      return () => {
-        alive = false;
-      };
-    }, [])
-  );
+    const unlockPercent =
+      calcPercent(saved);
 
-  useFocusEffect(
-    useCallback(() => {
-      let alive = true;
+    if (
+      unlockPercent >=
+        UNLOCK_PERCENT &&
+      !currentCleared.has(q.id)
+    ) {
+      currentCleared.add(
+        q.id
+      );
+      changed = true;
+    }
+  }
+}
 
-      (async () => {
-        const currentCleared =
-          await loadClearedSet();
+      if (!alive) {
+        return;
+      }
 
-        let changed = false;
-
-        for (const q of quizzes) {
-          const saved =
-            progressByQuizId[q.id] ??
-            null;
-
-          const unlockPercent =
-            calcPercent(saved);
-
-          if (
-            unlockPercent >=
-              UNLOCK_PERCENT &&
-            !currentCleared.has(q.id)
-          ) {
-            currentCleared.add(q.id);
-            changed = true;
-          }
-        }
-
-        if (!alive) return;
-
-        if (changed) {
-          await saveClearedSet(
-            currentCleared
-          );
-        }
-
-        setClearedIds(
+      if (changed) {
+        await saveClearedSet(
           currentCleared
         );
-      })();
+      }
 
-      return () => {
-        alive = false;
-      };
-    }, [
-      progressByQuizId,
-      quizzes,
-    ])
-  );
+      if (!alive) {
+        return;
+      }
+
+      setProgressByQuizId(map);
+      setClearedIds(
+        currentCleared
+      );
+    })();
+
+    return () => {
+      alive = false;
+    };
+  }, [
+  quizzes,
+  studyMode,
+])
+);
+
+
+
 
   const resetAllProgress =
     useCallback(async () => {

@@ -1,62 +1,145 @@
-import { router, Stack, useLocalSearchParams } from "expo-router";
-import React, { useMemo } from "react";
-import { Pressable, ScrollView } from "react-native";
+import { FontAwesome } from "@expo/vector-icons";
+import {
+  router,
+  Stack,
+  useLocalSearchParams,
+} from "expo-router";
+import React, {
+  useMemo,
+} from "react";
+import {
+  Pressable,
+  ScrollView,
+  View,
+} from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
+
 import { colorSchemeGui } from "../../constants/colors";
 import { useContent } from "../../lib/content/ContentProvider";
-import ChapterMenuMap from "./ChapterMenuMap";
 
+import { useStudyMode } from "../../lib/StudyModeProvider";
+import ChapterMenuMap from "./ChapterMenuMap";
 import type { MenuLevel } from "./levelScreenTypes";
 import { getUnlockedLevelIds } from "./levelUnlocks";
 import { useCourseLevelConfig } from "./useCourseLevelConfig";
 import { useLevelProgress } from "./useLevelProgress";
 
-
-
 export default function ChaptersScreen() {
-  const { structure } = useContent();
+  const { structure } =
+    useContent();
+
+    const { studyMode } =
+  useStudyMode();
+
   const {
-  levelIds,
-  levelsById,
-  isReady,
-} = useCourseLevelConfig();
-  const params = useLocalSearchParams<{ currentLevelId?: string }>();
- const currentLevelId =
-  params.currentLevelId ?? levelIds[0] ?? "";
+    levelIds,
+    levelsById,
+    isReady,
+  } = useCourseLevelConfig();
 
-  const levelMap = levelsById as Record<string, MenuLevel>;
+  const params =
+    useLocalSearchParams<{
+      currentLevelId?: string;
+    }>();
 
-  const { clearedIds } = useLevelProgress({
-  quizzes: [],
-});
+  const currentLevelId =
+    params.currentLevelId ??
+    levelIds[0] ??
+    "";
 
-    const unlockedLevelIds = useMemo(() => {
+  const levelMap =
+    levelsById as Record<
+      string,
+      MenuLevel
+    >;
+
+  const { clearedIds } =
+    useLevelProgress({
+      quizzes: [],
+    });
+
+  const unlockedLevelIds =
+  useMemo(() => {
+    if (studyMode === "free") {
+      return new Set(levelIds);
+    }
+
     return getUnlockedLevelIds(
       levelIds,
       clearedIds,
       structure
     );
-  }, [clearedIds, structure]);
-
-  if (!isReady) {
-  return null;
-}
+  }, [
+    studyMode,
+    levelIds,
+    clearedIds,
+    structure,
+  ]);
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: colorSchemeGui.slate_900 }}>
-      <Stack.Screen options={{ headerShown: false }} />
+    <SafeAreaView
+      style={{
+        flex: 1,
+        backgroundColor:
+          colorSchemeGui.slate_900,
+      }}
+    >
+      <Stack.Screen
+        options={{
+          headerShown: false,
+        }}
+      />
 
-      <Pressable
-        onPress={() => router.back()}
+      <View
         style={{
+          flexDirection: "row",
+          justifyContent:
+            "space-between",
+          alignItems: "center",
           paddingHorizontal: 16,
           paddingTop: 8,
           paddingBottom: 12,
+          backgroundColor:
+      colorSchemeGui.slate_700,
         }}
       >
-       <CloseIcon width={64} height={64} />
-      </Pressable>
+        <Pressable
+          onPress={() =>
+            router.back()
+          }
+        >
+          <FontAwesome
+  name="times"
+  size={38}
+  color={
+    colorSchemeGui.slate_200
+  }
+/>
+        </Pressable>
+
+        <Pressable
+          onPress={() =>
+            router.push(
+              "/game/settings"
+            )
+          }
+          style={{
+            width: 64,
+            height: 64,
+            alignItems: "center",
+            justifyContent:
+              "center",
+          }}
+        >
+          <FontAwesome
+            name="cog"
+            size={38}
+            color={
+              colorSchemeGui.slate_200
+            }
+          />
+        </Pressable>
+      </View>
 
       <ScrollView
         contentContainerStyle={{
@@ -64,8 +147,12 @@ export default function ChaptersScreen() {
         }}
       >
         <ChapterMenuMap
-          currentLevelId={currentLevelId}
-          unlockedLevelIds={unlockedLevelIds}
+          currentLevelId={
+            currentLevelId
+          }
+          unlockedLevelIds={
+            unlockedLevelIds
+          }
         />
       </ScrollView>
     </SafeAreaView>

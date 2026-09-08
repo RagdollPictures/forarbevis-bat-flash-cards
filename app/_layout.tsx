@@ -4,47 +4,70 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { course } from "../content/course";
 import { ContentProvider } from "../lib/content/ContentProvider";
+import { StudyModeProvider } from "../lib/StudyModeProvider";
 import { ScreenTransitionProvider } from "./transitions/ScreenTransitionProvider";
 
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <ContentProvider courseId={course.id}>
-        <ScreenTransitionProvider>
-          <Stack
-            screenOptions={{ headerShown: false }}
-            initialRouteName="(tabs)"
-          >
-            <Stack.Screen
-              name="(tabs)"
-              options={{ headerShown: false }}
-            />
-
-            <Stack.Screen
-              name="quiz/[quizId]"
-              options={{
+      <ContentProvider
+        courseId={course.id}
+      >
+        <StudyModeProvider
+          courseId={course.id}
+        >
+          <ScreenTransitionProvider>
+            <Stack
+              screenOptions={{
                 headerShown: false,
-                animation: "slide_from_bottom",
               }}
-            />
+              initialRouteName="(tabs)"
+            >
+              <Stack.Screen
+                name="(tabs)"
+                options={{
+                  headerShown: false,
+                }}
+              />
 
-            <Stack.Screen
-              name="read/[deckId]"
-              options={{
-                headerShown: false,
-                animation: "slide_from_bottom",
-              }}
-            />
+              <Stack.Screen
+                name="quiz/[quizId]"
+                options={{
+                  headerShown: false,
+                  animation:
+                    "slide_from_bottom",
+                }}
+              />
 
-            <Stack.Screen
-              name="game/chapters"
-              options={{
-                headerShown: false,
-                animation: "slide_from_bottom",
-              }}
-            />
-          </Stack>
-        </ScreenTransitionProvider>
+              <Stack.Screen
+                name="read/[deckId]"
+                options={{
+                  headerShown: false,
+                  animation:
+                    "slide_from_bottom",
+                }}
+              />
+
+              <Stack.Screen
+                name="game/chapters"
+                options={{
+                  headerShown: false,
+                  animation:
+                    "slide_from_bottom",
+                }}
+              />
+
+              <Stack.Screen
+                name="game/settings"
+                options={{
+                  headerShown: false,
+                  animation:
+                    "slide_from_right",
+                }}
+              />
+            </Stack>
+          </ScreenTransitionProvider>
+        </StudyModeProvider>
       </ContentProvider>
     </SafeAreaProvider>
   );

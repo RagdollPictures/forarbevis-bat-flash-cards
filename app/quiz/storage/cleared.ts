@@ -24,3 +24,9 @@ export async function addClearedQuizId(quizId: string) {
   current.add(quizId);
   await saveClearedSet(current);
 }
+
+export async function clearClearedSet() {
+  await AsyncStorage.removeItem(
+    CLEARED_KEY
+  );
+}
