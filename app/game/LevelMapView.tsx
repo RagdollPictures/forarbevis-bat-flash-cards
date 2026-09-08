@@ -50,6 +50,11 @@ import type {
   CourseLevelGraphic,
 } from "../../lib/content/loadCourseStructureFromSupabase";
 
+const AnimatedLottieView =
+  Animated.createAnimatedComponent(
+    LottieView
+  );
+
 
 function getFirstTryPercent(saved: SavedQuizProgress | null) {
   const total = saved?.firstTryTotal ?? 0;
@@ -253,6 +258,14 @@ const buoyTilt =
     new Animated.Value(0)
   ).current;
 
+  const waveProgress =
+  React.useRef(
+    new Animated.Value(0.5)
+  ).current;
+
+const waveProgressValue =
+  React.useRef(0.5);
+
 const lastScrollY =
   React.useRef(0);
 
@@ -272,6 +285,21 @@ React.useEffect(() => {
       if (Math.abs(delta) < 0.5) {
         return;
       }
+
+
+      const nextWaveProgress =
+  ((waveProgressValue.current +
+    delta / 160) %
+    1 +
+    1) %
+  1;
+
+waveProgressValue.current =
+  nextWaveProgress;
+
+waveProgress.setValue(
+  nextWaveProgress
+);
 
       const tilt = Math.max(
         -1,
@@ -345,9 +373,9 @@ const structureLevel =
     (level) => level.id === levelId
   );
 
-  const scrollRopeUrl =
+ const scrollWaveUrl =
   getCourseAssetUrl(
-    structureLevel?.scrollRopePath
+    structureLevel?.scrollWavePath
   );
 
 const scrollPropUrl =
@@ -613,21 +641,6 @@ const clampedScrollY =
   </View>
 ) : null}
 
-{scrollRopeUrl ? (
-  <Image
-    source={{ uri: scrollRopeUrl }}
-    contentFit="contain"
-    style={{
-      position: "absolute",
-      right: 20,
-      top: 80,
-      width: 100,
-      height: 300,
-      zIndex: 29,
-    }}
-  />
-) : null}
-
 {scrollPropUrl ? (
   <Animated.View
     pointerEvents="none"
@@ -635,30 +648,55 @@ const clampedScrollY =
       position: "absolute",
       right: 20,
       top: 200,
-      width: 100,
-      height: 100,
+      width: 120,
+      height: 120,
       zIndex: 30,
       transform: [
-  {
-    translateY: clampedScrollY,
-  },
-  {
-    rotate: buoyRotate,
-  },
-],
+        {
+          translateY: scrollY,
+        },
+      ],
     }}
   >
-    <Image
-      source={{ uri: scrollPropUrl }}
-      contentFit="contain"
+    {scrollWaveUrl ? (
+      <AnimatedLottieView
+        source={{ uri: scrollWaveUrl }}
+        progress={waveProgress}
+        style={{
+          width: 250,
+  height: 250,
+  left: -20,
+  top: -80,
+  zIndex: 31,
+        }}
+      />
+    ) : null}
+
+    <Animated.View
       style={{
-        width: "100%",
-        height: "100%",
+        position: "absolute",
+        width: 100,
+        height: 100,
+        right: 0,
+        top: 0,
+        transform: [
+          {
+            rotate: buoyRotate,
+          },
+        ],
       }}
-    />
+    >
+      <Image
+        source={{ uri: scrollPropUrl }}
+        contentFit="contain"
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      />
+    </Animated.View>
   </Animated.View>
 ) : null}
-
       {placedNodes.map((node) => {
         const left = node.x * scale - 45;
         const top = node.y * scale - 45;

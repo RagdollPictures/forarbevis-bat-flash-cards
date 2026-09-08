@@ -14,7 +14,7 @@ export type CourseLevel = {
   iconOffPath?: string;
   levelIconPath?: string;
 
-  scrollRopePath?: string;
+  scrollWavePath?: string;
   scrollPropPath?: string;
 
   iconSvg?: string;
@@ -150,9 +150,9 @@ export async function loadCourseStructureFromSupabase(
         row.level_icon_path ??
         undefined,
         
-      scrollRopePath:
-        row.scroll_rope_path ??
-        undefined,
+      scrollWavePath:
+  row.scroll_wave_path ??
+  undefined,
 
       scrollPropPath:
         row.scroll_prop_path ??
