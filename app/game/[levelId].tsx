@@ -27,7 +27,6 @@ import { getQuizzesForChapterFromStructure } from "../../lib/content/courseStruc
 
 import { styles } from "../quiz/styles";
 
-import DevMenu from "./DevMenu";
 import HeaderMiniMap from "./HeaderMiniMap";
 import LevelMapView from "./LevelMapView";
 import { getVisibleSvgLayerIds } from "./getVisibleSvgLayerIds";
@@ -90,9 +89,7 @@ const { studyMode } =
     levelsById,
   } = useCourseLevelConfig();
 
-  const [showDevMenu, setShowDevMenu] =
-    useState(false);
-
+ 
   const [
     bonusContainerWidth,
     setBonusContainerWidth,
@@ -319,12 +316,9 @@ const safeBonusLevels =
   ])
 );
 
-  const {
-    progressByQuizId,
-    clearedIds,
-    resetAllProgress,
-    devCheatNextLockedTo100,
-    devUnlockAllLevels,
+ const {
+  progressByQuizId,
+  clearedIds,
 } = useLevelProgress({
   quizzes,
 });
@@ -1053,27 +1047,7 @@ const unlockedBonusIds =
         </Animated.ScrollView>
       </View>
 
-      <DevMenu
-        showDevMenu={
-          showDevMenu
-        }
-        onToggle={() =>
-          setShowDevMenu(
-            (prev) => !prev
-          )
-        }
-        onReset={
-          resetAllProgress
-        }
-        onUnlockNext={() =>
-          devCheatNextLockedTo100(
-            unlockedIds
-          )
-        }
-        onUnlockAll={
-          devUnlockAllLevels
-        }
-      />
+     
     </SafeAreaView>
   );
 }
