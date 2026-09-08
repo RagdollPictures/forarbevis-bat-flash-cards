@@ -61,6 +61,11 @@ import { useLevelProgress } from "./useLevelProgress";
 import { SvgXml } from "react-native-svg";
 import { useStudyMode } from "../../lib/StudyModeProvider";
 
+import {
+  loadFreeModeLastNode,
+  saveFreeModeLastNode,
+} from "../../lib/freeModeLastNode";
+
 export default function QuizMenuScreen() {
   const { isReady } = useCourseLevelConfig();
 
@@ -102,6 +107,13 @@ const { studyMode } =
     levelAreaHeight,
     setLevelAreaHeight,
   ] = useState(0);
+
+  const [
+  lastFreeNodeId,
+  setLastFreeNodeId,
+] = useState<string | null>(
+  null
+);
 
   const scrollX = useRef(
     new Animated.Value(0)
@@ -270,6 +282,43 @@ const safeBonusLevels =
     }, [resetNodeStates])
   );
 
+  useFocusEffect(
+  useCallback(() => {
+    let alive = true;
+
+    if (studyMode !== "free") {
+      setLastFreeNodeId(
+        null
+      );
+
+      return;
+    }
+
+    (async () => {
+      const saved =
+        await loadFreeModeLastNode(
+          course.id,
+          levelId
+        );
+
+      if (!alive) {
+        return;
+      }
+
+      setLastFreeNodeId(
+        saved
+      );
+    })();
+
+    return () => {
+      alive = false;
+    };
+  }, [
+    studyMode,
+    levelId,
+  ])
+);
+
   const {
     progressByQuizId,
     clearedIds,
@@ -299,7 +348,7 @@ const safeBonusLevels =
     clearedIds,
   ]);
 
-  const currentGraphicsIndex =
+const currentGraphicsIndex =
   useMemo(() => {
     const regularQuizzes =
       quizzes.slice(0, -1);
@@ -309,38 +358,97 @@ const safeBonusLevels =
         quizzes.length - 1
       ];
 
+    /*
+     * TRÄNA FRITT:
+     * Räven står vid senast öppnade nod.
+     */
+    if (
+      studyMode === "free" &&
+      lastFreeNodeId
+    ) {
+      const regularIndex =
+        regularQuizzes.findIndex(
+          (quiz) =>
+            quiz.id ===
+            lastFreeNodeId
+        );
+
+      if (regularIndex >= 0) {
+        return regularIndex + 1;
+      }
+
+      if (
+        chapterTest?.id ===
+        lastFreeNodeId
+      ) {
+        return regularQuizzes.length;
+      }
+    }
+
+    /*
+     * Träna fritt + ingen nod öppnad ännu:
+     * visa ingen räv.
+     */
+    if (
+      studyMode === "free"
+    ) {
+      return null;
+    }
+
+    /*
+     * FÖLJ BANAN:
+     * Räven visar nästa steg.
+     */
     const currentRegularIndex =
       regularQuizzes.findIndex(
         (quiz) =>
-          unlockedIds.has(quiz.id) &&
-          !clearedIds.has(quiz.id)
+          unlockedIds.has(
+            quiz.id
+          ) &&
+          !clearedIds.has(
+            quiz.id
+          )
       );
 
-    if (currentRegularIndex >= 0) {
-      return currentRegularIndex + 1;
+    if (
+      currentRegularIndex >= 0
+    ) {
+      return (
+        currentRegularIndex + 1
+      );
     }
 
     if (
       chapterTest &&
-      !clearedIds.has(chapterTest.id)
+      !clearedIds.has(
+        chapterTest.id
+      )
     ) {
       return regularQuizzes.length;
     }
 
     const isLastLevel =
       levelId ===
-      levelIds[levelIds.length - 1];
+      levelIds[
+        levelIds.length - 1
+      ];
 
     if (
       isLastLevel &&
       chapterTest &&
-      clearedIds.has(chapterTest.id)
+      clearedIds.has(
+        chapterTest.id
+      )
     ) {
-      return regularQuizzes.length + 1;
+      return (
+        regularQuizzes.length + 1
+      );
     }
 
     return null;
   }, [
+    studyMode,
+    lastFreeNodeId,
     quizzes,
     unlockedIds,
     clearedIds,
@@ -388,47 +496,84 @@ const unlockedBonusIds =
     structure,
   ]);
 
-  const handlePressReadNode =
-    useCallback(
-      (node: ReadPlacedNode) => {
-        runRouteTransition({
-          nodeId: node.id,
-          go: () => {
-            router.push({
-              pathname:
-                "/read/[deckId]",
-              params: {
-                deckId:
-                  node.deckId,
-                title:
-                  node.title,
-              },
-            });
-          },
-        });
-      },
-      [runRouteTransition]
-    );
+ const handlePressReadNode =
+  useCallback(
+    async (
+      node: ReadPlacedNode
+    ) => {
+      if (
+        studyMode === "free"
+      ) {
+        await saveFreeModeLastNode(
+          course.id,
+          levelId,
+          node.quizId
+        );
+
+        setLastFreeNodeId(
+          node.quizId
+        );
+      }
+
+      runRouteTransition({
+        nodeId: node.id,
+        go: () => {
+          router.push({
+            pathname:
+              "/read/[deckId]",
+            params: {
+              deckId:
+                node.deckId,
+              title:
+                node.title,
+            },
+          });
+        },
+      });
+    },
+    [
+      runRouteTransition,
+      studyMode,
+      levelId,
+    ]
+  );
 
   const handlePressQuizNode =
-    useCallback(
-      (
-        node:
-          | QuizPlacedNode
-          | ChapterTestPlacedNode
-      ) => {
-        runRouteTransition({
-          nodeId: node.id,
-          go: () => {
-            router.push(
-              `/quiz/${node.quizId}`
-            );
-          },
-        });
-      },
-      [runRouteTransition]
-    );
+  useCallback(
+    async (
+      node:
+        | QuizPlacedNode
+        | ChapterTestPlacedNode
+    ) => {
+      if (
+        studyMode === "free"
+      ) {
+        await saveFreeModeLastNode(
+          course.id,
+          levelId,
+          node.quizId
+        );
 
+        setLastFreeNodeId(
+          node.quizId
+        );
+      }
+
+      runRouteTransition({
+        nodeId: node.id,
+        go: () => {
+          router.push(
+            `/quiz/${node.quizId}`
+          );
+        },
+      });
+    },
+    [
+      runRouteTransition,
+      studyMode,
+      levelId,
+    ]
+  );
   const bonusThumbWidth =
     useMemo(() => {
       if (
