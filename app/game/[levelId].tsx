@@ -1084,12 +1084,15 @@ const unlockedBonusIds =
   onClose={() =>
     setFinalExamMenuVisible(false)
   }
- onSelect={(exam) => {
+onSelect={(exam) => {
   setFinalExamMenuVisible(false);
 
-  router.push(
-    `/quiz/${exam.id}`
-  );
+ router.push({
+  pathname: "/exam/[examId]",
+  params: {
+    examId: exam.id,
+  },
+});
 }}
 />
 
