@@ -7,6 +7,7 @@ export type FinalExam = {
   subtitle: string | null;
   deckId: string;
   sortOrder: number;
+  timeLimitMinutes: number | null;
 };
 
 type FinalExamRow = {
@@ -16,6 +17,7 @@ type FinalExamRow = {
   subtitle: string | null;
   deck_id: string;
   sort_order: number;
+  time_limit_minutes: number | null;
 };
 
 export async function loadFinalExamsFromSupabase(
@@ -31,7 +33,8 @@ export async function loadFinalExamsFromSupabase(
           title,
           subtitle,
           deck_id,
-          sort_order
+          sort_order,
+          time_limit_minutes
         `
       )
       .eq("course_id", courseId)
@@ -55,5 +58,8 @@ export async function loadFinalExamsFromSupabase(
     subtitle: row.subtitle,
     deckId: row.deck_id,
     sortOrder: row.sort_order,
+    timeLimitMinutes:
+  row.time_limit_minutes,
+    
   }));
 }

@@ -7,7 +7,8 @@ import {
 import type { FlashCard } from "../../../constants/flashcards/types";
 
 export function useExamSession(
-  deck: FlashCard[]
+  deck: FlashCard[],
+  timeLimitMinutes: number | null
 ) {
   const [index, setIndex] =
     useState(0);
@@ -24,13 +25,69 @@ export function useExamSession(
     setIsFinished,
   ] = useState(false);
 
+  const [
+    remainingSeconds,
+    setRemainingSeconds,
+  ] = useState<number | null>(
+    null
+  );
+
   useEffect(() => {
     setIndex(0);
+
     setAnswers(
       Array(deck.length).fill(null)
     );
+
     setIsFinished(false);
-  }, [deck]);
+
+    setRemainingSeconds(
+      timeLimitMinutes !== null
+        ? timeLimitMinutes * 60
+        : null
+    );
+  }, [
+    deck,
+    timeLimitMinutes,
+  ]);
+
+  useEffect(() => {
+    if (
+      isFinished ||
+      remainingSeconds === null ||
+      remainingSeconds <= 0
+    ) {
+      return;
+    }
+
+    const timer =
+      setInterval(() => {
+        setRemainingSeconds(
+          (current) =>
+            current === null
+              ? null
+              : Math.max(
+                  0,
+                  current - 1
+                )
+        );
+      }, 1000);
+
+    return () => {
+      clearInterval(timer);
+    };
+  }, [
+    isFinished,
+    remainingSeconds,
+  ]);
+
+  useEffect(() => {
+    if (
+      remainingSeconds === 0
+    ) {
+      setIsFinished(true);
+    }
+  }, [remainingSeconds]);
 
   const card =
     deck[index];
@@ -51,7 +108,11 @@ export function useExamSession(
   const score = useMemo(
     () =>
       deck.reduce(
-        (total, card, cardIndex) => {
+        (
+          total,
+          card,
+          cardIndex
+        ) => {
           const answer =
             answers[cardIndex];
 
@@ -66,7 +127,10 @@ export function useExamSession(
         },
         0
       ),
-    [deck, answers]
+    [
+      deck,
+      answers,
+    ]
   );
 
   const wrongQuestions =
@@ -74,7 +138,10 @@ export function useExamSession(
       () =>
         deck
           .map(
-            (card, cardIndex) => ({
+            (
+              card,
+              cardIndex
+            ) => ({
               card,
               index: cardIndex,
               selectedIndex:
@@ -89,7 +156,10 @@ export function useExamSession(
               item.card
                 .correctOptionIndex
           ),
-      [deck, answers]
+      [
+        deck,
+        answers,
+      ]
     );
 
   const selectAnswer = (
@@ -137,6 +207,7 @@ export function useExamSession(
     score,
     wrongQuestions,
     isFinished,
+    remainingSeconds,
     isFirst: index === 0,
     isLast:
       index === deck.length - 1,

@@ -49,7 +49,6 @@ export default function QuizScreen() {
   decks,
   structure,
   courseId,
-  finalExams,
 } = useContent();
 const {
   levelIds,
@@ -66,49 +65,40 @@ const {
       : "";
 
 
-const resolved = useMemo(() => {
-  const quiz =
+const resolved = useMemo(
+  () =>
     getQuizByIdFromStructure({
       structure,
       quizId: id,
       sourceId: course.sourceId,
       courseId,
-    });
-
-  if (quiz) {
-    return quiz;
-  }
-
-  const finalExam =
-    finalExams.find(
-      (exam) => exam.id === id
-    );
-
-  if (!finalExam) {
-    return null;
-  }
-
-  return {
-    id: finalExam.id,
-    title: finalExam.title,
-    subtitle:
-      finalExam.subtitle ??
-      undefined,
-    sourceId: course.sourceId,
-    courseId,
-    deckId: finalExam.deckId,
-    chapterId: undefined,
-  };
-}, [
-  id,
-  structure,
-  courseId,
-  finalExams,
-]);
-
+    }),
+  [id, structure, courseId]
+);
+const unlockedBonusLevel =
+  useMemo(
+    () =>
+      structure.bonusLevels.find(
+        (bonusLevel) =>
+          bonusLevel
+            .unlockWhenClearedQuizId ===
+          id
+      ) ?? null,
+    [
+      structure.bonusLevels,
+      id,
+    ]
+  );
+  
 
  const isChapterQuiz =
   Boolean(resolved?.chapterId);
+
+  const bonusReward =
+  studyMode === "guided" &&
+  isChapterQuiz
+    ? unlockedBonusLevel
+    : null;
 
   const deckIds = useMemo(() => {
     if (!resolved) {
@@ -550,62 +540,55 @@ const deck = useMemo(
           </View>
 
           <QuizFinished
-            title={
-              screenTitle
-            }
-            score={s.score}
-            total={
-              s.shuffledDeck
-                .length
-            }
-            onRestart={
-              s.restart
-            }
-            onContinue={
-              async () => {
-                const total =
-                  s.shuffledDeck.length;
+  title={screenTitle}
+  onContinue={
+    async () => {
+      const total =
+        s.shuffledDeck.length;
 
-                if (total > 0) {
-                  await saveQuizProgress(
-  {
-    quizId: id,
-    progress:
-      Array(total).fill(
-        "correct"
-      ),
-    score: total,
-    total,
-    updatedAt:
-      Date.now(),
-    firstTryCorrect:
-      s.firstTryCorrectCount,
-    firstTryTotal:
-      total,
-  },
-  studyMode,
-  courseId
-);
-                }
+      if (total > 0) {
+        await saveQuizProgress(
+          {
+            quizId: id,
+            progress:
+              Array(total).fill(
+                "correct"
+              ),
+            score: total,
+            total,
+            updatedAt:
+              Date.now(),
+            firstTryCorrect:
+              s.firstTryCorrectCount,
+            firstTryTotal:
+              total,
+          },
+          studyMode,
+          courseId
+        );
+      }
 
-                if (
-  studyMode === "guided" &&
-  isChapterQuiz
-) {
-  await addClearedQuizId(
-  id,
-  courseId
-);
+      if (
+        studyMode === "guided" &&
+        isChapterQuiz
+      ) {
+        await addClearedQuizId(
+          id,
+          courseId
+        );
+      }
+    }
+  }
+  isChapterQuiz={
+    isChapterQuiz
+  }
+  nextLevelId={
+    nextLevelId
+  }
+ unlockedBonusLevel={
+  bonusReward
 }
-              }
-            }
-            isChapterQuiz={
-              isChapterQuiz
-            }
-            nextLevelId={
-              nextLevelId
-            }
-          />
+/>
         </ScrollView>
       </SafeAreaView>
     );

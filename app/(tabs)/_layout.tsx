@@ -3,41 +3,49 @@ import { Tabs } from "expo-router";
 import React from "react";
 
 import { HapticTab } from "@/components/haptic-tab";
+import { colorSchemeGui } from "@/constants/colors";
 import { Colors } from "@/constants/theme_old";
 import { useColorScheme } from "@/hooks/use-color-scheme";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
+  const colorScheme =
+    useColorScheme();
 
   return (
     <Tabs
+      initialRouteName="game"
       screenOptions={{
         headerShown: false,
         tabBarButton: HapticTab,
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
-        tabBarInactiveTintColor: "#9CA3AF",
+        tabBarActiveTintColor:
+          Colors[
+            colorScheme ?? "light"
+          ].tint,
+        tabBarInactiveTintColor:
+          "#9CA3AF",
+        sceneStyle: {
+          backgroundColor:
+            colorSchemeGui.slate_900,
+        },
         tabBarStyle: {
           position: "absolute",
-          backgroundColor: "#000000",
+          backgroundColor:
+            colorSchemeGui.slate_900,
         },
       }}
     >
       <Tabs.Screen
-        name="index"
-        options={{
-          title: "Välj läromedel",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="book" size={22} color={color} />
-          ),
-        }}
-      />
-
-      <Tabs.Screen
         name="game"
         options={{
           title: "Game",
-          tabBarIcon: ({ color }) => (
-            <FontAwesome name="gamepad" size={22} color={color} />
+          tabBarIcon: ({
+            color,
+          }) => (
+            <FontAwesome
+              name="gamepad"
+              size={22}
+              color={color}
+            />
           ),
         }}
       />

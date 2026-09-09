@@ -1,11 +1,15 @@
+import { FontAwesome } from "@expo/vector-icons";
 import React from "react";
 import {
     Pressable,
+    ScrollView,
     StyleSheet,
     Text,
     View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
+import { colorSchemeGui } from "../constants/colors";
 import { useCourse } from "../lib/CourseProvider";
 
 export function CourseSelectionScreen() {
@@ -15,68 +19,142 @@ export function CourseSelectionScreen() {
   } = useCourse();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>
-        Vad vill du träna på?
-      </Text>
-
-      <View style={styles.list}>
-        {courses.map((course) => (
-          <Pressable
-            key={course.id}
-            style={styles.card}
-            onPress={() =>
-              selectCourse(course.id)
-            }
-          >
-            <Text style={styles.courseTitle}>
-              {course.title}
-            </Text>
-
-            {course.subtitle ? (
-              <Text style={styles.subtitle}>
-                {course.subtitle}
-              </Text>
-            ) : null}
-          </Pressable>
-        ))}
+    <SafeAreaView style={styles.safe}>
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>
+          Välj kurs
+        </Text>
       </View>
-    </View>
+
+      <ScrollView
+        contentContainerStyle={
+          styles.container
+        }
+      >
+        <Text style={styles.title}>
+          Vad vill du träna på?
+        </Text>
+
+        <View style={styles.list}>
+          {courses.map((course) => (
+            <Pressable
+              key={course.id}
+              style={styles.card}
+              onPress={() =>
+                selectCourse(course.id)
+              }
+            >
+              <View style={styles.cardRow}>
+                <Text
+                  style={
+                    styles.courseTitle
+                  }
+                >
+                  {course.title}
+                </Text>
+
+                <FontAwesome
+                  name="chevron-right"
+                  size={18}
+                  color={
+                    colorSchemeGui
+                      .slate_200
+                  }
+                />
+              </View>
+
+              {course.subtitle ? (
+                <Text
+                  style={
+                    styles.subtitle
+                  }
+                >
+                  {course.subtitle}
+                </Text>
+              ) : null}
+            </Pressable>
+          ))}
+        </View>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 24,
-    paddingTop: 80,
-    backgroundColor: "#ffffff",
-  },
+const styles =
+  StyleSheet.create({
+    safe: {
+      flex: 1,
+      backgroundColor:
+        colorSchemeGui.slate_900,
+    },
 
-  title: {
-    fontSize: 28,
-    fontWeight: "700",
-    marginBottom: 32,
-  },
+    header: {
+      height: 84,
+      paddingHorizontal: 16,
+      alignItems: "center",
+      justifyContent: "center",
+      backgroundColor:
+        colorSchemeGui.slate_700,
+    },
 
-  list: {
-    gap: 16,
-  },
+    headerTitle: {
+      color:
+        colorSchemeGui.slate_200,
+      fontSize: 22,
+      fontWeight: "900",
+      textAlign: "center",
+    },
 
-  card: {
-    padding: 20,
-    borderRadius: 18,
-    backgroundColor: "#f3f4f6",
-  },
+    container: {
+      padding: 24,
+      paddingBottom: 48,
+    },
 
-  courseTitle: {
-    fontSize: 20,
-    fontWeight: "700",
-  },
+    title: {
+      color:
+        colorSchemeGui.slate_200,
+      fontSize: 20,
+      fontWeight: "900",
+      marginBottom: 20,
+    },
 
-  subtitle: {
-    marginTop: 6,
-    fontSize: 15,
-    opacity: 0.65,
-  },
-});
+    list: {
+      gap: 16,
+    },
+
+    card: {
+      borderWidth: 2,
+      borderBottomWidth: 5,
+      borderColor:
+        colorSchemeGui.slate_700,
+      borderRadius: 16,
+      padding: 18,
+      backgroundColor:
+        colorSchemeGui.slate_900,
+    },
+
+    cardRow: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent:
+        "space-between",
+      gap: 12,
+    },
+
+    courseTitle: {
+      flex: 1,
+      color:
+        colorSchemeGui.slate_200,
+      fontSize: 18,
+      fontWeight: "900",
+    },
+
+    subtitle: {
+      marginTop: 7,
+      color:
+        colorSchemeGui.slate_200,
+      fontSize: 14,
+      lineHeight: 20,
+      opacity: 0.8,
+    },
+  });

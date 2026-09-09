@@ -1,9 +1,11 @@
 import Constants from "expo-constants";
 import { Stack } from "expo-router";
 import React from "react";
+import { View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { CourseSelectionScreen } from "../components/CourseSelectionScreen";
+import { colorSchemeGui } from "../constants/colors";
 import { course } from "../content/course";
 import { ContentProvider } from "../lib/content/ContentProvider";
 import {
@@ -32,12 +34,18 @@ function CourseBoundLayout() {
     needsCourseSelection,
   } = useCourse();
 
-  
   if (!isReady) {
-    return null;
+    return (
+      <View
+        style={{
+          flex: 1,
+          backgroundColor:
+            colorSchemeGui.slate_900,
+        }}
+      />
+    );
   }
 
-  
   if (needsCourseSelection) {
     return <CourseSelectionScreen />;
   }
@@ -53,6 +61,10 @@ function CourseBoundLayout() {
           <Stack
             screenOptions={{
               headerShown: false,
+              contentStyle: {
+                backgroundColor:
+                  colorSchemeGui.slate_900,
+              },
             }}
             initialRouteName="(tabs)"
           >
@@ -96,6 +108,14 @@ function CourseBoundLayout() {
                 headerShown: false,
                 animation:
                   "slide_from_right",
+              }}
+            />
+
+            <Stack.Screen
+              name="exam/[examId]"
+              options={{
+                headerShown: false,
+                animation: "slide_from_bottom",
               }}
             />
           </Stack>
