@@ -1,6 +1,7 @@
 import type { CourseContent } from "./courseContent";
 import { loadCourseFromSupabase } from "./loadCourseFromSupabase";
 import { loadCourseStructureFromSupabase } from "./loadCourseStructureFromSupabase";
+import { loadFinalExamsFromSupabase } from "./loadFinalExamsFromSupabase";
 import { loadSharedUiTextFromSupabase } from "./loadSharedUiTextFromSupabase";
 
 export async function loadCourseContentFromSupabase(
@@ -10,15 +11,18 @@ export async function loadCourseContentFromSupabase(
     decks,
     structure,
     sharedUiText,
+    finalExams,
   ] = await Promise.all([
     loadCourseFromSupabase(courseId),
     loadCourseStructureFromSupabase(courseId),
     loadSharedUiTextFromSupabase(),
+    loadFinalExamsFromSupabase(courseId),
   ]);
 
   return {
     decks,
     structure,
     sharedUiText,
+    finalExams,
   };
 }

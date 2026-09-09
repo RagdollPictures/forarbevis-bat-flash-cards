@@ -1,7 +1,7 @@
 const APP_ID = "forarbevis_bat";
-const COURSE_ID = "forarbevis";
 
 const TABLE_NAMES = [
+  "final_exams",
   "courses",
   "levels",
   "units",
@@ -11,10 +11,15 @@ const TABLE_NAMES = [
   "shared_ui_text",
 ];
 
+const COURSE_SCOPED_TABLE_NAMES = [
+  "final_exams",
+  "levels",
+  "units",
+  "bonus_levels",
+  "questions",
+  "level_graphics",
+];
 
-/**
- * Skapar menyn när Google Sheet öppnas.
- */
 function onOpen() {
   SpreadsheetApp
     .getUi()
@@ -26,13 +31,6 @@ function onOpen() {
     .addToUi();
 }
 
-
-/**
- * Läser en hel flik och gör varje rad
- * till ett objekt baserat på rubrikerna.
- *
- * Tomma celler skickas som null.
- */
 function readSheetRows(sheetName) {
   const sheet =
     SpreadsheetApp
@@ -60,14 +58,11 @@ function readSheetRows(sheetName) {
 
   return values
     .slice(1)
-
-    // Ignorera helt tomma rader.
     .filter((row) =>
       row.some(
         (value) => value !== ""
       )
     )
-
     .map((row) => {
       const obj = {};
 
@@ -84,10 +79,6 @@ function readSheetRows(sheetName) {
     });
 }
 
-
-/**
- * Läser alla fyra tabeller från arket.
- */
 function readFullCourse() {
   return {
     courses:
@@ -107,26 +98,104 @@ function readFullCourse() {
     questions:
       readSheetRows("questions"),
 
-       level_graphics:
+    level_graphics:
       readSheetRows(
         "level_graphics"
       ),
-      shared_ui_text:
+
+    shared_ui_text:
+      readSheetRows(
+        "shared_ui_text"
+      ),
+      final_exams:
   readSheetRows(
-    "shared_ui_text"
+    "final_exams"
   ),
   };
 }
 
+function normalizeId(value) {
+  if (
+    value === null ||
+    value === undefined
+  ) {
+    return "";
+  }
 
-/**
- * Sorterar units-fliken.
- *
- * Först efter level_id,
- * sedan efter sort_order.
- *
- * Rubrikraden påverkas inte.
- */
+  return String(value).trim();
+}
+
+function getManagedCourseIds(
+  tables
+) {
+  const ids = [];
+  const seen = {};
+
+  tables.courses.forEach(
+    (row, index) => {
+      const courseId =
+        normalizeId(row.id);
+
+      const appId =
+        normalizeId(row.app_id);
+
+      if (!courseId) {
+        throw new Error(
+          `courses rad ${index + 2}: id saknas.`
+        );
+      }
+
+      if (appId !== APP_ID) {
+        throw new Error(
+          `courses rad ${index + 2}: app_id "${appId}" matchar inte "${APP_ID}".`
+        );
+      }
+
+      if (seen[courseId]) {
+        throw new Error(
+          `courses innehåller dubbelt id: "${courseId}".`
+        );
+      }
+
+      seen[courseId] = true;
+      ids.push(courseId);
+    }
+  );
+
+  if (ids.length === 0) {
+    throw new Error(
+      "courses innehåller inga kurser."
+    );
+  }
+
+  COURSE_SCOPED_TABLE_NAMES.forEach(
+    (tableName) => {
+      tables[tableName].forEach(
+        (row, index) => {
+          const courseId =
+            normalizeId(
+              row.course_id
+            );
+
+          if (!courseId) {
+            throw new Error(
+              `${tableName} rad ${index + 2}: course_id saknas.`
+            );
+          }
+
+          if (!seen[courseId]) {
+            throw new Error(
+              `${tableName} rad ${index + 2}: course_id "${courseId}" finns inte i courses-fliken.`
+            );
+          }
+        }
+      );
+    }
+  );
+
+  return ids;
+}
+
 function sortUnitsSheet() {
   const sheet =
     SpreadsheetApp
@@ -145,11 +214,6 @@ function sortUnitsSheet() {
   const lastColumn =
     sheet.getLastColumn();
 
-  /*
-   * Om det bara finns rubrik +
-   * högst en datarad finns inget
-   * att sortera.
-   */
   if (lastRow < 3) {
     return;
   }
@@ -167,6 +231,11 @@ function sortUnitsSheet() {
         String(header).trim()
       );
 
+  const courseIdColumn =
+    headers.indexOf(
+      "course_id"
+    ) + 1;
+
   const levelIdColumn =
     headers.indexOf(
       "level_id"
@@ -176,6 +245,12 @@ function sortUnitsSheet() {
     headers.indexOf(
       "sort_order"
     ) + 1;
+
+  if (courseIdColumn === 0) {
+    throw new Error(
+      'Kolumnen "course_id" saknas i units.'
+    );
+  }
 
   if (levelIdColumn === 0) {
     throw new Error(
@@ -198,6 +273,10 @@ function sortUnitsSheet() {
     )
     .sort([
       {
+        column: courseIdColumn,
+        ascending: true,
+      },
+      {
         column: levelIdColumn,
         ascending: true,
       },
@@ -208,18 +287,9 @@ function sortUnitsSheet() {
     ]);
 }
 
-
-/**
- * Anropar Supabase Edge Function.
- *
- * apply = false
- *   → bara dry-run / jämförelse
- *
- * apply = true
- *   → genomför synken
- */
 function callFullCourseSync(
   tables,
+  courseIds,
   apply,
   expectedDeleteCounts
 ) {
@@ -251,7 +321,7 @@ function callFullCourseSync(
 
   const payload = {
     appId: APP_ID,
-    courseId: COURSE_ID,
+    courseIds,
     tables,
     apply: apply === true,
   };
@@ -266,18 +336,14 @@ function callFullCourseSync(
       `${supabaseUrl}/functions/v1/quiz-engine-sync`,
       {
         method: "post",
-
         contentType:
           "application/json",
-
         headers: {
           "x-quiz-engine-secret":
             syncSecret,
         },
-
         payload:
           JSON.stringify(payload),
-
         muteHttpExceptions: true,
       }
     );
@@ -305,46 +371,25 @@ function callFullCourseSync(
   };
 }
 
-
-/**
- * Kör hela synkflödet:
- *
- * 1. Sortera units
- * 2. Läs Google Sheets
- * 3. Dry-run mot Supabase
- * 4. Visa vad som ändras
- * 5. Be om bekräftelse
- * 6. Genomför synken
- */
 function syncQuizEngine() {
   const ui =
     SpreadsheetApp.getUi();
 
   try {
-    /*
-     * Sortera units efter:
-     *
-     * 1. level_id
-     * 2. sort_order
-     */
     sortUnitsSheet();
 
-
-    /*
-     * Läs hela kursen från Sheets.
-     */
     const tables =
       readFullCourse();
 
+    const courseIds =
+      getManagedCourseIds(
+        tables
+      );
 
-    /*
-     * DRY RUN
-     *
-     * Ingenting ändras i Supabase.
-     */
     const dryRun =
       callFullCourseSync(
         tables,
+        courseIds,
         false
       );
 
@@ -360,14 +405,9 @@ function syncQuizEngine() {
       return;
     }
 
-
     const result =
       dryRun.body.tables;
 
-
-    /*
-     * Bygg förhandsvisningen.
-     */
     const lines =
       TABLE_NAMES.map(
         (tableName) => {
@@ -383,7 +423,6 @@ function syncQuizEngine() {
         }
       );
 
-
     const totalNew =
       TABLE_NAMES.reduce(
         (sum, tableName) =>
@@ -391,7 +430,6 @@ function syncQuizEngine() {
           result[tableName].new,
         0
       );
-
 
     const totalDeletes =
       TABLE_NAMES.reduce(
@@ -402,8 +440,10 @@ function syncQuizEngine() {
         0
       );
 
-
     let message =
+      `Kurser: ${courseIds.join(", ")}\n\n`;
+
+    message +=
       lines.join("\n");
 
     message +=
@@ -412,20 +452,14 @@ function syncQuizEngine() {
     message +=
       `\nRader som tas bort: ${totalDeletes}`;
 
-
     if (totalDeletes > 0) {
       message +=
         "\n\n⚠️ Raderingar kommer att göras i Supabase.";
     }
 
-
     message +=
       "\n\nVill du genomföra synken?";
 
-
-    /*
-     * Be användaren bekräfta.
-     */
     const answer =
       ui.alert(
         "Synka till Supabase",
@@ -433,19 +467,12 @@ function syncQuizEngine() {
         ui.ButtonSet.YES_NO
       );
 
-
     if (
       answer !== ui.Button.YES
     ) {
       return;
     }
 
-
-    /*
-     * Edge Functionen kräver att
-     * delete-antalen är exakt samma
-     * som i dry-run.
-     */
     const expectedDeleteCounts =
       {};
 
@@ -460,17 +487,13 @@ function syncQuizEngine() {
       }
     );
 
-
-    /*
-     * RIKTIG SYNK
-     */
     const applied =
       callFullCourseSync(
         tables,
+        courseIds,
         true,
         expectedDeleteCounts
       );
-
 
     if (applied.status !== 200) {
       ui.alert(
@@ -484,18 +507,18 @@ function syncQuizEngine() {
       return;
     }
 
-
-    /*
-     * Klart.
-     */
     ui.alert(
       "Synk klar ✅",
       [
+        `Kurser: ${courseIds.length}`,
+        `courses: ${tables.courses.length}`,
         `levels: ${tables.levels.length}`,
         `units: ${tables.units.length}`,
         `bonus_levels: ${tables.bonus_levels.length}`,
         `questions: ${tables.questions.length}`,
         `level_graphics: ${tables.level_graphics.length}`,
+        `shared_ui_text: ${tables.shared_ui_text.length}`,
+        `final_exams: ${tables.final_exams.length}`,
         "",
         `Nya: ${totalNew}`,
         `Raderade: ${totalDeletes}`,
@@ -513,11 +536,6 @@ function syncQuizEngine() {
   }
 }
 
-
-/**
- * Gör fel från Edge Functionen
- * lite enklare att läsa.
- */
 function formatError(body) {
   if (
     body &&

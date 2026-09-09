@@ -65,6 +65,8 @@ import {
   saveFreeModeLastNode,
 } from "../../lib/freeModeLastNode";
 
+import { FontAwesome } from "@expo/vector-icons";
+
 export default function QuizMenuScreen() {
   const { isReady } = useCourseLevelConfig();
 
@@ -734,6 +736,29 @@ const unlockedBonusIds =
             }
           />
         </Pressable>
+
+
+<Pressable
+  onPress={() => {}}
+  style={{
+    width: 64,
+    height: 64,
+    alignItems: "center",
+    justifyContent: "center",
+    flexShrink: 0,
+  }}
+  hitSlop={8}
+>
+  <FontAwesome
+    name="graduation-cap"
+    size={32}
+    color={colorSchemeGui.slate_200}
+  />
+</Pressable>
+
+
+
+
       </View>
 
       <View

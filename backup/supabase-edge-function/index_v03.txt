@@ -2,6 +2,8 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
 const TABLE_NAMES = [
+  "final_exams",
+  "courses",
   "levels",
   "units",
   "bonus_levels",
@@ -17,9 +19,24 @@ const DELETE_ORDER = [
   "units",
   "levels",
   "shared_ui_text",
+  "final_exams",
+  "courses",
 ] as const;
 
 const BATCH_SIZE = 200;
+const READ_BATCH_SIZE = 1000;
+
+type DeleteItem = {
+  id: string;
+  courseId?: string;
+};
+
+function scopedKey(
+  courseId: string,
+  id: string
+) {
+  return `${courseId}\u0000${id}`;
+}
 
 export default {
   fetch: withSupabase(
@@ -27,7 +44,10 @@ export default {
     async (req, ctx) => {
       if (req.method !== "POST") {
         return Response.json(
-          { error: "Method not allowed" },
+          {
+            error:
+              "Method not allowed",
+          },
           { status: 405 }
         );
       }
@@ -44,10 +64,14 @@ export default {
 
       if (
         !expectedSecret ||
-        providedSecret !== expectedSecret
+        providedSecret !==
+          expectedSecret
       ) {
         return Response.json(
-          { error: "Unauthorized" },
+          {
+            error:
+              "Unauthorized",
+          },
           { status: 401 }
         );
       }
@@ -55,67 +79,129 @@ export default {
       let payload;
 
       try {
-        payload = await req.json();
+        payload =
+          await req.json();
       } catch {
         return Response.json(
-          { error: "Invalid JSON" },
+          {
+            error:
+              "Invalid JSON",
+          },
           { status: 400 }
         );
       }
 
       const {
-        courseId,
+        appId,
+        courseIds,
         tables,
         apply = false,
         expectedDeleteCounts,
       } = payload;
 
       if (
-        typeof courseId !== "string" ||
-        !courseId
+        typeof appId !==
+          "string" ||
+        !appId.trim()
       ) {
         return Response.json(
-          { error: "Invalid courseId" },
+          {
+            error:
+              "Invalid appId",
+          },
           { status: 400 }
         );
       }
 
       if (
-        !tables ||
-        typeof tables !== "object"
+        !Array.isArray(
+          courseIds
+        ) ||
+        courseIds.length === 0
       ) {
         return Response.json(
-          { error: "Invalid tables" },
+          {
+            error:
+              "Invalid courseIds",
+          },
           { status: 400 }
         );
       }
 
-      const result: Record<
-        string,
-        {
-          sheet: number;
-          database: number;
-          new: number;
-          existing: number;
-          wouldDelete: number;
-        }
-      > = {};
+      const managedCourseIds =
+        new Set<string>();
 
-      const deleteIds: Record<
-        string,
-        string[]
-      > = {};
-
-      /*
-       * 1. VALIDERING + JÄMFÖRELSE
-       */
       for (
-        const tableName of TABLE_NAMES
+        const value of
+        courseIds
+      ) {
+        if (
+          typeof value !==
+            "string" ||
+          !value.trim()
+        ) {
+          return Response.json(
+            {
+              error:
+                "Invalid courseId in courseIds",
+              value,
+            },
+            { status: 400 }
+          );
+        }
+
+        const courseId =
+          value.trim();
+
+        if (
+          managedCourseIds.has(
+            courseId
+          )
+        ) {
+          return Response.json(
+            {
+              error:
+                `Duplicate courseId "${courseId}"`,
+            },
+            { status: 400 }
+          );
+        }
+
+        managedCourseIds.add(
+          courseId
+        );
+      }
+
+      if (
+        !tables ||
+        typeof tables !==
+          "object"
+      ) {
+        return Response.json(
+          {
+            error:
+              "Invalid tables",
+          },
+          { status: 400 }
+        );
+      }
+
+      const sheetKeys:
+        Record<
+          string,
+          Set<string>
+        > = {};
+
+      for (
+        const tableName of
+        TABLE_NAMES
       ) {
         const rows =
           tables[tableName];
 
-        if (!Array.isArray(rows)) {
+        if (
+          !Array.isArray(rows)
+        ) {
           return Response.json(
             {
               error:
@@ -125,11 +211,9 @@ export default {
           );
         }
 
-        /*
-         * Skydd mot att en tom flik
-         * tömmer hela tabellen.
-         */
-        if (rows.length === 0) {
+        if (
+          rows.length === 0
+        ) {
           return Response.json(
             {
               error:
@@ -139,18 +223,12 @@ export default {
           );
         }
 
-        const sheetIds =
+        const keys =
           new Set<string>();
 
-        /*
-         * shared_ui_text är global
-         * och använder "key".
-         *
-         * Övriga tabeller är
-         * kursspecifika och använder
-         * course_id + id.
-         */
-        for (const row of rows) {
+        for (
+          const row of rows
+        ) {
           if (
             tableName ===
             "shared_ui_text"
@@ -169,42 +247,106 @@ export default {
               );
             }
 
+            const key =
+              row.key.trim();
+
             if (
-              sheetIds.has(
-                row.key
-              )
+              keys.has(key)
             ) {
               return Response.json(
                 {
                   error:
-                    `Duplicate key "${row.key}" in shared_ui_text`,
+                    `Duplicate key "${key}" in shared_ui_text`,
                 },
                 { status: 400 }
               );
             }
 
-            sheetIds.add(
-              row.key
-            );
+            keys.add(key);
 
             continue;
           }
 
           if (
-            row.course_id !==
-            courseId
+            tableName ===
+            "courses"
+          ) {
+            if (
+              row.app_id !==
+              appId
+            ) {
+              return Response.json(
+                {
+                  error:
+                    "Wrong app_id in courses",
+                  rowId:
+                    row.id ??
+                    null,
+                  receivedAppId:
+                    row.app_id ??
+                    null,
+                  expectedAppId:
+                    appId,
+                },
+                { status: 400 }
+              );
+            }
+
+            if (
+              typeof row.id !==
+                "string" ||
+              !row.id.trim()
+            ) {
+              return Response.json(
+                {
+                  error:
+                    "Missing id in courses",
+                },
+                { status: 400 }
+              );
+            }
+
+            const id =
+              row.id.trim();
+
+            if (
+              keys.has(id)
+            ) {
+              return Response.json(
+                {
+                  error:
+                    `Duplicate id "${id}" in courses`,
+                },
+                { status: 400 }
+              );
+            }
+
+            keys.add(id);
+
+            continue;
+          }
+
+          if (
+            typeof row.course_id !==
+              "string" ||
+            !managedCourseIds.has(
+              row.course_id
+            )
           ) {
             return Response.json(
               {
                 error:
-                  `Wrong course_id in ${tableName}`,
+                  `Invalid course_id in ${tableName}`,
                 rowId:
-                  row.id ?? null,
+                  row.id ??
+                  null,
                 receivedCourseId:
                   row.course_id ??
                   null,
-                expectedCourseId:
-                  courseId,
+                allowedCourseIds:
+                  Array.from(
+                    managedCourseIds
+                  ),
               },
               { status: 400 }
             );
@@ -224,103 +366,417 @@ export default {
             );
           }
 
-          if (
-            sheetIds.has(
+          const key =
+            scopedKey(
+              row.course_id,
               row.id
-            )
+            );
+
+          if (
+            keys.has(key)
           ) {
             return Response.json(
               {
                 error:
-                  `Duplicate id "${row.id}" in ${tableName}`,
+                  `Duplicate id "${row.id}" for course "${row.course_id}" in ${tableName}`,
               },
               { status: 400 }
             );
           }
 
-          sheetIds.add(
-            row.id
+          keys.add(key);
+        }
+
+        sheetKeys[
+          tableName
+        ] = keys;
+      }
+
+      const courseSheetIds =
+        sheetKeys.courses;
+
+      if (
+        courseSheetIds.size !==
+        managedCourseIds.size
+      ) {
+        return Response.json(
+          {
+            error:
+              "courseIds does not match courses table",
+            courseIds:
+              Array.from(
+                managedCourseIds
+              ),
+            courses:
+              Array.from(
+                courseSheetIds
+              ),
+          },
+          { status: 400 }
+        );
+      }
+
+      for (
+        const courseId of
+        managedCourseIds
+      ) {
+        if (
+          !courseSheetIds.has(
+            courseId
+          )
+        ) {
+          return Response.json(
+            {
+              error:
+                `courseId "${courseId}" is missing from courses table`,
+            },
+            { status: 400 }
           );
         }
+      }
 
-        /*
-         * Läs befintliga rader
-         * från Supabase.
-         */
-        let data;
-        let error;
+      async function readAllRows(
+        tableName: string,
+        scopeCourseIds:
+          string[]
+      ) {
+        const allRows:
+          Record<
+            string,
+            unknown
+          >[] = [];
 
-        if (
-          tableName ===
-          "shared_ui_text"
-        ) {
-          const response =
-            await ctx.supabaseAdmin
-              .from(
-                "shared_ui_text"
-              )
-              .select("key");
+        let start = 0;
 
-          data =
-            response.data;
+        while (true) {
+          let response;
 
-          error =
-            response.error;
-        } else {
-          const response =
-            await ctx.supabaseAdmin
-              .from(tableName)
-              .select("id")
-              .eq(
-                "course_id",
-                courseId
-              );
+          if (
+            tableName ===
+            "shared_ui_text"
+          ) {
+            response =
+              await ctx.supabaseAdmin
+                .from(
+                  "shared_ui_text"
+                )
+                .select("key")
+                .order(
+                  "key",
+                  {
+                    ascending:
+                      true,
+                  }
+                )
+                .range(
+                  start,
+                  start +
+                    READ_BATCH_SIZE -
+                    1
+                );
+          } else if (
+            tableName ===
+            "courses"
+          ) {
+            response =
+              await ctx.supabaseAdmin
+                .from("courses")
+                .select("id")
+                .eq(
+                  "app_id",
+                  appId
+                )
+                .order(
+                  "id",
+                  {
+                    ascending:
+                      true,
+                  }
+                )
+                .range(
+                  start,
+                  start +
+                    READ_BATCH_SIZE -
+                    1
+                );
+          } else {
+            response =
+              await ctx.supabaseAdmin
+                .from(tableName)
+                .select(
+                  "course_id,id"
+                )
+                .in(
+                  "course_id",
+                  scopeCourseIds
+                )
+                .order(
+                  "course_id",
+                  {
+                    ascending:
+                      true,
+                  }
+                )
+                .order(
+                  "id",
+                  {
+                    ascending:
+                      true,
+                  }
+                )
+                .range(
+                  start,
+                  start +
+                    READ_BATCH_SIZE -
+                    1
+                );
+          }
 
-          data =
-            response.data;
+          if (
+            response.error
+          ) {
+            throw new Error(
+              response.error.message
+            );
+          }
 
-          error =
-            response.error;
+          const rows =
+            response.data ?? [];
+
+          allRows.push(
+            ...rows
+          );
+
+          if (
+            rows.length <
+            READ_BATCH_SIZE
+          ) {
+            break;
+          }
+
+          start +=
+            READ_BATCH_SIZE;
         }
 
-        if (error) {
-          console.error(error);
+        return allRows;
+      }
 
+      let existingCourseRows;
+
+      try {
+        existingCourseRows =
+          await readAllRows(
+            "courses",
+            []
+          );
+      } catch (error) {
+        return Response.json(
+          {
+            error:
+              "Could not read courses",
+            details:
+              error instanceof
+              Error
+                ? error.message
+                : String(
+                    error
+                  ),
+          },
+          { status: 500 }
+        );
+      }
+
+      const existingAppCourseIds =
+        existingCourseRows
+          .map(
+            (row) =>
+              typeof row.id ===
+              "string"
+                ? row.id
+                : null
+          )
+          .filter(
+            (
+              value
+            ): value is string =>
+              value !== null
+          );
+
+      const scopedCourseIds =
+        Array.from(
+          new Set([
+            ...existingAppCourseIds,
+            ...Array.from(
+              managedCourseIds
+            ),
+          ])
+        );
+
+      const result: Record<
+        string,
+        {
+          sheet: number;
+          database: number;
+          new: number;
+          existing: number;
+          wouldDelete: number;
+        }
+      > = {};
+
+      const deleteItems:
+        Record<
+          string,
+          DeleteItem[]
+        > = {};
+
+      for (
+        const tableName of
+        TABLE_NAMES
+      ) {
+        const rows =
+          tables[tableName];
+
+        let databaseRows;
+
+        try {
+          if (
+            tableName ===
+            "courses"
+          ) {
+            databaseRows =
+              existingCourseRows;
+          } else {
+            databaseRows =
+              await readAllRows(
+                tableName,
+                scopedCourseIds
+              );
+          }
+        } catch (error) {
           return Response.json(
             {
               error:
                 `Could not read ${tableName}`,
               details:
-                error.message,
+                error instanceof
+                Error
+                  ? error.message
+                  : String(
+                      error
+                    ),
             },
             { status: 500 }
           );
         }
 
-        /*
-         * Gör om databasen till
-         * samma typ av ID-set som
-         * Sheet använder.
-         */
-        const databaseIds =
-          new Set<string>(
-            (data ?? []).map(
-              (row) =>
-                tableName ===
-                "shared_ui_text"
-                  ? row.key
-                  : row.id
-            )
+        const databaseKeys =
+          new Set<string>();
+
+        const databaseItems =
+          new Map<
+            string,
+            DeleteItem
+          >();
+
+        for (
+          const row of
+          databaseRows
+        ) {
+          if (
+            tableName ===
+            "shared_ui_text"
+          ) {
+            if (
+              typeof row.key !==
+              "string"
+            ) {
+              continue;
+            }
+
+            databaseKeys.add(
+              row.key
+            );
+
+            databaseItems.set(
+              row.key,
+              {
+                id: row.key,
+              }
+            );
+
+            continue;
+          }
+
+          if (
+            tableName ===
+            "courses"
+          ) {
+            if (
+              typeof row.id !==
+              "string"
+            ) {
+              continue;
+            }
+
+            databaseKeys.add(
+              row.id
+            );
+
+            databaseItems.set(
+              row.id,
+              {
+                id: row.id,
+              }
+            );
+
+            continue;
+          }
+
+          if (
+            typeof row.id !==
+              "string" ||
+            typeof row.course_id !==
+              "string"
+          ) {
+            continue;
+          }
+
+          const key =
+            scopedKey(
+              row.course_id,
+              row.id
+            );
+
+          databaseKeys.add(
+            key
           );
+
+          databaseItems.set(
+            key,
+            {
+              id: row.id,
+              courseId:
+                row.course_id,
+            }
+          );
+        }
+
+        const currentSheetKeys =
+          sheetKeys[
+            tableName
+          ];
 
         let newCount = 0;
         let existingCount = 0;
 
         for (
-          const id of sheetIds
+          const key of
+          currentSheetKeys
         ) {
           if (
-            databaseIds.has(id)
+            databaseKeys.has(
+              key
+            )
           ) {
             existingCount++;
           } else {
@@ -328,67 +784,87 @@ export default {
           }
         }
 
-        const idsToDelete:
-          string[] = [];
+        const itemsToDelete:
+          DeleteItem[] = [];
 
-        for (
-          const id of databaseIds
+        if (
+          tableName !==
+          "shared_ui_text"
         ) {
-          if (
-            !sheetIds.has(id)
+          for (
+            const key of
+            databaseKeys
           ) {
-            idsToDelete.push(
-              id
-            );
+            if (
+              !currentSheetKeys.has(
+                key
+              )
+            ) {
+              const item =
+                databaseItems.get(
+                  key
+                );
+
+              if (item) {
+                itemsToDelete.push(
+                  item
+                );
+              }
+            }
           }
         }
 
-        deleteIds[tableName] =
-          idsToDelete;
+        deleteItems[
+          tableName
+        ] =
+          itemsToDelete;
 
-        result[tableName] = {
+        result[
+          tableName
+        ] = {
           sheet:
             rows.length,
-
           database:
-            databaseIds.size,
-
+            databaseKeys.size,
           new:
             newCount,
-
           existing:
             existingCount,
-
           wouldDelete:
-            idsToDelete.length,
+            itemsToDelete.length,
         };
       }
 
-      /*
-       * 2. DRY RUN
-       */
       if (apply !== true) {
         return Response.json({
           ok: true,
           dryRun: true,
-          courseId,
-          tables: result,
+          appId,
+          courseIds:
+            Array.from(
+              managedCourseIds
+            ),
+          tables:
+            result,
         });
       }
 
-      /*
-       * 3. RADERINGSSKYDD
-       */
       const totalDeletes =
         TABLE_NAMES.reduce(
-          (sum, tableName) =>
+          (
+            sum,
+            tableName
+          ) =>
             sum +
-            result[tableName]
-              .wouldDelete,
+            result[
+              tableName
+            ].wouldDelete,
           0
         );
 
-      if (totalDeletes > 0) {
+      if (
+        totalDeletes > 0
+      ) {
         if (
           !expectedDeleteCounts ||
           typeof expectedDeleteCounts !==
@@ -398,14 +874,16 @@ export default {
             {
               error:
                 "Delete confirmation required",
-              tables: result,
+              tables:
+                result,
             },
             { status: 409 }
           );
         }
 
         for (
-          const tableName of TABLE_NAMES
+          const tableName of
+          TABLE_NAMES
         ) {
           const expected =
             expectedDeleteCounts[
@@ -413,8 +891,9 @@ export default {
             ];
 
           const actual =
-            result[tableName]
-              .wouldDelete;
+            result[
+              tableName
+            ].wouldDelete;
 
           if (
             expected !== actual
@@ -434,24 +913,25 @@ export default {
         }
       }
 
-      /*
-       * 4. UPSERT
-       */
       for (
-        const tableName of TABLE_NAMES
+        const tableName of
+        TABLE_NAMES
       ) {
         const rows =
           tables[tableName];
 
         for (
           let start = 0;
-          start < rows.length;
-          start += BATCH_SIZE
+          start <
+          rows.length;
+          start +=
+            BATCH_SIZE
         ) {
           const batch =
             rows.slice(
               start,
-              start + BATCH_SIZE
+              start +
+                BATCH_SIZE
             );
 
           let error;
@@ -475,10 +955,31 @@ export default {
 
             error =
               response.error;
+          } else if (
+            tableName ===
+            "courses"
+          ) {
+            const response =
+              await ctx.supabaseAdmin
+                .from(
+                  "courses"
+                )
+                .upsert(
+                  batch,
+                  {
+                    onConflict:
+                      "id",
+                  }
+                );
+
+            error =
+              response.error;
           } else {
             const response =
               await ctx.supabaseAdmin
-                .from(tableName)
+                .from(
+                  tableName
+                )
                 .upsert(
                   batch,
                   {
@@ -492,7 +993,9 @@ export default {
           }
 
           if (error) {
-            console.error(error);
+            console.error(
+              error
+            );
 
             return Response.json(
               {
@@ -509,50 +1012,145 @@ export default {
         }
       }
 
-      /*
-       * 5. DELETE MISSING
-       */
       for (
-        const tableName of DELETE_ORDER
+        const tableName of
+        DELETE_ORDER
       ) {
-        const ids =
-          deleteIds[tableName] ??
-          [];
+        const items =
+          deleteItems[
+            tableName
+          ] ?? [];
 
-        for (
-          let start = 0;
-          start < ids.length;
-          start += BATCH_SIZE
+        if (
+          tableName ===
+          "shared_ui_text"
         ) {
-          const batch =
-            ids.slice(
-              start,
-              start + BATCH_SIZE
+          continue;
+        }
+
+        if (
+          tableName ===
+          "courses"
+        ) {
+          const ids =
+            items.map(
+              (item) =>
+                item.id
             );
 
-          let error;
-
-          if (
-            tableName ===
-            "shared_ui_text"
+          for (
+            let start = 0;
+            start <
+            ids.length;
+            start +=
+              BATCH_SIZE
           ) {
+            const batch =
+              ids.slice(
+                start,
+                start +
+                  BATCH_SIZE
+              );
+
             const response =
               await ctx.supabaseAdmin
                 .from(
-                  "shared_ui_text"
+                  "courses"
                 )
                 .delete()
+                .eq(
+                  "app_id",
+                  appId
+                )
                 .in(
-                  "key",
+                  "id",
                   batch
                 );
 
-            error =
-              response.error;
-          } else {
+            if (
+              response.error
+            ) {
+              console.error(
+                response.error
+              );
+
+              return Response.json(
+                {
+                  error:
+                    "Delete failed for courses",
+                  details:
+                    response
+                      .error
+                      .message,
+                  batchStart:
+                    start,
+                },
+                {
+                  status: 500,
+                }
+              );
+            }
+          }
+
+          continue;
+        }
+
+        const grouped =
+          new Map<
+            string,
+            string[]
+          >();
+
+        for (
+          const item of
+          items
+        ) {
+          if (
+            !item.courseId
+          ) {
+            continue;
+          }
+
+          const current =
+            grouped.get(
+              item.courseId
+            ) ?? [];
+
+          current.push(
+            item.id
+          );
+
+          grouped.set(
+            item.courseId,
+            current
+          );
+        }
+
+        for (
+          const [
+            courseId,
+            ids,
+          ] of grouped
+        ) {
+          for (
+            let start = 0;
+            start <
+            ids.length;
+            start +=
+              BATCH_SIZE
+          ) {
+            const batch =
+              ids.slice(
+                start,
+                start +
+                  BATCH_SIZE
+              );
+
             const response =
               await ctx.supabaseAdmin
-                .from(tableName)
+                .from(
+                  tableName
+                )
                 .delete()
                 .eq(
                   "course_id",
@@ -563,24 +1161,30 @@ export default {
                   batch
                 );
 
-            error =
-              response.error;
-          }
+            if (
+              response.error
+            ) {
+              console.error(
+                response.error
+              );
 
-          if (error) {
-            console.error(error);
-
-            return Response.json(
-              {
-                error:
-                  `Delete failed for ${tableName}`,
-                details:
-                  error.message,
-                batchStart:
-                  start,
-              },
-              { status: 500 }
-            );
+              return Response.json(
+                {
+                  error:
+                    `Delete failed for ${tableName}`,
+                  details:
+                    response
+                      .error
+                      .message,
+                  courseId,
+                  batchStart:
+                    start,
+                },
+                {
+                  status: 500,
+                }
+              );
+            }
           }
         }
       }
@@ -588,10 +1192,15 @@ export default {
       return Response.json({
         ok: true,
         dryRun: false,
-        courseId,
-        tables: result,
+        appId,
+        courseIds:
+          Array.from(
+            managedCourseIds
+          ),
+        tables:
+          result,
         message:
-          "Full sync completed.",
+          "Full multi-course sync completed.",
       });
     }
   ),
