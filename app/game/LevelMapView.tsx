@@ -263,6 +263,21 @@ const buoyTilt =
     new Animated.Value(0.5)
   ).current;
 
+
+const waveOpacity =
+  React.useRef(
+    new Animated.Value(0)
+  ).current;
+
+const hasStartedScrolling =
+  React.useRef(false);
+
+  const previousScrollSpeed =
+  React.useRef(0);
+
+const peakScrollSpeed =
+  React.useRef(0);
+
 const waveProgressValue =
   React.useRef(0.5);
 
@@ -282,33 +297,104 @@ React.useEffect(() => {
 
       lastScrollY.current = value;
 
-      if (Math.abs(delta) < 0.5) {
+      const scrollSpeed =
+        Math.abs(delta);
+
+      peakScrollSpeed.current =
+        Math.max(
+          peakScrollSpeed.current,
+          scrollSpeed
+        );
+
+      const isSlowingDown =
+        scrollSpeed <
+        previousScrollSpeed.current;
+
+      if (
+        hasStartedScrolling.current &&
+        isSlowingDown &&
+        peakScrollSpeed.current > 1
+      ) {
+        const fadeStartSpeed =
+          peakScrollSpeed.current * 0.7;
+
+        if (
+          scrollSpeed <
+          fadeStartSpeed
+        ) {
+          const opacity =
+            Math.max(
+              0,
+              Math.min(
+                1,
+                scrollSpeed /
+                  fadeStartSpeed
+              )
+            );
+
+          waveOpacity.stopAnimation();
+
+          waveOpacity.setValue(
+            opacity
+          );
+        }
+      }
+
+      previousScrollSpeed.current =
+        scrollSpeed;
+
+      if (
+        Math.abs(delta) < 0.5
+      ) {
         return;
       }
 
+      if (
+        !hasStartedScrolling.current
+      ) {
+        hasStartedScrolling.current =
+          true;
+
+        Animated.timing(
+          waveOpacity,
+          {
+            toValue: 1,
+            duration: 250,
+            useNativeDriver: true,
+          }
+        ).start();
+      }
 
       const nextWaveProgress =
-  ((waveProgressValue.current +
-    delta / 160) %
-    1 +
-    1) %
-  1;
+        ((waveProgressValue.current +
+          delta / 160) %
+          1 +
+          1) %
+        1;
 
-waveProgressValue.current =
-  nextWaveProgress;
+      waveProgressValue.current =
+        nextWaveProgress;
 
-waveProgress.setValue(
-  nextWaveProgress
-);
-
-      const tilt = Math.max(
-        -1,
-        Math.min(1, delta / 12)
+      waveProgress.setValue(
+        nextWaveProgress
       );
 
-      buoyTilt.setValue(tilt);
+      const tilt =
+        Math.max(
+          -1,
+          Math.min(
+            1,
+            delta / 12
+          )
+        );
 
-      if (settleTimer.current) {
+      buoyTilt.setValue(
+        tilt
+      );
+
+      if (
+        settleTimer.current
+      ) {
         clearTimeout(
           settleTimer.current
         );
@@ -326,7 +412,19 @@ waveProgress.setValue(
               useNativeDriver: true,
             }
           ).start();
-        }, 40);
+
+          hasStartedScrolling.current =
+            false;
+
+          previousScrollSpeed.current =
+            0;
+
+          peakScrollSpeed.current =
+            0;
+
+          waveOpacity.stopAnimation();
+          waveOpacity.setValue(0);
+        }, 150);
     });
 
   return () => {
@@ -334,13 +432,20 @@ waveProgress.setValue(
       listenerId
     );
 
-    if (settleTimer.current) {
+    if (
+      settleTimer.current
+    ) {
       clearTimeout(
         settleTimer.current
       );
     }
   };
-}, [scrollY, buoyTilt]);
+}, [
+  scrollY,
+  buoyTilt,
+  waveOpacity,
+  waveProgress,
+]);
 
 const buoyRotate =
   buoyTilt.interpolate({
@@ -668,6 +773,7 @@ const clampedScrollY =
   left: -20,
   top: -80,
   zIndex: 31,
+  opacity: waveOpacity,
         }}
       />
     ) : null}
