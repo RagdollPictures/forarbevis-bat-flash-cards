@@ -423,7 +423,15 @@ React.useEffect(() => {
             0;
 
           waveOpacity.stopAnimation();
-          waveOpacity.setValue(0);
+
+          Animated.timing(
+  waveOpacity,
+  {
+    toValue: 0,
+    duration: 180,
+    useNativeDriver: true,
+  }
+).start();
         }, 150);
     });
 
