@@ -21,6 +21,8 @@ export default function QuizFinished({
   unlockedBonusLevel = null,
   isBonusQuiz = false,
   elapsedSeconds = 0,
+  bonusBestTime = null,
+  isNewBonusBest = false,
   onTryAgain,
 }: {
   title: string;
@@ -29,8 +31,10 @@ export default function QuizFinished({
   isChapterQuiz?: boolean;
   nextLevelId?: string | null;
   unlockedBonusLevel?: CourseBonusLevel | null;
-  isBonusQuiz?: boolean;
+   isBonusQuiz?: boolean;
   elapsedSeconds?: number;
+  bonusBestTime?: number | null;
+  isNewBonusBest?: boolean;
   onTryAgain?: () => void;
 }) {
   const hasBonusUnlock =
@@ -53,6 +57,21 @@ export default function QuizFinished({
   )
     .toString()
     .padStart(2, "0")}`;
+    
+  
+    const bestTimeText =
+  bonusBestTime === null
+    ? null
+    : `${Math.floor(
+        bonusBestTime / 60
+      )
+        .toString()
+        .padStart(2, "0")}:${(
+        bonusBestTime % 60
+      )
+        .toString()
+        .padStart(2, "0")}`;
+
 
   const goNext = async () => {
     await onContinue?.();
@@ -89,12 +108,10 @@ export default function QuizFinished({
       ? "Ny bonusbana"
       : "Snyggt jobbat!";
 
-  const message =
-    isBonusQuiz
-      ? `Din tid: ${timeText}`
-      : hasBonusUnlock
-        ? `${unlockedBonusLevel.title} är upplåst!`
-        : null;
+ const message =
+  hasBonusUnlock
+    ? `${unlockedBonusLevel.title} är upplåst!`
+    : null;
 
   const buttonText =
     isBonusQuiz
@@ -152,6 +169,41 @@ export default function QuizFinished({
             {message}
           </Text>
         ) : null}
+
+
+{isBonusQuiz ? (
+  <View
+    style={styles.timeResult}
+  >
+    {isNewBonusBest ? (
+      <Text
+        style={
+          styles.newBestText
+        }
+      >
+        Nytt personbästa!
+      </Text>
+    ) : null}
+
+    <Text
+      style={styles.timeText}
+    >
+      Din tid: {timeText}
+    </Text>
+
+    {bestTimeText ? (
+      <Text
+        style={
+          styles.bestTimeText
+        }
+      >
+        Personbästa:{" "}
+        {bestTimeText}
+      </Text>
+    ) : null}
+  </View>
+) : null}
+        
       </View>
 
       <View style={styles.actions}>
@@ -259,6 +311,35 @@ const styles =
       marginTop: 10,
       maxWidth: 320,
     },
+
+    timeResult: {
+  alignItems: "center",
+  marginTop: 18,
+},
+
+newBestText: {
+  color:
+    colorSchemeGui.lime_500,
+  fontSize: 18,
+  fontWeight: "900",
+  marginBottom: 8,
+},
+
+timeText: {
+  color:
+    colorSchemeGui.slate_200,
+  fontSize: 22,
+  fontWeight: "900",
+},
+
+bestTimeText: {
+  color:
+    colorSchemeGui.slate_200,
+  fontSize: 16,
+  fontWeight: "700",
+  opacity: 0.75,
+  marginTop: 6,
+},
 
     actions: {
       marginTop: 32,

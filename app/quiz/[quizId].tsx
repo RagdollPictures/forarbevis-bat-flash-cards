@@ -35,6 +35,10 @@ import {
 } from "../../constants/flashcards/quizProgress";
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
+import {
+  getBonusBestTime,
+  saveBonusBestTime,
+} from "./storage/bonusBestTime";
 
 import { FontAwesome } from "@expo/vector-icons";
 import { useStudyMode } from "../../lib/StudyModeProvider";
@@ -244,6 +248,18 @@ const [
   setElapsedSeconds,
 ] = useState(0);
 
+const [
+  bonusBestTime,
+  setBonusBestTime,
+] = useState<number | null>(
+  null
+);
+
+const [
+  isNewBonusBest,
+  setIsNewBonusBest,
+] = useState(false);
+
 useEffect(() => {
   bonusStartedAt.current =
     isBonusQuiz
@@ -252,6 +268,26 @@ useEffect(() => {
 
   setElapsedSeconds(0);
 }, [
+  id,
+  isBonusQuiz,
+]);
+
+useEffect(() => {
+  setIsNewBonusBest(false);
+
+  if (!isBonusQuiz) {
+    setBonusBestTime(null);
+    return;
+  }
+
+  getBonusBestTime(
+    courseId,
+    id
+  ).then((bestTime) => {
+    setBonusBestTime(bestTime);
+  });
+}, [
+  courseId,
   id,
   isBonusQuiz,
 ]);
@@ -294,6 +330,50 @@ useEffect(() => {
     clearInterval(timer);
   };
 }, [
+  id,
+  isBonusQuiz,
+  s.isFinished,
+]);
+
+useEffect(() => {
+  if (
+    !isBonusQuiz ||
+    !s.isFinished ||
+    bonusStartedAt.current === null
+  ) {
+    return;
+  }
+
+  const finalTime =
+    Math.floor(
+      (
+        Date.now() -
+        bonusStartedAt.current
+      ) / 1000
+    );
+
+  setElapsedSeconds(finalTime);
+
+  saveBonusBestTime(
+    courseId,
+    id,
+    finalTime
+  ).then(
+    ({
+      bestTime,
+      isNewBest,
+    }) => {
+      setBonusBestTime(
+        bestTime
+      );
+
+      setIsNewBonusBest(
+        isNewBest
+      );
+    }
+  );
+}, [
+  courseId,
   id,
   isBonusQuiz,
   s.isFinished,
@@ -688,6 +768,12 @@ isBonusQuiz={
 elapsedSeconds={
   elapsedSeconds
 }
+bonusBestTime={
+  bonusBestTime
+}
+isNewBonusBest={
+  isNewBonusBest
+}
 onTryAgain={
   restartBonusQuiz
 }
@@ -774,7 +860,6 @@ onTryAgain={
     style={{
       alignSelf: "center",
       marginTop: 14,
-      marginBottom: 18,
       paddingHorizontal: 16,
       paddingVertical: 8,
       borderRadius: 14,

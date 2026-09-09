@@ -133,10 +133,12 @@ export function useQuizSession({
   quizId,
   deck,
   studyMode,
+  courseId,
 }: {
   quizId: string;
   deck: FlashCard[];
   studyMode: StudyMode;
+  courseId: string;
 }) {
   const [
     queue,
@@ -393,26 +395,19 @@ export function useQuizSession({
         | null
       )[];
 
-   saveQuizProgress(
+ saveQuizProgress(
   {
     quizId: String(quizId),
-
     progress: allCorrect,
-
     score: total,
-
     total,
-
-    updatedAt:
-      Date.now(),
-
+    updatedAt: Date.now(),
     firstTryCorrect:
       firstTryCorrectCount,
-
-    firstTryTotal:
-      total,
+    firstTryTotal: total,
   },
-  studyMode
+  studyMode,
+  courseId
 );
   }, [
     quizId,
@@ -420,6 +415,7 @@ export function useQuizSession({
     total,
     firstTryCorrectCount,
     studyMode,
+    courseId,
   ]);
 
   const finishIfComplete = (
