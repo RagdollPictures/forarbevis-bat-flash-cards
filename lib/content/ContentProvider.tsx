@@ -9,6 +9,7 @@ import type { CourseContent } from "./courseContent";
 import { loadCourseContentCache } from "./courseContentCache";
 import type { CourseDecks } from "./loadCourseFromSupabase";
 import type { CourseStructure } from "./loadCourseStructureFromSupabase";
+import type { FinalExam } from "./loadFinalExamsFromSupabase";
 import type { SharedUiText } from "./loadSharedUiTextFromSupabase";
 import { syncFullCourseContent } from "./syncCourseContent";
 
@@ -26,6 +27,7 @@ type ContentContextValue = {
   sharedUiText: SharedUiText;
   isReady: boolean;
   isSyncing: boolean;
+  finalExams: FinalExam[];
 };
 
 const ContentContext =
@@ -57,6 +59,11 @@ export function ContentProvider({
 
   const [isSyncing, setIsSyncing] =
     useState(false);
+    
+    const [
+  finalExams,
+  setFinalExams,
+] = useState<FinalExam[]>([]);
 
   useEffect(() => {
     let cancelled = false;
@@ -80,6 +87,12 @@ export function ContentProvider({
           cached.sharedUiText ?? {}
         );
 
+
+
+        setFinalExams(
+  cached.finalExams ?? []
+);
+
         setIsReady(true);
       }
 
@@ -90,6 +103,8 @@ export function ContentProvider({
           await syncFullCourseContent(
             courseId
           );
+
+       
 
         if (cancelled) return;
 
@@ -102,6 +117,9 @@ export function ContentProvider({
         setSharedUiText(
           synced.sharedUiText
         );
+        setFinalExams(
+  synced.finalExams
+);
 
         setIsReady(true);
       } catch (error) {
@@ -130,12 +148,13 @@ export function ContentProvider({
   return (
     <ContentContext.Provider
       value={{
-        courseId,
-        decks,
-        structure,
-        sharedUiText,
-        isReady,
-        isSyncing,
+         courseId,
+  decks,
+  structure,
+  sharedUiText,
+  finalExams,
+  isReady,
+  isSyncing,
       }}
     >
       {children}

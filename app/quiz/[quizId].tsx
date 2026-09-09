@@ -49,6 +49,7 @@ export default function QuizScreen() {
   decks,
   structure,
   courseId,
+  finalExams,
 } = useContent();
 const {
   levelIds,
@@ -65,16 +66,45 @@ const {
       : "";
 
 
-const resolved = useMemo(
-  () =>
-   getQuizByIdFromStructure({
+const resolved = useMemo(() => {
+  const quiz =
+    getQuizByIdFromStructure({
+      structure,
+      quizId: id,
+      sourceId: course.sourceId,
+      courseId,
+    });
+
+  if (quiz) {
+    return quiz;
+  }
+
+  const finalExam =
+    finalExams.find(
+      (exam) => exam.id === id
+    );
+
+  if (!finalExam) {
+    return null;
+  }
+
+  return {
+    id: finalExam.id,
+    title: finalExam.title,
+    subtitle:
+      finalExam.subtitle ??
+      undefined,
+    sourceId: course.sourceId,
+    courseId,
+    deckId: finalExam.deckId,
+    chapterId: undefined,
+  };
+}, [
+  id,
   structure,
-  quizId: id,
-  sourceId: course.sourceId,
   courseId,
-}),
-  [id, structure, courseId]
-);
+  finalExams,
+]);
 
 
  const isChapterQuiz =

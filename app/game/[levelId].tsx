@@ -67,6 +67,9 @@ import {
 
 import { FontAwesome } from "@expo/vector-icons";
 
+
+import FinalExamMenu from "./FinalExamMenu";
+
 export default function QuizMenuScreen() {
   const { isReady } = useCourseLevelConfig();
 
@@ -84,6 +87,7 @@ function QuizMenuScreenContent() {
   const {
   structure,
   courseId,
+  finalExams,
 } = useContent();
   
 const { studyMode } =
@@ -116,6 +120,11 @@ const { studyMode } =
 ] = useState<string | null>(
   null
 );
+
+const [
+  finalExamMenuVisible,
+  setFinalExamMenuVisible,
+] = useState(false);
 
   const scrollX = useRef(
     new Animated.Value(0)
@@ -739,7 +748,9 @@ const unlockedBonusIds =
 
 
 <Pressable
-  onPress={() => {}}
+ onPress={() =>
+  setFinalExamMenuVisible(true)
+}
   style={{
     width: 64,
     height: 64,
@@ -1066,6 +1077,21 @@ const unlockedBonusIds =
           />
         </Animated.ScrollView>
       </View>
+
+      <FinalExamMenu
+  visible={finalExamMenuVisible}
+  exams={finalExams}
+  onClose={() =>
+    setFinalExamMenuVisible(false)
+  }
+ onSelect={(exam) => {
+  setFinalExamMenuVisible(false);
+
+  router.push(
+    `/quiz/${exam.id}`
+  );
+}}
+/>
 
      
     </SafeAreaView>
