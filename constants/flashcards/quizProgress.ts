@@ -23,25 +23,24 @@ type ProgressMap = Record<
   SavedQuizProgress
 >;
 
-const GUIDED_KEY =
-  `${course.id}_quiz_progress_v1`;
-
-const FREE_KEY =
-  `${course.id}_quiz_progress_free_v1`;
-
 function getKey(
-  mode: StudyMode
+  mode: StudyMode,
+  courseId: string
 ) {
   return mode === "free"
-    ? FREE_KEY
-    : GUIDED_KEY;
+    ? `${courseId}_quiz_progress_free_v1`
+    : `${courseId}_quiz_progress_v1`;
 }
 
 export async function saveQuizProgress(
   payload: SavedQuizProgress,
-  mode: StudyMode = "guided"
+  mode: StudyMode = "guided",
+  courseId: string = course.id
 ) {
-  const key = getKey(mode);
+  const key = getKey(
+    mode,
+    courseId
+  );
 
   const raw =
     await AsyncStorage.getItem(key);
@@ -60,11 +59,15 @@ export async function saveQuizProgress(
 
 export async function getQuizProgress(
   quizId: string,
-  mode: StudyMode = "guided"
+  mode: StudyMode = "guided",
+  courseId: string = course.id
 ) {
   const raw =
     await AsyncStorage.getItem(
-      getKey(mode)
+      getKey(
+        mode,
+        courseId
+      )
     );
 
   const map: ProgressMap =
@@ -74,11 +77,15 @@ export async function getQuizProgress(
 }
 
 export async function getAllQuizProgress(
-  mode: StudyMode = "guided"
+  mode: StudyMode = "guided",
+  courseId: string = course.id
 ) {
   const raw =
     await AsyncStorage.getItem(
-      getKey(mode)
+      getKey(
+        mode,
+        courseId
+      )
     );
 
   const map: ProgressMap =
@@ -88,17 +95,35 @@ export async function getAllQuizProgress(
 }
 
 export async function clearAllQuizProgress(
-  mode: StudyMode = "guided"
+  mode: StudyMode = "guided",
+  courseId: string = course.id
 ) {
   await AsyncStorage.removeItem(
-    getKey(mode)
+    getKey(
+      mode,
+      courseId
+    )
   );
 }
 
-export async function initializeFreeProgressFromGuided() {
+export async function initializeFreeProgressFromGuided(
+  courseId: string = course.id
+) {
+  const freeKey =
+    getKey(
+      "free",
+      courseId
+    );
+
+  const guidedKey =
+    getKey(
+      "guided",
+      courseId
+    );
+
   const existingFree =
     await AsyncStorage.getItem(
-      FREE_KEY
+      freeKey
     );
 
   if (existingFree !== null) {
@@ -107,11 +132,11 @@ export async function initializeFreeProgressFromGuided() {
 
   const guided =
     await AsyncStorage.getItem(
-      GUIDED_KEY
+      guidedKey
     );
 
   await AsyncStorage.setItem(
-    FREE_KEY,
+    freeKey,
     guided ?? "{}"
   );
 }

@@ -1,10 +1,10 @@
 import type {
-    ConfigContext,
-    ExpoConfig,
+  ConfigContext,
+  ExpoConfig,
 } from "expo/config";
 
 import {
-    appVariants,
+  appVariants,
 } from "./config/appVariants";
 
 export default ({
@@ -31,6 +31,8 @@ export default ({
 
   const variant =
     appVariants[variantName];
+
+    
 
   return {
     ...config,
@@ -112,6 +114,9 @@ export default ({
 
       appVariant:
         variantName,
+
+       appId:
+    variant.appId,  
 
       course:
         variant.course,

@@ -79,7 +79,10 @@ function QuizMenuScreenContent() {
 
   const { width: windowWidth } = useWindowDimensions();
 
-  const { structure } = useContent();
+  const {
+  structure,
+  courseId,
+} = useContent();
   
 const { studyMode } =
   useStudyMode();
@@ -169,7 +172,7 @@ const safeBonusLevels =
           sourceId:
             course.sourceId,
           courseId:
-            course.id,
+            courseId,
         }
       ),
     [
@@ -187,7 +190,7 @@ const safeBonusLevels =
           sourceId:
             course.sourceId,
           courseId:
-            course.id,
+            courseId,
         }
       ) as QuizItem[],
     [structure]
@@ -292,7 +295,7 @@ const safeBonusLevels =
     (async () => {
       const saved =
         await loadFreeModeLastNode(
-          course.id,
+          courseId,
           levelId
         );
 
@@ -497,7 +500,7 @@ const unlockedBonusIds =
         studyMode === "free"
       ) {
         await saveFreeModeLastNode(
-          course.id,
+          courseId,
           levelId,
           node.quizId
         );
@@ -537,7 +540,7 @@ const unlockedBonusIds =
         studyMode === "free"
       ) {
         await saveFreeModeLastNode(
-          course.id,
+          courseId,
           levelId,
           node.quizId
         );

@@ -1,74 +1,121 @@
+import Constants from "expo-constants";
 import { Stack } from "expo-router";
 import React from "react";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+import { CourseSelectionScreen } from "../components/CourseSelectionScreen";
 import { course } from "../content/course";
 import { ContentProvider } from "../lib/content/ContentProvider";
+import {
+  CourseProvider,
+  useCourse,
+} from "../lib/CourseProvider";
 import { StudyModeProvider } from "../lib/StudyModeProvider";
 import { ScreenTransitionProvider } from "./transitions/ScreenTransitionProvider";
+
+const appId =
+  Constants.expoConfig?.extra?.appId;
+
+if (
+  typeof appId !== "string" ||
+  !appId
+) {
+  throw new Error(
+    "Ingen appId-konfiguration hittades i Expo config."
+  );
+}
+
+function CourseBoundLayout() {
+  const {
+    selectedCourseId,
+    isReady,
+    needsCourseSelection,
+  } = useCourse();
+
+  
+  if (!isReady) {
+    return null;
+  }
+
+  
+  if (needsCourseSelection) {
+    return <CourseSelectionScreen />;
+  }
+
+  return (
+    <ContentProvider
+      courseId={selectedCourseId}
+    >
+      <StudyModeProvider
+        courseId={selectedCourseId}
+      >
+        <ScreenTransitionProvider>
+          <Stack
+            screenOptions={{
+              headerShown: false,
+            }}
+            initialRouteName="(tabs)"
+          >
+            <Stack.Screen
+              name="(tabs)"
+              options={{
+                headerShown: false,
+              }}
+            />
+
+            <Stack.Screen
+              name="quiz/[quizId]"
+              options={{
+                headerShown: false,
+                animation:
+                  "slide_from_bottom",
+              }}
+            />
+
+            <Stack.Screen
+              name="read/[deckId]"
+              options={{
+                headerShown: false,
+                animation:
+                  "slide_from_bottom",
+              }}
+            />
+
+            <Stack.Screen
+              name="game/chapters"
+              options={{
+                headerShown: false,
+                animation:
+                  "slide_from_bottom",
+              }}
+            />
+
+            <Stack.Screen
+              name="game/settings"
+              options={{
+                headerShown: false,
+                animation:
+                  "slide_from_right",
+              }}
+            />
+          </Stack>
+        </ScreenTransitionProvider>
+      </StudyModeProvider>
+    </ContentProvider>
+  );
+}
 
 export default function RootLayout() {
   return (
     <SafeAreaProvider>
-      <ContentProvider
-        courseId={course.id}
+      <CourseProvider
+        appId={appId}
+        fallbackCourseId={
+          course.id
+        }
       >
-        <StudyModeProvider
-          courseId={course.id}
-        >
-          <ScreenTransitionProvider>
-            <Stack
-              screenOptions={{
-                headerShown: false,
-              }}
-              initialRouteName="(tabs)"
-            >
-              <Stack.Screen
-                name="(tabs)"
-                options={{
-                  headerShown: false,
-                }}
-              />
-
-              <Stack.Screen
-                name="quiz/[quizId]"
-                options={{
-                  headerShown: false,
-                  animation:
-                    "slide_from_bottom",
-                }}
-              />
-
-              <Stack.Screen
-                name="read/[deckId]"
-                options={{
-                  headerShown: false,
-                  animation:
-                    "slide_from_bottom",
-                }}
-              />
-
-              <Stack.Screen
-                name="game/chapters"
-                options={{
-                  headerShown: false,
-                  animation:
-                    "slide_from_bottom",
-                }}
-              />
-
-              <Stack.Screen
-                name="game/settings"
-                options={{
-                  headerShown: false,
-                  animation:
-                    "slide_from_right",
-                }}
-              />
-            </Stack>
-          </ScreenTransitionProvider>
-        </StudyModeProvider>
-      </ContentProvider>
+        <CourseBoundLayout />
+      </CourseProvider>
     </SafeAreaProvider>
   );
 }

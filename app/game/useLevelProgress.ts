@@ -1,24 +1,21 @@
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useFocusEffect } from "expo-router";
 import { useCallback, useState } from "react";
 
 import {
+  clearAllQuizProgress,
   getAllQuizProgress,
   saveQuizProgress,
   type SavedQuizProgress,
 } from "../../constants/flashcards/quizProgress";
-
 import { useContent } from "../../lib/content/ContentProvider";
-
+import { useStudyMode } from "../../lib/StudyModeProvider";
 import {
+  clearClearedSet,
   loadClearedSet,
   saveClearedSet,
   UNLOCK_PERCENT,
 } from "../quiz/storage/cleared";
-
 import { calcPercent } from "../quiz/utils/progress";
-
-import { useStudyMode } from "../../lib/StudyModeProvider";
 import type { QuizItem } from "./levelScreenTypes";
 
 export function useLevelProgress({
@@ -26,16 +23,22 @@ export function useLevelProgress({
 }: {
   quizzes: QuizItem[];
 }) {
-  const { structure } = useContent();
+  const {
+    structure,
+    courseId,
+  } = useContent();
 
   const { studyMode } =
-  useStudyMode();
+    useStudyMode();
 
   const [
     progressByQuizId,
     setProgressByQuizId,
   ] = useState<
-    Record<string, SavedQuizProgress>
+    Record<
+      string,
+      SavedQuizProgress
+    >
   >({});
 
   const [
@@ -46,85 +49,112 @@ export function useLevelProgress({
   );
 
   useFocusEffect(
-  useCallback(() => {
-    let alive = true;
+    useCallback(() => {
+      let alive = true;
 
-    (async () => {
-      const [
-        map,
-        currentCleared,
-      ] = await Promise.all([
-        getAllQuizProgress(
-  studyMode
-),
-        loadClearedSet(),
-      ]);
+      (async () => {
+        const [
+          map,
+          currentCleared,
+        ] = await Promise.all([
+          getAllQuizProgress(
+            studyMode,
+            courseId
+          ),
+          loadClearedSet(
+            courseId
+          ),
+        ]);
 
-      let changed = false;
+        let changed = false;
 
-     if (studyMode === "guided") {
-  for (const q of quizzes) {
-    const saved =
-      map[q.id] ?? null;
+        if (
+          studyMode ===
+          "guided"
+        ) {
+          for (
+            const q of quizzes
+          ) {
+            const saved =
+              map[q.id] ?? null;
 
-    const unlockPercent =
-      calcPercent(saved);
+            const unlockPercent =
+              calcPercent(saved);
 
-    if (
-      unlockPercent >=
-        UNLOCK_PERCENT &&
-      !currentCleared.has(q.id)
-    ) {
-      currentCleared.add(
-        q.id
-      );
-      changed = true;
-    }
-  }
-}
+            if (
+              unlockPercent >=
+                UNLOCK_PERCENT &&
+              !currentCleared.has(
+                q.id
+              )
+            ) {
+              currentCleared.add(
+                q.id
+              );
 
-      if (!alive) {
-        return;
-      }
+              changed = true;
+            }
+          }
+        }
 
-      if (changed) {
-        await saveClearedSet(
+        if (!alive) {
+          return;
+        }
+
+        if (changed) {
+          await saveClearedSet(
+            currentCleared,
+            courseId
+          );
+        }
+
+        if (!alive) {
+          return;
+        }
+
+        setProgressByQuizId(
+          map
+        );
+
+        setClearedIds(
           currentCleared
         );
-      }
+      })();
 
-      if (!alive) {
-        return;
-      }
-
-      setProgressByQuizId(map);
-      setClearedIds(
-        currentCleared
-      );
-    })();
-
-    return () => {
-      alive = false;
-    };
-  }, [
-  quizzes,
-  studyMode,
-])
-);
-
-
-
+      return () => {
+        alive = false;
+      };
+    }, [
+      quizzes,
+      studyMode,
+      courseId,
+    ])
+  );
 
   const resetAllProgress =
     useCallback(async () => {
-      await AsyncStorage.clear();
+      await Promise.all([
+        clearAllQuizProgress(
+          "guided",
+          courseId
+        ),
+        clearAllQuizProgress(
+          "free",
+          courseId
+        ),
+        clearClearedSet(
+          courseId
+        ),
+      ]);
 
       setClearedIds(
         new Set()
       );
 
-      setProgressByQuizId({});
-    }, []);
+      setProgressByQuizId(
+        {}
+      );
+    }, [courseId]);
 
   const devCheatNextLockedTo100 =
     useCallback(
@@ -137,23 +167,28 @@ export function useLevelProgress({
           return;
         }
 
-       const nextQuiz =
-  quizzes.find(
-    (quiz) =>
-      unlockedIds.has(quiz.id) &&
-      !clearedIds.has(quiz.id)
-  );
+        const nextQuiz =
+          quizzes.find(
+            (quiz) =>
+              unlockedIds.has(
+                quiz.id
+              ) &&
+              !clearedIds.has(
+                quiz.id
+              )
+          );
 
-if (!nextQuiz) {
-  return;
-}
+        if (!nextQuiz) {
+          return;
+        }
 
-const currentId =
-  nextQuiz.id;
+        const currentId =
+          nextQuiz.id;
 
         const fake: SavedQuizProgress =
           {
-            quizId: currentId,
+            quizId:
+              currentId,
             progress: [
               "correct",
             ],
@@ -166,7 +201,9 @@ const currentId =
           };
 
         await saveQuizProgress(
-          fake
+          fake,
+          studyMode,
+          courseId
         );
 
         setProgressByQuizId(
@@ -178,14 +215,17 @@ const currentId =
         );
 
         const nextCleared =
-          new Set(clearedIds);
+          new Set(
+            clearedIds
+          );
 
         nextCleared.add(
           currentId
         );
 
         await saveClearedSet(
-          nextCleared
+          nextCleared,
+          courseId
         );
 
         setClearedIds(
@@ -195,6 +235,8 @@ const currentId =
       [
         quizzes,
         clearedIds,
+        studyMode,
+        courseId,
       ]
     );
 
@@ -220,7 +262,8 @@ const currentId =
 
       const bonusQuizIds =
         structure.bonusLevels.map(
-          (bonus) => bonus.id
+          (bonus) =>
+            bonus.id
         );
 
       const uniqueQuizIds =
@@ -241,7 +284,9 @@ const currentId =
       > = {};
 
       const nextCleared =
-        new Set(clearedIds);
+        new Set(
+          clearedIds
+        );
 
       for (
         const quizId of
@@ -269,12 +314,15 @@ const currentId =
         );
 
         await saveQuizProgress(
-          fake
+          fake,
+          "guided",
+          courseId
         );
       }
 
       await saveClearedSet(
-        nextCleared
+        nextCleared,
+        courseId
       );
 
       setProgressByQuizId(
@@ -290,6 +338,7 @@ const currentId =
     }, [
       clearedIds,
       structure,
+      courseId,
     ]);
 
   return {

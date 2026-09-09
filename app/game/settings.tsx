@@ -17,9 +17,10 @@ import { useStudyMode } from "../../lib/StudyModeProvider";
 import { useCourseLevelConfig } from "./useCourseLevelConfig";
 
 export default function SettingsScreen() {
-  const {
-    sharedUiText,
-  } = useContent();
+ const {
+  sharedUiText,
+  courseId,
+} = useContent();
 
   const {
     studyMode,
@@ -34,7 +35,9 @@ export default function SettingsScreen() {
       return;
     }
 
-    await initializeFreeProgressFromGuided();
+    await initializeFreeProgressFromGuided(
+  courseId
+);
 
     await setStudyMode("free");
   }

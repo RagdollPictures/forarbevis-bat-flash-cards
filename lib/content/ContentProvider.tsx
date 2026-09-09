@@ -20,6 +20,7 @@ const emptyStructure: CourseStructure = {
 };
 
 type ContentContextValue = {
+   courseId: string;
   decks: CourseDecks;
   structure: CourseStructure;
   sharedUiText: SharedUiText;
@@ -129,6 +130,7 @@ export function ContentProvider({
   return (
     <ContentContext.Provider
       value={{
+        courseId,
         decks,
         structure,
         sharedUiText,

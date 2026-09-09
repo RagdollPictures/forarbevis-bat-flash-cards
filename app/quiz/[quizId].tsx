@@ -45,7 +45,11 @@ export default function QuizScreen() {
   const navigation = useNavigation();
   const { studyMode } =
   useStudyMode();
- const { decks, structure } = useContent();
+ const {
+  decks,
+  structure,
+  courseId,
+} = useContent();
 const {
   levelIds,
   levelsById,
@@ -63,13 +67,13 @@ const {
 
 const resolved = useMemo(
   () =>
-    getQuizByIdFromStructure({
-      structure,
-      quizId: id,
-      sourceId: course.sourceId,
-      courseId: course.id,
-    }),
-  [id, structure]
+   getQuizByIdFromStructure({
+  structure,
+  quizId: id,
+  sourceId: course.sourceId,
+  courseId,
+}),
+  [id, structure, courseId]
 );
 
 
@@ -197,6 +201,7 @@ const deck = useMemo(
   quizId: id,
   deck,
   studyMode,
+  courseId,
 });
 
   const currentChapterId =
@@ -533,28 +538,24 @@ const deck = useMemo(
 
                 if (total > 0) {
                   await saveQuizProgress(
-                {
-                  quizId: id,
-
-                  progress:
-                    Array(total).fill(
-                      "correct"
-                    ),
-
-                  score: total,
-                  total,
-
-                  updatedAt:
-                    Date.now(),
-
-                  firstTryCorrect:
-                    s.firstTryCorrectCount,
-
-                  firstTryTotal:
-                    total,
-                },
-                studyMode
-              );
+  {
+    quizId: id,
+    progress:
+      Array(total).fill(
+        "correct"
+      ),
+    score: total,
+    total,
+    updatedAt:
+      Date.now(),
+    firstTryCorrect:
+      s.firstTryCorrectCount,
+    firstTryTotal:
+      total,
+  },
+  studyMode,
+  courseId
+);
                 }
 
                 if (
@@ -562,8 +563,9 @@ const deck = useMemo(
   isChapterQuiz
 ) {
   await addClearedQuizId(
-    id
-  );
+  id,
+  courseId
+);
 }
               }
             }

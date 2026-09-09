@@ -1,5 +1,7 @@
 export const appVariants = {
   forarbevis: {
+    appId: "forarbevis_bat",
+
     appName:
       "Förarbevis Båt – Träning",
 
@@ -45,6 +47,9 @@ export const appVariants = {
   },
 
   jagarexamen: {
+    appId:
+    "jagarexamen",
+    
     appName:
       "Jägarexamen – Träning",
 

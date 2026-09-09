@@ -19,6 +19,9 @@ export function useCourseLevelConfig() {
 
   return {
     ...config,
+    isContentReady,
+    hasLevels:
+      config.levelIds.length > 0,
     isReady:
       isContentReady &&
       config.levelIds.length > 0,
