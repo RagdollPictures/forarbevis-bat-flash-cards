@@ -114,8 +114,7 @@ export const styles = StyleSheet.create({
 },
 
 optionGrid: {
-  width: "48%",
-  marginBottom: 12,
+  width: "100%",
 },
 
   optionCorrect: {
@@ -227,4 +226,20 @@ optionImageWrapper: {
     lineHeight: 22,
     color: colorSchemeGui.slate_900,
   },
+
+  optionLiftWrap: {
+  position: "relative",
+  width: "100%",
+},
+
+optionLiftWrapGrid: {
+  width: "48%",
+  marginBottom: 12,
+},
+
+optionLiftBase: {
+  ...StyleSheet.absoluteFillObject,
+  borderRadius: 12,
+  backgroundColor: colorSchemeGui.slate_700,
+},
 });
