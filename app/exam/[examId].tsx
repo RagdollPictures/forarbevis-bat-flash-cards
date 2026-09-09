@@ -305,7 +305,7 @@ export default function ExamScreen() {
                         size={17}
                         color={
                           colorSchemeGui
-                            .Fuchsia_500
+                            .slate_200
                         }
                       />
 
@@ -651,7 +651,7 @@ const examStyles = StyleSheet.create({
 
   sectionTitle: {
     color:
-      colorSchemeGui.Fuchsia_500,
+      colorSchemeGui.slate_200,
     fontSize: 18,
     fontWeight: "800",
     marginTop: 28,
