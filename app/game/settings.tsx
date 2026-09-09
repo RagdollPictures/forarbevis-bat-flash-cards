@@ -1,27 +1,24 @@
 import { FontAwesome } from "@expo/vector-icons";
 import { router } from "expo-router";
 import {
-    Pressable,
-    Text,
-    View,
+  Pressable,
+  Text,
+  View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import { colorSchemeGui } from "../../constants/colors";
 import {
-    initializeFreeProgressFromGuided,
+  initializeFreeProgressFromGuided,
 } from "../../constants/flashcards/quizProgress";
 import { useContent } from "../../lib/content/ContentProvider";
 import { useStudyMode } from "../../lib/StudyModeProvider";
 
-import { loadClearedSet } from "../quiz/storage/cleared";
-import { getUnlockedLevelIds } from "./levelUnlocks";
 import { useCourseLevelConfig } from "./useCourseLevelConfig";
 
 export default function SettingsScreen() {
   const {
     sharedUiText,
-    structure,
   } = useContent();
 
   const {
@@ -43,44 +40,12 @@ export default function SettingsScreen() {
   }
 
   async function chooseGuidedMode() {
-    if (studyMode === "guided") {
-      return;
-    }
-
-    const clearedIds =
-      await loadClearedSet();
-
-    const unlockedLevelIds =
-      getUnlockedLevelIds(
-        levelIds,
-        clearedIds,
-        structure
-      );
-
-    const resumeLevelId =
-      [...levelIds]
-        .reverse()
-        .find((levelId) =>
-          unlockedLevelIds.has(
-            levelId
-          )
-        ) ?? levelIds[0];
-
-    await setStudyMode(
-      "guided"
-    );
-
-    if (resumeLevelId) {
-      router.replace({
-        pathname:
-          "/game/[levelId]",
-        params: {
-          levelId:
-            resumeLevelId,
-        },
-      });
-    }
+  if (studyMode === "guided") {
+    return;
   }
+
+  await setStudyMode("guided");
+}
 
   return (
     <SafeAreaView

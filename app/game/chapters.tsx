@@ -104,9 +104,33 @@ export default function ChaptersScreen() {
         }}
       >
         <Pressable
-          onPress={() =>
-            router.back()
-          }
+         onPress={() => {
+  if (studyMode === "guided") {
+    const resumeLevelId =
+      [...levelIds]
+        .reverse()
+        .find((levelId) =>
+          unlockedLevelIds.has(
+            levelId
+          )
+        ) ?? levelIds[0];
+
+    if (resumeLevelId) {
+      router.replace({
+        pathname:
+          "/game/[levelId]",
+        params: {
+          levelId:
+            resumeLevelId,
+        },
+      });
+
+      return;
+    }
+  }
+
+  router.back();
+}}
         >
           <FontAwesome
   name="times"
