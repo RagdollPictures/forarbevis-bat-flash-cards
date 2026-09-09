@@ -191,7 +191,8 @@ function buildChapterProgressMap(
   levelsById: Record<
     string,
     MenuLevel
-  >
+  >,
+  courseId: string
 ): Record<string, number> {
   const result: Record<
     string,
@@ -220,7 +221,7 @@ function buildChapterProgressMap(
           sourceId:
             course.sourceId,
           courseId:
-            course.id,
+            courseId,
         }
       );
 
@@ -297,9 +298,10 @@ export default function ChapterMenuMap({
 
   const { width: windowWidth } = useWindowDimensions();
   const {
-    decks,
-    structure,
-  } = useContent();
+  decks,
+  structure,
+  courseId,
+} = useContent();
 
   const { studyMode } =
   useStudyMode();
@@ -393,22 +395,24 @@ export default function ChapterMenuMap({
 
     async function loadProgress() {
       const allProgress =
-  await getAllQuizProgress(
-    studyMode
-  );
+ await getAllQuizProgress(
+  studyMode,
+  courseId
+);
 
       if (!mounted) {
         return;
       }
 
       setChapterProgressMap(
-        buildChapterProgressMap(
-          allProgress,
-          decks,
-          structure,
-          levelIds,
-          levelsById
-        )
+       buildChapterProgressMap(
+  allProgress,
+  decks,
+  structure,
+  levelIds,
+  levelsById,
+  courseId
+)
       );
     }
 
@@ -423,6 +427,7 @@ export default function ChapterMenuMap({
     levelIds,
     levelsById,
     studyMode,
+     courseId,
   ]);
 
   return (

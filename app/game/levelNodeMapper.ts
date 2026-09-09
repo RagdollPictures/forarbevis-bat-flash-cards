@@ -31,7 +31,7 @@ export function getPlacedNodes(layout: any, quizzes: QuizItem[]): PlacedNode[] {
       result.push({
         id: anchor.id,
         type: "read",
-        deckId: quiz.id,
+       deckId: quiz.deckId ?? quiz.id,
         title: quiz.title,
         quizId: quiz.id,
         x: anchor.x,

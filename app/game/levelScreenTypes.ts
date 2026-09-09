@@ -5,6 +5,7 @@ export type QuizItem = {
   id: string;
   title: string;
   subtitle?: string;
+  deckId?: string;
 };
 
 export type LevelObjectConfig = {

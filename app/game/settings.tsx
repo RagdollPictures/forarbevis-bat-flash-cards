@@ -12,23 +12,24 @@ import {
   initializeFreeProgressFromGuided,
 } from "../../constants/flashcards/quizProgress";
 import { useContent } from "../../lib/content/ContentProvider";
+import { useCourse } from "../../lib/CourseProvider";
 import { useStudyMode } from "../../lib/StudyModeProvider";
 
-import { useCourseLevelConfig } from "./useCourseLevelConfig";
-
 export default function SettingsScreen() {
- const {
-  sharedUiText,
-  courseId,
-} = useContent();
+  const {
+    sharedUiText,
+    courseId,
+  } = useContent();
 
   const {
     studyMode,
     setStudyMode,
   } = useStudyMode();
 
-  const { levelIds } =
-    useCourseLevelConfig();
+  const {
+    courses,
+    openCourseSelection,
+  } = useCourse();
 
   async function chooseFreeMode() {
     if (studyMode === "free") {
@@ -36,19 +37,19 @@ export default function SettingsScreen() {
     }
 
     await initializeFreeProgressFromGuided(
-  courseId
-);
+      courseId
+    );
 
     await setStudyMode("free");
   }
 
   async function chooseGuidedMode() {
-  if (studyMode === "guided") {
-    return;
-  }
+    if (studyMode === "guided") {
+      return;
+    }
 
-  await setStudyMode("guided");
-}
+    await setStudyMode("guided");
+  }
 
   return (
     <SafeAreaView
@@ -58,7 +59,6 @@ export default function SettingsScreen() {
           colorSchemeGui.slate_900,
       }}
     >
-      {/* Header */}
       <View
         style={{
           height: 84,
@@ -131,7 +131,6 @@ export default function SettingsScreen() {
           }
         </Text>
 
-        {/* Följ banan */}
         <Pressable
           onPress={
             chooseGuidedMode
@@ -209,7 +208,6 @@ export default function SettingsScreen() {
           </Text>
         </Pressable>
 
-        {/* Träna fritt */}
         <Pressable
           onPress={
             chooseFreeMode
@@ -285,6 +283,55 @@ export default function SettingsScreen() {
             }
           </Text>
         </Pressable>
+
+        {courses.length > 1 ? (
+          <Pressable
+            onPress={
+              openCourseSelection
+            }
+            style={{
+              borderWidth: 2,
+              borderBottomWidth: 5,
+              borderColor:
+                colorSchemeGui.slate_700,
+              borderRadius: 16,
+              padding: 18,
+              backgroundColor:
+                colorSchemeGui.slate_900,
+            }}
+          >
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent:
+                  "space-between",
+                gap: 12,
+              }}
+            >
+              <Text
+                style={{
+                  color:
+                    colorSchemeGui
+                      .slate_200,
+                  fontSize: 18,
+                  fontWeight: "900",
+                }}
+              >
+                Byt kurs
+              </Text>
+
+              <FontAwesome
+                name="exchange"
+                size={22}
+                color={
+                  colorSchemeGui
+                    .slate_200
+                }
+              />
+            </View>
+          </Pressable>
+        ) : null}
       </View>
     </SafeAreaView>
   );

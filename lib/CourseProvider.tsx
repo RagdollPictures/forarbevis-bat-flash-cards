@@ -1,3 +1,4 @@
+import AsyncStorage from "@react-native-async-storage/async-storage";
 import React, {
     createContext,
     useContext,
@@ -17,7 +18,7 @@ type CourseContextValue = {
   needsCourseSelection: boolean;
   selectCourse: (
     courseId: string
-  ) => void;
+  ) => Promise<void>;
   openCourseSelection: () => void;
 };
 
@@ -25,6 +26,12 @@ const CourseContext =
   createContext<CourseContextValue | null>(
     null
   );
+
+function getSelectedCourseKey(
+  appId: string
+) {
+  return `selected-course:${appId}`;
+}
 
 export function CourseProvider({
   appId,
@@ -58,10 +65,19 @@ export function CourseProvider({
 
     async function load() {
       try {
-        const loadedCourses =
-          await loadCoursesFromSupabase(
+        const [
+          loadedCourses,
+          savedCourseId,
+        ] = await Promise.all([
+          loadCoursesFromSupabase(
             appId
-          );
+          ),
+          AsyncStorage.getItem(
+            getSelectedCourseKey(
+              appId
+            )
+          ),
+        ]);
 
         if (cancelled) {
           return;
@@ -71,43 +87,83 @@ export function CourseProvider({
           loadedCourses
         );
 
-        /*
-         * Fler än en aktiv kurs:
-         * visa kursväljaren.
-         */
-        setNeedsCourseSelection(
-          loadedCourses.length > 1
-        );
+        if (
+          loadedCourses.length === 0
+        ) {
+          setSelectedCourseId(
+            fallbackCourseId
+          );
 
-        /*
-         * Bara en aktiv kurs:
-         * välj den automatiskt.
-         */
+          setNeedsCourseSelection(
+            false
+          );
+
+          return;
+        }
+
         if (
           loadedCourses.length === 1
         ) {
+          const onlyCourseId =
+            loadedCourses[0].id;
+
           setSelectedCourseId(
-            loadedCourses[0].id
+            onlyCourseId
           );
+
+          setNeedsCourseSelection(
+            false
+          );
+
+          await AsyncStorage.setItem(
+            getSelectedCourseKey(
+              appId
+            ),
+            onlyCourseId
+          );
+
+          return;
         }
 
-        /*
-         * Om fallback-kursen inte finns
-         * bland de aktiva kurserna väljer
-         * vi första tillgängliga kursen.
-         */
+        const savedCourseExists =
+          savedCourseId !== null &&
+          loadedCourses.some(
+            (item) =>
+              item.id ===
+              savedCourseId
+          );
+
         if (
-          loadedCourses.length > 0 &&
-          !loadedCourses.some(
+          savedCourseExists &&
+          savedCourseId
+        ) {
+          setSelectedCourseId(
+            savedCourseId
+          );
+
+          setNeedsCourseSelection(
+            false
+          );
+
+          return;
+        }
+
+        const fallbackExists =
+          loadedCourses.some(
             (item) =>
               item.id ===
               fallbackCourseId
-          )
-        ) {
-          setSelectedCourseId(
-            loadedCourses[0].id
           );
-        }
+
+        setSelectedCourseId(
+          fallbackExists
+            ? fallbackCourseId
+            : loadedCourses[0].id
+        );
+
+        setNeedsCourseSelection(
+          true
+        );
       } catch (error) {
         console.warn(
           "Kunde inte läsa kurslista:",
@@ -130,7 +186,7 @@ export function CourseProvider({
     fallbackCourseId,
   ]);
 
-  function selectCourse(
+  async function selectCourse(
     courseId: string
   ) {
     if (
@@ -149,15 +205,22 @@ export function CourseProvider({
     setNeedsCourseSelection(
       false
     );
+
+    try {
+      await AsyncStorage.setItem(
+        getSelectedCourseKey(
+          appId
+        ),
+        courseId
+      );
+    } catch (error) {
+      console.warn(
+        "Kunde inte spara vald kurs:",
+        error
+      );
+    }
   }
 
-  /*
-   * Gör att man kan komma tillbaka
-   * till kursväljaren.
-   *
-   * Har appen bara en kurs finns
-   * inget att välja mellan.
-   */
   function openCourseSelection() {
     if (courses.length > 1) {
       setNeedsCourseSelection(
