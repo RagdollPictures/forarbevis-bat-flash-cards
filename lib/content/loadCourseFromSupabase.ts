@@ -1,8 +1,8 @@
 import type { FlashCard } from "../../constants/flashcards/types";
 import { supabase } from "../supabase";
 import {
-    type QuestionRow,
-    rowToFlashCard,
+  type QuestionRow,
+  rowToFlashCard,
 } from "./loadDeckFromSupabase";
 
 type CourseQuestionRow = QuestionRow & {
@@ -16,9 +16,12 @@ export type CourseDecks = Record<
 
 const PAGE_SIZE = 500;
 
-export async function loadCourseFromSupabase(
+async function loadQuestionRows(
+  tableName:
+    | "questions"
+    | "exam_questions",
   courseId: string
-): Promise<CourseDecks> {
+): Promise<CourseQuestionRow[]> {
   const rows: CourseQuestionRow[] =
     [];
 
@@ -30,7 +33,7 @@ export async function loadCourseFromSupabase(
 
     const { data, error } =
       await supabase
-        .from("questions")
+        .from(tableName)
         .select("*")
         .eq(
           "course_id",
@@ -44,7 +47,7 @@ export async function loadCourseFromSupabase(
           ascending: true,
         })
         .order("id", {
-        ascending: true,
+          ascending: true,
         })
         .range(from, to);
 
@@ -67,6 +70,31 @@ export async function loadCourseFromSupabase(
 
     from += PAGE_SIZE;
   }
+
+  return rows;
+}
+
+export async function loadCourseFromSupabase(
+  courseId: string
+): Promise<CourseDecks> {
+  const [
+    questions,
+    examQuestions,
+  ] = await Promise.all([
+    loadQuestionRows(
+      "questions",
+      courseId
+    ),
+    loadQuestionRows(
+      "exam_questions",
+      courseId
+    ),
+  ]);
+
+  const rows = [
+    ...questions,
+    ...examQuestions,
+  ];
 
   const decks: CourseDecks =
     {};
