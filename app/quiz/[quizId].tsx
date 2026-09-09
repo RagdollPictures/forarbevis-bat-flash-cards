@@ -13,7 +13,6 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 
 import { course } from "../../content/course";
 
@@ -32,6 +31,7 @@ import {
 
 import { addClearedQuizId } from "../quiz/storage/cleared";
 
+import { FontAwesome } from "@expo/vector-icons";
 import { useStudyMode } from "../../lib/StudyModeProvider";
 import { styles } from "./_quiz/styles";
 import { BoatProgressBar } from "./_quiz/ui/boatProgressBar";
@@ -279,10 +279,11 @@ const deck = useMemo(
             }
             hitSlop={12}
           >
-            <CloseIcon
-              width={48}
-              height={48}
-            />
+            <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
           </Pressable>
         </View>
 
@@ -313,10 +314,11 @@ const deck = useMemo(
             iconWrapStyle
           }
         >
-          <CloseIcon
-            width={48}
-            height={48}
-          />
+         <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
         </Pressable>
       </View>
 
@@ -394,10 +396,11 @@ const deck = useMemo(
               iconWrapStyle
             }
           >
-            <CloseIcon
-              width={48}
-              height={48}
-            />
+            <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
           </Pressable>
         </View>
 
@@ -429,10 +432,11 @@ const deck = useMemo(
               iconWrapStyle
             }
           >
-            <CloseIcon
-              width={48}
-              height={48}
-            />
+           <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
           </Pressable>
         </View>
 
@@ -477,10 +481,11 @@ const deck = useMemo(
               iconWrapStyle
             }
           >
-            <CloseIcon
-              width={48}
-              height={48}
-            />
+           <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
           </Pressable>
         </View>
 
@@ -619,10 +624,11 @@ const deck = useMemo(
             iconWrapStyle
           }
         >
-          <CloseIcon
-            width={48}
-            height={48}
-          />
+         <FontAwesome
+  name="times"
+  size={38}
+  color={colorSchemeGui.slate_200}
+/>
         </Pressable>
       </View>
 
@@ -706,7 +712,7 @@ const headerStyle = {
   alignItems:
     "center" as const,
   justifyContent:
-    "flex-end" as const,
+    "flex-start" as const,
 };
 
 const iconWrapStyle = {

@@ -501,10 +501,6 @@ const unlockedBonusIds =
           levelId,
           node.quizId
         );
-
-        setLastFreeNodeId(
-          node.quizId
-        );
       }
 
       runRouteTransition({

@@ -13,9 +13,10 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import CloseIcon from "../../assets/menu/close_chapter_menu.svg";
 
 import { useContent } from "../../lib/content/ContentProvider";
+
+import { FontAwesome } from "@expo/vector-icons";
 
 type ReadSection = {
   id: string;
@@ -108,7 +109,7 @@ export default function ReadScreen() {
           paddingHorizontal: 16,
           flexDirection: "row",
           alignItems: "center",
-          justifyContent: "flex-end",
+          justifyContent: "flex-start",
         }}
       >
         <Pressable
@@ -121,10 +122,11 @@ export default function ReadScreen() {
           }}
           hitSlop={12}
         >
-          <CloseIcon
-            width={48}
-            height={48}
-          />
+          <FontAwesome
+  name="times"
+  size={38}
+  color="#e2e8f0"
+/>
         </Pressable>
       </View>
 
