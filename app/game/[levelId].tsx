@@ -284,9 +284,7 @@ const safeBonusLevels =
     let alive = true;
 
     if (studyMode !== "free") {
-      setLastFreeNodeId(
-        null
-      );
+     
 
       return;
     }
@@ -548,9 +546,7 @@ const unlockedBonusIds =
           node.quizId
         );
 
-        setLastFreeNodeId(
-          node.quizId
-        );
+       
       }
 
       runRouteTransition({
