@@ -4,7 +4,12 @@ import {
   useLocalSearchParams,
   useNavigation,
 } from "expo-router";
-import React, { useMemo, useState } from "react";
+import React, {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import {
   Pressable,
   ScrollView,
@@ -40,6 +45,7 @@ import QuizFinished from "./_quiz/ui/QuizFinished";
 import QuizMissing from "./_quiz/ui/QuizMissing";
 import { useQuizSession } from "./_quiz/useQuizSession";
 import { validateDeck } from "./_quiz/validateDeck";
+
 
 export default function QuizScreen() {
   const navigation = useNavigation();
@@ -93,6 +99,12 @@ const unlockedBonusLevel =
 
  const isChapterQuiz =
   Boolean(resolved?.chapterId);
+
+const isBonusQuiz =
+  structure.bonusLevels.some(
+    (bonusLevel) =>
+      bonusLevel.id === id
+  );
 
   const bonusReward =
   studyMode === "guided" &&
@@ -223,6 +235,88 @@ const deck = useMemo(
   studyMode,
   courseId,
 });
+
+const bonusStartedAt =
+  useRef<number | null>(null);
+
+const [
+  elapsedSeconds,
+  setElapsedSeconds,
+] = useState(0);
+
+useEffect(() => {
+  bonusStartedAt.current =
+    isBonusQuiz
+      ? Date.now()
+      : null;
+
+  setElapsedSeconds(0);
+}, [
+  id,
+  isBonusQuiz,
+]);
+
+useEffect(() => {
+  if (
+    !isBonusQuiz ||
+    s.isFinished ||
+    bonusStartedAt.current === null
+  ) {
+    return;
+  }
+
+  const updateTimer = () => {
+    if (
+      bonusStartedAt.current === null
+    ) {
+      return;
+    }
+
+    setElapsedSeconds(
+      Math.floor(
+        (
+          Date.now() -
+          bonusStartedAt.current
+        ) / 1000
+      )
+    );
+  };
+
+  updateTimer();
+
+  const timer =
+    setInterval(
+      updateTimer,
+      250
+    );
+
+  return () => {
+    clearInterval(timer);
+  };
+}, [
+  id,
+  isBonusQuiz,
+  s.isFinished,
+]);
+
+const bonusTimeText = `${Math.floor(
+  elapsedSeconds / 60
+)
+  .toString()
+  .padStart(2, "0")}:${(
+  elapsedSeconds % 60
+)
+  .toString()
+  .padStart(2, "0")}`;
+
+  const restartBonusQuiz = () => {
+  bonusStartedAt.current =
+    Date.now();
+
+  setElapsedSeconds(0);
+
+  s.restart();
+};
 
   const currentChapterId =
     resolved?.chapterId ??
@@ -579,14 +673,23 @@ const deck = useMemo(
       }
     }
   }
-  isChapterQuiz={
-    isChapterQuiz
-  }
-  nextLevelId={
-    nextLevelId
-  }
- unlockedBonusLevel={
+ isChapterQuiz={
+  isChapterQuiz
+}
+nextLevelId={
+  nextLevelId
+}
+unlockedBonusLevel={
   bonusReward
+}
+isBonusQuiz={
+  isBonusQuiz
+}
+elapsedSeconds={
+  elapsedSeconds
+}
+onTryAgain={
+  restartBonusQuiz
 }
 />
         </ScrollView>
@@ -665,6 +768,47 @@ const deck = useMemo(
             s.visualProgress
           }
         />
+
+        {isBonusQuiz ? (
+  <View
+    style={{
+      alignSelf: "center",
+      marginTop: 14,
+      marginBottom: 18,
+      paddingHorizontal: 16,
+      paddingVertical: 8,
+      borderRadius: 14,
+      borderWidth: 2,
+      borderBottomWidth: 4,
+      borderColor:
+        colorSchemeGui.slate_700,
+      backgroundColor:
+        colorSchemeGui.slate_900,
+      flexDirection: "row",
+      alignItems: "center",
+      gap: 8,
+    }}
+  >
+    <FontAwesome
+      name="clock-o"
+      size={18}
+      color={
+        colorSchemeGui.Fuchsia_500
+      }
+    />
+
+    <Text
+      style={{
+        color:
+          colorSchemeGui.slate_200,
+        fontSize: 18,
+        fontWeight: "900",
+      }}
+    >
+      {bonusTimeText}
+    </Text>
+  </View>
+) : null}
 
         <QuizCard
           questionText={

@@ -19,6 +19,9 @@ export default function QuizFinished({
   isChapterQuiz = false,
   nextLevelId = null,
   unlockedBonusLevel = null,
+  isBonusQuiz = false,
+  elapsedSeconds = 0,
+  onTryAgain,
 }: {
   title: string;
   onContinue?: () =>
@@ -26,17 +29,30 @@ export default function QuizFinished({
   isChapterQuiz?: boolean;
   nextLevelId?: string | null;
   unlockedBonusLevel?: CourseBonusLevel | null;
+  isBonusQuiz?: boolean;
+  elapsedSeconds?: number;
+  onTryAgain?: () => void;
 }) {
   const hasBonusUnlock =
     isChapterQuiz &&
     unlockedBonusLevel !== null;
 
   const bonusIconUrl =
-  hasBonusUnlock
-    ? getCourseAssetUrl(
-        unlockedBonusLevel.iconOffPath
-      )
-    : undefined;
+    hasBonusUnlock
+      ? getCourseAssetUrl(
+          unlockedBonusLevel.iconOffPath
+        )
+      : undefined;
+
+  const timeText = `${Math.floor(
+    elapsedSeconds / 60
+  )
+    .toString()
+    .padStart(2, "0")}:${(
+    elapsedSeconds % 60
+  )
+    .toString()
+    .padStart(2, "0")}`;
 
   const goNext = async () => {
     await onContinue?.();
@@ -59,20 +75,33 @@ export default function QuizFinished({
     router.back();
   };
 
+  const handlePrimaryPress = () => {
+    if (isBonusQuiz) {
+      onTryAgain?.();
+      return;
+    }
+
+    void goNext();
+  };
+
   const heading =
     hasBonusUnlock
       ? "Ny bonusbana"
       : "Snyggt jobbat!";
 
   const message =
-    hasBonusUnlock
-      ? `${unlockedBonusLevel.title} är upplåst!`
-      : null;
+    isBonusQuiz
+      ? `Din tid: ${timeText}`
+      : hasBonusUnlock
+        ? `${unlockedBonusLevel.title} är upplåst!`
+        : null;
 
   const buttonText =
-    isChapterQuiz
-      ? "Till nästa bana!"
-      : "Till nästa kapitel";
+    isBonusQuiz
+      ? "Prova igen!"
+      : isChapterQuiz
+        ? "Till nästa bana!"
+        : "Till nästa kapitel";
 
   return (
     <View style={styles.container}>
@@ -130,8 +159,12 @@ export default function QuizFinished({
           style={styles.primaryBase}
         >
           <Pressable
-            onPress={goNext}
-            style={styles.primaryButton}
+            onPress={
+              handlePrimaryPress
+            }
+            style={
+              styles.primaryButton
+            }
           >
             <Text
               style={
@@ -142,7 +175,11 @@ export default function QuizFinished({
             </Text>
 
             <FontAwesome
-              name="chevron-right"
+              name={
+                isBonusQuiz
+                  ? "refresh"
+                  : "chevron-right"
+              }
               size={16}
               color={
                 colorSchemeGui
