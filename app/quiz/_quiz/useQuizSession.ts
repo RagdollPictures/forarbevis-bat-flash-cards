@@ -9,7 +9,7 @@ import type { FlashCard } from "../../../constants/flashcards/types";
 import type { StudyMode } from "../../../lib/studyMode";
 import { shuffle } from "./shuffle";
 
-const QUIZ_LENGTH = 10;
+const DEFAULT_QUIZ_LENGTH = 10;
 
 function shuffleArray<T>(
   array: T[]
@@ -35,12 +35,19 @@ function shuffleArray<T>(
 }
 
 function buildSessionDeck<T>(
-  deck: T[]
+  deck: T[],
+  sessionQuestionCount?: number
 ): T[] {
+  const questionCount =
+    Number.isInteger(sessionQuestionCount) &&
+    (sessionQuestionCount ?? 0) > 0
+      ? sessionQuestionCount!
+      : DEFAULT_QUIZ_LENGTH;
+
   return shuffleArray(deck).slice(
     0,
     Math.min(
-      QUIZ_LENGTH,
+      questionCount,
       deck.length
     )
   );
@@ -134,11 +141,13 @@ export function useQuizSession({
   deck,
   studyMode,
   courseId,
+    sessionQuestionCount,
 }: {
   quizId: string;
   deck: FlashCard[];
   studyMode: StudyMode;
   courseId: string;
+  sessionQuestionCount?: number;
 }) {
   const [
     queue,
@@ -229,7 +238,10 @@ export function useQuizSession({
     }
 
     const nextDeck =
-      buildSessionDeck(deck);
+      buildSessionDeck(
+  deck,
+  sessionQuestionCount
+);
 
     setQueue(nextDeck);
 
@@ -269,26 +281,17 @@ export function useQuizSession({
       0
     );
 
-    /*
-     * VIKTIGT:
-     *
-     * Bygg quiz-alternativen direkt
-     * från första kortet.
-     *
-     * Tidigare sattes quiz till tomt
-     * här och vi förlitade oss på
-     * nästa effect för att fylla det.
-     * Det kunde lämna quizet med:
-     *
-     * options: []
-     * correctOptionIndex: -1
-     */
+   
     setQuiz(
       buildFrozenQuiz(
         nextDeck[0]
       )
     );
-  }, [quizId, deck]);
+  }, [
+  quizId,
+  deck,
+  sessionQuestionCount,
+]);
 
   const safeIndex =
     Math.min(
@@ -660,7 +663,10 @@ export function useQuizSession({
     }
 
     const nextDeck =
-      buildSessionDeck(deck);
+      buildSessionDeck(
+  deck,
+  sessionQuestionCount
+);
 
     setQueue(nextDeck);
 

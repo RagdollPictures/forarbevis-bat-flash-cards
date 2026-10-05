@@ -180,7 +180,31 @@ const isBonusQuiz =
     }
   }
 
+  
+
   return "Välj variant";
+}, [deckIds, decks]);
+
+const sessionQuestionCount = useMemo(() => {
+  for (const deckId of deckIds) {
+    const cards =
+      decks[deckId] ?? [];
+
+    for (const card of cards) {
+      const value =
+        card.sessionQuestionCount;
+
+      if (
+        typeof value === "number" &&
+        Number.isInteger(value) &&
+        value > 0
+      ) {
+        return value;
+      }
+    }
+  }
+
+  return undefined;
 }, [deckIds, decks]);
 
 const [
@@ -233,11 +257,12 @@ const deck = useMemo(
   [filteredRawDeck]
 );
 
- const s = useQuizSession({
+const s = useQuizSession({
   quizId: id,
   deck,
   studyMode,
   courseId,
+  sessionQuestionCount,
 });
 
 const bonusStartedAt =

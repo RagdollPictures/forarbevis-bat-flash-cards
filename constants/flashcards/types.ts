@@ -19,6 +19,8 @@ export type FlashCard = {
 
   contentVariant?: string;
   contentVariantPrompt?: string;
+
+  sessionQuestionCount?: number;
 };
 
 export type Source = {

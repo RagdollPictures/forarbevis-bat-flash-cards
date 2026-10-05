@@ -31,6 +31,7 @@ export type QuestionRow = {
   text_info: string | null;
   content_variant: string | null;
   content_variant_prompt: string | null;
+  session_question_count: number | null;
 };
 
 function getImageUrl(
@@ -146,6 +147,9 @@ export function rowToFlashCard(
 
   contentVariantPrompt:
   row.content_variant_prompt ?? undefined,
+
+  sessionQuestionCount:
+  row.session_question_count ?? undefined,
   };
 }
 
