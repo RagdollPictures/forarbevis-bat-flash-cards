@@ -1,6 +1,7 @@
 const APP_ID = "forarbevis_bat";
 
 const TABLE_NAMES = [
+  "exam_questions",
   "final_exams",
   "courses",
   "levels",
@@ -12,6 +13,7 @@ const TABLE_NAMES = [
 ];
 
 const COURSE_SCOPED_TABLE_NAMES = [
+  "exam_questions",
   "final_exams",
   "levels",
   "units",
@@ -97,6 +99,11 @@ function readFullCourse() {
 
     questions:
       readSheetRows("questions"),
+
+      exam_questions:
+  readSheetRows(
+    "exam_questions"
+  ),
 
     level_graphics:
       readSheetRows(

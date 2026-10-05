@@ -2,6 +2,7 @@ import "jsr:@supabase/functions-js/edge-runtime.d.ts";
 import { withSupabase } from "jsr:@supabase/server@^1";
 
 const TABLE_NAMES = [
+  "exam_questions",
   "final_exams",
   "courses",
   "levels",
@@ -13,6 +14,7 @@ const TABLE_NAMES = [
 ] as const;
 
 const DELETE_ORDER = [
+   "exam_questions",
   "questions",
   "level_graphics",
   "bonus_levels",
