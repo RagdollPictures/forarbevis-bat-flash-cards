@@ -104,8 +104,10 @@ export default function QuizFinished({
   };
 
   const heading =
-    hasBonusUnlock
-      ? "Ny bonusbana"
+  hasBonusUnlock
+    ? "Ny bonusbana"
+    : isBonusQuiz
+      ? null
       : "Snyggt jobbat!";
 
  const message =
@@ -152,15 +154,17 @@ export default function QuizFinished({
           </View>
         ) : null}
 
-        <Text
-          style={[
-            styles.title,
-            !hasBonusUnlock &&
-              styles.titleWithoutIcon,
-          ]}
-        >
-          {heading}
-        </Text>
+        {heading ? (
+  <Text
+    style={[
+      styles.title,
+      !hasBonusUnlock &&
+        styles.titleWithoutIcon,
+    ]}
+  >
+    {heading}
+  </Text>
+) : null}
 
         {message ? (
           <Text
